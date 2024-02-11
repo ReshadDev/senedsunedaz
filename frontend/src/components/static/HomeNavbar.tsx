@@ -5,7 +5,7 @@ const HomeNavbar: React.FC = () => {
   return (
     <div className="home-navbar">
       <Container>
-        <h1 className="home-navbar__text">HomeNavbar</h1>
+        <h1 className="home-navbar__text">SenedSuned</h1>
       </Container>
     </div>
   );

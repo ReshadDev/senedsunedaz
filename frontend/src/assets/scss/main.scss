@@ -5,15 +5,15 @@
   font-family: "Roboto", sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 .container {
   width: 70%; /* Set the width to match the HomeNavbar */
   margin: 0 auto; /* Center the container horizontally */
-}
-
-#home {
-  background: #ffffff;
-  width: 100%;
-  height: 100%;
 }
 
 .col-2 {
@@ -64,35 +64,90 @@
   margin-top: 20px;
 }
 
-.home-navbar {
+a {
+  text-decoration: none;
+}
+
+#home {
+  background: #ffffff;
   display: flex;
-  background-color: #9a8282;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.home-navbar {
+  flex: 0 0 6.8%;
+  display: flex;
+  background: #5246461c;
+
   align-items: center;
   justify-content: center;
   height: 64px;
   .home-navbar__text {
     font-size: 24px;
     font-weight: 500;
+    text-align: center;
   }
 }
 
 .home-footer {
+  width: 100%;
   display: flex;
+  min-height: 120px;
   background: #2e3138;
   color: #ffffff;
   font-size: 15px;
+
+  .home-footer__box {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-footer__logo {
+    display: flex;
+    align-items: center;
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 30px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
   .home-footer__menu {
     display: flex;
+    h1 {
+      font-family: Work Sans;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
   }
   .home-footer__contact {
     display: flex;
+    align-items: center;
     justify-content: end;
+    .number-box {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        margin-right: 10px;
+      }
+    }
   }
 }
 
 .page-content {
-  margin-bottom: 144px;
-  margin-top: 144px;
+  flex: 0 0 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   .page-content__boxes {
     display: flex;
     justify-content: space-between;
@@ -107,10 +162,30 @@
         background: #1aacac;
       }
 
-      &.blue {
+      &.home-box-2 {
         &:hover {
           background: #7189bf;
         }
+      }
+    }
+
+    .text-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      color: #242424;
+
+      h1 {
+        font-size: 34px;
+        font-weight: 500;
+        text-align: center;
+      }
+      p {
+        margin-top: 20px;
       }
     }
   }
