@@ -1,6 +1,6 @@
 import React from "react";
-import HomeNavbar from "../components/static/HomeNavbar";
-import HomeFooter from "../components/static/HomeFooter";
+import HomeNavbar from "../components/Static/HomeNavbar";
+import HomeFooter from "../components/Static/HomeFooter";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import Box from "../components/Box";

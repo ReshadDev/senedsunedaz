@@ -1,3 +1,105 @@
+.search-area {
+  width: 100%;
+  height: 100%;
+}
+.search-area .search-area-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+.search-area .search-area-content .search-area-box {
+  margin: 5% 12.5% 7.5% 12.5%;
+}
+.search-area .search-area-content .search-area-text-box {
+  padding-bottom: 65px;
+  text-align: center;
+}
+.search-area .search-area-content .search-area-text-box .sat-1 {
+  color: #2e3138;
+  text-align: center;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px;
+  margin-bottom: 5px;
+}
+.search-area .search-area-content .search-area-text-box .sat-1 span {
+  color: #7189bf;
+}
+.search-area .search-area-content .search-area-text-box .sat-2 {
+  color: #242424;
+  text-align: center;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+}
+.search-area .search-area-content .search-area-input-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.search-area .search-area-content .search-area-input-box #main-search-input {
+  border-radius: 8px;
+  border: 1px solid #9f9f9f;
+  display: flex;
+  width: 448px;
+  padding: 13px 16px 17px 15px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+.search-area .search-area-content .search-area-input-box .search-btn {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: #7189bf;
+  color: #fff;
+  border-color: transparent;
+  font-size: 18px;
+  font-weight: 400;
+}
+.search-area .search-area-content .search-area-input-box .search-btn .search-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.information-banner-content {
+  border-radius: 8px;
+  background: #86a2ce;
+}
+.information-banner-content .information-banner-box {
+  width: 100%;
+  display: inline-flex;
+  padding: 36px 130px 36px 139px;
+  justify-content: center;
+  align-items: center;
+}
+.information-banner-content .information-banner-box .col-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.information-banner-content .information-banner-box .col-4 .text-box p {
+  color: #f2f7fb;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+.information-banner-content .information-banner-box .col-4 .text-box p:first-child {
+  margin-bottom: 5px;
+}
+
 * {
   margin: 0;
   padding: 0;
