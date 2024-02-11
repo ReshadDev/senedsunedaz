@@ -18,7 +18,7 @@ const Home: React.FC = () => {
                   <div className="text-box">
                     <h1>Minlərlə ərizə və sənədlər.</h1>
                     <h1> Axtar, redaktə et və yüklə.</h1>
-                    <p>CV yarat səhifəsinə keçid etmək üçün kliklə</p>
+                    <p>Ərizələr səhifəsinə keçid etmək üçün kliklə</p>
                   </div>
                 </Box>
               </Link>
