@@ -4,6 +4,7 @@ import Footer from "../components/Layout/Footer";
 
 import SearchIcon from "../assets/images/MagnifyingGlass.svg";
 import AileIcon from "../assets/images/aile.svg";
+import ErizeIcon from "../assets/images/erize.svg";
 
 const Erizeler: React.FC = () => {
   return (
@@ -258,6 +259,27 @@ const Erizeler: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <section className="about-us-banner">
+          <div className="container">
+            <div className="about-us-content">
+              <div className="about-us-content-box">
+                <div className="about-us-logo-box">
+                  <img src={ErizeIcon} alt="men sekilem" />
+                </div>
+                <div className="about-us-text-box">
+                  <p>Haqqımızda</p>
+                  <p>
+                    SeneSuned minlərlə ərizə, idda ərizələri, təhsil üçün
+                    arayışlar, tərcümeyi hal kimi sənəd nümünələrini saxlayır.
+                    Sənədlərin düzgün yazılmasına, doldurumlasına köməklik edir.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
       </main>
       <Footer />
     </div>
