@@ -3,6 +3,7 @@ import Navbar from "../components/Layout/Navbar";
 import Footer from "../components/Layout/Footer";
 
 import SearchIcon from "../assets/images/MagnifyingGlass.svg";
+import AileIcon from "../assets/images/aile.svg";
 
 const Erizeler: React.FC = () => {
   return (
@@ -62,6 +63,198 @@ const Erizeler: React.FC = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="spesific-categories">
+          <div className="container">
+            <div className="spesific-categories-content">
+              <div className="spesific-categories-heading-box">
+                <p>Spesifik kataqoriyalar üzrə axtar.</p>
+              </div>
+              <div className="spesific-categories-category-box">
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="category-box col-4">
+                  <div className="category-box-heading-text">
+                    <div className="icon-box">
+                      <img src={AileIcon} alt="" />
+                    </div>
+                    <div className="text-box">
+                      <p>Ailə</p>
+                    </div>
+                  </div>
+                  <div className="category-box-list">
+                    <ul>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                      <li>
+                        <a href="#">Ərizənin adı</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <button className="more-btn">Daha çoxuna bax</button>
             </div>
           </div>
         </section>
