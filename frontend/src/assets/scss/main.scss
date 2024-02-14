@@ -11,6 +11,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -52,6 +53,10 @@ body {
 
 .me-20 {
   margin-right: 20px !important;
+}
+
+.ms-20 {
+  margin-left: 20px !important;
 }
 
 .my-50 {

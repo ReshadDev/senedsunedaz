@@ -201,7 +201,7 @@
 .about-us-banner {
   width: 100%;
   height: 100%;
-  margin-top: 60px;
+  padding-top: 80px;
 }
 .about-us-banner .about-us-content {
   border-radius: 8px;
@@ -235,6 +235,152 @@
   line-height: 20px;
 }
 
+.mostly-used-documents {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.mostly-used-documents .mostly-used-documents-heading-box {
+  padding-bottom: 20px;
+}
+.mostly-used-documents .mostly-used-documents-heading-box p {
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+}
+.mostly-used-documents .mostly-used-documents-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.mostly-used-documents .mostly-used-documents-box .col-3 {
+  flex: 0 0 auto;
+  width: 23%;
+}
+.mostly-used-documents .mostly-used-documents-box .document-box {
+  border-radius: 8px;
+  border: 1px solid #929292;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+.mostly-used-documents .mostly-used-documents-box .document-box .document-main-box {
+  width: 90%;
+  border-radius: 16px;
+  border: 1px solid #929292;
+  text-align: center;
+  position: relative;
+  top: 20px;
+}
+.mostly-used-documents .mostly-used-documents-box .document-box .document-main-box .document-main-box-header {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.mostly-used-documents .mostly-used-documents-box .document-box .document-main-box .document-main-box-body img {
+  width: 50%;
+}
+.mostly-used-documents .mostly-used-documents-box .document-box .document-main-box-footer {
+  width: 100%;
+  padding: 20px 20px 20px;
+  align-items: center;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #f2f7fb 0%, rgba(242, 247, 251, 0.5) 100%);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  border-radius: 8px;
+}
+.mostly-used-documents .pagination-box {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 24px;
+}
+.mostly-used-documents .pagination-box .left-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.mostly-used-documents .pagination-box .right-icon {
+  cursor: pointer;
+}
+
+footer {
+  background: #1a2232;
+}
+footer .foot__top {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 30px 0;
+}
+footer .foot__top .foot-top__left p {
+  color: #f2f7fb;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+}
+footer .foot__top .foot-top__right {
+  display: flex;
+  align-items: center;
+}
+footer .foot__top .foot-top__right .number-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+footer .foot__top .foot-top__right .number-box p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+footer .foot__bottom {
+  background: #18202e !important;
+}
+footer .foot__bottom ul {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+footer .foot__bottom ul li {
+  list-style: none;
+  border-right: 1px solid #f2f7fb;
+}
+footer .foot__bottom ul li:last-child {
+  border-right: none;
+}
+footer .foot__bottom ul li a {
+  color: #fff;
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+header .nav {
+  display: flex;
+  justify-content: space-between;
+}
+header .nav .logo-text {
+  color: #272f3f;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+}
+header .nav .links a {
+  color: #242424;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -246,6 +392,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -287,6 +434,10 @@ body {
 
 .me-20 {
   margin-right: 20px !important;
+}
+
+.ms-20 {
+  margin-left: 20px !important;
 }
 
 .my-50 {
