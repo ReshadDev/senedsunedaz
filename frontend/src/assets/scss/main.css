@@ -580,24 +580,15 @@ header .nav .links a {
   border: 1px solid #7189bf;
 }
 
-.ant-modal-content {
+.erize-details-page {
+  height: 75.8vh;
+}
+
+.document-editor {
   min-height: 500px !important;
 }
-
-.ant-modal-header {
-  padding-top: 25px !important;
-  width: 100%;
-}
-
-.ant-modal-title {
-  width: 100% !important;
-}
-
-.custom-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100% !important;
+.document-editor .ql-editor {
+  padding: 20px 20px !important;
 }
 
 * {

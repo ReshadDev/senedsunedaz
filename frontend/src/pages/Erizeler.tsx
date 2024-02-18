@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import React from "react";
 import { useTypewriter } from "react-simple-typewriter";
 
@@ -13,6 +12,7 @@ import {
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
+import ErizeExamples, { ErizeExampleProps } from "../data";
 
 const Erizeler: React.FC = () => {
   const [typeEffect] = useTypewriter({
@@ -21,30 +21,7 @@ const Erizeler: React.FC = () => {
     deleteSpeed: 100,
   });
 
-  const documentBoxes = Array(8)
-    .fill(null)
-    .map((_, index) => (
-      <div key={index} className="document-box col-3">
-        <div className="document-main-box">
-          <div className="document-main-box-header">Ərizə</div>
-          <div className="document-main-box-body">
-            <img src={ErizeExample} alt="" />
-          </div>
-          <div className="document-main-box-footer">
-            <p>Ərizə adı və məlumat</p>
-
-            <div className="action-buttons">
-              <Link to="/" className="box-details-btn">
-                Ətraflı
-              </Link>
-              <Link className="download-btn" to="/">
-                Yüklə
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    ));
+  const [data] = React.useState<ErizeExampleProps[]>(ErizeExamples);
 
   return (
     <div id="erize">
@@ -324,7 +301,33 @@ const Erizeler: React.FC = () => {
                   <img src={RightIcon} alt="" />
                 </div>
               </div>
-              <div className="mostly-used-documents-box">{documentBoxes}</div>
+              <div className="mostly-used-documents-box">
+                {data.map((erize: ErizeExampleProps, index: number) => (
+                  <div key={index} className="document-box col-3">
+                    <div className="document-main-box">
+                      <div className="document-main-box-header">Ərizə</div>
+                      <div className="document-main-box-body">
+                        <img src={ErizeExample} alt="" />
+                      </div>
+                      <div className="document-main-box-footer">
+                        <p>{erize.title}</p>
+
+                        <div className="action-buttons">
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className="box-details-btn"
+                          >
+                            Ətraflı
+                          </Link>
+                          <Link className="download-btn" to="/">
+                            Yüklə
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
