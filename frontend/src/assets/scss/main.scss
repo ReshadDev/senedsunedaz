@@ -1,3 +1,6 @@
+@import "./_erize";
+@import "./search";
+@import "./error";
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +12,19 @@ html,
 body {
   height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .container {
@@ -50,6 +66,10 @@ body {
 
 .me-20 {
   margin-right: 20px !important;
+}
+
+.ms-20 {
+  margin-left: 20px !important;
 }
 
 .my-50 {

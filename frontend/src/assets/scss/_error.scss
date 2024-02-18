@@ -1,0 +1,46 @@
+#error {
+  height: 75.8vh;
+  .error-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 691px;
+
+    .error-page-text-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 60px;
+      #error-icon {
+        color: #000;
+        font-size: 80px;
+        font-weight: 600;
+        line-height: 88px;
+      }
+
+      .error-text {
+        color: #000;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 28px;
+      }
+    }
+
+    .error-btn {
+      display: inline-flex;
+      padding: 12px 24px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      color: #7189bf;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      border: 1px solid #7189bf;
+    }
+  }
+}
