@@ -1,5 +1,6 @@
 @import "./_erize";
-
+@import "./search";
+@import "./error";
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +13,18 @@ body {
   height: 100%;
   margin: 0;
   scroll-behavior: smooth;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .container {

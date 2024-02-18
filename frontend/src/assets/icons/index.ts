@@ -6,6 +6,7 @@ import ErizeIcon from "../images/erize.svg";
 import LeftIcon from "../images/LeftArrow.svg";
 import RightIcon from "../images/RightArrow.svg";
 import ErizeExample from "../images/exampleerize.svg";
+import noSearch from "../images/nosearch.svg";
 
 export {
   SearchIcon,
@@ -16,4 +17,5 @@ export {
   ErizeExample,
   BiznesIcon,
   HuquqiIcon,
+  noSearch,
 };

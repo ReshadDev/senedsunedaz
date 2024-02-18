@@ -1,11 +1,8 @@
+/* eslint-disable no-irregular-whitespace */
 import React from "react";
 import { useTypewriter } from "react-simple-typewriter";
 
-import Navbar from "../components/Layout/Navbar";
-import Footer from "../components/Layout/Footer";
-
 import {
-  SearchIcon,
   AileIcon,
   ErizeIcon,
   LeftIcon,
@@ -14,6 +11,8 @@ import {
   BiznesIcon,
   HuquqiIcon,
 } from "../assets/icons";
+import SearchInput from "../components/SearchInput";
+import { Link } from "react-router-dom";
 
 const Erizeler: React.FC = () => {
   const [typeEffect] = useTypewriter({
@@ -21,9 +20,34 @@ const Erizeler: React.FC = () => {
     loop: false,
     deleteSpeed: 100,
   });
+
+  const documentBoxes = Array(8)
+    .fill(null)
+    .map((_, index) => (
+      <div key={index} className="document-box col-3">
+        <div className="document-main-box">
+          <div className="document-main-box-header">Ərizə</div>
+          <div className="document-main-box-body">
+            <img src={ErizeExample} alt="" />
+          </div>
+          <div className="document-main-box-footer">
+            <p>Ərizə adı və məlumat</p>
+
+            <div className="action-buttons">
+              <Link to="/" className="box-details-btn">
+                Ətraflı
+              </Link>
+              <Link className="download-btn" to="/">
+                Yüklə
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
+
   return (
     <div id="erize">
-      <Navbar />
       <main id="maincontent" className="content">
         <section className="search-area">
           <div className="container">
@@ -38,15 +62,7 @@ const Erizeler: React.FC = () => {
                   </h2>
                 </div>
                 <div className="search-area-input-box">
-                  <input
-                    id="main-search-input"
-                    type="text"
-                    placeholder="Ərizə adı və ya söz axtar"
-                  />
-                  <button className="search-btn">
-                    <img className="search-icon" src={SearchIcon} alt="" />
-                    Axtar
-                  </button>
+                  <SearchInput />
                 </div>
               </div>
             </div>
@@ -308,108 +324,11 @@ const Erizeler: React.FC = () => {
                   <img src={RightIcon} alt="" />
                 </div>
               </div>
-              <div className="mostly-used-documents-box">
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-
-                <div className="document-box col-3">
-                  <div className="document-main-box">
-                    <div className="document-main-box-header">Ərizə</div>
-                    <div className="document-main-box-body">
-                      <img src={ErizeExample} alt="" />
-                    </div>
-                  </div>
-                  <div className="document-main-box-footer">
-                    <p>Ərizə adı və məlumat</p>
-                  </div>
-                </div>
-              </div>
+              <div className="mostly-used-documents-box">{documentBoxes}</div>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };
