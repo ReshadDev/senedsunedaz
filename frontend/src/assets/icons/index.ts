@@ -20,6 +20,8 @@ import LightBulb from "../images/Lightbulb.svg";
 import CaretLeft from "../images/CaretLeft.svg";
 import CaretRight from "../images/CaretRight.svg";
 
+import FilterIcon from "../images/FilterIcon.svg";
+
 import Company1Icon from "../images/company1.png";
 import Company2Icon from "../images/company2.png";
 import Company3Icon from "../images/company3.png";
@@ -53,4 +55,5 @@ export {
   LightBulb,
   CaretLeft,
   CaretRight,
+  FilterIcon,
 };
