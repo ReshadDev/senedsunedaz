@@ -17,6 +17,9 @@ import Bank from "../images/Bank.svg";
 import RocketLaunch from "../images/RocketLaunch.svg";
 import LightBulb from "../images/Lightbulb.svg";
 
+import CaretLeft from "../images/CaretLeft.svg";
+import CaretRight from "../images/CaretRight.svg";
+
 import Company1Icon from "../images/company1.png";
 import Company2Icon from "../images/company2.png";
 import Company3Icon from "../images/company3.png";
@@ -48,4 +51,6 @@ export {
   Bank,
   RocketLaunch,
   LightBulb,
+  CaretLeft,
+  CaretRight,
 };

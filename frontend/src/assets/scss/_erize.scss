@@ -452,10 +452,11 @@
         box-sizing: border-box !important;
         background: linear-gradient(
           180deg,
-          #f2f7fb 0%,
-          rgba(242, 247, 251, 0.5) 100%
+          rgba(253, 253, 253, 0.8) 0%,
+          rgba(253, 253, 253, 0.5) 100%
         );
-        backdrop-filter: blur(1px);
+
+        backdrop-filter: blur(3px);
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
         text-align: left;
