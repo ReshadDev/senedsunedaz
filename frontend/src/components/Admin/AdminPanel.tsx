@@ -1,9 +1,20 @@
 import React from "react";
 import AdminSearchInput from "../AdminSearchInput";
 import { Plus, User } from "../../assets/icons";
+import UploadModal from "../UploadModal";
 
 const AdminPanel: React.FC = () => {
   const data = Array.from({ length: 10 }, (_, index) => index + 1);
+
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  const handleUploadButtonClick = () => {
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
   return (
     <div id="adminpanel">
       <div className="left-sidebar">
@@ -31,7 +42,7 @@ const AdminPanel: React.FC = () => {
           </div>
 
           <div className="action-bar">
-            <a className="upload-btn">
+            <a className="upload-btn" onClick={handleUploadButtonClick}>
               <img src={Plus} alt="" />
               Ərizə yüklə
             </a>
@@ -63,6 +74,7 @@ const AdminPanel: React.FC = () => {
           </div>
         </div>
       </div>
+      <UploadModal visible={modalVisible} onClose={handleCloseModal} />
     </div>
   );
 };
