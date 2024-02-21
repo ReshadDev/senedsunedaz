@@ -722,6 +722,10 @@ header .nav .links a {
   background-color: #f2f2f2;
 }
 
+.pagination .active a {
+  color: #5c71a6;
+}
+
 .d-none {
   display: none !important;
 }

@@ -228,8 +228,9 @@
 }
 
 .pagination .active {
-  // background-color: #4caf50;
-  // color: white;
+  a {
+    color: #5c71a6;
+  }
 }
 
 .d-none {
