@@ -1,6 +1,4 @@
 .search-results {
-  padding-top: 40px;
-
   .search-results-boxes {
     display: flex;
     justify-content: space-between;
@@ -10,45 +8,137 @@
       width: 23%;
     }
     .document-box {
+      .action-buttons {
+        a {
+          display: none !important;
+          visibility: hidden !important;
+        }
+      }
+
+      &:hover {
+        transition: all 1s ease; /* Adjust the duration (0.5s) as needed */
+
+        .action-buttons {
+          a {
+            visibility: visible !important;
+            display: block !important;
+            cursor: pointer;
+          }
+        }
+
+        .document-main-box-header {
+          width: 100%;
+          height: 10% !important;
+        }
+        .document-main-box-body {
+          height: 20% !important;
+        }
+        .document-main-box-footer {
+          transition: visibility 1s ease;
+          width: 100%;
+          height: 60%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          p {
+            white-space: normal;
+            overflow: visible;
+          }
+        }
+
+        .action-buttons {
+          display: flex;
+          justify-content: space-between;
+          padding-top: 50px;
+        }
+
+        .box-details-btn {
+          color: #7189bf;
+          font-size: 20px;
+          font-weight: 400;
+          border-radius: 8px;
+          border: 1px solid #7189bf;
+          display: flex;
+          padding: 15px 30px;
+          justify-content: center;
+          align-items: center;
+          max-height: 48px;
+        }
+
+        .download-btn {
+          display: flex;
+          padding: 15px 30px;
+          justify-content: center;
+          align-items: center;
+          color: #f2f7fb;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 24px;
+          border-radius: 8px;
+          max-height: 48px;
+          background: #7189bf;
+        }
+      }
+    }
+
+    .document-box {
       border-radius: 8px;
       border: 1px solid #929292;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 30px 0 30px 0;
-      .document-main-box {
-        width: 90%;
-        border-radius: 16px;
+      margin-bottom: 40px;
+      height: 365px;
 
-        border: 1px solid #929292;
+      .document-main-box {
+        width: 100%;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        position: relative;
-        top: 20px;
+        height: 100%;
 
         .document-main-box-header {
           padding-bottom: 10px;
+          width: 100%;
           padding-top: 10px;
+          height: 10% !important;
         }
         .document-main-box-body {
-          img {
-            width: 50%;
-          }
+          width: 90%;
+          // height: 65% !important;
+          flex-grow: 1;
+          border-radius: 16px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border: 1px solid #929292;
+          position: relative;
+          top: 20px;
         }
       }
 
       .document-main-box-footer {
         width: 100%;
         padding: 20px 20px 20px;
-
-        align-items: center;
         flex-shrink: 0;
+        box-sizing: border-box !important;
         background: linear-gradient(
           180deg,
-          #f2f7fb 0%,
-          rgba(242, 247, 251, 0.5) 100%
+          rgba(253, 253, 253, 0.8) 0%,
+          rgba(253, 253, 253, 0.5) 100%
         );
-        backdrop-filter: blur(2px);
-        border-radius: 8px;
+
+        backdrop-filter: blur(3px);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        text-align: left;
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          transition: all 0.3s ease-in-out;
+        }
       }
     }
   }
@@ -75,6 +165,17 @@
 }
 
 .search-results-text-box {
+  padding-bottom: 30px;
+  padding-top: 30px;
+
+  h1 {
+    color: #242424;
+    font-family: "Work Sans";
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
   a {
     color: #7189bf;
     font-size: 24px;
