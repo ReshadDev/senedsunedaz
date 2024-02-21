@@ -13,6 +13,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Categories from "./pages/Categories";
 import ErizeDetails from "./pages/ErizeDetails";
 import AllErizeler from "./pages/AllErizeler";
+import CategoryErizeler from "./pages/CategoryErizeler";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,8 @@ const App: React.FC = () => {
           <Route path="all" element={<AllErizeler />} />
           <Route path="about" element={<About />} />
           <Route path="erize/:slug" element={<ErizeDetails />} />
+          {/* <Route path="category/:slug" element={<CategoryErizeler />} /> */}
+          <Route path="category" element={<CategoryErizeler />} />
           <Route path="search" element={<Search />} />
           <Route path="categories" element={<Categories />} />
           <Route path="*" element={<ErrorPage />} />
