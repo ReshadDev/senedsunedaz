@@ -14,7 +14,8 @@ const generateSlug = (id: number): string => {
 const erizeExamples: ErizeExampleProps[] = [
   {
     id: 1,
-    title: "Example 1",
+    title:
+      "Vergi ödəyicisinin filialının, numayəndəliyinin və təsərrüfat subyektinin (obyektinin) olduğu yer üzrə uçota alınması haqqında arayış",
     description: "This is an example of erize",
     slug: generateSlug(1),
     file: "erizeler/erize1.docx",

@@ -1,14 +1,20 @@
 import React from "react";
 import { useTypewriter } from "react-simple-typewriter";
+import Slider from "react-slick";
 
 import {
   AileIcon,
-  ErizeIcon,
   LeftIcon,
   RightIcon,
-  ErizeExample,
-  BiznesIcon,
-  HuquqiIcon,
+  ArrowRightIcon,
+  Bumb,
+  Minus,
+  Question,
+  Company1Icon,
+  Company2Icon,
+  Company3Icon,
+  Company4Icon,
+  ErizeSnapshot,
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
@@ -22,6 +28,41 @@ const Erizeler: React.FC = () => {
   });
 
   const [data] = React.useState<ErizeExampleProps[]>(ErizeExamples);
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 100,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div id="erize">
@@ -75,194 +116,101 @@ const Erizeler: React.FC = () => {
           </div>
         </section>
 
+        {/* DONE */}
+
         <section className="spesific-categories">
           <div className="container">
             <div className="spesific-categories-content">
-              <div className="spesific-categories-heading-box">
-                <p>Spesifik kataqoriyalar üzrə axtar.</p>
-              </div>
-              <div className="spesific-categories-category-box">
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={AileIcon} alt="" />
-                    </div>
-                    <div className="text-box">
+              <div className="container">
+                <div className="spesific-categories-heading-box">
+                  <p>Spesifik kataqoriyalar üzrə axtar.</p>
+                </div>
+                <div className="spesific-categories-category-box">
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
                       <p>Ailə</p>
                     </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
                   </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={BiznesIcon} alt="" />
-                    </div>
-                    <div className="text-box">
-                      <p>Biznes</p>
-                    </div>
-                  </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={HuquqiIcon} alt="" />
-                    </div>
-                    <div className="text-box">
-                      <p>Hüquqi</p>
-                    </div>
-                  </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={AileIcon} alt="" />
-                    </div>
-                    <div className="text-box">
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
                       <p>Ailə</p>
                     </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
                   </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={AileIcon} alt="" />
-                    </div>
-                    <div className="text-box">
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
                       <p>Ailə</p>
                     </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
                   </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
-                <div className="category-box col-4">
-                  <div className="category-box-heading-text">
-                    <div className="icon-box">
-                      <img src={AileIcon} alt="" />
-                    </div>
-                    <div className="text-box">
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
                       <p>Ailə</p>
                     </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
                   </div>
-                  <div className="category-box-list">
-                    <ul>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                      <li>
-                        <a href="#">Ərizənin adı</a>
-                      </li>
-                    </ul>
+
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
+                      <p>Ailə</p>
+                    </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
+                  </div>
+
+                  <div className="category-box col-4">
+                    <div className="category-box__heading-box">
+                      <img src={AileIcon} alt="aile sekili" />
+                      <p>Ailə</p>
+                    </div>
+                    <p className="category-box__body-text">
+                      İddia, uşaq və boşanma ərizələri
+                    </p>
+                    <Link to="/" className="category-box__footer-box">
+                      <p>Daha çox</p>
+                      <img src={ArrowRightIcon} alt="" />
+                    </Link>
                   </div>
                 </div>
               </div>
-              <button className="more-btn">Daha çoxuna bax</button>
             </div>
           </div>
         </section>
@@ -271,17 +219,93 @@ const Erizeler: React.FC = () => {
           <div className="container">
             <div className="about-us-content">
               <div className="about-us-content-box">
-                <div className="about-us-logo-box">
-                  <img src={ErizeIcon} alt="men sekilem" />
+                <div className="left-side-box">
+                  <div className="box-content">
+                    <div className="box-heading">
+                      <img src={Question} alt="" />
+                      <p>Ərizə nədir?</p>
+                    </div>
+                    <div className="box-body">
+                      <div className="text-box">
+                        <div className="icon-box">
+                          <img src={Minus} alt="" />
+                        </div>
+                        <p>
+                          şəxsin müəyyən bir mövzuda düşüncə, şikayət və ya
+                          istəklərini nəzərdə tutan müəyyən formaya malik və
+                          rəsmi şəkildə yazılan müraciət formasıdır. Əslində
+                          ərizələr müxtəlif formalara malik olsa da, məzmunca
+                          eyni cürdür.{" "}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="about-us-text-box">
-                  <p>Haqqımızda</p>
-                  <p>
-                    SeneSuned minlərlə ərizə, idda ərizələri, təhsil üçün
-                    arayışlar, tərcümeyi hal kimi sənəd nümünələrini saxlayır.
-                    Sənədlərin düzgün yazılmasına, doldurumlasına köməklik edir.
-                  </p>
+                <div className="right-side-box">
+                  <div className="box-content">
+                    <div className="box-heading">
+                      <img src={Bumb} alt="" />
+                      <p>Ərizə yazarkən nələrə diqqət etməliyik?</p>
+                    </div>
+                    <div className="box-body">
+                      <div className="text-box">
+                        <img src={Minus} alt="" />
+                        <p>Sənədlərin düzgün yazılış qaydalarına</p>
+                      </div>
+
+                      <div className="text-box">
+                        <img src={Minus} alt="" />
+                        <p>Hərf səhvlərinin olmamasına</p>
+                      </div>
+
+                      <div className="text-box">
+                        <img src={Minus} alt="" />
+                        <p>Sənədlərin düzgün yazılış qaydalarına</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="company-logos">
+          <div className="container">
+            <div className="company-logos-content">
+              <div className="slider-container">
+                <Slider {...settings}>
+                  <div className="slider-box">
+                    <img src={Company1Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company2Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company3Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company4Icon} alt="" />
+                  </div>
+                  <div className="slider-box">
+                    <img src={Company1Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company2Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company3Icon} alt="" />
+                  </div>
+
+                  <div className="slider-box">
+                    <img src={Company4Icon} alt="" />
+                  </div>
+                </Slider>
               </div>
             </div>
           </div>
@@ -307,7 +331,7 @@ const Erizeler: React.FC = () => {
                     <div className="document-main-box">
                       <div className="document-main-box-header">Ərizə</div>
                       <div className="document-main-box-body">
-                        <img src={ErizeExample} alt="" />
+                        <img src={ErizeSnapshot} alt="" />
                       </div>
                       <div className="document-main-box-footer">
                         <p>{erize.title}</p>

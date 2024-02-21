@@ -1,11 +1,93 @@
 .erize-details-page {
-  height: 75.8vh;
+  .erize-details-content {
+    .page-box {
+      border-radius: 8px;
+      border: 1px solid #d5e4f0;
+      background: #f2f7fb;
+      .text-box {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 15px 10px 15px 10px;
+        p:first-child {
+          color: #5c71a6;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-right: 5px;
+        }
+
+        .mid-text-s {
+          color: #5c71a6;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+
+        p:last-child {
+          color: #595959;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .erize-details-action-box {
+      min-height: 45px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      display: flex;
+      justify-content: end;
+      width: 100%;
+      .action-buttons-box {
+        display: flex;
+        .download-btn {
+          background: #7189bf;
+          color: #f2f7fb;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+        }
+        .edit-btn {
+          border: 1px solid #ed8022;
+          color: #ed8022;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-right: 16px;
+          img {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .erize-details-erize-box {
+      padding-bottom: 26.5px;
+      min-height: 50px;
+      h1 {
+        width: 75%;
+      }
+    }
+  }
 }
 
 .document-editor {
-  min-height: 500px !important;
+  min-height: 480px !important;
 
   .ql-editor {
     padding: 20px 20px !important;
   }
+}
+
+.btn {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 }

@@ -14,6 +14,7 @@ const Navbar: React.FC = () => {
 
           <div className="links">
             <Link to="about">Haqqımızda</Link>
+            <Link to="all">Ərizələr</Link>
           </div>
         </div>
       </div>

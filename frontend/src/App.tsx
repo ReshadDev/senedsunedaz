@@ -1,5 +1,7 @@
 import "./assets/scss/main.css";
 import "react-quill/dist/quill.snow.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Erizeler from "./pages/Erizeler";
