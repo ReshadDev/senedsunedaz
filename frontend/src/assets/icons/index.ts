@@ -12,6 +12,10 @@ import ArrowRightIcon from "../images/ArrowRight.svg";
 import Bumb from "../images/Bumb.svg";
 import Question from "../images/Question.svg";
 import Minus from "../images/Minus.svg";
+import AboutUs from "../images/AboutUs.svg";
+import Bank from "../images/Bank.svg";
+import RocketLaunch from "../images/RocketLaunch.svg";
+import LightBulb from "../images/Lightbulb.svg";
 
 import Company1Icon from "../images/company1.png";
 import Company2Icon from "../images/company2.png";
@@ -23,6 +27,7 @@ import ErizeSnapshot from "../images/erizesnapshot.png";
 export {
   SearchIcon,
   ErizeSnapshot,
+  AboutUs,
   Question,
   Minus,
   Bumb,
@@ -40,4 +45,7 @@ export {
   Company2Icon,
   Company3Icon,
   Company4Icon,
+  Bank,
+  RocketLaunch,
+  LightBulb,
 };

@@ -435,7 +435,7 @@ footer .foot__top {
   display: flex;
   justify-content: space-between;
   color: #fff;
-  padding: 30px 0;
+  padding: 15px 0;
 }
 footer .foot__top .foot-top__left p {
   color: #f2f7fb;
@@ -718,6 +718,84 @@ header .nav .links a {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+}
+
+.about-us .col-4 {
+  flex: 0 0 auto;
+  width: 25% !important;
+}
+.about-us .about-us-content .page-nav-box {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 55px;
+  border-radius: 8px;
+  border: 1px solid #d5e4f0;
+  display: flex;
+  align-items: center;
+  background: #f2f7fb;
+  padding: 10px 10px;
+}
+.about-us .about-us-content .page-nav-box p {
+  color: #5c71a6;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+.about-us .about-us-content .about-us-box {
+  margin-bottom: 50px;
+  border-radius: 8px;
+  background: #e8f0f7;
+  display: flex;
+  justify-content: space-between;
+}
+.about-us .about-us-content .about-us-box .text-box {
+  padding: 25px;
+  width: 50%;
+}
+.about-us .about-us-content .about-us-box .text-box p {
+  color: #242424;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+.about-us .about-us-content .about-us-box .img-box {
+  display: flex;
+  padding: 15px 25px 15px 25px;
+  justify-content: center;
+  align-items: center;
+}
+.about-us .about-us-content .about-us-box .img-box img {
+  width: 80%;
+  height: 80%;
+}
+.about-us .about-us-content .information-boxes {
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.about-us .about-us-content .information-boxes .information-box {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f7fb;
+}
+.about-us .about-us-content .information-boxes .information-box .box__heading {
+  background: #7189bf;
+  height: 8px;
+  width: 50%;
+  margin-bottom: 20px;
+}
+.about-us .about-us-content .information-boxes .information-box .box__body {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about-us .about-us-content .information-boxes .information-box .box__body img {
+  padding-bottom: 15px;
 }
 
 * {
