@@ -594,7 +594,7 @@ const ErizeDetails: React.FC = () => {
                     onClick={() => console.log("salam")}
                     className="btn download-btn"
                   >
-                    Yüklə
+                    Yükləem
                   </a>
                 </div>
               </div>
