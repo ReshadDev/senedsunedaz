@@ -14,6 +14,8 @@ import Categories from "./pages/Categories";
 import ErizeDetails from "./pages/ErizeDetails";
 import AllErizeler from "./pages/AllErizeler";
 import CategoryErizeler from "./pages/CategoryErizeler";
+import AdminLogin from "./components/Admin/AdminLogin";
+import AdminPanel from "./components/Admin/AdminPanel";
 
 const App: React.FC = () => {
   return (
@@ -32,6 +34,8 @@ const App: React.FC = () => {
           <Route path="*" element={<ErrorPage />} />
         </Route>
         <Route path="cv" element={<Cv />} />
+        <Route path="login" element={<AdminLogin />} />
+        <Route path="admin" element={<AdminPanel />} />
       </Routes>
     </Router>
   );
