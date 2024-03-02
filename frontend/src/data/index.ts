@@ -6,6 +6,15 @@ export interface ErizeExampleProps {
   file?: string;
 }
 
+export interface ErizeExamplePropsNew {
+  id: number;
+  docName: string;
+  htmlContent?: string;
+  docPath?: string;
+  imagePath?: string;
+  imageName?: string;
+}
+
 // Helper function to convert id to string for the slug
 const generateSlug = (id: number): string => {
   return id.toString();

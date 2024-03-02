@@ -326,7 +326,6 @@
 
   .mostly-used-documents-box {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     .col-3 {
       flex: 0 0 auto;
@@ -415,6 +414,7 @@
       align-items: center;
       margin-bottom: 20px;
       height: 355px;
+      margin-right: 24px;
 
       .document-main-box {
         width: 100%;
@@ -587,4 +587,3 @@ header {
 .ant-input-group {
   min-width: 600px;
 }
-

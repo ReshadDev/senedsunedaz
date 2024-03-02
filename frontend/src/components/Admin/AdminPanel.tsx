@@ -1,82 +1,37 @@
-import React from "react";
-import AdminSearchInput from "../AdminSearchInput";
-import { Plus, User } from "../../assets/icons";
-import UploadModal from "../UploadModal";
+import * as React from "react";
+
+import axios from "axios";
+import config from "../../config";
+
+interface Category {
+  id: string;
+  name: string;
+}
 
 const AdminPanel: React.FC = () => {
-  const data = Array.from({ length: 10 }, (_, index) => index + 1);
+  const apiURL = config.apiURL;
+  const [categories, setCategories] = React.useState<Category[]>([]);
 
-  const [modalVisible, setModalVisible] = React.useState(false);
-
-  const handleUploadButtonClick = () => {
-    setModalVisible(true);
+  const getAllCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/category/getAllCategories`
+      );
+      if (data?.success) {
+        setCategories(data?.category);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleCloseModal = () => {
-    setModalVisible(false);
-  };
-  return (
-    <div id="adminpanel">
-      <div className="left-sidebar">
-        <div className="container">
-          <div className="left-sidebar-content">
-            <h2>AdminPanel</h2>
+  React.useEffect(() => {
+    getAllCategories();
+  }, []);
 
-            <div className="list">
-              <a href="">Erizeler</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="right-sidebar">
-        <div className="right-sidebar-content">
-          <div className="top__bar">
-            <div className="search-bar">
-              <AdminSearchInput />
-            </div>
+  console.log("Categories:", categories);
 
-            <div className="admin-bar">
-              <img src={User} alt="" />
-              <p>Admin</p>
-            </div>
-          </div>
-
-          <div className="action-bar">
-            <a className="upload-btn" onClick={handleUploadButtonClick}>
-              <img src={Plus} alt="" />
-              Ərizə yüklə
-            </a>
-          </div>
-
-          <div className="all-erizeler-content-box">
-            <div className="erizeler-list-box col-12">
-              <div className="box__heading">
-                <p>Ailə</p>
-              </div>
-              <div className="box__body">
-                {data.map((item) => (
-                  <div key={item} className="erize-box col-12">
-                    <div className="erize-box__text-box">
-                      <p>
-                        Vergi ödəyicisinin filialının, numayəndəliyinin və
-                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
-                        uçota alınması haqqında arayış
-                      </p>
-                    </div>
-                    <div className="erize-box__buttons-box">
-                      <a className="box-details-btn btn">Ətraflı</a>
-                      <a className="download-btn btn">Yüklə</a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <UploadModal visible={modalVisible} onClose={handleCloseModal} />
-    </div>
-  );
+  return <div>salam</div>;
 };
 
 export default AdminPanel;

@@ -14,20 +14,63 @@ import {
   Company2Icon,
   Company3Icon,
   Company4Icon,
-  ErizeSnapshot,
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
-import ErizeExamples, { ErizeExampleProps } from "../data";
+import { ErizeExamplePropsNew } from "../data";
+import config from "../config";
+import axios from "axios";
+import { Category } from "../interfaces";
+
+const apiURL = config.apiURL;
 
 const Erizeler: React.FC = () => {
+  const [categories, setCategories] = React.useState<Category[]>([]);
+  const [erizeler, setErizeler] = React.useState<[]>([]);
+
+  const getAllProducts = async () => {
+    try {
+      const { data } = await axios.get(`${apiURL}/api/application/findAll`);
+      if (data?.success) {
+        setErizeler(data?.documents);
+        console.log("Data Erizeler", data.documents);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  // Api Request
+
+  const getAllCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/category/getAllCategories`
+      );
+      if (data?.success) {
+        setCategories(data?.categories);
+        console.log("Data KATEQORIYALAR", data.categories);
+
+        // Slug
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllCategories();
+  }, []);
+
   const [typeEffect] = useTypewriter({
     words: ["kliklə"],
     loop: false,
     deleteSpeed: 100,
   });
-
-  const [data] = React.useState<ErizeExampleProps[]>(ErizeExamples);
 
   const settings = {
     dots: true,
@@ -129,7 +172,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[0]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -143,7 +186,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[1]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -157,7 +200,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[2]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -171,7 +214,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[3]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -185,7 +228,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[4]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -199,7 +242,7 @@ const Erizeler: React.FC = () => {
                   <div className="category-box col-4">
                     <div className="category-box__heading-box">
                       <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                      <p>{categories[5]?.name}</p>
                     </div>
                     <p className="category-box__body-text">
                       İddia, uşaq və boşanma ərizələri
@@ -326,31 +369,38 @@ const Erizeler: React.FC = () => {
                 </div>
               </div>
               <div className="mostly-used-documents-box">
-                {data.map((erize: ErizeExampleProps, index: number) => (
-                  <div key={index} className="document-box col-3">
-                    <div className="document-main-box">
-                      <div className="document-main-box-header">Ərizə</div>
-                      <div className="document-main-box-body">
-                        <img src={ErizeSnapshot} alt="" />
-                      </div>
-                      <div className="document-main-box-footer">
-                        <p>{erize.title}</p>
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ErizeExamplePropsNew, index: number) => (
+                    <div key={index} className="document-box col-3">
+                      <div className="document-main-box">
+                        <div className="document-main-box-header">Ərizə</div>
+                        <div className="document-main-box-body">
+                          <img
+                            width={250}
+                            height={230}
+                            src={`http://localhost:8080/uploads/images/${erize.imageName}`}
+                            alt=""
+                          />
+                        </div>
+                        <div className="document-main-box-footer">
+                          <p>{erize.docName}</p>
 
-                        <div className="action-buttons">
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className="box-details-btn"
-                          >
-                            Ətraflı
-                          </Link>
-                          <Link className="download-btn" to="/">
-                            Yüklə
-                          </Link>
+                          <div className="action-buttons">
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className="box-details-btn"
+                            >
+                              Ətraflı
+                            </Link>
+                            <Link className="download-btn" to="/">
+                              Yüklə
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>

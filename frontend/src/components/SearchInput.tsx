@@ -1,45 +1,49 @@
-import React from "react";
-// import { useSearch } from "../context/search";
-// import axios from "axios";
-// import config from "../config";
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import { useSearch } from "../context/search";
+import axios from "axios";
+import config from "../config";
 import { useNavigate } from "react-router-dom";
-// import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { SearchIcon } from "../assets/icons";
 
 const { Search } = Input;
 
 const SearchInput: React.FC = () => {
-  //   const apiUrl: string = config.apiUrl;
-  //   const [search, setSearch] = useSearch();
+  const apiUrl: string = config.apiURL;
+  const [search, setSearch] = useSearch();
   const navigate = useNavigate();
+  const [keyword, setKeyword] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [, setSearchResults] = useState<any[]>([]);
 
   const handleSubmit = async () => {
     try {
-      //   const { data } = await axios.get(
-      //     `${apiUrl}/api/v1/product/search/${keyword}`
-      //   );
-      //   setSearch({ ...search, keyword, results: data });
+      const { data } = await axios.get(
+        `${apiUrl}/api/application/specification?docName=${keyword}`
+      );
+      setSearchResults(data.content);
+      setSearch({ ...search, keyword, results: data.content });
       navigate(`search`);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //   const handleSearch = (keyword: string) => {
-  //     handleSubmit(keyword);
-  //   };
+  const handleSearch = (value: string) => {
+    setKeyword(value);
+    handleSubmit();
+  };
 
-  //   const handleEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
-  //     if (e.key === "Enter") {
-  //       e.preventDefault(); // <-- Prevent form submission
-  //       handleSubmit(e.currentTarget.value);
-  //     }
-  //   };
+  const handleEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
 
-  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     setSearch({ ...search, keyword: e.target.value });
-  //   };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+  };
 
   return (
     <div>
@@ -54,7 +58,10 @@ const SearchInput: React.FC = () => {
           </button>
         }
         size="large"
-        onSearch={handleSubmit}
+        value={keyword}
+        onChange={handleChange}
+        onSearch={keyword ? handleSearch : undefined}
+        onPressEnter={handleEnterPress}
       />
     </div>
   );

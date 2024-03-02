@@ -3,8 +3,6 @@ import React from "react";
 import SearchInput from "../components/SearchInput";
 
 const CategoryErizeler: React.FC = () => {
-  const data = Array.from({ length: 10 }, (_, index) => index + 1);
-
   return (
     <div className="all-erizeler">
       <main id="maincontent" className="content">
@@ -24,21 +22,89 @@ const CategoryErizeler: React.FC = () => {
                   <p>Ailə</p>
                 </div>
                 <div className="box__body">
-                  {data.map((item) => (
-                    <div key={item} className="erize-box col-12">
-                      <div className="erize-box__text-box">
-                        <p>
-                          Vergi ödəyicisinin filialının, numayəndəliyinin və
-                          təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
-                          uçota alınması haqqında arayış
-                        </p>
-                      </div>
-                      <div className="erize-box__buttons-box">
-                        <a className="box-details-btn btn">Ətraflı</a>
-                        <a className="download-btn btn">Yüklə</a>
-                      </div>
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
                     </div>
-                  ))}
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
+
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
+                    </div>
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
+
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
+                    </div>
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
+
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
+                    </div>
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
+
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
+                    </div>
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
+
+                  <div className="erize-box col-12">
+                    <div className="erize-box__text-box">
+                      <p>
+                        Vergi ödəyicisinin filialının, numayəndəliyinin və
+                        təsərrüfat subyektinin (obyektinin) olduğu yer üzrə
+                        uçota alınması haqqında arayış
+                      </p>
+                    </div>
+                    <div className="erize-box__buttons-box">
+                      <a className="box-details-btn btn">Ətraflı</a>
+                      <a className="download-btn btn">Yüklə</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

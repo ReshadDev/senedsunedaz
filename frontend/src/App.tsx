@@ -11,11 +11,14 @@ import MainLayout from "./components/Layout/MainLayout";
 import Search from "./pages/Search";
 import ErrorPage from "./pages/ErrorPage";
 import Categories from "./pages/Categories";
-import ErizeDetails from "./pages/ErizeDetails";
+import ErizeDetails from "./ErizeDetails";
 import AllErizeler from "./pages/AllErizeler";
 import CategoryErizeler from "./pages/CategoryErizeler";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminPanel from "./components/Admin/AdminPanel";
+import CreateDocument from "./components/Admin/CreateDocument";
+import CreateCategory from "./components/Admin/CreateCategory";
+import AdminLayout from "./components/Admin/AdminLayout";
 
 const App: React.FC = () => {
   return (
@@ -27,7 +30,7 @@ const App: React.FC = () => {
           <Route path="all" element={<AllErizeler />} />
           <Route path="about" element={<About />} />
           <Route path="erize/:slug" element={<ErizeDetails />} />
-          {/* <Route path="category/:slug" element={<CategoryErizeler />} /> */}
+          <Route path="category/:slug" element={<CategoryErizeler />} />
           <Route path="category" element={<CategoryErizeler />} />
           <Route path="search" element={<Search />} />
           <Route path="categories" element={<Categories />} />
@@ -35,7 +38,11 @@ const App: React.FC = () => {
         </Route>
         <Route path="cv" element={<Cv />} />
         <Route path="login" element={<AdminLogin />} />
-        <Route path="admin" element={<AdminPanel />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<AdminPanel />} />
+          <Route path="create-category" element={<CreateCategory />} />
+          <Route path="create-document" element={<CreateDocument />} />
+        </Route>
       </Routes>
     </Router>
   );

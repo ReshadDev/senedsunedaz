@@ -1,56 +1,52 @@
 import React from "react";
-import {
-  CaretLeft,
-  CaretRight,
-  ErizeSnapshot,
-  noSearch,
-} from "../assets/icons";
 import { Link } from "react-router-dom";
-import ErizeExamples from "../data";
 import ReactPaginate from "react-paginate";
+import { CaretLeft, CaretRight, noSearch } from "../assets/icons";
+import { useSearch } from "../context/search";
+import config from "../config";
+import { useNavigate } from "react-router-dom";
+
+interface ISearchProps {
+  id: number;
+  docName: string;
+  imageName: string;
+}
 
 const Search: React.FC = () => {
-  const documentBoxes = Array(12)
-    .fill(null)
-    .map((_, index) => (
-      <div key={index} className="document-box col-3">
-        <div className="document-main-box">
-          <div className="document-main-box-header">Ərizə</div>
-          <div className="document-main-box-body">
-            <img src={ErizeSnapshot} alt="" />
-          </div>
-          <div className="document-main-box-footer">
-            <p>{ErizeExamples[0].title}</p>
+  const apiUrl = config.apiURL;
 
-            <div className="action-buttons">
-              <Link
-                to={`erize/${ErizeExamples[0].id}`}
-                className="box-details-btn"
-              >
-                Ətraflı
-              </Link>
-              <Link className="download-btn" to="/">
-                Yüklə
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    ));
+  const [values] = useSearch();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    localStorage.setItem("searchResults", JSON.stringify(values.results));
+    localStorage.setItem("searchKeyword", values.keyword || "");
+  }, [values.results, values.keyword]);
+
+  // Retrieve search keyword from localStorage on component mount
 
   const [currentPage, setCurrentPage] = React.useState(0);
+  const itemsPerPage = 8;
 
   const handlePageChange = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
 
-  const itemsPerPage = 8; // Change this value based on your preference
-  const offset = currentPage * itemsPerPage;
-
-  const displayedDocumentBoxes = documentBoxes.slice(
-    offset,
-    offset + itemsPerPage
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const displayedResults = values?.results.slice(
+    indexOfFirstItem,
+    indexOfLastItem
   );
+
+  const handleDetailsClick = (result: ISearchProps) => {
+    const link = `/erizeler/erize/${result.id}`;
+    console.log("Navigating to:", link);
+    navigate(link);
+  };
+
+  console.log(values);
 
   return (
     <div id="search">
@@ -59,20 +55,49 @@ const Search: React.FC = () => {
           <div className="container">
             <div className="search-results-content">
               <div className="search-results-text-box">
-                {documentBoxes.length > 0 ? (
-                  <h1>‘Şikayətlər’ üçün tapılan nəticələr:</h1>
-                ) : (
+                {values?.results.length < 1 ? (
                   <div className="d-flex align-items-center">
                     <p className="no-search-results-text">
                       Axtarışınız üçün nəticə tapılmadı
                     </p>
-                    <Link to="/erizeler/categories">Kateqoriyalara bax</Link>
+                    <Link to="/erizeler/all">Erizelere bax</Link>
                   </div>
+                ) : (
+                  <h1>{`‘${values.keyword}’ üçün tapılan nəticələr:`}</h1>
                 )}
               </div>
-              {documentBoxes.length > 0 ? (
+              {values?.results.length > 0 ? (
                 <div className="search-results-boxes">
-                  {displayedDocumentBoxes}
+                  {displayedResults.map((result: ISearchProps) => (
+                    <div key={result.id} className="document-box col-3">
+                      <div className="document-main-box">
+                        <div className="document-main-box-header">Ərizə</div>
+                        <div className="document-main-box-body">
+                          <img
+                            width={250}
+                            height={230}
+                            src={`${apiUrl}/uploads/images/${result.imageName}`}
+                            alt=""
+                          />
+                        </div>
+                        <div className="document-main-box-footer">
+                          <p>{result.docName}</p>
+
+                          <div className="action-buttons">
+                            <button
+                              onClick={() => handleDetailsClick(result)}
+                              className="box-details-btn"
+                            >
+                              Ətraflı
+                            </button>
+                            <Link className="download-btn" to="/">
+                              Yüklə
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <div className="search-not-found">
@@ -82,21 +107,21 @@ const Search: React.FC = () => {
                 </div>
               )}
 
-              <div className="pagination">
-                {documentBoxes.length > itemsPerPage && (
+              {values?.results.length > 0 && (
+                <div className="pagination">
                   <ReactPaginate
                     previousLabel={<img src={CaretLeft} alt="Previous" />}
                     nextLabel={<img src={CaretRight} alt="Next" />}
                     breakLabel={"..."}
-                    pageCount={Math.ceil(documentBoxes.length / itemsPerPage)}
+                    pageCount={Math.ceil(values?.results.length / itemsPerPage)}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageChange}
                     containerClassName={"pagination"}
                     activeClassName={"active"}
                   />
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
