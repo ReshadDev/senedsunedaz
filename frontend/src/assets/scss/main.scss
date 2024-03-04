@@ -5,7 +5,7 @@
 @import "./about";
 @import "./allerizeler";
 @import "./adminpanel";
-
+@import "./categorydetails";
 * {
   margin: 0;
   padding: 0;
@@ -32,6 +32,15 @@ body,
 
 .align-items-center {
   align-items: center;
+}
+
+.btn {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .img-fluid {

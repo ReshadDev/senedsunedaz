@@ -1,7 +1,7 @@
 export interface Category {
   id: number;
   name: string;
-  slug: string;
+  slug?: string;
 }
 
 export interface ProductProps {
@@ -18,4 +18,18 @@ export interface ProductProps {
     label: string;
     inputName: string | null;
   }[];
+}
+
+export interface ISearchProps {
+  id: number;
+  docName: string;
+  imageName: string;
+}
+
+export interface FormData {
+  docFile: FileList;
+  editDocFile: FileList;
+  imageFile: FileList;
+  docName: string;
+  categoryId: string;
 }

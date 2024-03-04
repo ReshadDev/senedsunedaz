@@ -4,12 +4,14 @@ import {
   useContext,
   createContext,
   ReactNode,
+  SetStateAction,
 } from "react";
 
 interface Auth {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: any | null;
   token: string;
+  timestamp?: number; // Optional timestamp property for token expiration
 }
 
 const AuthContext = createContext<
@@ -25,18 +27,44 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data) {
-      const parseData = JSON.parse(data);
-      setAuth({
-        ...auth,
-        user: parseData.user,
-        token: parseData.token,
-      });
+      const parsedData = JSON.parse(data);
+      const currentTime = Date.now();
+
+      // Check if the token is expired (2 hours in milliseconds)
+      const isTokenExpired =
+        currentTime - parsedData.timestamp > 2 * 60 * 60 * 1000;
+
+      if (isTokenExpired) {
+        // Token expired, clear auth
+        setAuth({
+          user: null,
+          token: "",
+        });
+        localStorage.removeItem("auth");
+      } else {
+        // Token is still valid
+        setAuth({
+          ...auth,
+          user: parsedData.user,
+          token: parsedData.token,
+        });
+      }
     }
     // eslint-disable-next-line
   }, []);
 
+  const updateAuth = (newAuth: SetStateAction<Auth>) => {
+    setAuth((prevAuth) => {
+      const updatedAuth =
+        typeof newAuth === "function" ? newAuth(prevAuth) : newAuth;
+      // Set timestamp for the new token
+      updatedAuth.timestamp = Date.now();
+      return updatedAuth;
+    });
+    localStorage.setItem("auth", JSON.stringify(auth));
+  };
   return (
-    <AuthContext.Provider value={[auth, setAuth]}>
+    <AuthContext.Provider value={[auth, updateAuth]}>
       {children}
     </AuthContext.Provider>
   );

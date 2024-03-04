@@ -12,10 +12,9 @@ import {
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
-import { ErizeExamplePropsNew } from "../data";
 import config from "../config";
 import axios from "axios";
-import { Category } from "../interfaces";
+import { Category, ProductProps } from "../interfaces";
 
 const apiURL = config.apiURL;
 
@@ -28,7 +27,6 @@ const Erizeler: React.FC = () => {
       const { data } = await axios.get(`${apiURL}/api/application/findAll`);
       if (data?.success) {
         setErizeler(data?.documents);
-        console.log("Data Erizeler", data.documents);
       }
     } catch (error) {
       console.log(error);
@@ -48,9 +46,6 @@ const Erizeler: React.FC = () => {
       );
       if (data?.success) {
         setCategories(data?.categories);
-        console.log("Data KATEQORIYALAR", data.categories);
-
-        // Slug
       }
     } catch (error) {
       console.log(error);
@@ -129,89 +124,24 @@ const Erizeler: React.FC = () => {
                   <p>Spesifik kataqoriyalar üzrə axtar.</p>
                 </div>
                 <div className="spesific-categories-category-box">
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[0]?.name}</p>
+                  {categories.map((category: Category) => (
+                    <div className="category-box col-4">
+                      <div className="category-box__heading-box">
+                        <img src={AileIcon} alt="aile sekili" />
+                        <p>{category.name}</p>
+                      </div>
+                      <p className="category-box__body-text">
+                        İddia, uşaq və boşanma ərizələri
+                      </p>
+                      <Link
+                        to={`category/${category.name}`}
+                        className="category-box__footer-box"
+                      >
+                        <p>Daha çox</p>
+                        <img src={ArrowRightIcon} alt="" />
+                      </Link>
                     </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[1]?.name}</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[2]?.name}</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[3]?.name}</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[4]?.name}</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>{categories[5]?.name}</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -235,7 +165,7 @@ const Erizeler: React.FC = () => {
               <div className="mostly-used-documents-box">
                 {erizeler
                   .slice(0, 8)
-                  .map((erize: ErizeExamplePropsNew, index: number) => (
+                  .map((erize: ProductProps, index: number) => (
                     <div key={index} className="document-box col-3">
                       <div className="document-main-box">
                         <div className="document-main-box-header">Ərizə</div>

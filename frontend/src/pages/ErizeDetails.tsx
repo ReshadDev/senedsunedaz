@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-import { PencilIcon } from "./assets/icons";
+import { PencilIcon } from "../assets/icons";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
-import config from "./config";
+import config from "../config";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -18,13 +18,13 @@ import { toast } from "react-toastify";
 
 import ImageGallery from "react-image-gallery";
 import { Button as NewButton } from "antd";
-import { Category, ProductProps } from "./interfaces";
+import { Category, ProductProps } from "../interfaces";
 
 const ErizeDetails: React.FC = () => {
   const apiURL = config.apiURL;
 
   const [product, setProduct] = React.useState<ProductProps | null>(null);
-  const [categoryName, setCategoryName] = React.useState<string | null>(null);
+  const [categoryName, setCategoryName] = React.useState<string>("");
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [inputValues, setInputValues] = React.useState<
     { labelName: string; inputName: string }[]
@@ -35,12 +35,10 @@ const ErizeDetails: React.FC = () => {
 
   const getProduct = async () => {
     try {
-      console.log("Fetching product...");
       const { data } = await axios.get(
         `${apiURL}/api/application/byId/${params.slug}`
       );
       setProduct(data.document);
-      console.log("Product fetched:", data.document);
     } catch (error) {
       console.log(error);
     }
@@ -48,12 +46,10 @@ const ErizeDetails: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
-      console.log("Fetching categories...");
       const { data } = await axios.get(
         `${apiURL}/api/category/getAllCategories`
       );
       setCategories(data?.categories || []);
-      console.log("Categories fetched:", data?.categories);
     } catch (error) {
       console.log(error);
     }
@@ -63,12 +59,10 @@ const ErizeDetails: React.FC = () => {
     const matchedCategory = categories.find(
       (category) => category?.id === categoryId
     );
-    console.log("Matched category:", matchedCategory);
-    setCategoryName(matchedCategory?.name || null);
+    setCategoryName(matchedCategory?.name || "");
   };
 
   React.useEffect(() => {
-    console.log("Effect triggered with params.slug:", params?.slug);
     if (params?.slug) {
       getProduct();
     }
@@ -83,8 +77,6 @@ const ErizeDetails: React.FC = () => {
       getCategoryName(product.categoryId);
     }
   }, [product]);
-
-  // console.log("Documents:", docs);
 
   const images = [
     {
@@ -105,6 +97,7 @@ const ErizeDetails: React.FC = () => {
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
+    toast.success("Ərizəniz yükləndi");
   };
 
   const handleEdit = () => {
@@ -123,6 +116,11 @@ const ErizeDetails: React.FC = () => {
   };
 
   const handleConfirmEdit = async () => {
+    if (inputValues.some((input) => input.inputName.trim() === "")) {
+      toast.error("Zəhmət olmasa bütün xanaları doldurun");
+      return;
+    }
+
     try {
       const requestBody = inputValues.map((input) => ({
         labelName: input.labelName,
@@ -154,6 +152,7 @@ const ErizeDetails: React.FC = () => {
         document.body.removeChild(downloadLink);
       }
       handleCloseModal();
+      toast.success("Ərizəniz yükləndi");
     } catch (error) {
       console.log(error);
     }
@@ -239,15 +238,17 @@ const ErizeDetails: React.FC = () => {
                   };
                   setInputValues(newInputValues);
                 }}
+                InputProps={{
+                  required: true,
+                }}
               />
             </div>
           ))}
-          <Button onClick={handleCloseModal}>Close</Button>
           <Button onClick={handleConfirmEdit} color="primary">
-            Confirm
+            Təsdiqlə
           </Button>
           <Button onClick={handleDownloadEditedFile} color="primary">
-            Download Edited File
+            Faylı yüklə
           </Button>
         </DialogContent>
       </Dialog>

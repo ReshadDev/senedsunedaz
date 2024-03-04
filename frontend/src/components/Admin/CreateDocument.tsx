@@ -10,11 +10,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Snackbar,
-  SnackbarContent,
   styled,
 } from "@mui/material";
 import { useAuth } from "../../context/auth";
+import { toast } from "react-toastify";
+import { FormData, Category } from "../../interfaces";
 
 const FormContainer = styled(Container)({
   marginTop: "50px",
@@ -31,29 +31,10 @@ const CategoryLabel = styled(InputLabel)({
   marginBottom: "10px",
 });
 
-const StyledSnackbarContent = styled(SnackbarContent)({
-  color: "white",
-  backgroundColor: "green",
-});
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-interface FormData {
-  docFile: FileList;
-  editDocFile: FileList;
-  imageFile: FileList;
-  docName: string;
-  categoryId: string;
-}
-
 const CreateDocument: React.FC = () => {
   const apiURL = config.apiURL;
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [categoryId, setCategoryId] = React.useState<string>("");
-  const [showAlert, setShowAlert] = React.useState<boolean>(false);
 
   const [auth] = useAuth();
 
@@ -94,7 +75,7 @@ const CreateDocument: React.FC = () => {
 
       setInputs([]);
 
-      const response = await axios.post(
+      await axios.post(
         `http://localhost:8080/api/application/upload/${categoryId}`,
         formData,
         {
@@ -106,19 +87,11 @@ const CreateDocument: React.FC = () => {
 
       setCategoryId("new");
 
-      setShowAlert(true);
       reset();
-      console.log(response.data);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
+      toast.success("Yeni sənəd uğurla yaradıldı!");
     } catch (error) {
       console.error("Error uploading files:", error);
     }
-  };
-
-  const handleCloseAlert = () => {
-    setShowAlert(false);
   };
 
   const [inputs, setInputs] = React.useState<
@@ -249,14 +222,6 @@ const CreateDocument: React.FC = () => {
           </Button>
         </form>
       </FormContainer>
-
-      <Snackbar
-        open={showAlert}
-        autoHideDuration={6000}
-        onClose={handleCloseAlert}
-      >
-        <StyledSnackbarContent message="Ərizəniz yaradıldı" />
-      </Snackbar>
     </div>
   );
 };

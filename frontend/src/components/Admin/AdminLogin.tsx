@@ -5,10 +5,11 @@ import axios, { AxiosResponse } from "axios";
 import { useAuth } from "../../context/auth.jsx";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AdminLogin: React.FC = () => {
   const apiUrl = config.apiURL;
-  const [, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -35,12 +36,18 @@ const AdminLogin: React.FC = () => {
 
       localStorage.setItem("auth", JSON.stringify({ user: null, token }));
       navigate("/admin");
-      console.log("Login success");
+      toast.success("Giriş uğurlu oldu!");
     } catch (error) {
       // Handle login error
       console.error("Login error:", error);
     }
   };
+
+  React.useEffect(() => {
+    if (auth.token) {
+      navigate("/admin");
+    }
+  }, [auth.token, navigate]);
 
   return (
     <div id="admin">

@@ -391,6 +391,7 @@
         }
 
         .download-btn {
+          cursor: pointer;
           display: flex;
           padding: 15px 30px;
           justify-content: center;
@@ -552,8 +553,8 @@ footer {
 // Main Navbar
 
 header {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   .nav {
     display: flex;
     justify-content: space-between;

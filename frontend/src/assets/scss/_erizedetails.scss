@@ -1,6 +1,7 @@
 .erize-details-page {
   .erize-details-content {
     .page-box {
+      margin-top: 10px;
       border-radius: 8px;
       border: 1px solid #d5e4f0;
       background: #f2f7fb;
@@ -36,14 +37,6 @@
       }
     }
   }
-}
-
-.btn {
-  display: flex;
-  padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
 }
 
 .image-gallery-image {

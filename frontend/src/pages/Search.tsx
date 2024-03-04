@@ -5,12 +5,7 @@ import { CaretLeft, CaretRight, noSearch } from "../assets/icons";
 import { useSearch } from "../context/search";
 import config from "../config";
 import { useNavigate } from "react-router-dom";
-
-interface ISearchProps {
-  id: number;
-  docName: string;
-  imageName: string;
-}
+import { ISearchProps } from "../interfaces";
 
 const Search: React.FC = () => {
   const apiUrl = config.apiURL;
@@ -42,11 +37,9 @@ const Search: React.FC = () => {
 
   const handleDetailsClick = (result: ISearchProps) => {
     const link = `/erizeler/erize/${result.id}`;
-    console.log("Navigating to:", link);
     navigate(link);
   };
 
-  console.log(values);
 
   return (
     <div id="search">

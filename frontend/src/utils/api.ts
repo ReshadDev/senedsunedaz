@@ -39,7 +39,6 @@ export const createDocument = async (data: FormData, token: string) => {
   formData.append("docName", data.docName);
   formData.append("link", data.link);
 
-  console.log("Data:", data);
   const categoryId = data.categoryId;
   const response = await axios.post(
     `http://localhost:8080/api/application/upload/${categoryId}`,
@@ -51,8 +50,6 @@ export const createDocument = async (data: FormData, token: string) => {
       },
     }
   );
-
-  console.log("Response:", response.data);
 
   return response.data;
 };

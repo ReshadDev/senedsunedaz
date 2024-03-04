@@ -10,6 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const { Sider, Content } = Layout;
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const AdminLayout: React.FC = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ const AdminLayout: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
+      <ToastContainer />
       <Sider width={300} theme="dark">
         <div style={{ textAlign: "center", padding: "16px", color: "white" }}>
           ADMIN PANEL

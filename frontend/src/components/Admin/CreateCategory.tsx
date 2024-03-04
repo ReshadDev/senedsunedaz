@@ -1,15 +1,10 @@
 import * as React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {
-  TextField,
-  Button,
-  Container,
-  Snackbar,
-  SnackbarContent,
-  styled,
-} from "@mui/material";
+import { TextField, Button, Container, styled } from "@mui/material";
 import { useAuth } from "../../context/auth";
 import { createCategory } from "../../utils/api";
+
+import { toast } from "react-toastify";
 
 const FormContainer = styled(Container)({
   marginTop: "50px",
@@ -22,44 +17,31 @@ const FormTextField = styled(TextField)({
   marginBottom: "20px",
 });
 
-const StyledSnackbarContent = styled(SnackbarContent)({
-  color: "white",
-  backgroundColor: "green",
-});
-
-interface FormData {
+interface CategoryForm {
   categoryName: string;
 }
 
 const CreateCategory: React.FC = () => {
-  const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const [auth] = useAuth();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<CategoryForm>();
 
-  console.log(auth);
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<CategoryForm> = async (data) => {
     try {
       await createCategory(data, auth.token);
 
-      setShowAlert(true);
       reset();
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
+      toast.success("Kateqoriya uğurla yaradıldı");
     } catch (error) {
-      console.error("Error uploading files:", error);
+      console.error("Error creating category:", error);
+      toast.error("Xəta baş verdi");
     }
   };
 
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
   return (
     <div>
       <FormContainer maxWidth="sm">
@@ -81,14 +63,6 @@ const CreateCategory: React.FC = () => {
           </Button>
         </form>
       </FormContainer>
-
-      <Snackbar
-        open={showAlert}
-        autoHideDuration={6000}
-        onClose={handleCloseAlert}
-      >
-        <StyledSnackbarContent message="Ərizəniz yaradıldı" />
-      </Snackbar>
     </div>
   );
 };
