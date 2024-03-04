@@ -43,9 +43,9 @@ interface Category {
 
 interface FormData {
   docFile: FileList;
+  editDocFile: FileList;
   imageFile: FileList;
   docName: string;
-  link: string;
   categoryId: string;
 }
 
@@ -63,7 +63,7 @@ const CreateDocument: React.FC = () => {
         `${apiURL}/api/category/getAllCategories`
       );
       if (data?.success) {
-        setCategories(data?.category);
+        setCategories(data?.categories);
       }
     } catch (error) {
       console.log(error);
@@ -85,11 +85,15 @@ const CreateDocument: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append("docFile", data.docFile[0]);
+      formData.append("editDocFile", data.editDocFile[0]);
       formData.append("imageFile", data.imageFile[0]);
       formData.append("docName", data.docName);
-      formData.append("link", data.link);
+      formData.append("inputs", JSON.stringify(inputs));
 
       const categoryId = data.categoryId;
+
+      setInputs([]);
+
       const response = await axios.post(
         `http://localhost:8080/api/application/upload/${categoryId}`,
         formData,
@@ -116,12 +120,46 @@ const CreateDocument: React.FC = () => {
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
+
+  const [inputs, setInputs] = React.useState<
+    { labelName: string; label: string }[]
+  >([]);
+
+  const addInputRow = () => {
+    setInputs([...inputs, { labelName: "", label: "" }]);
+  };
+
+  const removeInputRow = (index: number) => {
+    const newInputs = [...inputs];
+    newInputs.splice(index, 1);
+    setInputs(newInputs);
+  };
+
   return (
     <div>
       <FormContainer maxWidth="sm">
         <h1 className="text-center">Create Document</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          <FormControl fullWidth>
+            <CategoryLabel id="category-label">Select a Category</CategoryLabel>
+            <Select
+              {...register("categoryId", {
+                required: "Category is required",
+              })}
+              value={categoryId}
+              onChange={(event) => setCategoryId(event.target.value)}
+              label="Category"
+              error={Boolean(errors.categoryId)}
+              fullWidth
+            >
+              {categories.map((category) => (
+                <MenuItem key={category.id} value={category.id}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <InputLabel shrink id="docFile-label">
             Doc File (docx)
           </InputLabel>
@@ -132,6 +170,19 @@ const CreateDocument: React.FC = () => {
             type="file"
             error={Boolean(errors.docFile)}
             helperText={errors.docFile?.message}
+            fullWidth
+          />
+
+          <InputLabel shrink id="docFile-label">
+            Doc File (docx)
+          </InputLabel>
+          <FormTextField
+            {...register("editDocFile", {
+              required: "editDocFile is required",
+            })}
+            type="file"
+            error={Boolean(errors.editDocFile)}
+            helperText={errors.editDocFile?.message}
             fullWidth
           />
 
@@ -158,33 +209,40 @@ const CreateDocument: React.FC = () => {
             fullWidth
           />
 
-          <FormTextField
-            {...register("link", { required: "link is required" })}
-            label="Link"
-            error={Boolean(errors.link)}
-            helperText={errors.link?.message}
-            fullWidth
-          />
+          <InputLabel shrink id="inputs-label">
+            Inputs
+          </InputLabel>
 
-          <FormControl fullWidth>
-            <CategoryLabel id="category-label">Select a Category</CategoryLabel>
-            <Select
-              {...register("categoryId", {
-                required: "Category is required",
-              })}
-              value={categoryId}
-              onChange={(event) => setCategoryId(event.target.value)}
-              label="Category"
-              error={Boolean(errors.categoryId)}
-              fullWidth
-            >
-              {categories.map((category) => (
-                <MenuItem key={category.id} value={category.id}>
-                  {category.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          {inputs.map((input, index) => (
+            <div key={index} style={{ display: "flex", marginBottom: "10px" }}>
+              <FormTextField
+                placeholder="Label Name"
+                value={input.labelName}
+                onChange={(e) => {
+                  const newInputs = [...inputs];
+                  newInputs[index].labelName = e.target.value;
+                  setInputs(newInputs);
+                }}
+                fullWidth
+              />
+              <FormTextField
+                placeholder="Label"
+                value={input.label}
+                onChange={(e) => {
+                  const newInputs = [...inputs];
+                  newInputs[index].label = e.target.value;
+                  setInputs(newInputs);
+                }}
+                fullWidth
+              />
+              <Button onClick={() => removeInputRow(index)} color="secondary">
+                Remove
+              </Button>
+            </div>
+          ))}
+          <Button onClick={addInputRow} color="primary">
+            Add Input Row
+          </Button>
 
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Upload

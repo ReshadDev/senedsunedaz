@@ -4,58 +4,85 @@ import { PencilIcon } from "./assets/icons";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
 import config from "./config";
+import "react-toastify/dist/ReactToastify.css";
+
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+} from "@mui/material";
+
+import { toast } from "react-toastify";
 
 import ImageGallery from "react-image-gallery";
-import { Button } from "antd";
-
-interface ProductProps {
-  id: number;
-  docName: string;
-  docPath: string;
-  imagePath: string;
-  imageName: string;
-  categoryId: number | null;
-  link: string;
-}
+import { Button as NewButton } from "antd";
+import { Category, ProductProps } from "./interfaces";
 
 const ErizeDetails: React.FC = () => {
-  const categoryMap = {
-    1: "Ailə",
-    2: "Təhsil",
-    3: "Hüquqi",
-    4: "İş",
-    5: "Əmlak ",
-    6: "Sahibkarlıq",
-  };
   const apiURL = config.apiURL;
 
   const [product, setProduct] = React.useState<ProductProps | null>(null);
   const [categoryName, setCategoryName] = React.useState<string | null>(null);
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const [inputValues, setInputValues] = React.useState<
+    { labelName: string; inputName: string }[]
+  >([]);
+  const [categories, setCategories] = React.useState<Category[]>([]);
+
   const params = useParams<{ slug: string }>();
 
   const getProduct = async () => {
     try {
+      console.log("Fetching product...");
       const { data } = await axios.get(
         `${apiURL}/api/application/byId/${params.slug}`
       );
       setProduct(data.document);
-      console.log("DATA", data.document);
-      const categoryName = categoryMap[data.document.categoryId];
-      setCategoryName(categoryName);
+      console.log("Product fetched:", data.document);
     } catch (error) {
       console.log(error);
     }
   };
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      if (params?.slug) {
-        await getProduct();
-      }
-    };
+  const fetchCategories = async () => {
+    try {
+      console.log("Fetching categories...");
+      const { data } = await axios.get(
+        `${apiURL}/api/category/getAllCategories`
+      );
+      setCategories(data?.categories || []);
+      console.log("Categories fetched:", data?.categories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchData();
+  const getCategoryName = (categoryId: number) => {
+    const matchedCategory = categories.find(
+      (category) => category?.id === categoryId
+    );
+    console.log("Matched category:", matchedCategory);
+    setCategoryName(matchedCategory?.name || null);
+  };
+
+  React.useEffect(() => {
+    console.log("Effect triggered with params.slug:", params?.slug);
+    if (params?.slug) {
+      getProduct();
+    }
   }, [params?.slug]);
+
+  React.useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  React.useEffect(() => {
+    if (product) {
+      getCategoryName(product.categoryId);
+    }
+  }, [product]);
 
   // console.log("Documents:", docs);
 
@@ -78,6 +105,58 @@ const ErizeDetails: React.FC = () => {
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
+  };
+
+  const handleEdit = () => {
+    setOpenModal(true);
+    // Initialize inputValues with the existing input values
+    const initialInputValues =
+      product?.extraInput.map((input) => ({
+        labelName: input.labelName,
+        inputName: input.inputName || "",
+      })) || [];
+    setInputValues(initialInputValues);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const handleConfirmEdit = async () => {
+    try {
+      const requestBody = inputValues.map((input) => ({
+        labelName: input.labelName,
+        inputName: input.inputName,
+      }));
+
+      await axios.post(
+        `${apiURL}/api/application/editDoc/${product?.id}`,
+        requestBody
+      );
+      await getProduct();
+      toast.success("Edited successfully"); // Use toast for success message
+    } catch (error) {
+      console.log(error);
+      toast.error("Error editing"); // Use toast for error message
+    }
+  };
+
+  const handleDownloadEditedFile = async () => {
+    try {
+      if (product?.id) {
+        const downloadUrl = `${apiURL}/api/application/downloadEditedDoc/${product.id}`;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = `${product.docName}_edited`;
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      }
+      handleCloseModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -117,15 +196,15 @@ const ErizeDetails: React.FC = () => {
                         style={{ paddingBottom: "20px" }}
                       >
                         <p>Kateqoriya adı: </p>
-                        <Button type="primary">{categoryName}</Button>
+                        <NewButton type="primary">{categoryName}</NewButton>
                       </div>
                     </div>
 
                     <div className="action-buttons-box">
                       <a
-                        href={product?.link}
                         target="_blank"
                         className="btn edit-btn"
+                        onClick={handleEdit}
                       >
                         <img src={PencilIcon} alt="" />
                         Redaktə et
@@ -141,6 +220,37 @@ const ErizeDetails: React.FC = () => {
           </div>
         </section>
       </main>
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>Edit Document</DialogTitle>
+        <DialogContent>
+          {/* Display extraInput array in the modal */}
+          {product?.extraInput.map((input, index) => (
+            <div key={input.id} style={{ marginBottom: "10px" }}>
+              <label>{input.label}</label>
+              <TextField
+                variant="outlined"
+                fullWidth
+                defaultValue={input.inputName || ""}
+                onChange={(e) => {
+                  const newInputValues = [...inputValues];
+                  newInputValues[index] = {
+                    labelName: input.labelName,
+                    inputName: e.target.value,
+                  };
+                  setInputValues(newInputValues);
+                }}
+              />
+            </div>
+          ))}
+          <Button onClick={handleCloseModal}>Close</Button>
+          <Button onClick={handleConfirmEdit} color="primary">
+            Confirm
+          </Button>
+          <Button onClick={handleDownloadEditedFile} color="primary">
+            Download Edited File
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

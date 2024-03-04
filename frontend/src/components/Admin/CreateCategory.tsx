@@ -77,7 +77,7 @@ const CreateCategory: React.FC = () => {
           />
 
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Upload
+            Create
           </Button>
         </form>
       </FormContainer>

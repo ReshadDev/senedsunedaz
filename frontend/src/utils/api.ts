@@ -1,5 +1,3 @@
-// APIUtils.ts
-
 import axios from "axios";
 
 interface CreateCategoryData {

@@ -1,6 +1,5 @@
 import React from "react";
 import { useTypewriter } from "react-simple-typewriter";
-import Slider from "react-slick";
 
 import {
   AileIcon,
@@ -10,10 +9,6 @@ import {
   Bumb,
   Minus,
   Question,
-  Company1Icon,
-  Company2Icon,
-  Company3Icon,
-  Company4Icon,
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
@@ -71,41 +66,6 @@ const Erizeler: React.FC = () => {
     loop: false,
     deleteSpeed: 100,
   });
-
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 100,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   return (
     <div id="erize">
@@ -258,7 +218,63 @@ const Erizeler: React.FC = () => {
           </div>
         </section>
 
-        <section className="about-us-banner" id="about">
+        <section className="mostly-used-documents">
+          <div className="container">
+            <div className="mostly-used-documents-content">
+              <div className="mostly-used-documents-heading-box">
+                <p>Ən çox axtarılan ərizələr</p>
+              </div>
+              <div className="pagination-box">
+                <div className="left-icon">
+                  <img src={LeftIcon} alt="" />
+                </div>
+                <div className="right-icon">
+                  <img src={RightIcon} alt="" />
+                </div>
+              </div>
+              <div className="mostly-used-documents-box">
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ErizeExamplePropsNew, index: number) => (
+                    <div key={index} className="document-box col-3">
+                      <div className="document-main-box">
+                        <div className="document-main-box-header">Ərizə</div>
+                        <div className="document-main-box-body">
+                          <img
+                            width={250}
+                            height={230}
+                            src={`http://localhost:8080/uploads/images/${erize.imageName}`}
+                            alt=""
+                          />
+                        </div>
+                        <div className="document-main-box-footer">
+                          <p>{erize.docName}</p>
+
+                          <div className="action-buttons">
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className="box-details-btn"
+                            >
+                              Ətraflı
+                            </Link>
+                            <Link className="download-btn" to="/">
+                              Yüklə
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="about-us-banner"
+          style={{ paddingBottom: "60px" }}
+          id="about"
+        >
           <div className="container">
             <div className="about-us-content">
               <div className="about-us-content-box">
@@ -308,99 +324,6 @@ const Erizeler: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="company-logos">
-          <div className="container">
-            <div className="company-logos-content">
-              <div className="slider-container">
-                <Slider {...settings}>
-                  <div className="slider-box">
-                    <img src={Company1Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company2Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company3Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company4Icon} alt="" />
-                  </div>
-                  <div className="slider-box">
-                    <img src={Company1Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company2Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company3Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company4Icon} alt="" />
-                  </div>
-                </Slider>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mostly-used-documents">
-          <div className="container">
-            <div className="mostly-used-documents-content">
-              <div className="mostly-used-documents-heading-box">
-                <p>Ən çox axtarılan ərizələr</p>
-              </div>
-              <div className="pagination-box">
-                <div className="left-icon">
-                  <img src={LeftIcon} alt="" />
-                </div>
-                <div className="right-icon">
-                  <img src={RightIcon} alt="" />
-                </div>
-              </div>
-              <div className="mostly-used-documents-box">
-                {erizeler
-                  .slice(0, 8)
-                  .map((erize: ErizeExamplePropsNew, index: number) => (
-                    <div key={index} className="document-box col-3">
-                      <div className="document-main-box">
-                        <div className="document-main-box-header">Ərizə</div>
-                        <div className="document-main-box-body">
-                          <img
-                            width={250}
-                            height={230}
-                            src={`http://localhost:8080/uploads/images/${erize.imageName}`}
-                            alt=""
-                          />
-                        </div>
-                        <div className="document-main-box-footer">
-                          <p>{erize.docName}</p>
-
-                          <div className="action-buttons">
-                            <Link
-                              to={`erize/${erize.id}`}
-                              className="box-details-btn"
-                            >
-                              Ətraflı
-                            </Link>
-                            <Link className="download-btn" to="/">
-                              Yüklə
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ const AdminPanel: React.FC = () => {
         `${apiURL}/api/category/getAllCategories`
       );
       if (data?.success) {
-        setCategories(data?.category);
+        setCategories(data?.categories);
       }
     } catch (error) {
       console.log(error);
