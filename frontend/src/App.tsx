@@ -21,6 +21,7 @@ import CreateCategory from "./components/Admin/CreateCategory";
 import CategoryDetails from "./pages/CategoryDetails";
 // import RequireAuth from "./components/RequireAuth";
 import AdminLayout from "./components/Admin/AdminLayout";
+import MainLayoutCV from "./components/LayoutCV/MainLayoutCV";
 
 const App: React.FC = () => {
   return (
@@ -37,13 +38,16 @@ const App: React.FC = () => {
           <Route path="*" element={<ErrorPage />} />
         </Route>
         <Route path="cv" element={<Cv />} />
+        <Route path="cv/*" element={<MainLayoutCV />}>
+          <Route index element={<Cv />} />
+        </Route>
         <Route path="login" element={<AdminLogin />} />
         {/* <Route element={<RequireAuth />}> */}
-          <Route path="admin" element={<AdminLayout />}>
-            <Route index element={<AdminPanel />} />
-            <Route path="create-category" element={<CreateCategory />} />
-            <Route path="create-document" element={<CreateDocument />} />
-          </Route>
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<AdminPanel />} />
+          <Route path="create-category" element={<CreateCategory />} />
+          <Route path="create-document" element={<CreateDocument />} />
+        </Route>
         {/* </Route> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
