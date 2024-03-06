@@ -22,6 +22,13 @@
     "noFallthroughCasesInSwitch": true
   },
   "exclude": ["**/*.docx"],
-  "include": ["src"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "src/context/search.jsx",
+    "src/components/Admin/AdminPanel.tsx",
+    "src/routes/AdminProtectedRoute.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

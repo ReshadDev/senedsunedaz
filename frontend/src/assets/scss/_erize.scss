@@ -326,7 +326,6 @@
 
   .mostly-used-documents-box {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     .col-3 {
       flex: 0 0 auto;
@@ -392,6 +391,7 @@
         }
 
         .download-btn {
+          cursor: pointer;
           display: flex;
           padding: 15px 30px;
           justify-content: center;
@@ -415,6 +415,7 @@
       align-items: center;
       margin-bottom: 20px;
       height: 355px;
+      margin-right: 24px;
 
       .document-main-box {
         width: 100%;
@@ -552,8 +553,8 @@ footer {
 // Main Navbar
 
 header {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   .nav {
     display: flex;
     justify-content: space-between;
@@ -587,4 +588,3 @@ header {
 .ant-input-group {
   min-width: 600px;
 }
-

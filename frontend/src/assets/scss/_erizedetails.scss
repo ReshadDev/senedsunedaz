@@ -1,6 +1,7 @@
 .erize-details-page {
   .erize-details-content {
     .page-box {
+      margin-top: 10px;
       border-radius: 8px;
       border: 1px solid #d5e4f0;
       background: #f2f7fb;
@@ -35,15 +36,59 @@
         }
       }
     }
+  }
+}
 
+.image-gallery-image {
+  width: 1000px;
+  height: 400px;
+}
+
+.erize-details-text-box {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 665px;
+  display: flex;
+  justify-content: space-between;
+  .left-side {
+    width: 60%;
+  }
+  .right-side {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .erize-details-action-box {
-      min-height: 45px;
       padding-top: 12px;
       padding-bottom: 12px;
-      display: flex;
-      justify-content: end;
-      width: 100%;
+      height: 80%;
+      width: 70%;
+
+      .erize-details-erize-box {
+        .d-main-box {
+          p {
+            margin-right: 10px;
+            margin-bottom: 10px;
+          }
+          align-items: center;
+        }
+
+        min-height: 50px;
+        padding-bottom: 100px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        p {
+          color: #595959;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-right: 5px;
+        }
+      }
+
       .action-buttons-box {
+        padding-left: 10px;
         display: flex;
         .download-btn {
           background: #7189bf;
@@ -65,29 +110,5 @@
         }
       }
     }
-
-    .erize-details-erize-box {
-      padding-bottom: 26.5px;
-      min-height: 50px;
-      h1 {
-        width: 75%;
-      }
-    }
   }
-}
-
-.document-editor {
-  min-height: 480px !important;
-
-  .ql-editor {
-    padding: 20px 20px !important;
-  }
-}
-
-.btn {
-  display: flex;
-  padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
 }

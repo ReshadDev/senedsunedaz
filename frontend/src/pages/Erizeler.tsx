@@ -1,6 +1,5 @@
 import React from "react";
 import { useTypewriter } from "react-simple-typewriter";
-import Slider from "react-slick";
 
 import {
   AileIcon,
@@ -10,59 +9,58 @@ import {
   Bumb,
   Minus,
   Question,
-  Company1Icon,
-  Company2Icon,
-  Company3Icon,
-  Company4Icon,
-  ErizeSnapshot,
 } from "../assets/icons";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
-import ErizeExamples, { ErizeExampleProps } from "../data";
+import config from "../config";
+import axios from "axios";
+import { Category, ProductProps } from "../interfaces";
+
+const apiURL = config.apiURL;
 
 const Erizeler: React.FC = () => {
+  const [categories, setCategories] = React.useState<Category[]>([]);
+  const [erizeler, setErizeler] = React.useState<[]>([]);
+
+  const getAllProducts = async () => {
+    try {
+      const { data } = await axios.get(`${apiURL}/api/application/findAll`);
+      if (data?.success) {
+        setErizeler(data?.documents);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  // Api Request
+
+  const getAllCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/category/getAllCategories`
+      );
+      if (data?.success) {
+        setCategories(data?.categories);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllCategories();
+  }, []);
+
   const [typeEffect] = useTypewriter({
     words: ["kliklə"],
     loop: false,
     deleteSpeed: 100,
   });
-
-  const [data] = React.useState<ErizeExampleProps[]>(ErizeExamples);
-
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 100,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   return (
     <div id="erize">
@@ -126,96 +124,87 @@ const Erizeler: React.FC = () => {
                   <p>Spesifik kataqoriyalar üzrə axtar.</p>
                 </div>
                 <div className="spesific-categories-category-box">
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
+                  {categories.map((category: Category) => (
+                    <div className="category-box col-4">
+                      <div className="category-box__heading-box">
+                        <img src={AileIcon} alt="aile sekili" />
+                        <p>{category.name}</p>
+                      </div>
+                      <p className="category-box__body-text">
+                        İddia, uşaq və boşanma ərizələri
+                      </p>
+                      <Link
+                        to={`category/${category.name}`}
+                        className="category-box__footer-box"
+                      >
+                        <p>Daha çox</p>
+                        <img src={ArrowRightIcon} alt="" />
+                      </Link>
                     </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
-
-                  <div className="category-box col-4">
-                    <div className="category-box__heading-box">
-                      <img src={AileIcon} alt="aile sekili" />
-                      <p>Ailə</p>
-                    </div>
-                    <p className="category-box__body-text">
-                      İddia, uşaq və boşanma ərizələri
-                    </p>
-                    <Link to="/" className="category-box__footer-box">
-                      <p>Daha çox</p>
-                      <img src={ArrowRightIcon} alt="" />
-                    </Link>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="about-us-banner" id="about">
+        <section className="mostly-used-documents">
+          <div className="container">
+            <div className="mostly-used-documents-content">
+              <div className="mostly-used-documents-heading-box">
+                <p>Ən çox axtarılan ərizələr</p>
+              </div>
+              <div className="pagination-box">
+                <div className="left-icon">
+                  <img src={LeftIcon} alt="" />
+                </div>
+                <div className="right-icon">
+                  <img src={RightIcon} alt="" />
+                </div>
+              </div>
+              <div className="mostly-used-documents-box">
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div key={index} className="document-box col-3">
+                      <div className="document-main-box">
+                        <div className="document-main-box-header">Ərizə</div>
+                        <div className="document-main-box-body">
+                          <img
+                            width={250}
+                            height={230}
+                            src={`http://localhost:8080/uploads/images/${erize.imageName}`}
+                            alt=""
+                          />
+                        </div>
+                        <div className="document-main-box-footer">
+                          <p>{erize.docName}</p>
+
+                          <div className="action-buttons">
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className="box-details-btn"
+                            >
+                              Ətraflı
+                            </Link>
+                            <Link className="download-btn" to="/">
+                              Yüklə
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="about-us-banner"
+          style={{ paddingBottom: "60px" }}
+          id="about"
+        >
           <div className="container">
             <div className="about-us-content">
               <div className="about-us-content-box">
@@ -265,92 +254,6 @@ const Erizeler: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="company-logos">
-          <div className="container">
-            <div className="company-logos-content">
-              <div className="slider-container">
-                <Slider {...settings}>
-                  <div className="slider-box">
-                    <img src={Company1Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company2Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company3Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company4Icon} alt="" />
-                  </div>
-                  <div className="slider-box">
-                    <img src={Company1Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company2Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company3Icon} alt="" />
-                  </div>
-
-                  <div className="slider-box">
-                    <img src={Company4Icon} alt="" />
-                  </div>
-                </Slider>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mostly-used-documents">
-          <div className="container">
-            <div className="mostly-used-documents-content">
-              <div className="mostly-used-documents-heading-box">
-                <p>Ən çox axtarılan ərizələr</p>
-              </div>
-              <div className="pagination-box">
-                <div className="left-icon">
-                  <img src={LeftIcon} alt="" />
-                </div>
-                <div className="right-icon">
-                  <img src={RightIcon} alt="" />
-                </div>
-              </div>
-              <div className="mostly-used-documents-box">
-                {data.map((erize: ErizeExampleProps, index: number) => (
-                  <div key={index} className="document-box col-3">
-                    <div className="document-main-box">
-                      <div className="document-main-box-header">Ərizə</div>
-                      <div className="document-main-box-body">
-                        <img src={ErizeSnapshot} alt="" />
-                      </div>
-                      <div className="document-main-box-footer">
-                        <p>{erize.title}</p>
-
-                        <div className="action-buttons">
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className="box-details-btn"
-                          >
-                            Ətraflı
-                          </Link>
-                          <Link className="download-btn" to="/">
-                            Yüklə
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

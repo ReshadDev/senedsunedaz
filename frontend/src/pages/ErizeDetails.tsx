@@ -1,575 +1,160 @@
 import * as React from "react";
-import { Link, useParams } from "react-router-dom";
-import ErizeExamples, { ErizeExampleProps } from "../data";
-import ReactQuill, { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { useParams } from "react-router-dom";
 import { PencilIcon } from "../assets/icons";
-import quillEmoji from "quill-emoji";
+import "react-image-gallery/styles/css/image-gallery.css";
+import axios from "axios";
+import config from "../config";
+import "react-toastify/dist/ReactToastify.css";
 
-const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+} from "@mui/material";
 
-Quill.register(
-  {
-    "formats/emoji": EmojiBlot,
-    "modules/emoji-shortname": ShortNameEmoji,
-    "modules/emoji-toolbar": ToolbarEmoji,
-    "modules/emoji-textarea": TextAreaEmoji,
-  },
-  true
-);
+import { toast } from "react-toastify";
+
+import ImageGallery from "react-image-gallery";
+import { Button as NewButton } from "antd";
+import { Category, ProductProps } from "../interfaces";
 
 const ErizeDetails: React.FC = () => {
-  const modules = {
-    toolbar: [
-      ["bold", "italic", "underline", "strike", "link"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        {
-          color: [
-            "#e60000",
-            "#ff9900",
-            "#ffff00",
-            "#008a00",
-            "#0066cc",
-            "#9933ff",
-            "#ffffff",
-            "#facccc",
-            "#ffebcc",
-            "#ffffcc",
-            "#cce8cc",
-            "#cce0f5",
-            "#ebd6ff",
-            "#bbbbbb",
-            "#f06666",
-            "#ffc266",
-            "#ffff66",
-            "#66b966",
-            "#66a3e0",
-            "#c285ff",
-            "#888888",
-            "#a10000",
-            "#b26b00",
-            "#b2b200",
-            "#006100",
-            "#0047b2",
-            "#6b24b2",
-            "#444444",
-            "#5c0000",
-            "#663d00",
-            "#666600",
-            "#003700",
-            "#002966",
-            "#3d1466",
-            "custom-color",
-          ],
-        },
-      ],
-      ["emoji"],
-      ["clean"],
-    ],
-    "emoji-textarea": false,
-    "emoji-shortname": true,
-    clipboard: {
-      matchVisual: false,
-    },
-  };
+  const apiURL = config.apiURL;
+
+  const [product, setProduct] = React.useState<ProductProps | null>(null);
+  const [categoryName, setCategoryName] = React.useState<string>("");
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const [inputValues, setInputValues] = React.useState<
+    { labelName: string; inputName: string }[]
+  >([]);
+  const [categories, setCategories] = React.useState<Category[]>([]);
+
   const params = useParams<{ slug: string }>();
 
-  const [, setErize] = React.useState<ErizeExampleProps>({
-    id: 0,
-    title: "",
-    description: "",
-    slug: "",
-  });
+  const getProduct = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/application/byId/${params.slug}`
+      );
+      setProduct(data.document);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const [editorContent, setEditorContent] = React.useState<string>(
-    "<p>Start typing your content...</p>"
-  );
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/category/getAllCategories`
+      );
+      setCategories(data?.categories || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCategoryName = (categoryId: number) => {
+    const matchedCategory = categories.find(
+      (category) => category?.id === categoryId
+    );
+    setCategoryName(matchedCategory?.name || "");
+  };
 
   React.useEffect(() => {
-    const selectedErize = ErizeExamples.find(
-      (item) => item.slug === params.slug
-    );
-    setErize(selectedErize || ErizeExamples[0]);
+    if (params?.slug) {
+      getProduct();
+    }
+  }, [params?.slug]);
 
-    // Fetch HTML content from the file
-    const fetchHTMLContent = async () => {
-      try {
-        // const response = await fetch("/src/erizehtml/new.html");
-        // const htmlContent = await response.text();
-        // const parser = new DOMParser();
-        // const document = parser.parseFromString(htmlContent, "text/html");
+  React.useEffect(() => {
+    fetchCategories();
+  }, []);
 
-        const htmlContent = `
-        <p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&quot;XXX&quot;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;Mə**** Məsuliyyətli</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">Cəmiyyətinin direktoru</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">XXX</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;XXX</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;XXX oğluna</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial"
-    >&mdash;&mdash;&ndash;&mdash;&mdash;&ndash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span
-  >
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">qeydiyyat &uuml;nvanı)</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial"
-    >&mdash;&mdash;&mdash;&mdash;&uuml;nvanında</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">qeydiyyatda olan</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial"
-    >&mdash;&mdash;&mdash;&mdash;&ndash;&mdash;&ndash;&mdash;&mdash;&mdash;&mdash;&ndash;&mdash;&mdash;&mdash;</span
-  >
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">(soyad, ad, ata adı)</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt; text-align: right">
-  <span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p
-  style="
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-    text-align: right;
-    font-size: 11pt;
-  "
->
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">tərəfindən</span
-  ><span style="font-family: Arial">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 12pt">
-  <span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt; font-size: 11pt">
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial"
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-  ><strong><span style="font-family: Arial">Ə R İ Z Ə</span></strong>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt">
-  <span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt">
-  <span style="font-family: Arial; font-size: 11pt"
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-  ><span style="font-family: Arial; font-size: 11pt"
-    >Yazıb sizdən xahiş edirəm ki, məni &mdash;&mdash;&mdash;&mdash;&mdash;- ci
-    il tarixdən etibarən cəmiyyətinizə
-    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash; vəzifəsinə ( peşəsinə)</span
-  ><span style="font-family: Arial; font-size: 11pt">&nbsp;</span
-  ><span style="font-family: 'Times New Roman'">&nbsp;</span
-  ><span style="font-family: Arial; font-size: 11pt">(vəzifənin adı)</span
-  ><span style="font-family: Arial; font-size: 11pt">&nbsp;</span
-  ><span style="font-family: 'Times New Roman'">&nbsp;</span
-  ><span style="font-family: Arial; font-size: 11pt">qəbul edəsiniz.</span
-  ><br /><span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt; font-size: 11pt">
-  <span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial">&nbsp;</span
-  ><span style="font-family: Arial"
-    >&quot;&mdash;&quot; &mdash;&mdash;&mdash;20 &mdash;&mdash;** il</span
-  >
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt">
-  <span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt; font-size: 11pt">
-  <span style="font-family: Arial"
-    >İmza:&mdash;&mdash;&mdash;&mdash;&mdash;/&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/</span
-  >
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt">
-  <span style="font-family: 'Times New Roman'">&nbsp;</span>
-</p>
-<p style="margin-top: 0pt; margin-bottom: 0pt">&nbsp;</p>
+  React.useEffect(() => {
+    if (product) {
+      getCategoryName(product.categoryId);
+    }
+  }, [product]);
 
-        `;
+  const images = [
+    {
+      original: `${apiURL}/uploads/images/${product?.imageName}`,
+      thumbnail: `${apiURL}/uploads/images/${product?.imageName}`,
+    },
+  ];
 
-        setEditorContent(htmlContent);
-        console.log(htmlContent);
+  const handleDownload = (erize) => {
+    const downloadUrl = `${apiURL}/api/application/download/${erize?.id}`;
 
-        // console.log("HTML content fetched successfully:", htmlContent);
-      } catch (error) {
-        console.error("Error fetching HTML content:", error);
+    const downloadLink = document.createElement("a");
+    downloadLink.href = downloadUrl;
+    downloadLink.download = erize?.docName || "downloadedFile";
+
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+
+    document.body.removeChild(downloadLink);
+    toast.success("Sənəd uğurla yükləndi!");
+  };
+  const handleEdit = () => {
+    setOpenModal(true);
+    // Initialize inputValues with the existing input values
+    const initialInputValues =
+      product?.extraInput.map((input) => ({
+        labelName: input.labelName,
+        inputName: input.inputName || "",
+      })) || [];
+    setInputValues(initialInputValues);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const handleConfirmEdit = async () => {
+    if (inputValues.some((input) => input.inputName.trim() === "")) {
+      toast.error("Zəhmət olmasa bütün xanaları doldurun");
+      return;
+    }
+
+    try {
+      const requestBody = inputValues.map((input) => ({
+        labelName: input.labelName,
+        inputName: input.inputName,
+      }));
+
+      await axios.post(
+        `${apiURL}/api/application/editDoc/${product?.id}`,
+        requestBody
+      );
+      await getProduct();
+      toast.success("Edited successfully"); // Use toast for success message
+    } catch (error) {
+      console.log(error);
+      toast.error("Error editing"); // Use toast for error message
+    }
+  };
+
+  const handleDownloadEditedFile = async () => {
+    try {
+      if (product?.id) {
+        const downloadUrl = `${apiURL}/api/application/downloadEditedDoc/${product.id}`;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = `${product.docName}_edited`;
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
       }
-    };
-
-    fetchHTMLContent();
-  }, [params.slug]);
-
-  const handleEditorChange = (content: string) => {
-    setEditorContent(content);
+      handleCloseModal();
+      toast.success("Ərizəniz yükləndi");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -580,42 +165,95 @@ const ErizeDetails: React.FC = () => {
             <div className="erize-details-content">
               <div className="page-box">
                 <div className="text-box">
-                  <p>Ailə</p>/<p className="mid-text-s">Ərizələr</p>/
-                  <p>Ətraflı</p>
+                  <p className="mid-text-s">Ərizələr</p>/<p>Ətraflı</p>
                 </div>
               </div>
-              <div className="erize-details-action-box">
-                <div className="action-buttons-box">
-                  <Link to="/erizeler" className="btn edit-btn">
-                    <img src={PencilIcon} alt="" />
-                    Redaktə et
-                  </Link>
-                  <a
-                    onClick={() => console.log("salam")}
-                    className="btn download-btn"
-                  >
-                    Yüklə
-                  </a>
-                </div>
-              </div>
+
               <div className="erize-details-text-box">
-                <div className="erize-details-erize-box">
-                  <h1>{ErizeExamples[0].title}</h1>
+                <div className="left-side">
+                  <div>
+                    <ImageGallery
+                      items={images}
+                      showPlayButton={false}
+                      showNav={false}
+                    />
+                  </div>
                 </div>
-                <div className="document-editor">
-                  <ReactQuill
-                    value={editorContent}
-                    onChange={handleEditorChange}
-                    modules={modules}
-                    formats={["bold", "italic", "underline", "strike"]}
-                    theme="snow"
-                  />
+                <div className="right-side">
+                  <div className="erize-details-action-box">
+                    <div className="erize-details-erize-box">
+                      <div
+                        className=" d-main-box"
+                        style={{ paddingBottom: "20px" }}
+                      >
+                        <p>Ərizə adı: </p>
+                        <p>{product?.docName}</p>
+                      </div>
+                      <div
+                        className="d-main-box"
+                        style={{ paddingBottom: "20px" }}
+                      >
+                        <p>Kateqoriya adı: </p>
+                        <NewButton type="primary">{categoryName}</NewButton>
+                      </div>
+                    </div>
+
+                    <div className="action-buttons-box">
+                      <a
+                        target="_blank"
+                        className="btn edit-btn"
+                        onClick={handleEdit}
+                      >
+                        <img src={PencilIcon} alt="" />
+                        Redaktə et
+                      </a>
+                      <a
+                        className="btn download-btn"
+                        onClick={() => handleDownload(product)}
+                      >
+                        Yüklə
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </main>
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>Edit Document</DialogTitle>
+        <DialogContent>
+          {/* Display extraInput array in the modal */}
+          {product?.extraInput.map((input, index) => (
+            <div key={input.id} style={{ marginBottom: "10px" }}>
+              <label>{input.label}</label>
+              <TextField
+                variant="outlined"
+                fullWidth
+                defaultValue={input.inputName || ""}
+                onChange={(e) => {
+                  const newInputValues = [...inputValues];
+                  newInputValues[index] = {
+                    labelName: input.labelName,
+                    inputName: e.target.value,
+                  };
+                  setInputValues(newInputValues);
+                }}
+                InputProps={{
+                  required: true,
+                }}
+              />
+            </div>
+          ))}
+          <Button onClick={handleConfirmEdit} color="primary">
+            Təsdiqlə
+          </Button>
+          <Button onClick={handleDownloadEditedFile} color="primary">
+            Faylı yüklə
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

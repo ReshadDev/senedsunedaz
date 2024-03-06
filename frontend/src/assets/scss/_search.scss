@@ -1,8 +1,8 @@
 .search-results {
-  min-height: 721px;
+  min-height: 721.2px;
   .search-results-boxes {
     display: flex;
-    justify-content: space-between;
+
     flex-wrap: wrap;
     .col-3 {
       flex: 0 0 auto;
@@ -10,7 +10,8 @@
     }
     .document-box {
       .action-buttons {
-        a {
+        a,
+        button {
           display: none !important;
           visibility: hidden !important;
         }
@@ -20,7 +21,8 @@
         transition: all 1s ease; /* Adjust the duration (0.5s) as needed */
 
         .action-buttons {
-          a {
+          a,
+          button {
             visibility: visible !important;
             display: block !important;
             cursor: pointer;
@@ -90,6 +92,7 @@
       align-items: center;
       margin-bottom: 40px;
       height: 365px;
+      margin-right: 24px;
 
       .document-main-box {
         width: 100%;
