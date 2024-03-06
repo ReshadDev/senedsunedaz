@@ -488,7 +488,7 @@
 
 // Main Footer
 
-footer {
+.foot {
   background: #1a2232;
 
   .foot__top {
@@ -524,7 +524,7 @@ footer {
   }
 
   .foot__bottom {
-    background: #18202e !important;
+    background: #18202e;
     ul {
       display: flex;
       justify-content: start;

@@ -6,6 +6,8 @@
 @import "./allerizeler";
 @import "./adminpanel";
 @import "./categorydetails";
+@import "./cv";
+
 * {
   margin: 0;
   padding: 0;
@@ -106,9 +108,16 @@ body,
   margin-bottom: 50px !important;
 }
 
+.pb-100 {
+  padding-bottom: 100px !important;
+}
+
+.pb-150 {
+  padding-bottom: 150px !important;
+}
+
 .row {
   display: flex;
-  align-items: center;
   margin-bottom: 20px;
   margin-top: 20px;
 }

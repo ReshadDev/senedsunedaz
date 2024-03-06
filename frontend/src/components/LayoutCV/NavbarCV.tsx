@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const NavbarCV: React.FC = () => {
   return (
@@ -10,11 +9,6 @@ const NavbarCV: React.FC = () => {
             <a className="logo-text" href="/erizeler">
               SenedSuned
             </a>
-          </div>
-
-          <div className="links">
-            <Link to="about">Haqqımızda</Link>
-            <Link to="all">Ərizələr</Link>
           </div>
         </div>
       </div>

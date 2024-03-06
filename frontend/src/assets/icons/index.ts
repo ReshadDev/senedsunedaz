@@ -30,11 +30,22 @@ import Company2Icon from "../images/company2.png";
 import Company3Icon from "../images/company3.png";
 import Company4Icon from "../images/company4.png";
 
-import ErizeSnapshot from "../images/erizesnapshot.png";
+// CV ASSETS
+import CvBannerImg from "../images/cvbanner.svg";
+import cvicon1 from "../images/cvicon1.svg";
+import cvicon2 from "../images/cvicon2.svg";
+import cvicon3 from "../images/cvicon3.svg";
+import cvicon4 from "../images/cvicon4.svg";
+import templatecvs from "../images/templatecvs.svg";
+
+import step1 from "../images/step1.svg";
+import step2 from "../images/step2.svg";
+import step3 from "../images/step3.svg";
+
+import cv1 from "../images/cv1.svg";
 
 export {
   SearchIcon,
-  ErizeSnapshot,
   AboutUs,
   Question,
   Minus,
@@ -61,4 +72,14 @@ export {
   FilterIcon,
   User,
   Plus,
+  CvBannerImg,
+  cvicon1,
+  cvicon2,
+  cvicon3,
+  cvicon4,
+  templatecvs,
+  step1,
+  step2,
+  step3,
+  cv1,
 };
