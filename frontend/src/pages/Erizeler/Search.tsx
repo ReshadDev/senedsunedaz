@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-import { CaretLeft, CaretRight, noSearch } from "../assets/icons";
-import { useSearch } from "../context/search";
-import config from "../config";
+import { CaretLeft, CaretRight, noSearch } from "../../assets/icons";
+import { useSearch } from "../../context/search";
+import config from "../../config";
 import { useNavigate } from "react-router-dom";
-import { ISearchProps } from "../interfaces";
+import { ISearchProps } from "../../interfaces";
 
 const Search: React.FC = () => {
   const apiUrl = config.apiURL;
@@ -39,7 +39,6 @@ const Search: React.FC = () => {
     const link = `/erizeler/erize/${result.id}`;
     navigate(link);
   };
-
 
   return (
     <div id="search">

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
-import { PencilIcon } from "../assets/icons";
+import { PencilIcon } from "../../assets/icons";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
-import config from "../config";
+import config from "../../config";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 
 import ImageGallery from "react-image-gallery";
 import { Button as NewButton } from "antd";
-import { Category, ProductProps } from "../interfaces";
+import { Category, ProductProps } from "../../interfaces";
 
 const ErizeDetails: React.FC = () => {
   const apiURL = config.apiURL;

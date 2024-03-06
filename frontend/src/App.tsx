@@ -6,19 +6,19 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Erizeler from "./pages/Erizeler";
-import Cv from "./pages/Cv";
-import About from "./pages/About";
+import Erizeler from "./pages/Erizeler/Erizeler";
+import CV from "./pages/CV/CV";
+import About from "./pages/Erizeler/About";
 import MainLayout from "./components/Layout/MainLayout";
-import Search from "./pages/Search";
-import ErrorPage from "./pages/ErrorPage";
-import ErizeDetails from "./pages/ErizeDetails";
-import AllErizeler from "./pages/AllErizeler";
+import Search from "./pages/Erizeler/Search";
+import ErrorPage from "./pages/Erizeler/ErrorPage";
+import ErizeDetails from "./pages/Erizeler/ErizeDetails";
+import AllErizeler from "./pages/Erizeler/AllErizeler";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminPanel from "./components/Admin/AdminPanel";
 import CreateDocument from "./components/Admin/CreateDocument";
 import CreateCategory from "./components/Admin/CreateCategory";
-import CategoryDetails from "./pages/CategoryDetails";
+import CategoryDetails from "./pages/Erizeler/CategoryDetails";
 // import RequireAuth from "./components/RequireAuth";
 import AdminLayout from "./components/Admin/AdminLayout";
 
@@ -36,14 +36,15 @@ const App: React.FC = () => {
           <Route path="search" element={<Search />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
-        <Route path="cv" element={<Cv />} />
+
+        <Route path="cv" element={<CV />} />
         <Route path="login" element={<AdminLogin />} />
         {/* <Route element={<RequireAuth />}> */}
-          <Route path="admin" element={<AdminLayout />}>
-            <Route index element={<AdminPanel />} />
-            <Route path="create-category" element={<CreateCategory />} />
-            <Route path="create-document" element={<CreateDocument />} />
-          </Route>
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<AdminPanel />} />
+          <Route path="create-category" element={<CreateCategory />} />
+          <Route path="create-document" element={<CreateDocument />} />
+        </Route>
         {/* </Route> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

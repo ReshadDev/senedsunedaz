@@ -9,12 +9,12 @@ import {
   Bumb,
   Minus,
   Question,
-} from "../assets/icons";
-import SearchInput from "../components/SearchInput";
+} from "../../assets/icons";
+import SearchInput from "../../components/SearchInput";
 import { Link } from "react-router-dom";
-import config from "../config";
+import config from "../../config";
 import axios from "axios";
-import { Category, ProductProps } from "../interfaces";
+import { Category, ProductProps } from "../../interfaces";
 
 const apiURL = config.apiURL;
 

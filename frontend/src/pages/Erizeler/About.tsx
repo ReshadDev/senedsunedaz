@@ -1,5 +1,5 @@
 import React from "react";
-import { AboutUs, Bank, LightBulb, RocketLaunch } from "../assets/icons";
+import { AboutUs, Bank, LightBulb, RocketLaunch } from "../../assets/icons";
 
 const About: React.FC = () => {
   return (
