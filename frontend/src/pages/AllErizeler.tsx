@@ -7,6 +7,7 @@ import config from "../config";
 import { useNavigate } from "react-router-dom";
 import { Category, ProductProps } from "../interfaces";
 import Checkbox from "@mui/material/Checkbox";
+import { toast } from "react-toastify";
 const apiURL = config.apiURL;
 
 const ITEMS_PER_PAGE = 6;
@@ -127,6 +128,7 @@ const AllErizeler: React.FC = () => {
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
+    toast.success("Sənəd uğurla yükləndi!");
   };
 
   return (

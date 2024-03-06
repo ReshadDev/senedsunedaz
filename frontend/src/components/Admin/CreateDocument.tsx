@@ -14,7 +14,15 @@ import {
 } from "@mui/material";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-toastify";
-import { FormData, Category } from "../../interfaces";
+import { Category } from "../../interfaces";
+
+interface FormData {
+  docFile: FileList;
+  editDocFile: FileList;
+  imageFile: FileList;
+  docName: string;
+  categoryId: string;
+}
 
 const FormContainer = styled(Container)({
   marginTop: "50px",
@@ -147,7 +155,7 @@ const CreateDocument: React.FC = () => {
           />
 
           <InputLabel shrink id="docFile-label">
-            Doc File (docx)
+            Edited File (docx)
           </InputLabel>
           <FormTextField
             {...register("editDocFile", {

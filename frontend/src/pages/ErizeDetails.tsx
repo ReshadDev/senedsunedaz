@@ -85,21 +85,20 @@ const ErizeDetails: React.FC = () => {
     },
   ];
 
-  const handleDownload = () => {
-    const downloadUrl = `${apiURL}/api/application/download/${product?.id}`;
+  const handleDownload = (erize) => {
+    const downloadUrl = `${apiURL}/api/application/download/${erize?.id}`;
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;
-    downloadLink.download = product?.docName || "downloadedFile";
+    downloadLink.download = erize?.docName || "downloadedFile";
 
     document.body.appendChild(downloadLink);
 
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
-    toast.success("Ərizəniz yükləndi");
+    toast.success("Sənəd uğurla yükləndi!");
   };
-
   const handleEdit = () => {
     setOpenModal(true);
     // Initialize inputValues with the existing input values
@@ -208,7 +207,10 @@ const ErizeDetails: React.FC = () => {
                         <img src={PencilIcon} alt="" />
                         Redaktə et
                       </a>
-                      <a className="btn download-btn" onClick={handleDownload}>
+                      <a
+                        className="btn download-btn"
+                        onClick={() => handleDownload(product)}
+                      >
                         Yüklə
                       </a>
                     </div>
