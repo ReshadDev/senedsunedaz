@@ -30,7 +30,7 @@ const CV: React.FC = () => {
                   Bir neçə dəqiqə ərzində CV’ni hazırla, yüklə və arzuladığın
                   işi tap.
                 </p>
-                <Link className="btn cv-primary" to="/">
+                <Link className="btn cv-primary" to="/cv-form">
                   İndi başla
                 </Link>
               </div>
@@ -192,7 +192,7 @@ const CV: React.FC = () => {
               </div>
 
               <div className="button-box">
-                <Link className="btn cv-primary" to="/">
+                <Link className="btn cv-primary" to="/cv-form">
                   CV yarat
                   <ArrowRightOutlined />
                 </Link>

@@ -1692,6 +1692,48 @@ header .nav .links a {
   line-height: 24px;
 }
 
+#cv-form .upper-block {
+  width: 100%;
+  height: 400px;
+  background: url("../images/cvformbackground.svg") center/cover no-repeat;
+}
+#cv-form .main-heading-box {
+  padding-top: 30px;
+  text-align: center;
+}
+#cv-form .main-heading-box .heading-text {
+  padding-bottom: 20px;
+}
+#cv-form .main-heading-box .heading-text h1 {
+  color: #fff;
+  text-align: center;
+  font-family: Sarabun;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+}
+#cv-form .main-heading-box .steps-box {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+#cv-form .main-heading-box .steps-box .line {
+  height: 4px;
+  background: #154a4c;
+  min-width: 150px;
+}
+#cv-form .main-heading-box .steps-box .step-box {
+  display: flex;
+  align-items: center;
+}
+#cv-form .form-box {
+  background: #fdfdfd;
+  min-height: 600px;
+  border-radius: 8px;
+  border: 1px solid #904848;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1740,6 +1782,11 @@ body,
 .container {
   width: 70%; /* Set the width to match the HomeNavbar */
   margin: 0 auto; /* Center the container horizontally */
+}
+
+.container-new {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .col-2 {

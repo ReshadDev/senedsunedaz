@@ -44,6 +44,20 @@ import step3 from "../images/step3.svg";
 
 import cv1 from "../images/cv1.svg";
 
+// CV FORM ASSETS
+import cvformbackground from "../images/cvformbackground.svg";
+import cvformstep1 from "../images/cvformstep2.svg";
+import cvformstep2 from "../images/cvformstep2.svg";
+import cvformstep3 from "../images/cvformstep3.svg";
+import cvformstep4 from "../images/cvformstep4.svg";
+
+import cvformstepactive from "../images/cvformstepactive.svg";
+
+import cvformstep1completed from "../images/cvformstep1completed.svg";
+import cvformstep2completed from "../images/cvformstep2completed.svg";
+import cvformstep3completed from "../images/cvformstep3completed.svg";
+import cvformstep4completed from "../images/cvformstep3completed.svg";
+
 export {
   SearchIcon,
   AboutUs,
@@ -76,10 +90,20 @@ export {
   cvicon1,
   cvicon2,
   cvicon3,
+  cvformbackground,
   cvicon4,
   templatecvs,
   step1,
   step2,
   step3,
   cv1,
+  cvformstep1,
+  cvformstep2,
+  cvformstep3,
+  cvformstep4,
+  cvformstepactive,
+  cvformstep1completed,
+  cvformstep2completed,
+  cvformstep3completed,
+  cvformstep4completed,
 };
