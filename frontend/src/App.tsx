@@ -8,6 +8,7 @@ import {
 import Home from "./pages/Home";
 import Erizeler from "./pages/Erizeler/Erizeler";
 import CV from "./pages/CV/CV";
+import CVForm from "./pages/CV/CVForm";
 import About from "./pages/Erizeler/About";
 import MainLayout from "./components/Layout/MainLayout";
 import Search from "./pages/Erizeler/Search";
@@ -38,6 +39,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route path="cv" element={<CV />} />
+        <Route path="cv-form" element={<CVForm />} />
         <Route path="login" element={<AdminLogin />} />
         {/* <Route element={<RequireAuth />}> */}
         <Route path="admin" element={<AdminLayout />}>
