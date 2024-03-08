@@ -1698,7 +1698,7 @@ header .nav .links a {
   background: url("../images/cvformbackground.svg") center/cover no-repeat;
 }
 #cv-form .main-heading-box {
-  padding-top: 30px;
+  padding-top: 10px;
   text-align: center;
 }
 #cv-form .main-heading-box .heading-text {
@@ -1716,7 +1716,7 @@ header .nav .links a {
 #cv-form .main-heading-box .steps-box {
   display: flex;
   justify-content: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 #cv-form .main-heading-box .steps-box .line {
   height: 4px;
@@ -1731,7 +1731,91 @@ header .nav .links a {
   background: #fdfdfd;
   min-height: 600px;
   border-radius: 8px;
-  border: 1px solid #904848;
+}
+#cv-form .form-box .container-new {
+  padding-top: 20px;
+}
+#cv-form .form-box .container-new .heading-box {
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 20px;
+}
+#cv-form .form-box .container-new .heading-box h1 {
+  color: #3e3e3e;
+  font-family: Sarabun;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  padding-bottom: 10px;
+}
+#cv-form .form-box .container-new .row {
+  justify-content: space-between;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+#cv-form .form-box .container-new .row .form-element {
+  width: 48%;
+}
+#cv-form .form-box .container-new .row .form-element .label-text {
+  color: #3e3e3e;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+#cv-form .form-box .container-new .row .form-element-l {
+  width: 100%;
+}
+#cv-form .form-box .container-new .row .form-element-l .label-text {
+  color: #3e3e3e;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+#cv-form .button-box {
+  border-top: 1px solid #dadada;
+}
+#cv-form .button-box .container-new {
+  display: flex;
+  justify-content: end;
+  padding-right: 30px;
+  padding-top: 20px;
+}
+#cv-form .button-box .prev-btn {
+  border-radius: 8px;
+  border: 1px solid #242c2c;
+  color: #242c2c;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  background-color: #fff;
+}
+#cv-form .button-box .prev-btn svg {
+  width: 26px;
+  height: 26px;
+}
+#cv-form .button-box .next-btn {
+  border-radius: 8px;
+  background: #154e4d;
+  border: none;
+  margin-left: 20px;
+  color: #f2f7fb;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+#cv-form .button-box .next-btn svg {
+  width: 26px;
+  height: 26px;
 }
 
 * {

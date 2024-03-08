@@ -309,7 +309,7 @@
   }
 
   .main-heading-box {
-    padding-top: 30px;
+    padding-top: 10px;
     text-align: center;
 
     .heading-text {
@@ -328,7 +328,7 @@
     .steps-box {
       display: flex;
       justify-content: center;
-      padding-bottom: 30px;
+      padding-bottom: 20px;
 
       .line {
         height: 4px;
@@ -347,6 +347,99 @@
     background: #fdfdfd;
     min-height: 600px;
     border-radius: 8px;
-    border: 1px solid #904848;
+    // border: 1px solid #904848;
+    .container-new {
+      padding-top: 20px;
+      .heading-box {
+        border-bottom: 1px solid #dadada;
+        margin-bottom: 20px;
+        h1 {
+          color: #3e3e3e;
+          font-family: Sarabun;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 28px;
+          padding-bottom: 10px;
+        }
+      }
+      .row {
+        justify-content: space-between;
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+        .form-element {
+          width: 48%;
+
+          
+
+          .label-text {
+            color: #3e3e3e;
+            font-family: Sarabun;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            margin-bottom: 5px;
+          }
+        }
+
+        .form-element-l {
+          width: 100%;
+
+          .label-text {
+            color: #3e3e3e;
+            font-family: Sarabun;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+  .button-box {
+    border-top: 1px solid #dadada;
+
+    .container-new {
+      display: flex;
+      justify-content: end;
+      padding-right: 30px;
+      padding-top: 20px;
+    }
+
+    .prev-btn {
+      border-radius: 8px;
+      border: 1px solid #242c2c;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+      color: #242c2c;
+      font-family: Sarabun;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      background-color: #fff;
+    }
+
+    .next-btn {
+      border-radius: 8px;
+      background: #154e4d;
+      border: none;
+      margin-left: 20px;
+      color: #f2f7fb;
+      font-family: Sarabun;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
   }
 }
