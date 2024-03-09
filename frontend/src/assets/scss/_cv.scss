@@ -345,7 +345,7 @@
 
   .form-box {
     background: #fdfdfd;
-    min-height: 600px;
+    min-height: 700px;
     border-radius: 8px;
     // border: 1px solid #904848;
     .container-new {
@@ -369,8 +369,6 @@
         margin-top: 10px !important;
         .form-element {
           width: 48%;
-
-          
 
           .label-text {
             color: #3e3e3e;
@@ -401,6 +399,7 @@
   }
   .button-box {
     border-top: 1px solid #dadada;
+    padding-bottom: 20px;
 
     .container-new {
       display: flex;
@@ -441,5 +440,26 @@
         height: 26px;
       }
     }
+  }
+
+  .add-new-box {
+    padding-bottom: 30px;
+  }
+
+  .add-new-btn {
+    border-radius: 8px;
+    border: none;
+    svg {
+      margin-right: 10px;
+      width: 26px;
+      height: 26px;
+    }
+    color: #242c2c;
+    color: #127371;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
   }
 }

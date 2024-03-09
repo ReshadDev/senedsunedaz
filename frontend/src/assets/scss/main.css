@@ -1729,7 +1729,7 @@ header .nav .links a {
 }
 #cv-form .form-box {
   background: #fdfdfd;
-  min-height: 600px;
+  min-height: 700px;
   border-radius: 8px;
 }
 #cv-form .form-box .container-new {
@@ -1779,6 +1779,7 @@ header .nav .links a {
 }
 #cv-form .button-box {
   border-top: 1px solid #dadada;
+  padding-bottom: 20px;
 }
 #cv-form .button-box .container-new {
   display: flex;
@@ -1814,6 +1815,25 @@ header .nav .links a {
   line-height: 24px;
 }
 #cv-form .button-box .next-btn svg {
+  width: 26px;
+  height: 26px;
+}
+#cv-form .add-new-box {
+  padding-bottom: 30px;
+}
+#cv-form .add-new-btn {
+  border-radius: 8px;
+  border: none;
+  color: #242c2c;
+  color: #127371;
+  font-family: Sarabun;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+}
+#cv-form .add-new-btn svg {
+  margin-right: 10px;
   width: 26px;
   height: 26px;
 }

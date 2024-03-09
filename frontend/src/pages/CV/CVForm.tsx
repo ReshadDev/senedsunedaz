@@ -56,6 +56,213 @@ const CVForm: React.FC = () => {
 
   const { register } = useForm<FormData>();
 
+  const [experienceCount, setExperienceCount] = React.useState<number>(1);
+  const [schoolCount, setSchoolCount] = React.useState<number>(1);
+  const [languageCount, setLanguageCount] = React.useState<number>(1);
+  const [certificateCount, setCertificateCount] = React.useState<number>(1);
+
+  const generateExperiences = (): JSX.Element[] => {
+    const forms: JSX.Element[] = [];
+    for (let i = 0; i < experienceCount; i++) {
+      forms.push(
+        <div key={i} className="container-new">
+          <div className="heading-box">
+            <h1>İş təcrübəsi</h1>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Vəzifənin adı
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                İş yerinin adı
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Başlama tarixi
+              </InputLabel>
+              <FormTextField placeholder="mm/dd/yyyy" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Bitmə tarixi
+              </InputLabel>
+              <FormTextField placeholder="mm/dd/yyyy" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Ölkə
+              </InputLabel>
+              <FormTextField placeholder="Azərbaycan" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Şəhər
+              </InputLabel>
+              <FormTextField placeholder="Baku" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element-l">
+              <InputLabel shrink className="label-text">
+                İşin təsviri
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth multiline />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return forms;
+  };
+
+  const generateSchools = (): JSX.Element[] => {
+    const forms: JSX.Element[] = [];
+    for (let i = 0; i < schoolCount; i++) {
+      forms.push(
+        <div key={i} className="container-new">
+          <div className="heading-box">
+            <h1>Təhsil keçmişi</h1>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                İxtisasın adı
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Universitetin adı
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Başlama tarixi
+              </InputLabel>
+              <FormTextField placeholder="mm/dd/yyyy" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Bitmə tarixi
+              </InputLabel>
+              <FormTextField placeholder="mm/dd/yyyy" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Təhsil dərəcəsi
+              </InputLabel>
+              <FormTextField placeholder="Bakalavr" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                GPA
+              </InputLabel>
+              <FormTextField placeholder="00" fullWidth />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Ölkə
+              </InputLabel>
+              <FormTextField placeholder="Azərbaycan" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Şəhər
+              </InputLabel>
+              <FormTextField placeholder="Baku" fullWidth />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return forms;
+  };
+
+  const generateLanguages = (): JSX.Element[] => {
+    const forms: JSX.Element[] = [];
+    for (let i = 0; i < languageCount; i++) {
+      forms.push(
+        <div key={i}>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Dil
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
+                Səviyyə
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return forms;
+  };
+
+  const generateCertificates = (): JSX.Element[] => {
+    const forms: JSX.Element[] = [];
+    for (let i = 0; i < certificateCount; i++) {
+      forms.push(
+        <div key={i}>
+          <div className="row">
+            <div className="form-element-l">
+              <InputLabel shrink className="label-text">
+                Sertifikat linki
+              </InputLabel>
+              <FormTextField placeholder="daxil edin" fullWidth />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return forms;
+  };
+
+  const handleAddNewExperience = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    setExperienceCount(experienceCount + 1);
+  };
+
+  const handleAddNewSchool = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSchoolCount(schoolCount + 1);
+  };
+
+  const handleAddNewLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setLanguageCount(languageCount + 1);
+  };
+
+  const handleAddNewCertificate = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    setCertificateCount(certificateCount + 1);
+  };
+
   return (
     <div id="cv-form">
       <div className="upper-block">
@@ -176,10 +383,123 @@ const CVForm: React.FC = () => {
                   </div>
                 </div>
               )}
+              {currentStep === 2 && (
+                <div className="">
+                  {generateExperiences()}
+                  <div className="add-new-box container-new">
+                    <button
+                      className="btn add-new-btn"
+                      onClick={handleAddNewExperience}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                          fill="#127371"
+                        />
+                      </svg>
+                      Əlavə et
+                    </button>
+                  </div>
+                </div>
+              )}
+              {currentStep === 3 && (
+                <div className="">
+                  {generateSchools()}
+                  <div className="add-new-box container-new">
+                    <button
+                      className="btn add-new-btn"
+                      onClick={handleAddNewSchool}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                          fill="#127371"
+                        />
+                      </svg>
+                      Əlavə et
+                    </button>
+                  </div>
+                </div>
+              )}
+              {currentStep === 4 && (
+                <div className="container-new">
+                  <div className="heading-box">
+                    <h1>Dil bilikləri</h1>
+                  </div>
+                  {generateLanguages()}
+                  <div className="add-new-box ">
+                    <button
+                      className="btn add-new-btn"
+                      onClick={handleAddNewLanguage}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                          fill="#127371"
+                        />
+                      </svg>
+                      Əlavə et
+                    </button>
+                  </div>
+                  <div className="heading-box">
+                    <h1>Sertifikatlar</h1>
+                  </div>
+                  {generateCertificates()}
+                  <div className="add-new-box ">
+                    <button
+                      className="btn add-new-btn"
+                      onClick={handleAddNewCertificate}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                          fill="#127371"
+                        />
+                      </svg>
+                      Əlavə et
+                    </button>
+                  </div>
+                  <div className="heading-box">
+                    <h1>Hobbilər</h1>
+                  </div>
+                  <div className="row">
+                    <div className="form-element-l">
+                      <InputLabel shrink className="label-text">
+                        Təsvir edin
+                      </InputLabel>
+                      <FormTextField placeholder="daxil edin" fullWidth />
+                    </div>
+                  </div>
+                </div>
+              )}
             </form>
           </div>
           <div className="button-box">
-            {currentStep < 5 ? (
+            {currentStep < 4 ? (
               <div className="container-new">
                 <button className="btn prev-btn" onClick={handlePreviousStep}>
                   <svg
@@ -213,7 +533,24 @@ const CVForm: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <button onClick={() => console.log("SAAALAM")}>Submit</button>
+              <div className="container-new">
+                <button className="btn prev-btn" onClick={handlePreviousStep}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z"
+                      fill="black"
+                    />
+                  </svg>
+                  Geri
+                </button>
+                <button className="btn next-btn">CV YARAT</button>
+              </div>
             )}
           </div>
         </div>
