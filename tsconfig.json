@@ -6,13 +6,8 @@
     "noImplicitAny": false,
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "allowJs": true, // Added to allow compilation of JavaScript files
+    "noEmit": false, // Changed to allow emitting compiled JavaScript files
     "jsx": "react-jsx",
 
     /* Linting */
@@ -25,10 +20,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.d.ts",
-    "src/context/search.jsx",
-    "src/components/Admin/AdminPanel.tsx",
-    "src/routes/AdminProtectedRoute.tsx"
+    "src/**/*.js", // Added to include JavaScript files for compilation
+    "src/**/*.jsx" // Added to include JSX files for compilation
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
