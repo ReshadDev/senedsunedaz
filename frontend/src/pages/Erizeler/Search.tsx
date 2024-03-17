@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { CaretLeft, CaretRight, noSearch } from "../../assets/icons";
 import { useSearch } from "../../context/search";
-import config from "../../config";
 import { useNavigate } from "react-router-dom";
 import { ISearchProps } from "../../interfaces";
+import { APIURL } from "../../config";
 
 const Search: React.FC = () => {
-  const apiUrl = config.apiURL;
-
   const [values] = useSearch();
 
   const navigate = useNavigate();
@@ -18,8 +16,6 @@ const Search: React.FC = () => {
     localStorage.setItem("searchResults", JSON.stringify(values.results));
     localStorage.setItem("searchKeyword", values.keyword || "");
   }, [values.results, values.keyword]);
-
-  // Retrieve search keyword from localStorage on component mount
 
   const [currentPage, setCurrentPage] = React.useState(0);
   const itemsPerPage = 8;
@@ -68,7 +64,7 @@ const Search: React.FC = () => {
                           <img
                             width={250}
                             height={230}
-                            src={`${apiUrl}/uploads/images/${result.imageName}`}
+                            src={`${APIURL}/uploads/images/${result.imageName}`}
                             alt=""
                           />
                         </div>

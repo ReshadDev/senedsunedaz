@@ -20,8 +20,11 @@ import AdminPanel from "./components/Admin/AdminPanel";
 import CreateDocument from "./components/Admin/CreateDocument";
 import CreateCategory from "./components/Admin/CreateCategory";
 import CategoryDetails from "./pages/Erizeler/CategoryDetails";
-// import RequireAuth from "./components/RequireAuth";
+import RequireAuth from "./components/RequireAuth";
 import AdminLayout from "./components/Admin/AdminLayout";
+import CVTemplates from "./pages/CV/CVTemplates";
+import AllDocuments from "./components/Admin/AllDocuments";
+import AllCategories from "./components/Admin/AllCategories";
 
 const App: React.FC = () => {
   return (
@@ -40,14 +43,17 @@ const App: React.FC = () => {
 
         <Route path="cv" element={<CV />} />
         <Route path="cv-form" element={<CVForm />} />
+        <Route path="templates" element={<CVTemplates />} />
         <Route path="login" element={<AdminLogin />} />
-        {/* <Route element={<RequireAuth />}> */}
-        <Route path="admin" element={<AdminLayout />}>
-          <Route index element={<AdminPanel />} />
-          <Route path="create-category" element={<CreateCategory />} />
-          <Route path="create-document" element={<CreateDocument />} />
+        <Route element={<RequireAuth />}>
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<AdminPanel />} />
+            <Route path="create-category" element={<CreateCategory />} />
+            <Route path="create-document" element={<CreateDocument />} />
+            <Route path="all-documents" element={<AllDocuments />} />
+            <Route path="all-categories" element={<AllCategories />} />
+          </Route>
         </Route>
-        {/* </Route> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

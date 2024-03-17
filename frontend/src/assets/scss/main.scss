@@ -7,6 +7,7 @@
 @import "./adminpanel";
 @import "./categorydetails";
 @import "./cv";
+@import "./alldocumentsadmin";
 
 * {
   margin: 0;
@@ -57,6 +58,11 @@ body,
 .container {
   width: 70%; /* Set the width to match the HomeNavbar */
   margin: 0 auto; /* Center the container horizontally */
+}
+
+.container-new {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .col-2 {
@@ -222,11 +228,17 @@ a {
 
       &:hover {
         background: #7189bf;
+        .text-box {
+          color: #f1fcfb;
+        }
       }
 
       &.home-box-2 {
         &:hover {
-          background: #1aacac;
+          background: #11908b;
+          .text-box {
+            color: #f1fcfb;
+          }
         }
       }
     }
@@ -291,4 +303,56 @@ a {
 
 .UploadModal .ant-btn {
   margin-top: 16px;
+}
+
+.cv-heading-box {
+  padding-top: 50px;
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 20px;
+}
+
+.templates {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 186px;
+  .template-box {
+    .img {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+    }
+    img {
+      height: 350px;
+    }
+  }
+
+  .button-box {
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    border: none;
+    gap: 10px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.after-v {
+  color: #1e57dd !important;
+}
+
+.fayl-download {
+  color: red !important;
 }

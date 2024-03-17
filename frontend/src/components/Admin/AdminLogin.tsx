@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import config from "../../config";
 import axios, { AxiosResponse } from "axios";
 
 import { useAuth } from "../../context/auth.jsx";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { APIURL } from "../../config.js";
 
 const AdminLogin: React.FC = () => {
-  const apiUrl = config.apiURL;
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
@@ -20,7 +19,7 @@ const AdminLogin: React.FC = () => {
 
     try {
       const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${apiUrl}/auth/authenticate`,
+        `${APIURL}/auth/authenticate`,
         {
           email,
           password,

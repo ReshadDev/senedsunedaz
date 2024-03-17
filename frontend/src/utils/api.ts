@@ -2,6 +2,7 @@ import axios from "axios";
 
 interface CreateCategoryData {
   categoryName: string;
+  description: string;
 }
 
 export const createCategory = async (
@@ -10,6 +11,7 @@ export const createCategory = async (
 ) => {
   const formData = new FormData();
   formData.append("name", data.categoryName);
+  formData.append("description", data.description);
 
   const response = await axios.post(
     "http://localhost:8080/api/category/addCategory",
@@ -53,3 +55,20 @@ export const createDocument = async (data: FormData, token: string) => {
 
   return response.data;
 };
+
+//
+
+//
+//
+
+//
+//
+
+//
+//
+
+//
+//
+
+//
+//

@@ -12,19 +12,18 @@ import {
 } from "../../assets/icons";
 import SearchInput from "../../components/SearchInput";
 import { Link } from "react-router-dom";
-import config from "../../config";
 import axios from "axios";
 import { Category, ProductProps } from "../../interfaces";
+import { APIURL } from "../../config";
 
-const apiURL = config.apiURL;
 
 const Erizeler: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [erizeler, setErizeler] = React.useState<[]>([]);
 
-  const getAllProducts = async () => {
+  const getAllDocuments = async () => {
     try {
-      const { data } = await axios.get(`${apiURL}/api/application/findAll`);
+      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
       if (data?.success) {
         setErizeler(data?.documents);
       }
@@ -34,7 +33,7 @@ const Erizeler: React.FC = () => {
   };
 
   React.useEffect(() => {
-    getAllProducts();
+    getAllDocuments();
   }, []);
 
   // Api Request
@@ -42,7 +41,7 @@ const Erizeler: React.FC = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories`
       );
       if (data?.success) {
         setCategories(data?.categories);
@@ -131,7 +130,7 @@ const Erizeler: React.FC = () => {
                         <p>{category.name}</p>
                       </div>
                       <p className="category-box__body-text">
-                        İddia, uşaq və boşanma ərizələri
+                        {category.description}
                       </p>
                       <Link
                         to={`category/${category.name}`}

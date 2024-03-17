@@ -3,20 +3,17 @@ import TextField from "@mui/material/TextField";
 import { CaretLeft, CaretRight } from "../../assets/icons";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
-import config from "../../config";
+import { APIURL, ITEMS_PER_PAGE } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { Category, ProductProps } from "../../interfaces";
 import Checkbox from "@mui/material/Checkbox";
 import { toast } from "react-toastify";
-const apiURL = config.apiURL;
-
-const ITEMS_PER_PAGE = 6;
 
 interface ErizeExamplePropsNew {
   id: number;
   docName: string;
   docPath: string;
-  imagePath: string;
+  imagePath: string[];
   imageName: string;
   categoryId: number;
   link: string;
@@ -34,9 +31,9 @@ const AllErizeler: React.FC = () => {
   const [currentPage, setCurrentPage] = React.useState(0);
   const [searchTerm, setSearchTerm] = React.useState<string>("");
 
-  const getAllProducts = async () => {
+  const getAllDocuments = async () => {
     try {
-      const { data } = await axios.get(`${apiURL}/api/application/findAll`);
+      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
       if (data?.success) {
         setErizeler(data?.documents);
       }
@@ -46,13 +43,13 @@ const AllErizeler: React.FC = () => {
   };
 
   React.useEffect(() => {
-    getAllProducts();
+    getAllDocuments();
   }, []);
 
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories`
       );
       if (data?.success) {
         setCategories(data?.categories);
@@ -72,11 +69,11 @@ const AllErizeler: React.FC = () => {
 
   const handleCategoryClick = async (category: string) => {
     try {
-      const apiUrl = `${apiURL}/api/category/applications/${category}`;
+      const apiUrl = `${APIURL}/api/category/applications/${category}`;
 
       if (category === selectedCategory) {
         setSelectedCategory(null);
-        getAllProducts();
+        getAllDocuments();
       } else {
         const { data } = await axios.get(apiUrl);
 
@@ -117,7 +114,7 @@ const AllErizeler: React.FC = () => {
   };
 
   const handleDownload = (erize: ProductProps) => {
-    const downloadUrl = `${apiURL}/api/application/download/${erize?.id}`;
+    const downloadUrl = `${APIURL}/api/application/download/${erize?.id}`;
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;

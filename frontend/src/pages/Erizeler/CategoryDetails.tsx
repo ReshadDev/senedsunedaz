@@ -3,11 +3,10 @@ import TextField from "@mui/material/TextField";
 import { CaretLeft, CaretRight } from "../../assets/icons";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
-import config from "../../config";
 import { useNavigate } from "react-router-dom";
-const apiURL = config.apiURL;
 import { useParams } from "react-router-dom";
 import { Category, ProductProps } from "../../interfaces";
+import { APIURL } from "../../config";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -23,7 +22,7 @@ const CategoryDetails: React.FC = () => {
   const getCategoryProducts = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/applications/${params.slug}`
+        `${APIURL}/api/category/applications/${params.slug}`
       );
       setErizeler(data);
     } catch (error) {
@@ -34,7 +33,7 @@ const CategoryDetails: React.FC = () => {
   const fetchCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories`
       );
       setCategories(data?.categories || []);
     } catch (error) {
@@ -90,7 +89,7 @@ const CategoryDetails: React.FC = () => {
   };
 
   const handleDownload = (erize: ProductProps) => {
-    const downloadUrl = `${apiURL}/api/application/download/${erize?.id}`;
+    const downloadUrl = `${APIURL}/api/application/download/${erize?.id}`;
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;

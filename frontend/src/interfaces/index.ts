@@ -2,13 +2,14 @@ export interface Category {
   id: number;
   name: string;
   slug?: string;
+  description: string;
 }
 
 export interface ProductProps {
   id: number;
   docName: string;
   docPath: string;
-  imagePath: string;
+  imagePath: string [];
   imageName: string;
   categoryId: number;
   link: string;

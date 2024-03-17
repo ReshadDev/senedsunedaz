@@ -1,15 +1,14 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useSearch } from "../context/search";
 import axios from "axios";
-import config from "../config";
 import { useNavigate } from "react-router-dom";
 import { Input } from "antd";
 import { SearchIcon } from "../assets/icons";
+import { APIURL } from "../config";
 
 const { Search } = Input;
 
 const SearchInput: React.FC = () => {
-  const apiUrl: string = config.apiURL;
   const [search, setSearch] = useSearch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState<string>("");
@@ -19,7 +18,7 @@ const SearchInput: React.FC = () => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.get(
-        `${apiUrl}/api/application/specification?docName=${keyword}`
+        `${APIURL}/api/application/specification?docName=${keyword}`
       );
       setSearchResults(data.content);
       setSearch({ ...search, keyword, results: data.content });

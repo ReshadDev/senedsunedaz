@@ -19,6 +19,7 @@ const FormTextField = styled(TextField)({
 
 interface CategoryForm {
   categoryName: string;
+  description: string;
 }
 
 const CreateCategory: React.FC = () => {
@@ -55,6 +56,15 @@ const CreateCategory: React.FC = () => {
             label="Enter Category Name"
             error={Boolean(errors.categoryName)}
             helperText={errors.categoryName?.message}
+            fullWidth
+          />
+          <FormTextField
+            {...register("description", {
+              required: "description is required",
+            })}
+            label="Enter Description"
+            error={Boolean(errors.description)}
+            helperText={errors.description?.message}
             fullWidth
           />
 
