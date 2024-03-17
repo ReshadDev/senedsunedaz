@@ -58,6 +58,12 @@ import cvformstep2completed from "../images/cvformstep2completed.svg";
 import cvformstep3completed from "../images/cvformstep3completed.svg";
 import cvformstep4completed from "../images/cvformstep3completed.svg";
 
+import cvt1 from "../images/cv1t.jpg";
+import cvt2 from "../images/cv2t.jpg";
+import cvt3 from "../images/cv3t.jpg";
+import cvt4 from "../images/cv4t.jpg";
+import cvdownload from "../images/downloadcv.svg";
+
 export {
   SearchIcon,
   AboutUs,
@@ -106,4 +112,9 @@ export {
   cvformstep2completed,
   cvformstep3completed,
   cvformstep4completed,
+  cvt1,
+  cvt2,
+  cvt3,
+  cvt4,
+  cvdownload,
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import axios from "axios";
-import config from "../../config";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   TextField,
@@ -15,6 +14,7 @@ import {
 import { useAuth } from "../../context/auth";
 import { toast } from "react-toastify";
 import { Category } from "../../interfaces";
+import { APIURL } from "../../config";
 
 interface FormData {
   docFile: FileList;
@@ -40,7 +40,6 @@ const CategoryLabel = styled(InputLabel)({
 });
 
 const CreateDocument: React.FC = () => {
-  const apiURL = config.apiURL;
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [categoryId, setCategoryId] = React.useState<string>("");
 
@@ -49,7 +48,7 @@ const CreateDocument: React.FC = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories`
       );
       if (data?.success) {
         setCategories(data?.categories);
@@ -74,8 +73,10 @@ const CreateDocument: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append("docFile", data.docFile[0]);
+      for (let i = 0; i < data.imageFile.length; i++) {
+        formData.append("imageFile", data.imageFile[i]);
+      }
       formData.append("editDocFile", data.editDocFile[0]);
-      formData.append("imageFile", data.imageFile[0]);
       formData.append("docName", data.docName);
       formData.append("inputs", JSON.stringify(inputs));
 
@@ -149,6 +150,7 @@ const CreateDocument: React.FC = () => {
               required: "docFile is required",
             })}
             type="file"
+            inputProps={{ accept: ".docx" }}
             error={Boolean(errors.docFile)}
             helperText={errors.docFile?.message}
             fullWidth
@@ -162,6 +164,7 @@ const CreateDocument: React.FC = () => {
               required: "editDocFile is required",
             })}
             type="file"
+            inputProps={{ accept: ".docx" }}
             error={Boolean(errors.editDocFile)}
             helperText={errors.editDocFile?.message}
             fullWidth
@@ -175,6 +178,10 @@ const CreateDocument: React.FC = () => {
               required: "imageFile is required",
             })}
             type="file"
+            inputProps={{
+              accept: "image/jpeg, image/png, image/jpg",
+              multiple: true,
+            }}
             error={Boolean(errors.imageFile)}
             helperText={errors.imageFile?.message}
             fullWidth

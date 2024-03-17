@@ -62,7 +62,7 @@ const CV: React.FC = () => {
                     <img src={cvicon1} alt="" />
                   </div>
                   <div className="details-box__body">
-                    <p>Standartlara ugyun</p>
+                    <p>Standartlara uyğun</p>
                     <p>
                       ATS sistemlərində keçən və işə qəbul standartlarına uyğun
                       şablon
@@ -74,11 +74,8 @@ const CV: React.FC = () => {
                     <img src={cvicon2} alt="" />
                   </div>
                   <div className="details-box__body">
-                    <p>Standartlara ugyun</p>
-                    <p>
-                      ATS sistemlərində keçən və işə qəbul standartlarına uyğun
-                      şablon
-                    </p>
+                    <p>Sürətli və asan</p>
+                    <p>5 dəqiqə ərzində CV’ini hazırla</p>
                   </div>
                 </div>
                 <div className="details-box col-3">
@@ -86,11 +83,8 @@ const CV: React.FC = () => {
                     <img src={cvicon1} alt="" />
                   </div>
                   <div className="details-box__body">
-                    <p>Standartlara ugyun</p>
-                    <p>
-                      ATS sistemlərində keçən və işə qəbul standartlarına uyğun
-                      şablon
-                    </p>
+                    <p>PDF formatda yükləmə</p>
+                    <p>CV’ni hazırladıqdan sonra pdf formatda yüklə</p>
                   </div>
                 </div>
                 <div className="details-box col-3">
@@ -98,10 +92,10 @@ const CV: React.FC = () => {
                     <img src={cvicon2} alt="" />
                   </div>
                   <div className="details-box__body">
-                    <p>Standartlara ugyun</p>
+                    <p>Yüksək işə qəbul şansı </p>
                     <p>
-                      ATS sistemlərində keçən və işə qəbul standartlarına uyğun
-                      şablon
+                      Peşəkar CV ilə siz bütün digər müraciət edənlər arasında
+                      fəqləncəksiniz.
                     </p>
                   </div>
                 </div>
@@ -138,11 +132,8 @@ const CV: React.FC = () => {
                       <div className="line" />
                     </div>
                     <div className="step-box__text">
-                      <p>Qeydiyyatdan keçmədən CV yarat</p>
-                      <p>
-                        İndi başla düyməsini sıxaraq məlumat dolduma bölməsinə
-                        keçid et
-                      </p>
+                      <p>Xanaları doldur</p>
+                      <p>Qarşına çıxan xanaları doldur və sonda şablonu seç.</p>
                     </div>
                   </div>
                   <div className="step-box">
@@ -150,10 +141,9 @@ const CV: React.FC = () => {
                       <img src={step3} alt="" />
                     </div>
                     <div className="step-box__text">
-                      <p>Qeydiyyatdan keçmədən CV yarat</p>
+                      <p>Yüklə və paylaş</p>
                       <p>
-                        İndi başla düyməsini sıxaraq məlumat dolduma bölməsinə
-                        keçid et
+                        CV hazır olduqdan sonra yüklə və işə müraciətə başla!
                       </p>
                     </div>
                   </div>

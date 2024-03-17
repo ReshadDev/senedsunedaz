@@ -1,0 +1,105 @@
+.all-documents-admin {
+  .heading-box {
+    padding-bottom: 30px;
+  }
+  .all-erizeler-input-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    #main-search-input {
+      border-radius: 8px;
+      border: 1px solid #9f9f9f;
+      display: flex;
+      width: 448px;
+      padding: 13px 16px 17px 15px;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      margin-right: 20px;
+    }
+
+    .search-btn {
+      display: flex;
+      padding: 10px 24px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      background: #7189bf;
+      color: #fff;
+      border-color: transparent;
+      font-size: 18px;
+      font-weight: 400;
+
+      .search-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .erizeler-list-box {
+    margin-bottom: 30px;
+
+    .box__body {
+      .erize-box {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 64px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        padding: 10px 10px;
+        p {
+          font-weight: 500;
+          line-height: 24px;
+          color: #242424;
+          font-size: 16px;
+          font-style: normal;
+        }
+
+        .erize-box__buttons-box {
+          a {
+            margin-right: 20px;
+          }
+          display: flex;
+
+          .download-btn {
+            border-radius: 8px;
+            background: #ed2424 !important;
+            color: #f2f7fb;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+          }
+        }
+        .erize-box__text-box {
+          width: 85%;
+        }
+        .erize-box__buttons-box {
+          width: 15%;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+.ant-btn-primary {
+  background: #ed2424 !important;
+  color: #f2f7fb;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.ant-modal-footer {
+  display: flex;
+  justify-content: center;
+}

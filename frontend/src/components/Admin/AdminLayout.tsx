@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { Layout, Menu } from "antd";
 import {
   UnorderedListOutlined,
@@ -23,12 +22,10 @@ const AdminLayout: React.FC = () => {
     setCurrentPanel(panel);
   };
 
-  // Update the selected panel in localStorage when it changes
   useEffect(() => {
     localStorage.setItem("selectedPanel", currentPanel);
   }, [currentPanel]);
 
-  // Update the selected panel when the route changes
   useEffect(() => {
     const pathSegments = location.pathname.split("/");
     const panelFromRoute = pathSegments[pathSegments.length - 1];
@@ -55,11 +52,17 @@ const AdminLayout: React.FC = () => {
             <Link to="/admin">Dashboard</Link>
           </Menu.Item>
           <Menu.Item key="create-document" icon={<PlusOutlined />}>
-            <Link to="create-document">Create Erize</Link>
+            <Link to="create-document">Ərizə yarat</Link>
           </Menu.Item>
           <Menu.Item key="create-category" icon={<AppstoreAddOutlined />}>
-            <Link to="create-category">Create Category</Link>
+            <Link to="create-category">Kateqoriya yarat</Link>
           </Menu.Item>
+          <Menu.Item key="all-documents" icon={<PlusOutlined />}>
+            <Link to="all-documents">Bütün Ərizələr</Link>
+          </Menu.Item>
+          <Menu.Item key="all-categories" icon={<AppstoreAddOutlined />}>
+            <Link to="all-categories">Bütün Kateqoriyalar</Link>
+      </Menu.Item>
         </Menu>
       </Sider>
       <Layout>

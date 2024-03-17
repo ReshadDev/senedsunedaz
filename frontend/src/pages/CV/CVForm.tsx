@@ -12,6 +12,7 @@ import {
 } from "../../assets/icons";
 import { InputLabel, OutlinedInput, styled } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const FormTextField = styled(OutlinedInput)({
   marginBottom: "20px",
@@ -263,13 +264,27 @@ const CVForm: React.FC = () => {
     setCertificateCount(certificateCount + 1);
   };
 
+  // FORM HANDLING
+  const onSubmit = async () => {
+    try {
+      console.log("Form submitted");
+      toast.success("Kateqoriya uğurla yaradıldı");
+    } catch (error) {
+      console.error("Error creating category:", error);
+      toast.error("Xəta baş verdi");
+    }
+  };
+
   return (
     <div id="cv-form">
       <div className="upper-block">
         <div className="container">
           <div className="main-heading-box">
             <div className="heading-text">
-              <h1>Şəxsi məlumatlar</h1>
+              {currentStep === 1 && <h1>Şəxsi məlumatlar</h1>}
+              {currentStep === 2 && <h1>İş təcrübəsi</h1>}
+              {currentStep === 3 && <h1>Təhsil</h1>}
+              {currentStep === 4 && <h1>Bilik və bacarıqlar</h1>}
             </div>
             <div className="steps-box">
               {Array.from({ length: 4 }).map((_, index) => (
@@ -496,6 +511,7 @@ const CVForm: React.FC = () => {
                   </div>
                 </div>
               )}
+              {currentStep === 5 && <>CVNIZ HAZIRLANIR</>}
             </form>
           </div>
           <div className="button-box">
@@ -549,7 +565,9 @@ const CVForm: React.FC = () => {
                   </svg>
                   Geri
                 </button>
-                <button className="btn next-btn">CV YARAT</button>
+                <button onClick={onSubmit} className="btn next-btn">
+                  CV YARAT
+                </button>
               </div>
             )}
           </div>

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { PencilIcon } from "../../assets/icons";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
-import config from "../../config";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -19,9 +18,9 @@ import { toast } from "react-toastify";
 import ImageGallery from "react-image-gallery";
 import { Button as NewButton } from "antd";
 import { Category, ProductProps } from "../../interfaces";
+import { APIURL } from "../../config";
 
 const ErizeDetails: React.FC = () => {
-  const apiURL = config.apiURL;
 
   const [product, setProduct] = React.useState<ProductProps | null>(null);
   const [categoryName, setCategoryName] = React.useState<string>("");
@@ -36,7 +35,7 @@ const ErizeDetails: React.FC = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/application/byId/${params.slug}`
+        `${APIURL}/api/application/byId/${params.slug}`
       );
       setProduct(data.document);
     } catch (error) {
@@ -47,7 +46,7 @@ const ErizeDetails: React.FC = () => {
   const fetchCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories`
       );
       setCategories(data?.categories || []);
     } catch (error) {
@@ -78,19 +77,21 @@ const ErizeDetails: React.FC = () => {
     }
   }, [product]);
 
-  const images = [
-    {
-      original: `${apiURL}/uploads/images/${product?.imageName}`,
-      thumbnail: `${apiURL}/uploads/images/${product?.imageName}`,
-    },
-  ];
+  console.log(product?.imagePath);
+  console.log(product?.imageName);
+  console.log("IMAGEPATH", `${APIURL}/${product?.imagePath}`);
 
-  const handleDownload = (erize) => {
-    const downloadUrl = `${apiURL}/api/application/download/${erize?.id}`;
+  const images = product?.imagePath.map((imagePath) => ({
+    original: `${APIURL}/${imagePath}`,
+    thumbnail: `${APIURL}/${imagePath}`,
+  }));
+
+  const handleDownload = async () => {
+    const downloadUrl = `${APIURL}/api/application/download/${product?.id}`;
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;
-    downloadLink.download = erize?.docName || "downloadedFile";
+    downloadLink.download = product?.docName || "downloadedFile";
 
     document.body.appendChild(downloadLink);
 
@@ -114,6 +115,24 @@ const ErizeDetails: React.FC = () => {
     setOpenModal(false);
   };
 
+  const handleDownloadEditedFile = async () => {
+    try {
+      if (product?.id) {
+        const downloadUrl = `${APIURL}/api/application/downloadEditedDoc/${product.id}`;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = `${product.docName}_edited`;
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      }
+      handleCloseModal();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleConfirmEdit = async () => {
     if (inputValues.some((input) => input.inputName.trim() === "")) {
       toast.error("Zəhmət olmasa bütün xanaları doldurun");
@@ -127,33 +146,16 @@ const ErizeDetails: React.FC = () => {
       }));
 
       await axios.post(
-        `${apiURL}/api/application/editDoc/${product?.id}`,
+        `${APIURL}/api/application/editDoc/${product?.id}`,
         requestBody
       );
       await getProduct();
-      toast.success("Edited successfully"); // Use toast for success message
+      toast.success("Ərizəniz uğurla redaktə olundu"); // Use toast for success message
+      // const btn = document.querySelector(".fayl-download");
+      // btn?.classList.add("after-v");
     } catch (error) {
       console.log(error);
       toast.error("Error editing"); // Use toast for error message
-    }
-  };
-
-  const handleDownloadEditedFile = async () => {
-    try {
-      if (product?.id) {
-        const downloadUrl = `${apiURL}/api/application/downloadEditedDoc/${product.id}`;
-        const downloadLink = document.createElement("a");
-        downloadLink.href = downloadUrl;
-        downloadLink.download = `${product.docName}_edited`;
-
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-      }
-      handleCloseModal();
-      toast.success("Ərizəniz yükləndi");
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -172,11 +174,13 @@ const ErizeDetails: React.FC = () => {
               <div className="erize-details-text-box">
                 <div className="left-side">
                   <div>
-                    <ImageGallery
-                      items={images}
-                      showPlayButton={false}
-                      showNav={false}
-                    />
+                    {images && images.length > 0 && (
+                      <ImageGallery
+                        items={images}
+                        showPlayButton={false}
+                        showNav={false}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="right-side">
@@ -205,12 +209,9 @@ const ErizeDetails: React.FC = () => {
                         onClick={handleEdit}
                       >
                         <img src={PencilIcon} alt="" />
-                        Redaktə et
+                        Redaktə et və yüklə
                       </a>
-                      <a
-                        className="btn download-btn"
-                        onClick={() => handleDownload(product)}
-                      >
+                      <a className="btn download-btn" onClick={handleDownload}>
                         Yüklə
                       </a>
                     </div>
@@ -222,9 +223,8 @@ const ErizeDetails: React.FC = () => {
         </section>
       </main>
       <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogTitle>Edit Document</DialogTitle>
+        <DialogTitle>Ərizəni redaktə et</DialogTitle>
         <DialogContent>
-          {/* Display extraInput array in the modal */}
           {product?.extraInput.map((input, index) => (
             <div key={input.id} style={{ marginBottom: "10px" }}>
               <label>{input.label}</label>
@@ -247,8 +247,9 @@ const ErizeDetails: React.FC = () => {
             </div>
           ))}
           <Button onClick={handleConfirmEdit} color="primary">
-            Təsdiqlə
+            EDIT
           </Button>
+
           <Button onClick={handleDownloadEditedFile} color="primary">
             Faylı yüklə
           </Button>
