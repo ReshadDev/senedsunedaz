@@ -267,10 +267,8 @@ const CVForm: React.FC = () => {
   // FORM HANDLING
   const onSubmit = async () => {
     try {
-      console.log("Form submitted");
       toast.success("Kateqoriya uğurla yaradıldı");
     } catch (error) {
-      console.error("Error creating category:", error);
       toast.error("Xəta baş verdi");
     }
   };

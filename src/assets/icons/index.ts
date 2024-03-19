@@ -30,6 +30,8 @@ import Company2Icon from "../images/company2.png";
 import Company3Icon from "../images/company3.png";
 import Company4Icon from "../images/company4.png";
 
+import cvframe from "../images/cviframe.svg";
+
 // CV ASSETS
 import CvBannerImg from "../images/cvbanner.svg";
 import cvicon1 from "../images/cvicon1.svg";
@@ -117,4 +119,5 @@ export {
   cvt3,
   cvt4,
   cvdownload,
+  cvframe,
 };
