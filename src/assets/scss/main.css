@@ -1826,6 +1826,7 @@ header .nav .links a {
 #cv-form .button-box-n {
   border-top: 1px solid #dadada;
   margin-top: 12.5px;
+  padding-bottom: 7.5px;
 }
 #cv-form .button-box-n .container-new {
   display: flex;
