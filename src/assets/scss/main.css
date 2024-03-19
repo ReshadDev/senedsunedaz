@@ -848,6 +848,9 @@ header .nav .links a {
 .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
   align-items: center;
 }
+.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+  background: #7189bf !important;
+}
 .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
   margin-right: 10px;
   margin-bottom: 10px;
@@ -1451,6 +1454,9 @@ header .nav .links a {
   width: 50%;
   text-align: center;
 }
+#cv .main-banner-cv .main-banner-cv-content .banner-logo-box img {
+  height: 550px;
+}
 #cv .cv-details {
   padding-top: 40px;
 }
@@ -1777,17 +1783,16 @@ header .nav .links a {
   line-height: 24px;
   margin-bottom: 5px;
 }
-#cv-form .button-box {
+#cv-form .button-box-m {
   border-top: 1px solid #dadada;
-  padding-bottom: 20px;
 }
-#cv-form .button-box .container-new {
+#cv-form .button-box-m .container-new {
   display: flex;
   justify-content: end;
   padding-right: 30px;
   padding-top: 20px;
 }
-#cv-form .button-box .prev-btn {
+#cv-form .button-box-m .prev-btn {
   border-radius: 8px;
   border: 1px solid #242c2c;
   color: #242c2c;
@@ -1798,11 +1803,11 @@ header .nav .links a {
   line-height: 24px;
   background-color: #fff;
 }
-#cv-form .button-box .prev-btn svg {
+#cv-form .button-box-m .prev-btn svg {
   width: 26px;
   height: 26px;
 }
-#cv-form .button-box .next-btn {
+#cv-form .button-box-m .next-btn {
   border-radius: 8px;
   background: #154e4d;
   border: none;
@@ -1814,7 +1819,49 @@ header .nav .links a {
   font-weight: 500;
   line-height: 24px;
 }
-#cv-form .button-box .next-btn svg {
+#cv-form .button-box-m .next-btn svg {
+  width: 26px;
+  height: 26px;
+}
+#cv-form .button-box-n {
+  border-top: 1px solid #dadada;
+  margin-top: 12.5px;
+  padding-bottom: 7.5px;
+}
+#cv-form .button-box-n .container-new {
+  display: flex;
+  justify-content: end;
+  padding-right: 30px;
+  padding-top: 20px;
+}
+#cv-form .button-box-n .prev-btn {
+  border-radius: 8px;
+  border: 1px solid #242c2c;
+  color: #242c2c;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  background-color: #fff;
+}
+#cv-form .button-box-n .prev-btn svg {
+  width: 26px;
+  height: 26px;
+}
+#cv-form .button-box-n .next-btn {
+  border-radius: 8px;
+  background: #154e4d;
+  border: none;
+  margin-left: 20px;
+  color: #f2f7fb;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+#cv-form .button-box-n .next-btn svg {
   width: 26px;
   height: 26px;
 }
@@ -1920,8 +1967,8 @@ header .nav .links a {
   justify-content: flex-end;
 }
 
-.ant-btn-primary {
-  background: #ed2424 !important;
+.all-documents-admin .ant-btn-primary {
+  background: #ed2424;
   color: #f2f7fb;
   font-style: normal;
   font-weight: 500;
@@ -2215,7 +2262,7 @@ a {
   font-size: 14px;
 }
 
-.UploadModal .ant-btn {
+.UploadModal {
   margin-top: 16px;
 }
 
@@ -2265,4 +2312,13 @@ a {
 
 .fayl-download {
   color: red !important;
+}
+
+.WACStatusBarContainer {
+  display: none;
+  background-color: #ffffff;
+}
+
+.UISmallFont {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

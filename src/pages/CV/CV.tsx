@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
   CvBannerImg,
   cv1,
+  cvframe,
   cvicon1,
   cvicon2,
   step1,
@@ -24,7 +25,7 @@ const CV: React.FC = () => {
       <main id="maincontent" className="content">
         <section className="main-banner-cv">
           <div className="container">
-            <div className="row main-banner-cv-content pb-100">
+            <div className="row main-banner-cv-content pb-80">
               <div className="banner-text-box">
                 <p>
                   Bir neçə dəqiqə ərzində CV’ni hazırla, yüklə və arzuladığın
@@ -35,7 +36,7 @@ const CV: React.FC = () => {
                 </Link>
               </div>
               <div className="banner-logo-box">
-                <img src={CvBannerImg} alt="" />
+                <img src={cvframe} alt="" />
               </div>
             </div>
           </div>

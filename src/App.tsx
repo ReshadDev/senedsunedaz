@@ -19,12 +19,14 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import AdminPanel from "./components/Admin/AdminPanel";
 import CreateDocument from "./components/Admin/CreateDocument";
 import CreateCategory from "./components/Admin/CreateCategory";
+import CreateCV from "./components/Admin/CreateTemplate";
 import CategoryDetails from "./pages/Erizeler/CategoryDetails";
 import RequireAuth from "./components/RequireAuth";
 import AdminLayout from "./components/Admin/AdminLayout";
 import CVTemplates from "./pages/CV/CVTemplates";
 import AllDocuments from "./components/Admin/AllDocuments";
 import AllCategories from "./components/Admin/AllCategories";
+import AllCV from "./components/Admin/AllTemplates";
 
 const App: React.FC = () => {
   return (
@@ -50,8 +52,10 @@ const App: React.FC = () => {
             <Route index element={<AdminPanel />} />
             <Route path="create-category" element={<CreateCategory />} />
             <Route path="create-document" element={<CreateDocument />} />
+            <Route path="create-cv" element={<CreateCV />} />
             <Route path="all-documents" element={<AllDocuments />} />
             <Route path="all-categories" element={<AllCategories />} />
+            <Route path="all-cv" element={<AllCV />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

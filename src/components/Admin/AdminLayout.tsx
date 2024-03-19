@@ -54,15 +54,21 @@ const AdminLayout: React.FC = () => {
           <Menu.Item key="create-document" icon={<PlusOutlined />}>
             <Link to="create-document">Ərizə yarat</Link>
           </Menu.Item>
-          <Menu.Item key="create-category" icon={<AppstoreAddOutlined />}>
+          <Menu.Item key="create-category" icon={<PlusOutlined />}>
             <Link to="create-category">Kateqoriya yarat</Link>
           </Menu.Item>
-          <Menu.Item key="all-documents" icon={<PlusOutlined />}>
+          <Menu.Item key="create-cv" icon={<PlusOutlined />}>
+            <Link to="create-cv">CV yarat</Link>
+          </Menu.Item>
+          <Menu.Item key="all-documents" icon={<AppstoreAddOutlined />}>
             <Link to="all-documents">Bütün Ərizələr</Link>
           </Menu.Item>
           <Menu.Item key="all-categories" icon={<AppstoreAddOutlined />}>
             <Link to="all-categories">Bütün Kateqoriyalar</Link>
-      </Menu.Item>
+          </Menu.Item>
+          <Menu.Item key="all-cv" icon={<AppstoreAddOutlined />}>
+            <Link to="all-cv">Bütün Cvlər</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout>

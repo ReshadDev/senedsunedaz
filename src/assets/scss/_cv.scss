@@ -26,6 +26,9 @@
       .banner-logo-box {
         width: 50%;
         text-align: center;
+        img {
+          height: 550px;
+        }
       }
     }
   }
@@ -397,9 +400,54 @@
       }
     }
   }
-  .button-box {
+  .button-box-m {
     border-top: 1px solid #dadada;
-    padding-bottom: 20px;
+
+    .container-new {
+      display: flex;
+      justify-content: end;
+      padding-right: 30px;
+      padding-top: 20px;
+    }
+
+    .prev-btn {
+      border-radius: 8px;
+      border: 1px solid #242c2c;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+      color: #242c2c;
+      font-family: Sarabun;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      background-color: #fff;
+    }
+
+    .next-btn {
+      border-radius: 8px;
+      background: #154e4d;
+      border: none;
+      margin-left: 20px;
+      color: #f2f7fb;
+      font-family: Sarabun;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  .button-box-n {
+    border-top: 1px solid #dadada;
+    margin-top: 12.5px;
+    padding-bottom: 7.5px;
 
     .container-new {
       display: flex;

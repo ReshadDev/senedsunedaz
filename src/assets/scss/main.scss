@@ -301,7 +301,7 @@ a {
   font-size: 14px;
 }
 
-.UploadModal .ant-btn {
+.UploadModal {
   margin-top: 16px;
 }
 
@@ -356,3 +356,13 @@ a {
 .fayl-download {
   color: red !important;
 }
+
+.WACStatusBarContainer {
+  display: none;
+  background-color: #ffffff;
+}
+
+.UISmallFont {
+  display: none;
+}
+
