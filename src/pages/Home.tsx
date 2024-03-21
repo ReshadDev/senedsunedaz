@@ -13,16 +13,20 @@ const Home: React.FC = () => {
         <Container>
           <div className="page-content">
             <div className="page-content__boxes">
-              <Link className="col-6" to="/erizeler">
+              <Link
+                className="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                to="/erizeler"
+              >
                 <Box className="home-box-1">
                   <div className="text-box">
-                    <h1>Minlərlə ərizə və sənədlər.</h1>
-                    <h1> Axtar, redaktə et və yüklə.</h1>
+                    <h1>
+                      Minlərlə ərizə və sənədlər. Axtar, redaktə et və yüklə
+                    </h1>
                     <p>Ərizələr səhifəsinə keçid etmək üçün kliklə</p>
                   </div>
                 </Box>
               </Link>
-              <Link className="col-6" to="/cv">
+              <Link className="col-lg-6 col-md-6 col-sm-12 col-xs-12" to="/cv">
                 <Box className="home-box-2">
                   <div className="text-box">
                     <h1>

@@ -47,6 +47,7 @@ const SearchInput: React.FC = () => {
   return (
     <div>
       <Search
+        id="search-input"
         placeholder="Ərizə adı və ya söz axtar"
         allowClear
         type="text"

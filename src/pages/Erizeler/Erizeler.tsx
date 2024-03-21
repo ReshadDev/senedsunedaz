@@ -3,8 +3,6 @@ import { useTypewriter } from "react-simple-typewriter";
 
 import {
   AileIcon,
-  LeftIcon,
-  RightIcon,
   ArrowRightIcon,
   Bumb,
   Minus,
@@ -15,7 +13,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Category, ProductProps } from "../../interfaces";
 import { APIURL } from "../../config";
-
 
 const Erizeler: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -124,7 +121,7 @@ const Erizeler: React.FC = () => {
                 </div>
                 <div className="spesific-categories-category-box">
                   {categories.map((category: Category) => (
-                    <div className="category-box col-4">
+                    <div className="category-box col-lg-4 col-xs-12 col-sm-6 col-md-6">
                       <div className="category-box__heading-box">
                         <img src={AileIcon} alt="aile sekili" />
                         <p>{category.name}</p>
@@ -153,19 +150,15 @@ const Erizeler: React.FC = () => {
               <div className="mostly-used-documents-heading-box">
                 <p>Ən çox axtarılan ərizələr</p>
               </div>
-              <div className="pagination-box">
-                <div className="left-icon">
-                  <img src={LeftIcon} alt="" />
-                </div>
-                <div className="right-icon">
-                  <img src={RightIcon} alt="" />
-                </div>
-              </div>
+
               <div className="mostly-used-documents-box">
                 {erizeler
                   .slice(0, 8)
                   .map((erize: ProductProps, index: number) => (
-                    <div key={index} className="document-box col-3">
+                    <div
+                      key={index}
+                      className="document-box col-xs-12 col-sm-6 col-md-6 col-lg-6"
+                    >
                       <div className="document-main-box">
                         <div className="document-main-box-header">Ərizə</div>
                         <div className="document-main-box-body">

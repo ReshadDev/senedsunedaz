@@ -36,9 +36,9 @@ const AdminLayout: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "900px" }}>
       <ToastContainer />
-      <Sider width={300} theme="dark">
+      <Sider width={400} theme="dark">
         <div style={{ textAlign: "center", padding: "16px", color: "white" }}>
           ADMIN PANEL
         </div>

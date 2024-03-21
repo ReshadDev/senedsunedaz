@@ -22,6 +22,7 @@ interface FormData {
   imageFile: FileList;
   docName: string;
   categoryId: string;
+  iFrame: string;
 }
 
 const FormContainer = styled(Container)({
@@ -34,10 +35,11 @@ const FormContainer = styled(Container)({
 const FormTextField = styled(TextField)({
   marginBottom: "20px",
 });
-
 const CategoryLabel = styled(InputLabel)({
   marginBottom: "10px",
 });
+
+const InputRowTextField = styled(TextField)({});
 
 const CreateDocument: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -78,6 +80,7 @@ const CreateDocument: React.FC = () => {
       }
       formData.append("editDocFile", data.editDocFile[0]);
       formData.append("docName", data.docName);
+      formData.append("iFrame", data.iFrame);
       formData.append("inputs", JSON.stringify(inputs));
 
       const categoryId = data.categoryId;
@@ -89,7 +92,7 @@ const CreateDocument: React.FC = () => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${auth.token}`,
+            Authorization: `Bearer ${auth.tokenPair.accessToken}`,
           },
         }
       );
@@ -118,126 +121,176 @@ const CreateDocument: React.FC = () => {
   };
 
   return (
-    <div>
-      <FormContainer maxWidth="sm">
-        <h1 className="text-center">Create Document</h1>
+    <FormContainer maxWidth="lg">
+      <h1 className="text-center">Create Document</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl fullWidth>
-            <CategoryLabel id="category-label">Select a Category</CategoryLabel>
-            <Select
-              {...register("categoryId", {
-                required: "Category is required",
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-parts d-flex">
+          <div className="form-part-1">
+            <FormControl fullWidth>
+              <CategoryLabel id="category-label">
+                Select a Category
+              </CategoryLabel>
+              <Select
+                {...register("categoryId", {
+                  required: "Category is required",
+                })}
+                style={{ marginBottom: "20px" }}
+                value={categoryId}
+                onChange={(event) => setCategoryId(event.target.value)}
+                label="Category"
+                error={Boolean(errors.categoryId)}
+                fullWidth
+              >
+                {categories.map((category) => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <InputLabel shrink id="docFile-label">
+              Doc File (docx)
+            </InputLabel>
+            <FormTextField
+              {...register("docFile", {
+                required: "docFile is required",
               })}
-              value={categoryId}
-              onChange={(event) => setCategoryId(event.target.value)}
-              label="Category"
-              error={Boolean(errors.categoryId)}
+              type="file"
+              inputProps={{ accept: ".docx" }}
+              error={Boolean(errors.docFile)}
+              helperText={errors.docFile?.message}
               fullWidth
+            />
+
+            <InputLabel shrink id="docFile-label">
+              Edited File (docx)
+            </InputLabel>
+            <FormTextField
+              {...register("editDocFile", {
+                required: "editDocFile is required",
+              })}
+              type="file"
+              inputProps={{ accept: ".docx" }}
+              error={Boolean(errors.editDocFile)}
+              helperText={errors.editDocFile?.message}
+              fullWidth
+            />
+
+            <InputLabel shrink id="docFile-label">
+              Image File (jpeg)
+            </InputLabel>
+            <FormTextField
+              {...register("imageFile", {
+                required: "imageFile is required",
+              })}
+              type="file"
+              inputProps={{
+                accept: "image/jpeg, image/png, image/jpg",
+                multiple: true,
+              }}
+              error={Boolean(errors.imageFile)}
+              helperText={errors.imageFile?.message}
+              fullWidth
+            />
+          </div>
+          <div className="form-part-2">
+            <FormTextField
+              {...register("docName", {
+                required: "docName is required",
+              })}
+              label="Document Name"
+              error={Boolean(errors.docName)}
+              helperText={errors.docName?.message}
+              fullWidth
+            />
+
+            <FormTextField
+              {...register("iFrame", {
+                required: "iFrame is required",
+              })}
+              label="Link of Document"
+              error={Boolean(errors.iFrame)}
+              helperText={errors.iFrame?.message}
+              fullWidth
+            />
+
+            <InputLabel shrink id="inputs-label">
+              Inputs
+            </InputLabel>
+            <div
+              style={{
+                maxHeight: "300px",
+                overflowY: "scroll",
+                scrollBehavior: "smooth",
+                msOverflowStyle: "none",
+              }}
             >
-              {categories.map((category) => (
-                <MenuItem key={category.id} value={category.id}>
-                  {category.name}
-                </MenuItem>
+              {inputs.map((input, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    marginBottom: "10px",
+                    marginRight: "10px",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <InputRowTextField
+                    style={{ width: "180px" }}
+                    placeholder="Label Name"
+                    value={input.labelName}
+                    onChange={(e) => {
+                      const newInputs = [...inputs];
+                      newInputs[index].labelName = e.target.value;
+                      setInputs(newInputs);
+                    }}
+                    fullWidth
+                  />
+                  <InputRowTextField
+                    style={{ width: "180px" }}
+                    placeholder="Label"
+                    value={input.label}
+                    onChange={(e) => {
+                      const newInputs = [...inputs];
+                      newInputs[index].label = e.target.value;
+                      setInputs(newInputs);
+                    }}
+                    fullWidth
+                  />
+                  <Button
+                    onClick={() => removeInputRow(index)}
+                    color="error"
+                    variant="contained"
+                  >
+                    Remove
+                  </Button>
+                </div>
               ))}
-            </Select>
-          </FormControl>
-          <InputLabel shrink id="docFile-label">
-            Doc File (docx)
-          </InputLabel>
-          <FormTextField
-            {...register("docFile", {
-              required: "docFile is required",
-            })}
-            type="file"
-            inputProps={{ accept: ".docx" }}
-            error={Boolean(errors.docFile)}
-            helperText={errors.docFile?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="docFile-label">
-            Edited File (docx)
-          </InputLabel>
-          <FormTextField
-            {...register("editDocFile", {
-              required: "editDocFile is required",
-            })}
-            type="file"
-            inputProps={{ accept: ".docx" }}
-            error={Boolean(errors.editDocFile)}
-            helperText={errors.editDocFile?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="docFile-label">
-            Image File (jpeg)
-          </InputLabel>
-          <FormTextField
-            {...register("imageFile", {
-              required: "imageFile is required",
-            })}
-            type="file"
-            inputProps={{
-              accept: "image/jpeg, image/png, image/jpg",
-              multiple: true,
-            }}
-            error={Boolean(errors.imageFile)}
-            helperText={errors.imageFile?.message}
-            fullWidth
-          />
-
-          <FormTextField
-            {...register("docName", {
-              required: "docName is required",
-            })}
-            label="Doc Name"
-            error={Boolean(errors.docName)}
-            helperText={errors.docName?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="inputs-label">
-            Inputs
-          </InputLabel>
-
-          {inputs.map((input, index) => (
-            <div key={index} style={{ display: "flex", marginBottom: "10px" }}>
-              <FormTextField
-                placeholder="Label Name"
-                value={input.labelName}
-                onChange={(e) => {
-                  const newInputs = [...inputs];
-                  newInputs[index].labelName = e.target.value;
-                  setInputs(newInputs);
-                }}
-                fullWidth
-              />
-              <FormTextField
-                placeholder="Label"
-                value={input.label}
-                onChange={(e) => {
-                  const newInputs = [...inputs];
-                  newInputs[index].label = e.target.value;
-                  setInputs(newInputs);
-                }}
-                fullWidth
-              />
-              <Button onClick={() => removeInputRow(index)} color="secondary">
-                Remove
-              </Button>
             </div>
-          ))}
-          <Button onClick={addInputRow} color="primary">
-            Add Input Row
-          </Button>
+            <Button
+              onClick={addInputRow}
+              style={{ marginTop: "20px" }}
+              color="primary"
+              variant="contained"
+            >
+              Yeni Input yarat
+            </Button>
+          </div>
+        </div>
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Upload
-          </Button>
-        </form>
-      </FormContainer>
-    </div>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          style={{ marginTop: "20px" }}
+        >
+          Upload
+        </Button>
+      </form>
+    </FormContainer>
   );
 };
 

@@ -10,7 +10,10 @@ import {
 
 interface Auth {
   user: null;
-  token: string;
+  tokenPair: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
 
 const AuthContext = createContext<
@@ -20,7 +23,7 @@ const AuthContext = createContext<
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [auth, setAuth] = useState<Auth>({
     user: null,
-    token: "",
+    tokenPair: { accessToken: "", refreshToken: "" },
   });
 
   useEffect(() => {
