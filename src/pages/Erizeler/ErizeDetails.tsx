@@ -169,18 +169,13 @@ const ErizeDetails: React.FC = () => {
               <div className="erize-details-text-box">
                 <div className="left-side">
                   <div>
-                    {/* {images && images.length > 0 && (
+                    {images && images.length > 0 && (
                       <ImageGallery
                         items={images}
                         showPlayButton={false}
                         showNav={false}
                       />
-                    )} */}
-                    <iframe
-                      src="https://onedrive.live.com/embed?resid=751B0807B9033833%21236&authkey=!AGspuwEGjyCm3Ls&em=2"
-                      width="600"
-                      height="800"
-                    ></iframe>
+                    )}
                   </div>
                 </div>
                 <div className="right-side">
