@@ -18,7 +18,7 @@ const AdminLogin: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response: AxiosResponse<{ token: string }> = await axios.post(
+      const response: AxiosResponse<{ tokenPair: { accessToken: string; refreshToken: string } }> = await axios.post(
         `${APIURL}/auth/authenticate`,
         {
           email,
@@ -26,14 +26,17 @@ const AdminLogin: React.FC = () => {
         }
       );
 
-      const { token } = response.data;
+      const { tokenPair } = response.data;
 
       setAuth((prevAuth) => ({
         ...prevAuth,
-        token,
+        tokenPair: {
+          accessToken: tokenPair.accessToken,
+          refreshToken: tokenPair.refreshToken,
+        },
       }));
 
-      localStorage.setItem("auth", JSON.stringify({ user: null, token }));
+      localStorage.setItem("auth", JSON.stringify({ user: null, tokenPair }));
       navigate("/admin");
       toast.success("Giriş uğurlu oldu!");
     } catch (error) {
@@ -43,10 +46,10 @@ const AdminLogin: React.FC = () => {
   };
 
   React.useEffect(() => {
-    if (auth.token) {
+    if (auth.tokenPair.accessToken) {
       navigate("/admin");
     }
-  }, [auth.token, navigate]);
+  }, [auth.tokenPair.accessToken, navigate]);
 
   return (
     <div id="admin">

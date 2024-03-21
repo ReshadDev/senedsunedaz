@@ -47,10 +47,10 @@ const CreateTemplate: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append("cvFile", data.cvFile[0]);
+      formData.append("cvEditedFile", data.cvEditedFile[0]);
       for (let i = 0; i < data.imageFile.length; i++) {
         formData.append("imageFile", data.imageFile[i]);
       }
-      formData.append("cvEditedFile", data.cvEditedFile[0]);
       formData.append("cvName", data.cvName);
       formData.append("inputs", JSON.stringify(inputs));
 
@@ -58,7 +58,7 @@ const CreateTemplate: React.FC = () => {
 
       await axios.post(`http://localhost:8080/api/cv/CvUpload`, formData, {
         headers: {
-          Authorization: `Bearer ${auth.token}`,
+          Authorization: `Bearer ${auth.tokenPair.accessToken}`,
         },
       });
 
@@ -69,12 +69,10 @@ const CreateTemplate: React.FC = () => {
     }
   };
 
-  const [inputs, setInputs] = React.useState<
-    { labelName: string; label: string }[]
-  >([]);
+  const [inputs, setInputs] = React.useState<{ labelName: string }[]>([]);
 
   const addInputRow = () => {
-    setInputs([...inputs, { labelName: "", label: "" }]);
+    setInputs([...inputs, { labelName: "" }]);
   };
 
   const removeInputRow = (index: number) => {
@@ -84,113 +82,122 @@ const CreateTemplate: React.FC = () => {
   };
   return (
     <div>
-      <FormContainer maxWidth="sm">
-        <h1 className="text-center">Create Document</h1>
+      <FormContainer maxWidth="lg">
+        <h1 className="text-center">Create CV</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <InputLabel shrink id="docFile-label">
-            Cv File (docx)
-          </InputLabel>
-          <FormTextField
-            {...register("cvFile", {
-              required: "cvFile is required",
-            })}
-            type="file"
-            inputProps={{ accept: ".docx" }}
-            error={Boolean(errors.cvFile)}
-            helperText={errors.cvFile?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="docFile-label">
-            Edited Cv File (docx)
-          </InputLabel>
-          <FormTextField
-            {...register("cvEditedFile", {
-              required: "cvEditedFile is required",
-            })}
-            type="file"
-            inputProps={{ accept: ".docx" }}
-            error={Boolean(errors.cvEditedFile)}
-            helperText={errors.cvEditedFile?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="docFile-label">
-            Image File (jpeg)
-          </InputLabel>
-          <FormTextField
-            {...register("imageFile", {
-              required: "imageFile is required",
-            })}
-            type="file"
-            inputProps={{
-              accept: "image/jpeg, image/png, image/jpg",
-              multiple: true,
-            }}
-            error={Boolean(errors.imageFile)}
-            helperText={errors.imageFile?.message}
-            fullWidth
-          />
-
-          <FormTextField
-            {...register("cvName", {
-              required: "cvName is required",
-            })}
-            label="CV Name"
-            error={Boolean(errors.cvName)}
-            helperText={errors.cvName?.message}
-            fullWidth
-          />
-
-          <InputLabel shrink id="inputs-label">
-            Inputs
-          </InputLabel>
-
-          {inputs.map((input, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                marginBottom: "10px",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <InputRowTextField
-                style={{ width: "230px" }}
-                placeholder="Label Name"
-                value={input.labelName}
-                onChange={(e) => {
-                  const newInputs = [...inputs];
-                  newInputs[index].labelName = e.target.value;
-                  setInputs(newInputs);
-                }}
+          <div className="form-parts d-flex">
+            <div className="form-part-1">
+              <InputLabel shrink id="docFile-label">
+                Cv File (docx)
+              </InputLabel>
+              <FormTextField
+                {...register("cvFile", {
+                  required: "cvFile is required",
+                })}
+                type="file"
+                inputProps={{ accept: ".docx" }}
+                error={Boolean(errors.cvFile)}
+                helperText={errors.cvFile?.message}
                 fullWidth
               />
-              <InputRowTextField
-                placeholder="Label"
-                style={{ width: "220px" }}
-                value={input.label}
-                onChange={(e) => {
-                  const newInputs = [...inputs];
-                  newInputs[index].label = e.target.value;
-                  setInputs(newInputs);
-                }}
+
+              <InputLabel shrink id="docFile-label">
+                Edited Cv File (docx)
+              </InputLabel>
+              <FormTextField
+                {...register("cvEditedFile", {
+                  required: "cvEditedFile is required",
+                })}
+                type="file"
+                inputProps={{ accept: ".docx" }}
+                error={Boolean(errors.cvEditedFile)}
+                helperText={errors.cvEditedFile?.message}
                 fullWidth
               />
+
+              <InputLabel shrink id="docFile-label">
+                Image File (jpeg)
+              </InputLabel>
+              <FormTextField
+                {...register("imageFile", {
+                  required: "imageFile is required",
+                })}
+                type="file"
+                inputProps={{
+                  accept: "image/jpeg, image/png, image/jpg",
+                  multiple: true,
+                }}
+                error={Boolean(errors.imageFile)}
+                helperText={errors.imageFile?.message}
+                fullWidth
+              />
+
+              <FormTextField
+                {...register("cvName", {
+                  required: "cvName is required",
+                })}
+                label="CV Name"
+                error={Boolean(errors.cvName)}
+                helperText={errors.cvName?.message}
+                fullWidth
+              />
+            </div>
+            <div className="form-part-2">
+              <InputLabel shrink id="inputs-label">
+                Inputs
+              </InputLabel>
+              <div
+                style={{
+                  maxHeight: "300px",
+                  overflowY: "scroll",
+                  scrollBehavior: "smooth",
+                  msOverflowStyle: "none",
+                }}
+              >
+                {inputs.map((input, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex",
+                      marginBottom: "10px",
+                      marginRight: "10px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <InputRowTextField
+                      style={{ width: "260px" }}
+                      placeholder="Label Name"
+                      value={input.labelName}
+                      onChange={(e) => {
+                        const newInputs = [...inputs];
+                        newInputs[index].labelName = e.target.value;
+                        setInputs(newInputs);
+                      }}
+                      fullWidth
+                    />
+
+                    <Button
+                      onClick={() => removeInputRow(index)}
+                      color="error"
+                      variant="contained"
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+              </div>
               <Button
-                onClick={() => removeInputRow(index)}
-                color="error"
+                style={{ marginTop: "20px" }}
+                onClick={addInputRow}
+                color="primary"
                 variant="contained"
               >
-                Remove
+                Yeni Input yarat
               </Button>
             </div>
-          ))}
-          <Button onClick={addInputRow} color="primary" variant="contained">
-            Yeni Input yarat
-          </Button>
+          </div>
 
           <Button
             type="submit"
