@@ -1733,6 +1733,10 @@
   .information-banner-content .information-banner-box .col-4 .text-box p:first-child {
     margin-bottom: 5px;
   }
+  .col-xs-6 {
+    flex: 0 0 auto;
+    width: 48% !important;
+  }
   .spesific-categories {
     width: 100%;
     height: 100%;
@@ -4198,6 +4202,10 @@ a {
   }
 }
 @media (max-width: 575px) {
+  .col-xs-12 {
+    flex: 0 0 auto;
+    width: 100% !important;
+  }
   #home {
     background: #ffffff;
     display: flex;

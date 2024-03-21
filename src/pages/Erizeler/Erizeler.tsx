@@ -121,7 +121,7 @@ const Erizeler: React.FC = () => {
                 </div>
                 <div className="spesific-categories-category-box">
                   {categories.map((category: Category) => (
-                    <div className="category-box col-lg-4 col-xs-12 col-sm-6 col-md-6">
+                    <div className="category-box col-lg-4 col-xs-6 col-sm-6 col-md-6">
                       <div className="category-box__heading-box">
                         <img src={AileIcon} alt="aile sekili" />
                         <p>{category.name}</p>
@@ -131,6 +131,25 @@ const Erizeler: React.FC = () => {
                       </p>
                       <Link
                         to={`category/${category.name}`}
+                        className="category-box__footer-box"
+                      >
+                        <p>Daha çox</p>
+                        <img src={ArrowRightIcon} alt="" />
+                      </Link>
+                    </div>
+                  ))}
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className="category-box col-lg-4 col-xs-6 col-sm-6 col-md-6"
+                    >
+                      <div className="category-box__heading-box">
+                        <img src={AileIcon} alt="aile sekili" />
+                        <p>Aile</p>
+                      </div>
+                      <p className="category-box__body-text">Kateqoriya adi</p>
+                      <Link
+                        to={`category/${"Aile"}`}
                         className="category-box__footer-box"
                       >
                         <p>Daha çox</p>
