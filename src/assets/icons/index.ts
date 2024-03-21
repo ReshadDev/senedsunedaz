@@ -32,6 +32,8 @@ import Company4Icon from "../images/company4.png";
 
 import cvframe from "../images/cviframe.svg";
 
+import erizeexample from "../images/erizeexample.jpg";
+
 // CV ASSETS
 import CvBannerImg from "../images/cvbanner.svg";
 import cvicon1 from "../images/cvicon1.svg";
@@ -92,6 +94,7 @@ export {
   CaretLeft,
   CaretRight,
   FilterIcon,
+  erizeexample,
   User,
   Plus,
   CvBannerImg,

@@ -7,6 +7,7 @@ import {
   Bumb,
   Minus,
   Question,
+  erizeexample,
 } from "../../assets/icons";
 import SearchInput from "../../components/SearchInput";
 import { Link } from "react-router-dom";
@@ -206,6 +207,37 @@ const Erizeler: React.FC = () => {
                       </div>
                     </div>
                   ))}
+
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="document-box col-xs-12 col-sm-6 col-md-6 col-lg-6"
+                  >
+                    <div className="document-main-box">
+                      <div className="document-main-box-header">Ərizə</div>
+                      <div className="document-main-box-body">
+                        <img
+                          width={250}
+                          height={230}
+                          src={erizeexample}
+                          alt=""
+                        />
+                      </div>
+                      <div className="document-main-box-footer">
+                        <p>Rus bölməsinə keçirilməyə dair ərizə</p>
+
+                        <div className="action-buttons">
+                          <Link to={`erize/1`} className="box-details-btn">
+                            Ətraflı
+                          </Link>
+                          <Link className="download-btn" to="/">
+                            Yüklə
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
