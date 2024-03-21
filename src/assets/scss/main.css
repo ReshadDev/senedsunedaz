@@ -1792,7 +1792,7 @@
   .spesific-categories .spesific-categories-content .spesific-categories-category-box .category-box .category-box__heading-box p {
     color: #242424;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 32px;
   }
@@ -2003,7 +2003,7 @@
     display: flex;
   }
   .about-us-banner .about-us-content .about-us-content-box .left-side-box .box-content .box-body .text-box p {
-    font-size: 18px;
+    font-size: 16px;
   }
   .about-us-banner .about-us-content .about-us-content-box .left-side-box .box-content .box-body .text-box .icon-box {
     margin-right: 10px;
