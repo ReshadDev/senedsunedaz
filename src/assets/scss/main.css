@@ -2407,114 +2407,557 @@ header .nav .links a {
   border: 1px solid #7189bf;
 }
 
-.erize-details-page .erize-details-content .page-box {
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #d5e4f0;
-  background: #f2f7fb;
+@media (min-width: 1200px) {
+  .erize-details-page {
+    flex-grow: 1;
+  }
+  .erize-details-page .erize-details-content .page-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d5e4f0;
+    background: #f2f7fb;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 15px 10px 15px 10px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:first-child {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:last-child {
+    color: #595959;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-left: 5px;
+  }
+  .erize-details-text-box {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .erize-details-text-box .left-side {
+    width: 60%;
+  }
+  .erize-details-text-box .right-side {
+    width: 40%;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 30px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
+    min-height: 50px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
+    align-items: center;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .erize-name-label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+    background: #7189bf !important;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
+    color: #595959;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
+    padding-left: 10px;
+    display: flex;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
+    background: #7189bf;
+    color: #f2f7fb;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
+    border: 1px solid #ed8022;
+    color: #ed8022;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 16px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .image-gallery-image {
+    width: 1000px;
+    max-height: 350px;
+    height: 350px;
+  }
 }
-.erize-details-page .erize-details-content .page-box .text-box {
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding: 15px 10px 15px 10px;
+@media (min-width: 992px) and (max-width: 1199px) {
+  .erize-details-page {
+    flex-grow: 1;
+  }
+  .erize-details-page .erize-details-content .page-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d5e4f0;
+    background: #f2f7fb;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 15px 10px 15px 10px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:first-child {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:last-child {
+    color: #595959;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-left: 5px;
+  }
+  .erize-details-text-box {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .erize-details-text-box .left-side {
+    width: 60%;
+  }
+  .erize-details-text-box .right-side {
+    width: 40%;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 30px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
+    min-height: 50px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
+    align-items: center;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .erize-name-label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+    background: #7189bf !important;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
+    color: #595959;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
+    padding-left: 10px;
+    display: flex;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
+    background: #7189bf;
+    color: #f2f7fb;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
+    border: 1px solid #ed8022;
+    color: #ed8022;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 16px;
+  }
+  .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .image-gallery-image {
+    width: 1000px;
+    height: 300px;
+  }
 }
-.erize-details-page .erize-details-content .page-box .text-box p:first-child {
-  color: #5c71a6;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-right: 5px;
+@media (min-width: 768px) and (max-width: 991px) {
+  .erize-details-page {
+    flex-grow: 1;
+  }
+  .erize-details-page .erize-details-content .page-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d5e4f0;
+    background: #f2f7fb;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 15px 10px 15px 10px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:first-child {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:last-child {
+    color: #595959;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-text-box {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    min-height: 665px;
+    display: flex;
+    flex-direction: column;
+  }
+  .erize-details-page .erize-details-text-box .left-side {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+  .erize-details-page .erize-details-text-box .right-side {
+    width: 100%;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
+    min-height: 50px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .erize-name-label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
+    align-items: center;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+    background: #7189bf !important;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
+    color: #595959;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
+    padding-left: 10px;
+    display: flex;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
+    background: #7189bf;
+    color: #f2f7fb;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
+    border: 1px solid #ed8022;
+    color: #ed8022;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 16px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
+    margin-right: 5px;
+  }
 }
-.erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
-  color: #5c71a6;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-right: 5px;
-  margin-left: 5px;
+@media (min-width: 576px) and (max-width: 767px) {
+  .erize-details-page {
+    flex-grow: 1;
+  }
+  .erize-details-page .erize-details-content .page-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d5e4f0;
+    background: #f2f7fb;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 15px 10px 15px 10px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:first-child {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:last-child {
+    color: #595959;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-text-box {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    min-height: 665px;
+    display: flex;
+    flex-direction: column;
+  }
+  .erize-details-page .erize-details-text-box .left-side {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+  .erize-details-page .erize-details-text-box .right-side {
+    width: 100%;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
+    min-height: 50px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .erize-name-label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
+    align-items: center;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+    background: #7189bf !important;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
+    color: #595959;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
+    padding-left: 10px;
+    display: flex;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
+    background: #7189bf;
+    color: #f2f7fb;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
+    border: 1px solid #ed8022;
+    color: #ed8022;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 16px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
+    margin-right: 5px;
+  }
 }
-.erize-details-page .erize-details-content .page-box .text-box p:last-child {
-  color: #595959;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-left: 5px;
+@media (max-width: 575px) {
+  .erize-details-page {
+    flex-grow: 1;
+  }
+  .erize-details-page .erize-details-content .page-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d5e4f0;
+    background: #f2f7fb;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 15px 10px 15px 10px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:first-child {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box .mid-text-s {
+    color: #5c71a6;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-content .page-box .text-box p:last-child {
+    color: #595959;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-left: 5px;
+  }
+  .erize-details-page .erize-details-text-box {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    min-height: 665px;
+    display: flex;
+    flex-direction: column;
+  }
+  .erize-details-page .erize-details-text-box .left-side {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+  .erize-details-page .erize-details-text-box .right-side {
+    width: 100%;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
+    min-height: 50px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .erize-name-label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
+    align-items: center;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
+    background: #7189bf !important;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
+    color: #595959;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 5px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
+    padding-left: 10px;
+    display: flex;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
+    background: #7189bf;
+    color: #f2f7fb;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
+    border: 1px solid #ed8022;
+    color: #ed8022;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 16px;
+  }
+  .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
+    margin-right: 5px;
+  }
 }
-
-.image-gallery-image {
-  width: 1000px;
-  height: 400px;
-}
-
-.erize-details-text-box {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  min-height: 665px;
-  display: flex;
-  justify-content: space-between;
-}
-.erize-details-text-box .left-side {
-  width: 60%;
-}
-.erize-details-text-box .right-side {
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.erize-details-text-box .right-side .erize-details-action-box {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  height: 80%;
-  width: 70%;
-}
-.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box {
-  min-height: 50px;
-  padding-bottom: 100px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box {
-  align-items: center;
-}
-.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box .ant-btn-primary {
-  background: #7189bf !important;
-}
-.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box .d-main-box p {
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-.erize-details-text-box .right-side .erize-details-action-box .erize-details-erize-box p {
-  color: #595959;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-right: 5px;
-}
-.erize-details-text-box .right-side .erize-details-action-box .action-buttons-box {
-  padding-left: 10px;
-  display: flex;
-}
-.erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .download-btn {
-  background: #7189bf;
-  color: #f2f7fb;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-}
-.erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
-  border: 1px solid #ed8022;
-  color: #ed8022;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-right: 16px;
-}
-.erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn img {
-  margin-right: 5px;
-}
-
 #about {
   flex-grow: 1;
 }
