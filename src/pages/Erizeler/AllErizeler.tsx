@@ -261,10 +261,15 @@ const AllErizeler: React.FC = () => {
                       </div>
                     </div>
                   ))} */}
-                  {documentsData.map((erize: ErizeFakeProps) => (
+                  {documentsData.slice(0, 5).map((erize: ErizeFakeProps) => (
                     <div key={erize.id} className="erize-box col-12">
                       <div className="erize-box__text-box">
-                        <p>{erize?.docName}</p>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Labore, sequi reprehenderit consequatur quam
+                          nobis eaque, in magnam quae vel provident corporis?
+                          Ea, iusto alias.
+                        </p>
                       </div>
                       <div className="erize-box__buttons-box">
                         <a

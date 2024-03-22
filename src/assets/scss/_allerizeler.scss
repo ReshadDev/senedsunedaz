@@ -6,7 +6,7 @@
       min-height: 620px;
       .box__heading {
         margin-top: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         height: 55px;
         border-radius: 8px;
         border: 1px solid #d5e4f0;
@@ -49,37 +49,6 @@
         justify-content: center;
 
         margin-bottom: 20px;
-
-        #main-search-input {
-          border-radius: 8px;
-          border: 1px solid #9f9f9f;
-          display: flex;
-          width: 448px;
-          padding: 13px 16px 17px 15px;
-          justify-content: center;
-          align-items: center;
-          flex-shrink: 0;
-          margin-right: 20px;
-        }
-
-        .search-btn {
-          display: flex;
-          padding: 10px 24px;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          border-radius: 8px;
-          background: #7189bf;
-          color: #fff;
-          border-color: transparent;
-          font-size: 18px;
-          font-weight: 400;
-
-          .search-icon {
-            width: 24px;
-            height: 24px;
-          }
-        }
       }
 
       padding-bottom: 50px;
@@ -94,7 +63,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
             width: 100%;
-            height: 64px;
+            min-height: 64px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             display: flex;
@@ -106,6 +75,7 @@
               color: #242424;
               font-size: 16px;
               font-style: normal;
+              width: 90%;
             }
 
             .erize-box__buttons-box {
@@ -224,7 +194,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
             width: 100%;
-            height: 64px;
+            min-height: 64px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             display: flex;
@@ -236,6 +206,7 @@
               color: #242424;
               font-size: 14px;
               font-style: normal;
+              width: 90%;
             }
 
             .erize-box__buttons-box {
@@ -398,7 +369,7 @@
         margin-bottom: 20px;
       }
 
-      padding-bottom: 30px;
+      padding-bottom: 10px;
     }
 
     .all-erizeler-content-box {
@@ -408,7 +379,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
             width: 100%;
-            height: 64px;
+            min-height: 64px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             display: flex;
@@ -420,6 +391,7 @@
               color: #242424;
               font-size: 14px;
               font-style: normal;
+              width: 90%;
             }
 
             .erize-box__buttons-box {
@@ -462,7 +434,7 @@
     flex-grow: 1;
 
     .all-erizeler-content {
-      min-height: 620px;
+      min-height: 520px;
       .box__heading {
         margin-top: 10px;
         margin-bottom: 20px;
@@ -559,6 +531,7 @@
           line-height: 24px;
           color: #242424;
           text-align: center;
+          width: 90%;
         }
       }
     }
@@ -582,7 +555,7 @@
         margin-bottom: 20px;
       }
 
-      padding-bottom: 30px;
+      padding-bottom: 10px;
     }
 
     .all-erizeler-content-box {
@@ -590,9 +563,9 @@
         .box__body {
           .erize-box {
             margin-top: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             width: 100%;
-            height: 64px;
+            min-height: 64px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             display: flex;
@@ -604,6 +577,7 @@
               color: #242424;
               font-size: 14px;
               font-style: normal;
+              width: 90%;
             }
 
             .erize-box__buttons-box {
@@ -766,7 +740,7 @@
         margin-bottom: 20px;
       }
 
-      padding-bottom: 30px;
+      padding-bottom: 10px;
     }
 
     .all-erizeler-content-box {
@@ -775,7 +749,7 @@
           .erize-box {
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             width: 100%;
             min-height: 64px;
             border-radius: 8px;

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Category, ProductProps } from "../../interfaces";
 import { APIURL } from "../../config";
+import { ErizeFakeProps, documentsData } from "../../data/fakeData";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -66,7 +67,7 @@ const CategoryDetails: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleDetailsClick = (erize: ProductProps) => {
+  const handleDetailsClick = (erize: ErizeFakeProps) => {
     const link = `/erizeler/erize/${erize.id}`;
     navigate(link);
   };
@@ -88,7 +89,7 @@ const CategoryDetails: React.FC = () => {
     setCurrentPage(selectedPage.selected);
   };
 
-  const handleDownload = (erize: ProductProps) => {
+  const handleDownload = (erize: ErizeFakeProps) => {
     const downloadUrl = `${APIURL}/api/application/download/${erize?.id}`;
 
     const downloadLink = document.createElement("a");
@@ -104,29 +105,28 @@ const CategoryDetails: React.FC = () => {
 
   return (
     <div className="category-details-page">
-      <main id="maincontent" className="content">
-        <div className="container">
-          <div className="category-details-content">
-            <div className="box__heading">
-              <p>{categoryName}</p>
-            </div>
+      <div className="container">
+        <div className="category-details-content">
+          <div className="box__heading">
+            <p>{categoryName}</p>
+          </div>
 
-            <div className="all-erizeler-content-box">
-              <div className="all-erizeler-search-box">
-                <div className="all-erizeler-input-box">
-                  <TextField
-                    label="Search"
-                    variant="outlined"
-                    fullWidth
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
-                </div>
+          <div className="all-erizeler-content-box">
+            <div className="all-erizeler-search-box">
+              <div className="all-erizeler-input-box">
+                <TextField
+                  label="Search"
+                  variant="outlined"
+                  fullWidth
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
               </div>
-              <div className="right-content-box">
-                <div className="erizeler-list-box col-12">
-                  <div className="box__body">
-                    {currentItems.map((erize: ProductProps) => (
+            </div>
+            <div className="right-content-box">
+              <div className="erizeler-list-box col-12">
+                <div className="box__body">
+                  {/* {currentItems.map((erize: ProductProps) => (
                       <div key={erize.id} className="erize-box col-12">
                         <div className="erize-box__text-box">
                           <p>{erize?.docName}</p>
@@ -146,28 +146,49 @@ const CategoryDetails: React.FC = () => {
                           </a>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    ))} */}
+                  {documentsData.slice(0, 5).map((erize: ErizeFakeProps) => (
+                    <div key={erize.id} className="erize-box col-12">
+                      <div className="erize-box__text-box">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia sed, quidem animi officiis quae pariatur reprehenderit, quos consequatur quibusdam tenetur necessitatibus? Quibusdam, amet natus.
+                        </p>
+                      </div>
+                      <div className="erize-box__buttons-box">
+                        <a
+                          onClick={() => handleDetailsClick(erize)}
+                          className="box-details-btn btn"
+                        >
+                          Ətraflı
+                        </a>
+                        <a
+                          className="download-btn btn"
+                          onClick={() => handleDownload(erize)}
+                        >
+                          Yüklə
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-
-                {currentItems.length > 0 && (
-                  <ReactPaginate
-                    previousLabel={<img src={CaretLeft} alt="Previous" />}
-                    nextLabel={<img src={CaretRight} alt="Next" />}
-                    breakLabel={"..."}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={handlePageChange}
-                    containerClassName={"pagination"}
-                    activeClassName={"active"}
-                  />
-                )}
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
+      {currentItems.length > 0 && (
+        <ReactPaginate
+          previousLabel={<img src={CaretLeft} alt="Previous" />}
+          nextLabel={<img src={CaretRight} alt="Next" />}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+      )}
     </div>
   );
 };
