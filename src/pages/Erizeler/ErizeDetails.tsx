@@ -76,11 +76,25 @@ const ErizeDetails: React.FC = () => {
     }
   }, [product]);
 
-  const images = product?.imagePath.map((imagePath) => ({
-    original: `${APIURL}/${imagePath}`,
-    thumbnail: `${APIURL}/${imagePath}`,
-  }));
+  // const images = product?.imagePath.map((imagePath) => ({
+  //   original: `${APIURL}/${imagePath}`,
+  //   thumbnail: `${APIURL}/${imagePath}`,
+  // }));
 
+  const imagesNew = [
+    {
+      original: "https://picsum.photos/id/1018/1000/600/",
+      thumbnail: "https://picsum.photos/id/1018/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1015/1000/600/",
+      thumbnail: "https://picsum.photos/id/1015/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1019/1000/600/",
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+  ];
   const handleDownload = async () => {
     const downloadUrl = `${APIURL}/api/application/download/${product?.id}`;
 
@@ -156,67 +170,73 @@ const ErizeDetails: React.FC = () => {
 
   return (
     <div className="erize-details-page">
-      <main className="content" id="maincontent">
-        <section className="erize-details-box">
-          <div className="container">
-            <div className="erize-details-content">
-              <div className="page-box">
-                <div className="text-box">
-                  <p className="mid-text-s">Ərizələr</p>/<p>Ətraflı</p>
+      <section className="erize-details-box">
+        <div className="container">
+          <div className="erize-details-content">
+            <div className="page-box">
+              <div className="text-box">
+                <p className="mid-text-s">Ərizələr</p>/<p>Ətraflı</p>
+              </div>
+            </div>
+
+            <div className="erize-details-text-box">
+              <div className="left-side">
+                <div>
+                  {imagesNew && imagesNew.length > 0 && (
+                    <ImageGallery
+                      items={imagesNew}
+                      showPlayButton={false}
+                      showNav={false}
+                      showFullscreenButton={false}
+                    />
+                  )}
                 </div>
               </div>
-
-              <div className="erize-details-text-box">
-                <div className="left-side">
-                  <div>
-                    {images && images.length > 0 && (
-                      <ImageGallery
-                        items={images}
-                        showPlayButton={false}
-                        showNav={false}
-                      />
-                    )}
+              <div className="right-side">
+                <div className="erize-details-action-box">
+                  <div className="erize-details-erize-box">
+                    <div
+                      className="d-main-box"
+                      style={{ paddingBottom: "20px" }}
+                    >
+                      <p className="erize-name-label">Ərizə adı: </p>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Doloremque accusantium ex praesentium, magni laboriosam
+                        amet totam, debitis nihil numquam cupiditate illum
+                        delectus enim aliquid!
+                      </p>
+                    </div>
+                    <div
+                      className="d-main-box"
+                      style={{ paddingBottom: "20px" }}
+                    >
+                      <p className="erize-name-label">Kateqoriya adı: </p>
+                      <NewButton type="primary">
+                        {categoryName || "Ailə"}
+                      </NewButton>
+                    </div>
                   </div>
-                </div>
-                <div className="right-side">
-                  <div className="erize-details-action-box">
-                    <div className="erize-details-erize-box">
-                      <div
-                        className=" d-main-box"
-                        style={{ paddingBottom: "20px" }}
-                      >
-                        <p>Ərizə adı: </p>
-                        <p>{product?.docName}</p>
-                      </div>
-                      <div
-                        className="d-main-box"
-                        style={{ paddingBottom: "20px" }}
-                      >
-                        <p>Kateqoriya adı: </p>
-                        <NewButton type="primary">{categoryName}</NewButton>
-                      </div>
-                    </div>
 
-                    <div className="action-buttons-box">
-                      <a
-                        target="_blank"
-                        className="btn edit-btn"
-                        onClick={handleEdit}
-                      >
-                        <img src={PencilIcon} alt="" />
-                        Redaktə et və yüklə
-                      </a>
-                      <a className="btn download-btn" onClick={handleDownload}>
-                        Yüklə
-                      </a>
-                    </div>
+                  <div className="action-buttons-box">
+                    <a
+                      target="_blank"
+                      className="btn edit-btn"
+                      onClick={handleEdit}
+                    >
+                      <img src={PencilIcon} alt="" />
+                      Redaktə et və yüklə
+                    </a>
+                    <a className="btn download-btn" onClick={handleDownload}>
+                      Yüklə
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>Ərizəni redaktə et</DialogTitle>
         <DialogContent>

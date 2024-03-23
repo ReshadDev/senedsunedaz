@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 
 const MainLayout: React.FC = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <>
         <ToastContainer />
@@ -14,7 +14,7 @@ const MainLayout: React.FC = () => {
         <Outlet />
       </>
       <Footer />
-    </div>
+    </>
   );
 };
 
