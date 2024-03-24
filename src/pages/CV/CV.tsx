@@ -38,6 +38,9 @@ const CV: React.FC = () => {
               <div className="banner-logo-box">
                 <img src={cvframe} alt="" />
               </div>
+              <Link className="btn cv-primary-mobile" to="/cv-form">
+                İndi başla
+              </Link>
             </div>
           </div>
         </section>
