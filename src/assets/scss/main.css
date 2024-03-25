@@ -5177,6 +5177,54 @@ header .nav .links a {
   #cv .cv-templates .cv-templates-content .button-box .cv-primary span {
     margin-left: 10px;
   }
+  #cv .cv-templates .cv-templates-content .heading-text {
+    width: 48%;
+    padding-bottom: 30px;
+  }
+  #cv .cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 16px;
+  }
+  #cv .cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv .cv-templates .cv-templates-content .template-boxes {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv .cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 23%;
+  }
+  #cv .cv-templates .cv-templates-content .template-boxes img {
+    width: 80%;
+  }
+  #cv .cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv .cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv .cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
+  }
   .foot-cv {
     background: #031f20;
     margin-top: 70px;
@@ -5437,6 +5485,74 @@ header .nav .links a {
   }
   #cv-templates .cv-template-content {
     flex-grow: 1;
+  }
+  #cv-templates .cv-templates-content .heading-text {
+    width: 100%;
+    padding-top: 10px;
+    border-bottom: 1px solid #dadada;
+  }
+  #cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 8px;
+  }
+  #cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv-templates .cv-templates-content .template-boxes {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv-templates .cv-templates-content .template-boxes .button-box {
+    width: 80%;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn img {
+    width: 30px;
+    height: 30px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 23%;
+  }
+  #cv-templates .cv-templates-content .template-boxes img {
+    width: 80%;
+  }
+  #cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -5919,6 +6035,98 @@ header .nav .links a {
     margin-right: 10px;
     width: 16px;
     height: 16px;
+  }
+  #cv-templates {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #cv-templates .cv-template-content {
+    flex-grow: 1;
+  }
+  #cv-templates .cv-templates-content .heading-text {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dadada;
+  }
+  #cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 8px;
+  }
+  #cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv-templates .cv-templates-content .template-boxes {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn img {
+    width: 30px;
+    height: 30px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 23%;
+  }
+  #cv-templates .cv-templates-content .template-boxes img {
+    width: 100%;
+  }
+  #cv-templates .cv-templates-content .template-boxes .template-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
+  }
+  #cv-templates .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .download-new-cv-btn img {
+    width: 30px;
+    height: 30px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -6426,6 +6634,84 @@ header .nav .links a {
     width: 16px;
     height: 16px;
   }
+  #cv-templates {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #cv-templates .cv-template-content {
+    flex-grow: 1;
+  }
+  #cv-templates .cv-templates-content .heading-text {
+    width: 100%;
+    padding-top: 10px;
+    border-bottom: 1px solid #dadada;
+  }
+  #cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 16px;
+  }
+  #cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv-templates .cv-templates-content .template-boxes {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn img {
+    width: 30px;
+    height: 30px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 23%;
+  }
+  #cv-templates .cv-templates-content .template-boxes img {
+    width: 100%;
+  }
+  #cv-templates .cv-templates-content .template-boxes .template-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
+  }
 }
 @media (min-width: 576px) and (max-width: 767px) {
   .foot-cv {
@@ -6744,6 +7030,80 @@ header .nav .links a {
     align-items: center;
   }
   #cv .cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
+  }
+  #cv-templates {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #cv-templates .cv-template-content {
+    flex-grow: 1;
+  }
+  #cv-templates .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .download-new-cv-btn img {
+    width: 30px;
+    height: 30px;
+  }
+  #cv-templates .cv-templates-content .heading-text {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dadada;
+  }
+  #cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 16px;
+  }
+  #cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv-templates .cv-templates-content .template-boxes {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv-templates .cv-templates-content .template-boxes .template-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 47%;
+  }
+  #cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary span {
     margin-left: 10px;
   }
   .cv-primary-mobile {
@@ -7273,6 +7633,84 @@ header .nav .links a {
   #cv .cv-templates .cv-templates-content .button-box .cv-primary span {
     margin-left: 10px;
   }
+  #cv-templates {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #cv-templates .cv-template-content {
+    flex-grow: 1;
+  }
+  #cv-templates .cv-templates-content .heading-text {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dadada;
+  }
+  #cv-templates .cv-templates-content .heading-text .heading-text__title {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    margin-bottom: 16px;
+  }
+  #cv-templates .cv-templates-content .heading-text p {
+    color: #242424;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+  }
+  #cv-templates .cv-templates-content .template-boxes {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #cv-templates .cv-templates-content .template-boxes .template-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: #11908b;
+    font-weight: 500;
+    border: none;
+    gap: 10px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .download-new-cv-btn img {
+    width: 30px !important;
+    height: 30px;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 {
+    width: 46%;
+  }
+  #cv-templates .cv-templates-content .template-boxes .col-3 img {
+    width: 100%;
+  }
+  #cv-templates .cv-templates-content .button-box {
+    text-align: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary {
+    margin-top: 40px;
+    padding: 12px 24px !important;
+    display: inline-block;
+    border-radius: 8px;
+    color: #fff;
+    background: #242c2c;
+    align-items: center;
+  }
+  #cv-templates .cv-templates-content .button-box .cv-primary span {
+    margin-left: 10px;
+  }
   #cv-form {
     width: 100%;
     background: url("../images/cvformbackground.svg") center/cover no-repeat;
@@ -7780,7 +8218,7 @@ a {
     text-align: center;
   }
   .home-foot {
-    background: #272626;
+    background: #181717;
     margin-top: 20px;
   }
   .home-foot li {
@@ -7952,7 +8390,7 @@ a {
     text-align: center;
   }
   .home-foot {
-    background: #272626;
+    background: #181717;
     margin-top: 70px;
   }
   .home-foot li {
@@ -8030,7 +8468,7 @@ a {
     width: 50%;
   }
   .home-foot {
-    background: #272626;
+    background: #181717;
     margin-top: 70px;
   }
   .home-foot li {
@@ -8327,7 +8765,7 @@ a {
     text-align: center;
   }
   .home-foot {
-    background: #272626;
+    background: #181717;
     margin-top: 70px;
   }
   .home-foot li {
@@ -8481,7 +8919,7 @@ a {
     text-align: center;
   }
   .home-foot {
-    background: #272626;
+    background: #181717;
     margin-top: 70px;
   }
   .home-foot li {
@@ -8628,20 +9066,6 @@ a {
   text-align: center;
   display: flex;
   justify-content: center;
-}
-.templates .download-new-cv-btn {
-  display: flex;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  color: #11908b;
-  border: none;
-  gap: 10px;
-}
-.templates .download-new-cv-btn img {
-  width: 30px;
-  height: 30px;
 }
 
 .after-v {
