@@ -2,7 +2,7 @@ import React from "react";
 
 const FooterCV: React.FC = () => {
   return (
-    <footer className="foot">
+    <footer className="foot-cv">
       <div className="container">
         <div className="foot__top">
           <div className="foot__item col-4">
