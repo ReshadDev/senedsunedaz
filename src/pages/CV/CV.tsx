@@ -4,11 +4,13 @@ import { ToastContainer } from "react-toastify";
 import FooterCV from "../../components/LayoutCV/FooterCV";
 import { Link } from "react-router-dom";
 import {
-  CvBannerImg,
-  cv1,
   cvframe,
   cvicon1,
   cvicon2,
+  cvtm1,
+  cvtm2,
+  cvtm3,
+  cvtm4,
   step1,
   step2,
   step3,
@@ -169,19 +171,19 @@ const CV: React.FC = () => {
               </div>
               <div className="template-boxes">
                 <div className="template-box col-3">
-                  <img src={cv1} alt="" />
+                  <img src={cvtm1} alt="" />
                 </div>
 
                 <div className="template-box col-3">
-                  <img src={cv1} alt="" />
+                  <img src={cvtm2} alt="" />
                 </div>
 
                 <div className="template-box col-3">
-                  <img src={cv1} alt="" />
+                  <img src={cvtm3} alt="" />
                 </div>
 
                 <div className="template-box col-3">
-                  <img src={cv1} alt="" />
+                  <img src={cvtm4} alt="" />
                 </div>
               </div>
 

@@ -66,6 +66,13 @@ import cvt1 from "../images/cv1t.jpg";
 import cvt2 from "../images/cv2t.jpg";
 import cvt3 from "../images/cv3t.jpg";
 import cvt4 from "../images/cv4t.jpg";
+
+import cvtm1 from "../images/cvtm1.jpg";
+import cvtm2 from "../images/cvtm2.jpg";
+
+import cvtm3 from "../images/cvtm3.png";
+import cvtm4 from "../images/cvtm4.jpg";
+import cvtm5 from "../images/cvtm5.png";
 import cvdownload from "../images/downloadcv.svg";
 
 export {
@@ -123,4 +130,9 @@ export {
   cvt4,
   cvdownload,
   cvframe,
+  cvtm1,
+  cvtm2,
+  cvtm3,
+  cvtm4,
+  cvtm5,
 };

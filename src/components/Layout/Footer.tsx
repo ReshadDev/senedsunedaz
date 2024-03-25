@@ -24,10 +24,10 @@ const Footer: React.FC = () => {
             <div className="footItem__title">Xidmətlərimiz</div>
             <ul>
               <li>
-                <a href="/sirket-haqqinda">Ərizələr</a>
+                <a href="/erizeler">Ərizələr</a>
               </li>
               <li>
-                <a href="https://glorri.com/jobs/abc-telecom">CV</a>
+                <a href="/cv">CV</a>
               </li>
             </ul>
           </div>
@@ -35,22 +35,22 @@ const Footer: React.FC = () => {
             <div className="footItem__title">Kateqoriya</div>
             <ul>
               <li>
-                <a href="/sirket-haqqinda">Ailə</a>
+                <a href="/erizeler/category/Aile">Ailə</a>
               </li>
               <li>
-                <a href="">Əmlak</a>
+                <a href="/erizeler/category/Aile">Əmlak</a>
               </li>
               <li>
-                <a href="/sirket-haqqinda">Hüquqi</a>
+                <a href="/erizeler/category/Aile">Hüquqi</a>
               </li>
               <li>
-                <a href="">İş</a>
+                <a href="/erizeler/category/Aile">İş</a>
               </li>
               <li>
-                <a href="/sirket-haqqinda">Sahibkarlıq</a>
+                <a href="/erizeler/category/Aile">Sahibkarlıq</a>
               </li>
               <li>
-                <a href="">Təhsil</a>
+                <a href="/erizeler/category/Aile">Təhsil</a>
               </li>
             </ul>
           </div>
@@ -105,9 +105,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="foot__bottom">
-        <div className="foot__bottom">© SenedSunedAz 2024</div>
-      </div>
+      <div className="foot__bottom">© SənədSünəd.az 2024</div>
     </footer>
   );
 };
