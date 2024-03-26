@@ -745,6 +745,16 @@ a {
 // Small
 
 @media (min-width: 576px) and (max-width: 767px) {
+  .mobile-menu-dropdown {
+    display: none; /* Initially hide the mobile menu */
+  }
+
+  .mobile-menu-dropdown.open {
+    display: block; /* Show the mobile menu when open */
+  }
+  .mobile-menu {
+    display: block !important;
+  }
   .col-sm-12 {
     flex: 0 0 auto;
     width: 100%;
@@ -975,6 +985,16 @@ a {
 
 // Extra small
 @media (max-width: 575px) {
+  .mobile-menu-dropdown {
+    display: none; /* Initially hide the mobile menu */
+  }
+
+  .mobile-menu-dropdown.open {
+    display: block; /* Show the mobile menu when open */
+  }
+  .mobile-menu {
+    display: block !important;
+  }
   .col-xs-12 {
     flex: 0 0 auto;
     width: 100% !important;
@@ -1175,7 +1195,6 @@ a {
         }
       }
       .text-box {
-        width: 80%;
         height: 100%;
         padding-left: 40px;
         padding-right: 40px;
@@ -1244,5 +1263,9 @@ a {
 }
 
 .UISmallFont {
+  display: none;
+}
+
+.mobile-menu {
   display: none;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import {
   cvformstep1,
   cvformstep2,
@@ -13,19 +13,42 @@ import {
   cvtm2,
 } from "../../assets/icons";
 import { InputLabel, OutlinedInput, styled } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { APIURL } from "../../config";
+import axios from "axios";
+import { ITemplatesProps } from "../../interfaces";
 
 const FormTextField = styled(OutlinedInput)({
   marginBottom: "15px",
 });
 
 interface FormData {
-  email: string;
+  name: string;
+  surname: string;
 }
 
 const CVForm: React.FC = () => {
+  const [templates, setAllTemplates] = React.useState<ITemplatesProps[]>([]);
+
+  const getAllTemplates = async () => {
+    try {
+      const { data } = await axios.get(`${APIURL}/api/cv/findAll`);
+      if (data?.success) {
+        setAllTemplates(data?.documents);
+      }
+      console.log("templates", templates);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const template1 = templates[0];
+
+  React.useEffect(() => {
+    getAllTemplates();
+  }, []);
+
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const [currentStep, setCurrentStep] = React.useState<number>(1);
 
@@ -57,8 +80,6 @@ const CVForm: React.FC = () => {
 
     return currentStep === step ? activeImage : normalImages[step - 1];
   };
-
-  const { register } = useForm<FormData>();
 
   const [experienceCount, setExperienceCount] = React.useState<number>(1);
   const [schoolCount, setSchoolCount] = React.useState<number>(1);
@@ -267,17 +288,68 @@ const CVForm: React.FC = () => {
     setCertificateCount(certificateCount + 1);
   };
 
-  // FORM HANDLING
-  const onSubmit = async () => {
+  const [formData, setFormData] = React.useState<FormData>({
+    name: "",
+    surname: "",
+  });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleDownloadEditedFile = async () => {
     try {
-      toast.success("Kateqoriya uğurla yaradıldı");
+      const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/edited_${template1.cvEditedName}`;
+      const downloadLink = document.createElement("a");
+      downloadLink.href = s3DownloadUrl;
+      downloadLink.download = `${template1.name}_edited`;
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     } catch (error) {
-      toast.error("Xəta baş verdi");
+      console.log(error);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    try {
+      const requestBody = [
+        {
+          labelName: "(Name)",
+          inputName: formData.name,
+        },
+        {
+          labelName: "(Surname)",
+          inputName: formData.surname,
+        },
+      ];
+
+      await axios.post("http://localhost:8080/api/cv/editCv/1", requestBody);
+      toast.success("CV uğurla redaktə olundu");
+
+      await handleDownloadEditedFile();
+
+      setTimeout(() => {
+        navigate("/cv");
+      }, 2000);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
   return (
     <div id="cv-form">
+      <ToastContainer />
+
       <div className="main-heading-box">
         <div className="container">
           <div className="heading-text">
@@ -334,13 +406,27 @@ const CVForm: React.FC = () => {
                     <InputLabel shrink className="label-text">
                       Ad
                     </InputLabel>
-                    <FormTextField placeholder="daxil edin" fullWidth />
+                    <FormTextField
+                      id="name"
+                      name="name"
+                      placeholder="Enter your name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      fullWidth
+                    />
                   </div>
                   <div className="form-element">
                     <InputLabel shrink className="label-text">
                       Soyad
                     </InputLabel>
-                    <FormTextField placeholder="daxil edin" fullWidth />
+                    <FormTextField
+                      id="surname"
+                      name="surname"
+                      placeholder="Enter your surname"
+                      value={formData.surname}
+                      onChange={handleChange}
+                      fullWidth
+                    />
                   </div>
                 </div>
                 <div className="row">
@@ -365,13 +451,7 @@ const CVForm: React.FC = () => {
                     <InputLabel shrink className="label-text">
                       Email
                     </InputLabel>
-                    <FormTextField
-                      {...register("email", {
-                        required: "email is required",
-                      })}
-                      placeholder="random@gmail.com"
-                      fullWidth
-                    />
+                    <FormTextField placeholder="random@gmail.com" fullWidth />
                   </div>
                   <div className="form-element">
                     <InputLabel shrink className="label-text">

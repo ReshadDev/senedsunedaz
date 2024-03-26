@@ -11,7 +11,7 @@ const HomeFooter: React.FC = () => {
               <a href="tel:+994559107999">+994559107999</a>
             </div>
             <div className="footItem__text">
-              <a href="/magazalar">senedsuned@gmail.com</a>
+              <a href="">senedsuned@gmail.com</a>
             </div>
           </div>
           <div className="foot__item col-4">
@@ -68,7 +68,7 @@ const HomeFooter: React.FC = () => {
                 </svg>
               </a>
 
-              <a href="https://wa.me/994508286060?text=" target="_blank">
+              <a href="#" target="_blank">
                 <svg
                   width="24"
                   height="24"

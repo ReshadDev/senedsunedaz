@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
 
-              <a href="https://wa.me/994508286060?text=" target="_blank">
+              <a href="#" target="_blank">
                 <svg
                   width="24"
                   height="24"

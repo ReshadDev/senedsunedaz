@@ -418,7 +418,7 @@
   }
   .foot {
     background: #1a2232;
-    margin-top: 70px;
+    margin-top: 0px;
   }
   .foot li {
     list-style-type: none;
@@ -492,7 +492,6 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
   }
   .foot li {
     list-style-type: none;
@@ -971,7 +970,6 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
   }
   .foot li {
     list-style-type: none;
@@ -1443,7 +1441,6 @@
 @media (min-width: 576px) and (max-width: 767px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
   }
   .foot li {
     list-style-type: none;
@@ -1924,7 +1921,6 @@
 @media (max-width: 575px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
   }
   .foot li {
     list-style-type: none;
@@ -2017,14 +2013,14 @@
     align-items: center;
   }
   .search-area .search-area-content .search-area-text-box {
-    padding-bottom: 65px;
+    padding-bottom: 45px;
     text-align: center;
     width: 80%;
   }
   .search-area .search-area-content .search-area-text-box .sat-1 {
     color: #2e3138;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 48px;
@@ -2036,10 +2032,10 @@
   .search-area .search-area-content .search-area-text-box .sat-2 {
     color: #242424;
     text-align: center;
-    font-size: 30px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
-    line-height: 44px;
+    line-height: 24px;
   }
   .search-area .search-area-content .search-area-input-box {
     display: flex;
@@ -2096,7 +2092,7 @@
   .information-banner-content .information-banner-box .col-4 .text-box p {
     color: #f2f7fb;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 28px;
@@ -2464,39 +2460,39 @@ header .nav .links a {
   min-width: 600px;
 }
 
-.search-results {
-  min-height: 731.2px;
+#search {
+  flex-grow: 1;
 }
-.search-results .search-results-boxes {
+#search .search-results .search-results-boxes {
   display: flex;
   flex-wrap: wrap;
 }
-.search-results .search-results-boxes .col-3 {
+#search .search-results .search-results-boxes .col-3 {
   flex: 0 0 auto;
   width: 23%;
 }
-.search-results .search-results-boxes .document-box .action-buttons a,
-.search-results .search-results-boxes .document-box .action-buttons button {
+#search .search-results .search-results-boxes .document-box .action-buttons a,
+#search .search-results .search-results-boxes .document-box .action-buttons button {
   display: none !important;
   visibility: hidden !important;
 }
-.search-results .search-results-boxes .document-box:hover {
+#search .search-results .search-results-boxes .document-box:hover {
   transition: all 1s ease; /* Adjust the duration (0.5s) as needed */
 }
-.search-results .search-results-boxes .document-box:hover .action-buttons a,
-.search-results .search-results-boxes .document-box:hover .action-buttons button {
+#search .search-results .search-results-boxes .document-box:hover .action-buttons a,
+#search .search-results .search-results-boxes .document-box:hover .action-buttons button {
   visibility: visible !important;
   display: block !important;
   cursor: pointer;
 }
-.search-results .search-results-boxes .document-box:hover .document-main-box-header {
+#search .search-results .search-results-boxes .document-box:hover .document-main-box-header {
   width: 100%;
   height: 10% !important;
 }
-.search-results .search-results-boxes .document-box:hover .document-main-box-body {
+#search .search-results .search-results-boxes .document-box:hover .document-main-box-body {
   height: 20% !important;
 }
-.search-results .search-results-boxes .document-box:hover .document-main-box-footer {
+#search .search-results .search-results-boxes .document-box:hover .document-main-box-footer {
   transition: visibility 1s ease;
   width: 100%;
   height: 60%;
@@ -2504,16 +2500,16 @@ header .nav .links a {
   flex-direction: column;
   justify-content: space-between;
 }
-.search-results .search-results-boxes .document-box:hover .document-main-box-footer p {
+#search .search-results .search-results-boxes .document-box:hover .document-main-box-footer p {
   white-space: normal;
   overflow: visible;
 }
-.search-results .search-results-boxes .document-box:hover .action-buttons {
+#search .search-results .search-results-boxes .document-box:hover .action-buttons {
   display: flex;
   justify-content: space-between;
   padding-top: 50px;
 }
-.search-results .search-results-boxes .document-box:hover .box-details-btn {
+#search .search-results .search-results-boxes .document-box:hover .box-details-btn {
   color: #7189bf;
   font-size: 20px;
   font-weight: 400;
@@ -2525,7 +2521,7 @@ header .nav .links a {
   align-items: center;
   max-height: 48px;
 }
-.search-results .search-results-boxes .document-box:hover .download-btn {
+#search .search-results .search-results-boxes .document-box:hover .download-btn {
   display: flex;
   padding: 15px 30px;
   justify-content: center;
@@ -2538,7 +2534,7 @@ header .nav .links a {
   max-height: 48px;
   background: #7189bf;
 }
-.search-results .search-results-boxes .document-box {
+#search .search-results .search-results-boxes .document-box {
   border-radius: 8px;
   border: 1px solid #929292;
   display: flex;
@@ -2548,7 +2544,7 @@ header .nav .links a {
   height: 365px;
   margin-right: 24px;
 }
-.search-results .search-results-boxes .document-box .document-main-box {
+#search .search-results .search-results-boxes .document-box .document-main-box {
   width: 100%;
   border-radius: 16px;
   display: flex;
@@ -2557,13 +2553,13 @@ header .nav .links a {
   text-align: center;
   height: 100%;
 }
-.search-results .search-results-boxes .document-box .document-main-box .document-main-box-header {
+#search .search-results .search-results-boxes .document-box .document-main-box .document-main-box-header {
   padding-bottom: 10px;
   width: 100%;
   padding-top: 10px;
   height: 10% !important;
 }
-.search-results .search-results-boxes .document-box .document-main-box .document-main-box-body {
+#search .search-results .search-results-boxes .document-box .document-main-box .document-main-box-body {
   width: 90%;
   flex-grow: 1;
   border-radius: 16px;
@@ -2573,7 +2569,7 @@ header .nav .links a {
   position: relative;
   top: 20px;
 }
-.search-results .search-results-boxes .document-box .document-main-box-footer {
+#search .search-results .search-results-boxes .document-box .document-main-box-footer {
   width: 100%;
   padding: 20px 20px 20px;
   flex-shrink: 0;
@@ -2585,21 +2581,21 @@ header .nav .links a {
   border-bottom-right-radius: 8px;
   text-align: left;
 }
-.search-results .search-results-boxes .document-box .document-main-box-footer p {
+#search .search-results .search-results-boxes .document-box .document-main-box-footer p {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   transition: all 0.3s ease-in-out;
+}
+#search .no-search-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .search-not-found {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.search-not-found .search-not-found-icon {
-  padding-top: 74.5px;
-  padding-bottom: 74.5px;
 }
 .search-not-found .search-not-found-icon img {
   max-width: 400px;
@@ -2629,7 +2625,7 @@ header .nav .links a {
   font-weight: 400;
   line-height: 28px;
   text-decoration-line: underline;
-  margin-left: 10px;
+  text-decoration: none;
 }
 
 .pagination {
@@ -8642,6 +8638,15 @@ a {
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
+  .mobile-menu-dropdown {
+    display: none; /* Initially hide the mobile menu */
+  }
+  .mobile-menu-dropdown.open {
+    display: block; /* Show the mobile menu when open */
+  }
+  .mobile-menu {
+    display: block !important;
+  }
   .col-sm-12 {
     flex: 0 0 auto;
     width: 100%;
@@ -8842,6 +8847,15 @@ a {
   }
 }
 @media (max-width: 575px) {
+  .mobile-menu-dropdown {
+    display: none; /* Initially hide the mobile menu */
+  }
+  .mobile-menu-dropdown.open {
+    display: block; /* Show the mobile menu when open */
+  }
+  .mobile-menu {
+    display: block !important;
+  }
   .col-xs-12 {
     flex: 0 0 auto;
     width: 100% !important;
@@ -9020,7 +9034,6 @@ a {
     height: 250px;
   }
   #home .page-content .text-box {
-    width: 80%;
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -9082,5 +9095,9 @@ a {
 }
 
 .UISmallFont {
+  display: none;
+}
+
+.mobile-menu {
   display: none;
 }/*# sourceMappingURL=main.css.map */

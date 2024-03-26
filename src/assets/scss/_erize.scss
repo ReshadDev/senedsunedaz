@@ -473,7 +473,7 @@
 
   .foot {
     background: #1a2232;
-    margin-top: 70px;
+    margin-top: 0px;
     li {
       list-style-type: none;
     }
@@ -559,7 +559,6 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
     li {
       list-style-type: none;
     }
@@ -1100,7 +1099,6 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
     li {
       list-style-type: none;
     }
@@ -1634,7 +1632,6 @@
 @media (min-width: 576px) and (max-width: 767px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
     li {
       list-style-type: none;
     }
@@ -2181,7 +2178,6 @@
 @media (max-width: 575px) {
   .foot {
     background: #1a2232;
-    margin-top: 70px;
     li {
       list-style-type: none;
     }
@@ -2284,14 +2280,14 @@
       }
 
       .search-area-text-box {
-        padding-bottom: 65px;
+        padding-bottom: 45px;
         text-align: center;
         width: 80%;
         // sat means- search area text
         .sat-1 {
           color: #2e3138;
           text-align: center;
-          font-size: 30px;
+          font-size: 20px;
           font-style: normal;
           font-weight: 500;
           line-height: 48px;
@@ -2304,10 +2300,10 @@
         .sat-2 {
           color: #242424;
           text-align: center;
-          font-size: 30px;
+          font-size: 24px;
           font-style: normal;
           font-weight: 500;
-          line-height: 44px;
+          line-height: 24px;
         }
       }
       .search-area-input-box {
@@ -2374,7 +2370,7 @@
           p {
             color: #f2f7fb;
             text-align: center;
-            font-size: 20px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: 28px;

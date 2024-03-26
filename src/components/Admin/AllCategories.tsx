@@ -16,6 +16,12 @@ const AllCategories: React.FC = () => {
 
   const [auth] = useAuth();
 
+  const [categoryData, setCategoryData] = React.useState<Category>({
+    id: 0,
+    name: "",
+    description: "",
+  });
+
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
@@ -58,6 +64,7 @@ const AllCategories: React.FC = () => {
     try {
       await axios.put(
         `http://localhost:8080/api/category/updateCategory/${updateId}`,
+        categoryData,
         {
           headers: {
             Authorization: `Bearer ${auth.tokenPair.accessToken}`,
@@ -66,9 +73,9 @@ const AllCategories: React.FC = () => {
       );
 
       await getAllCategories();
-      toast.success("Kateqoriya uğurla silindi");
+      toast.success("Kateqoriya uğurla yeniləndi");
     } catch (error) {
-      console.error("Error deleting document:", error);
+      console.error("Error updating category:", error);
       toast.error("Xəta baş verdi");
     }
     setIsOpen2(false);
@@ -76,17 +83,20 @@ const AllCategories: React.FC = () => {
 
   const fetchCategory = async (id: number) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:8080/api/category/getCategory/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.tokenPair.accessToken}`,
-          },
-        }
+      const response = await axios.get(
+        `http://localhost:8080/api/category/byId/${id}`
       );
+      const category = response.data.category;
+
+      console.log(category);
+
+      if (category) {
+        setCategoryData(category);
+      } else {
+        console.error("Category not found");
+      }
     } catch (error) {
       console.error("Error fetching category:", error);
-      toast.error("Xəta baş verdi");
     }
   };
 
@@ -98,6 +108,7 @@ const AllCategories: React.FC = () => {
   const showModal2 = (id: number) => {
     setUpdateId(id);
     setIsOpen2(true);
+    fetchCategory(id);
   };
 
   const handleCancel = () => {
@@ -162,11 +173,21 @@ const AllCategories: React.FC = () => {
         <InputLabel shrink id="docFile-label">
           Kateqoriya adı
         </InputLabel>
-        <TextField />
+        <TextField
+          value={categoryData.name}
+          onChange={(e) =>
+            setCategoryData({ ...categoryData, name: e.target.value })
+          }
+        />
         <InputLabel shrink id="docFile-label">
           Haqqında
         </InputLabel>
-        <TextField />
+        <TextField
+          value={categoryData.description}
+          onChange={(e) =>
+            setCategoryData({ ...categoryData, description: e.target.value })
+          }
+        />
       </Modal>
     </div>
   );
