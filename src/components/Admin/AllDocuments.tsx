@@ -59,7 +59,7 @@ const AllDocuments: React.FC = () => {
         `http://localhost:8080/api/application/deleteById/${deleteId}`,
         {
           headers: {
-            Authorization: `Bearer ${auth.token}`,
+            Authorization: `Bearer ${auth.tokenPair.accessToken}`,
           },
         }
       );

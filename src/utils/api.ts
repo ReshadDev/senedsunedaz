@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 interface CreateCategoryData {
   categoryName: string;
@@ -10,15 +10,15 @@ export const createCategory = async (
   token: string
 ) => {
   const formData = new FormData();
-  formData.append("name", data.categoryName);
-  formData.append("description", data.description);
+  formData.append('name', data.categoryName);
+  formData.append('description', data.description);
 
   const response = await axios.post(
-    "http://localhost:8080/api/category/addCategory",
+    'http://64.23.134.82/api/category/addCategory',
     formData,
     {
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     }
@@ -36,18 +36,18 @@ interface FormData {
 
 export const createDocument = async (data: FormData, token: string) => {
   const formData = new FormData();
-  formData.append("docFile", data.docFile[0]);
-  formData.append("imageFile", data.imageFile[0]);
-  formData.append("docName", data.docName);
-  formData.append("link", data.link);
+  formData.append('docFile', data.docFile[0]);
+  formData.append('imageFile', data.imageFile[0]);
+  formData.append('docName', data.docName);
+  formData.append('link', data.link);
 
   const categoryId = data.categoryId;
   const response = await axios.post(
-    `http://localhost:8080/api/application/upload/${categoryId}`,
+    `http://64.23.134.82/api/application/upload/${categoryId}`,
     formData,
     {
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     }

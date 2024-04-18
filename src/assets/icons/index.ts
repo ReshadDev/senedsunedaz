@@ -75,8 +75,13 @@ import cvtm4 from "../images/cvtm4.jpg";
 import cvtm5 from "../images/cvtm5.png";
 import cvdownload from "../images/downloadcv.svg";
 
+import MenuNavbar from "../images/navmenu.svg";
+import navClose from "../images/navclose.svg";
+
 export {
   SearchIcon,
+  MenuNavbar,
+  navClose,
   AboutUs,
   Question,
   Minus,

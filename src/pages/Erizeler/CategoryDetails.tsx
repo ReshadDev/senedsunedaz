@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Category, ProductProps } from "../../interfaces";
 import { APIURL } from "../../config";
-import { ErizeFakeProps, documentsData } from "../../data/fakeData";
+import { ErizeFakeProps } from "../../data/fakeData";
+import { toast } from "react-toastify";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -89,11 +90,11 @@ const CategoryDetails: React.FC = () => {
     setCurrentPage(selectedPage.selected);
   };
 
-  const handleDownload = (erize: ErizeFakeProps) => {
-    const downloadUrl = `${APIURL}/api/application/download/${erize?.id}`;
+  const handleDownload = (erize: ProductProps) => {
+    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
 
     const downloadLink = document.createElement("a");
-    downloadLink.href = downloadUrl;
+    downloadLink.href = s3DownloadUrl;
     downloadLink.download = erize?.docName || "downloadedFile";
 
     document.body.appendChild(downloadLink);
@@ -101,6 +102,7 @@ const CategoryDetails: React.FC = () => {
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
+    toast.success("Sənəd uğurla yükləndi!");
   };
 
   return (
@@ -126,33 +128,10 @@ const CategoryDetails: React.FC = () => {
             <div className="right-content-box">
               <div className="erizeler-list-box col-12">
                 <div className="box__body">
-                  {/* {currentItems.map((erize: ProductProps) => (
-                      <div key={erize.id} className="erize-box col-12">
-                        <div className="erize-box__text-box">
-                          <p>{erize?.docName}</p>
-                        </div>
-                        <div className="erize-box__buttons-box">
-                          <a
-                            onClick={() => handleDetailsClick(erize)}
-                            className="box-details-btn btn"
-                          >
-                            Ətraflı
-                          </a>
-                          <a
-                            className="download-btn btn"
-                            onClick={() => handleDownload(erize)}
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    ))} */}
-                  {documentsData.slice(0, 5).map((erize: ErizeFakeProps) => (
+                  {currentItems.map((erize: ProductProps) => (
                     <div key={erize.id} className="erize-box col-12">
                       <div className="erize-box__text-box">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia sed, quidem animi officiis quae pariatur reprehenderit, quos consequatur quibusdam tenetur necessitatibus? Quibusdam, amet natus.
-                        </p>
+                        <p>{erize?.docName}</p>
                       </div>
                       <div className="erize-box__buttons-box">
                         <a
