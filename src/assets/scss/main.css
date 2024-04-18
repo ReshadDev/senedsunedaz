@@ -3311,9 +3311,9 @@ header .nav .links a {
   }
   .about-us .about-us-content .about-us-box .text-box p {
     color: #242424;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 32px;
+    line-height: 24px;
   }
   .about-us .about-us-content .about-us-box .img-box {
     display: flex;
@@ -5154,6 +5154,10 @@ header .nav .links a {
   }
   #cv .cv-templates .cv-templates-content .template-boxes .col-3 {
     width: 23%;
+  }
+  #cv .cv-templates .cv-templates-content .template-boxes .col-3 img {
+    width: 100%;
+    height: 100%;
   }
   #cv .cv-templates .cv-templates-content .template-boxes img {
     width: 80%;
@@ -7012,6 +7016,10 @@ header .nav .links a {
   }
   #cv .cv-templates .cv-templates-content .template-boxes .col-3 {
     width: 47%;
+  }
+  #cv .cv-templates .cv-templates-content .template-boxes .col-3 img {
+    width: 100%;
+    height: 100%;
   }
   #cv .cv-templates .cv-templates-content .button-box {
     text-align: center;

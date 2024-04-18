@@ -1,63 +1,73 @@
-import React from "react";
-import { AboutUs, Bank, LightBulb, RocketLaunch } from "../../assets/icons";
+import React from 'react';
+import { AboutUs, Bank, LightBulb, RocketLaunch } from '../../assets/icons';
 
 const About: React.FC = () => {
   return (
-    <div id="about">
-      <main id="maincontent" className="content">
-        <section className="about-us">
-          <div className="container">
-            <div className="about-us-content">
-              <div className="page-nav-box">
+    <div id='about'>
+      <main id='maincontent' className='content'>
+        <section className='about-us'>
+          <div className='container'>
+            <div className='about-us-content'>
+              <div className='page-nav-box'>
                 <p>Haqqımızda</p>
               </div>
 
-              <div className="about-us-box">
-                <div className="text-box">
+              <div className='about-us-box'>
+                <div className='text-box'>
                   <p>
-                    SeneSuned minlərlə ərizə, idda ərizələri, təhsil üçün
-                    arayışlar, tərcümeyi hal kimi sənəd nümünələrini saxlayır.
-                    Sənədlərin düzgün yazılmasına, doldurumlasına köməklik edir.
-                    SeneSuned minlərlə ərizə, idda ərizələri, təhsil üçün
-                    arayışlar, tərcümeyi hal kimi sənəd nümünələrini saxlayır.
-                    Sənədlərin düzgün yazılmasına, doldurumlasına köməklik
-                    edir.SeneSuned minlərlə ərizə, idda ərizələri, təhsil üçün
-                    arayışlar, tərcümeyi hal kimi sənəd nümünələrini saxlayır.
-                    Sənədlərin düzgün yazılmasına, doldurumlasına köməklik edir.
+                    Biz kimik? Sənəd və CV yaradılmasını asanlaşdıran online
+                    platforma. Bizim missiyamız iş axtarış və sənəd hazırlama
+                    proseslərini həm effektiv, həm də əlçatan və sadə etməkdir.
+                    Saytımız, müxtəlif kateqoriyalar üzrə geniş ərizə və CV
+                    şablonlarını təqdim edir. İstifadəçilərimiz rahat axtarış
+                    sistemi vasitəsilə öz ehtiyaclarına uyğun kateqoriyaları
+                    seçə bilər, ərizələrini redaktə edə bilər və lazım olan
+                    şablonları asanlıqla yükləyə bilərlər. CV bölməmiz, iş
+                    axtaranların öz kariyera yollarını göstərərək CV
+                    hazırlamalarına imkan verir. Məlumatları daxil etməklə, ATS
+                    (Applicant Tracking System) sistemlərində rahat yoxlanıla
+                    bilən və HR-ların diqqətini cəlb edə biləcək peşəkar CV-lər
+                    yarada bilərsiniz. Saytımızda təqdim olunan şablonlar,
+                    müasir standartlara uyğun olaraq hazırlanmış və dizayn
+                    edilmişdir. Saytımız sizin karyeranızı növbəti səviyyəyə
+                    qaldırmaq üçün lazım olan bütün vasitələri təqdim edir. Biz,
+                    iş axtarış prosesinizi asanlaşdırmaq və sənəd
+                    hazırlamağınızı sürətləndirmək üçün buradayıq. Peşəkar
+                    həyatınızda yeni bir fəsil başlatmağa hazırsınız? Başlayaq!
                   </p>
                 </div>
-                <div className="img-box">
-                  <img src={AboutUs} alt="" />
+                <div className='img-box'>
+                  <img src={AboutUs} alt='' />
                 </div>
               </div>
 
-              <div className="container">
-                <div className="information-boxes">
-                  <div className="information-box col-4">
-                    <div className="box__heading"></div>
+              <div className='container'>
+                <div className='information-boxes'>
+                  <div className='information-box col-4'>
+                    <div className='box__heading'></div>
 
-                    <div className="box__body">
-                      <img src={RocketLaunch} alt="" />
+                    <div className='box__body'>
+                      <img src={RocketLaunch} alt='' />
                       <p>
                         Sürətli şəkildə ərizələri hazırlayıb, yükləmə imkanı
                       </p>
                     </div>
                   </div>
 
-                  <div className="information-box col-4">
-                    <div className="box__heading"></div>
+                  <div className='information-box col-4'>
+                    <div className='box__heading'></div>
 
-                    <div className="box__body">
-                      <img src={LightBulb} alt="" />
+                    <div className='box__body'>
+                      <img src={LightBulb} alt='' />
                       <p>Ərizələrin düzgün yazılışı</p>
                     </div>
                   </div>
 
-                  <div className="information-box col-4">
-                    <div className="box__heading"></div>
+                  <div className='information-box col-4'>
+                    <div className='box__heading'></div>
 
-                    <div className="box__body">
-                      <img src={Bank} alt="" />
+                    <div className='box__body'>
+                      <img src={Bank} alt='' />
                       <p>Rəsmi ərizə növləri </p>
                     </div>
                   </div>

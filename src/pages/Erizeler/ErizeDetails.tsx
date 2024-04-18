@@ -1,9 +1,9 @@
-import * as React from "react";
-import { useParams } from "react-router-dom";
-import { PencilIcon } from "../../assets/icons";
-import "react-image-gallery/styles/css/image-gallery.css";
-import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import { PencilIcon } from '../../assets/icons';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   Button,
@@ -11,18 +11,18 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-} from "@mui/material";
+} from '@mui/material';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import ImageGallery from "react-image-gallery";
-import { Button as NewButton } from "antd";
-import { Category, ProductProps } from "../../interfaces";
-import { APIURL } from "../../config";
+import ImageGallery from 'react-image-gallery';
+import { Button as NewButton } from 'antd';
+import { Category, ProductProps } from '../../interfaces';
+import { APIURL } from '../../config';
 
 const ErizeDetails: React.FC = () => {
   const [product, setProduct] = React.useState<ProductProps | null>(null);
-  const [categoryName, setCategoryName] = React.useState<string>("");
+  const [categoryName, setCategoryName] = React.useState<string>('');
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [inputValues, setInputValues] = React.useState<
     { labelName: string; inputName: string }[]
@@ -57,7 +57,7 @@ const ErizeDetails: React.FC = () => {
     const matchedCategory = categories.find(
       (category) => category?.id === categoryId
     );
-    setCategoryName(matchedCategory?.name || "");
+    setCategoryName(matchedCategory?.name || '');
   };
 
   React.useEffect(() => {
@@ -85,16 +85,16 @@ const ErizeDetails: React.FC = () => {
     const fileName = product?.name;
     const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${product.name}`;
 
-    const downloadLink = document.createElement("a");
+    const downloadLink = document.createElement('a');
     downloadLink.href = s3DownloadUrl;
-    downloadLink.download = fileName || "downloadedFile";
+    downloadLink.download = fileName || 'downloadedFile';
 
     document.body.appendChild(downloadLink);
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
 
-    toast.success("Sənəd uğurla yükləndi!");
+    toast.success('Sənəd uğurla yükləndi!');
   };
   const handleEdit = () => {
     setOpenModal(true);
@@ -102,7 +102,7 @@ const ErizeDetails: React.FC = () => {
     const initialInputValues =
       product?.extraInput.map((input) => ({
         labelName: input.labelName,
-        inputName: input.inputName || "",
+        inputName: input.inputName || '',
       })) || [];
     setInputValues(initialInputValues);
   };
@@ -115,7 +115,7 @@ const ErizeDetails: React.FC = () => {
     try {
       if (product?.id) {
         const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/edited_${product.editedName}`;
-        const downloadLink = document.createElement("a");
+        const downloadLink = document.createElement('a');
         downloadLink.href = s3DownloadUrl;
         downloadLink.download = `${product.docName}_edited`;
 
@@ -129,11 +129,11 @@ const ErizeDetails: React.FC = () => {
     }
   };
 
-  console.log("product", product?.id);
+  console.log('product', product?.id);
 
   const handleConfirmEdit = async () => {
-    if (inputValues.some((input) => input.inputName.trim() === "")) {
-      toast.error("Zəhmət olmasa bütün xanaları doldurun");
+    if (inputValues.some((input) => input.inputName.trim() === '')) {
+      toast.error('Zəhmət olmasa bütün xanaları doldurun');
       return;
     }
 
@@ -148,29 +148,29 @@ const ErizeDetails: React.FC = () => {
         requestBody
       );
       await getProduct();
-      toast.success("Ərizəniz uğurla redaktə olundu"); // Use toast for success message
+      toast.success('Ərizəniz uğurla redaktə olundu'); // Use toast for success message
 
       // Call handleDownloadEditedFile() after handleConfirmEdit() completes successfully
       await handleDownloadEditedFile();
     } catch (error) {
       console.error(error);
-      toast.error("Error editing"); // Use toast for error message
+      toast.error('Error editing'); // Use toast for error message
     }
   };
 
   return (
-    <div className="erize-details-page">
-      <section className="erize-details-box">
-        <div className="container">
-          <div className="erize-details-content">
-            <div className="page-box">
-              <div className="text-box">
-                <p className="mid-text-s">Ərizələr</p>/<p>Ətraflı</p>
+    <div className='erize-details-page'>
+      <section className='erize-details-box'>
+        <div className='container'>
+          <div className='erize-details-content'>
+            <div className='page-box'>
+              <div className='text-box'>
+                <p className='mid-text-s'>Ərizələr</p>/<p>Ətraflı</p>
               </div>
             </div>
 
-            <div className="erize-details-text-box">
-              <div className="left-side">
+            <div className='erize-details-text-box'>
+              <div className='left-side'>
                 <div>
                   {images && images.length > 0 && (
                     <ImageGallery
@@ -182,43 +182,38 @@ const ErizeDetails: React.FC = () => {
                   )}
                 </div>
               </div>
-              <div className="right-side">
-                <div className="erize-details-action-box">
-                  <div className="erize-details-erize-box">
+              <div className='right-side'>
+                <div className='erize-details-action-box'>
+                  <div className='erize-details-erize-box'>
                     <div
-                      className="d-main-box"
-                      style={{ paddingBottom: "20px" }}
+                      className='d-main-box'
+                      style={{ paddingBottom: '20px' }}
                     >
-                      <p className="erize-name-label">Ərizə adı: </p>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Doloremque accusantium ex praesentium, magni laboriosam
-                        amet totam, debitis nihil numquam cupiditate illum
-                        delectus enim aliquid!
-                      </p>
+                      <p className='erize-name-label'>Ərizə adı: </p>
+                      <p>{product?.docName}</p>
                     </div>
                     <div
-                      className="d-main-box"
-                      style={{ paddingBottom: "20px" }}
+                      className='d-main-box'
+                      style={{ paddingBottom: '20px' }}
                     >
-                      <p className="erize-name-label">Kateqoriya adı: </p>
-                      <NewButton type="primary">
-                        {categoryName || "Ailə"}
+                      <p className='erize-name-label'>Kateqoriya adı: </p>
+                      <NewButton type='primary'>
+                        {categoryName || 'Ailə'}
                       </NewButton>
                     </div>
                   </div>
 
-                  <div className="action-buttons-box">
+                  <div className='action-buttons-box'>
                     <a
-                      target="_blank"
-                      className="btn edit-btn"
+                      target='_blank'
+                      className='btn edit-btn'
                       onClick={handleEdit}
                     >
-                      <img src={PencilIcon} alt="" />
+                      <img src={PencilIcon} alt='' />
                       Redaktə et və yüklə
                     </a>
                     <a
-                      className="btn download-btn"
+                      className='btn download-btn'
                       onClick={() => product && handleDownload(product)}
                     >
                       Yüklə
@@ -234,12 +229,12 @@ const ErizeDetails: React.FC = () => {
         <DialogTitle>Ərizəni redaktə et</DialogTitle>
         <DialogContent>
           {product?.extraInput.map((input, index) => (
-            <div key={input.id} style={{ marginBottom: "10px" }}>
+            <div key={input.id} style={{ marginBottom: '10px' }}>
               <label>{input.label}</label>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                defaultValue={input.inputName || ""}
+                defaultValue={input.inputName || ''}
                 onChange={(e) => {
                   const newInputValues = [...inputValues];
                   newInputValues[index] = {
@@ -254,7 +249,7 @@ const ErizeDetails: React.FC = () => {
               />
             </div>
           ))}
-          <Button onClick={handleConfirmEdit} color="primary">
+          <Button onClick={handleConfirmEdit} color='primary'>
             Redaktə et və yüklə
           </Button>
         </DialogContent>
