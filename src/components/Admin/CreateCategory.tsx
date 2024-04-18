@@ -33,7 +33,7 @@ const CreateCategory: React.FC = () => {
 
   const onSubmit: SubmitHandler<CategoryForm> = async (data) => {
     try {
-      await createCategory(data, auth.token);
+      await createCategory(data, auth.tokenPair.accessToken);
 
       reset();
       toast.success("Kateqoriya uğurla yaradıldı");

@@ -8,11 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Category, ProductProps } from "../../interfaces";
 import Checkbox from "@mui/material/Checkbox";
 import { toast } from "react-toastify";
-import {
-  ErizeFakeProps,
-  categoriesData,
-  documentsData,
-} from "../../data/fakeData";
+import { ErizeFakeProps } from "../../data/fakeData";
 import { CloseOutlined } from "@ant-design/icons";
 
 interface ErizeExamplePropsNew {
@@ -110,6 +106,7 @@ const AllErizeler: React.FC = () => {
         setErizeler(data);
 
         setSelectedCategory(category);
+
         setIsFilterOpen(false);
       }
     } catch (error) {
@@ -143,12 +140,11 @@ const AllErizeler: React.FC = () => {
   const handlePageChange = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
-
-  const handleDownload = (erize: ProductProps | ErizeFakeProps) => {
-    const downloadUrl = `${APIURL}/api/application/download/${erize?.id}`;
+  const handleDownload = (erize: ProductProps) => {
+    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
 
     const downloadLink = document.createElement("a");
-    downloadLink.href = downloadUrl;
+    downloadLink.href = s3DownloadUrl;
     downloadLink.download = erize?.docName || "downloadedFile";
 
     document.body.appendChild(downloadLink);
@@ -189,10 +185,9 @@ const AllErizeler: React.FC = () => {
                         <CloseOutlined onClick={() => setIsFilterOpen(false)} />
                       </div>
                       <div className="filter-mobile-box">
-                        {categoriesData.map((category) => (
+                        {categories.map((category) => (
                           <div key={category.id}>
                             <Checkbox
-                              className="checkbox"
                               checked={category.name === selectedCategory}
                               onChange={() =>
                                 handleCategoryClick2(category.name)
@@ -203,31 +198,21 @@ const AllErizeler: React.FC = () => {
                         ))}
                       </div>
 
-                      <div className="erize-box__buttons-box">
+                      {/* <div className="erize-box__buttons-box">
                         <a
                           onClick={() => setSelectedCategory(null)}
                           className="box-details-btn btn"
                         >
                           Təmizlə
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>
                 <div className="all-erizeler-filter-box">
                   {categories.map((category) => (
                     <div key={category.id}>
-                      {/* <Checkbox
-                        checked={category.name === selectedCategory}
-                        onChange={() => handleCategoryClick(category.name)}
-                      /> */}
-                      {/* {category.name} */}
-                    </div>
-                  ))}
-                  {categoriesData.map((category) => (
-                    <div key={category.id}>
                       <Checkbox
-                        className="checkbox"
                         checked={category.name === selectedCategory}
                         onChange={() => handleCategoryClick(category.name)}
                       />
@@ -240,36 +225,10 @@ const AllErizeler: React.FC = () => {
             <div className="right-content-box">
               <div className="erizeler-list-box col-12">
                 <div className="box__body">
-                  {/* {currentItems.map((erize: ErizeExamplePropsNew) => (
+                  {currentItems.map((erize: ErizeExamplePropsNew) => (
                     <div key={erize.id} className="erize-box col-12">
                       <div className="erize-box__text-box">
                         <p>{erize?.docName}</p>
-                      </div>
-                      <div className="erize-box__buttons-box">
-                        <a
-                          onClick={() => handleDetailsClick(erize)}
-                          className="box-details-btn btn"
-                        >
-                          Ətraflı
-                        </a>
-                        <a
-                          className="download-btn btn"
-                          onClick={() => handleDownload(erize)}
-                        >
-                          Yüklə
-                        </a>
-                      </div>
-                    </div>
-                  ))} */}
-                  {documentsData.slice(0, 5).map((erize: ErizeFakeProps) => (
-                    <div key={erize.id} className="erize-box col-12">
-                      <div className="erize-box__text-box">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Labore, sequi reprehenderit consequatur quam
-                          nobis eaque, in magnam quae vel provident corporis?
-                          Ea, iusto alias.
-                        </p>
                       </div>
                       <div className="erize-box__buttons-box">
                         <a

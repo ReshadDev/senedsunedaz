@@ -7,13 +7,13 @@ import {
   Bumb,
   Minus,
   Question,
-  erizeexample,
 } from "../../assets/icons";
 import SearchInput from "../../components/SearchInput";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Category, ProductProps } from "../../interfaces";
 import { APIURL } from "../../config";
+import { toast } from "react-toastify";
 
 const Erizeler: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -25,6 +25,7 @@ const Erizeler: React.FC = () => {
       if (data?.success) {
         setErizeler(data?.documents);
       }
+      console.log(erizeler);
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +60,22 @@ const Erizeler: React.FC = () => {
     deleteSpeed: 100,
   });
 
+  const handleDownload = async (product: ProductProps) => {
+    const fileName = product?.name;
+    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${product.name}`;
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = s3DownloadUrl;
+    downloadLink.download = fileName || "downloadedFile";
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    document.body.removeChild(downloadLink);
+
+    toast.success("Sənəd uğurla yükləndi!");
+  };
+
   return (
     <div id="erize">
       <main id="maincontent" className="content">
@@ -89,7 +106,7 @@ const Erizeler: React.FC = () => {
                 <div className="col-4">
                   <div className="text-box">
                     <p>15.000+</p>
-                    <p>Sənəd-sünəd</p>
+                    <p>Sənəd</p>
                   </div>
                 </div>
 
@@ -139,25 +156,6 @@ const Erizeler: React.FC = () => {
                       </Link>
                     </div>
                   ))}
-                  {Array.from({ length: 6 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="category-box col-lg-4 col-xs-6 col-sm-6 col-md-6"
-                    >
-                      <div className="category-box__heading-box">
-                        <img src={AileIcon} alt="aile sekili" />
-                        <p>Aile</p>
-                      </div>
-                      <p className="category-box__body-text">Kateqoriya adi</p>
-                      <Link
-                        to={`category/${"Aile"}`}
-                        className="category-box__footer-box"
-                      >
-                        <p>Daha çox</p>
-                        <img src={ArrowRightIcon} alt="" />
-                      </Link>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
@@ -185,7 +183,7 @@ const Erizeler: React.FC = () => {
                           <img
                             width={250}
                             height={230}
-                            src={`http://localhost:8080/uploads/images/${erize.imageName}`}
+                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
                             alt=""
                           />
                         </div>
@@ -199,45 +197,17 @@ const Erizeler: React.FC = () => {
                             >
                               Ətraflı
                             </Link>
-                            <Link className="download-btn" to="/">
+                            <a
+                              onClick={() => handleDownload(erize)}
+                              className="download-btn"
+                            >
                               Yüklə
-                            </Link>
+                            </a>
                           </div>
                         </div>
                       </div>
                     </div>
                   ))}
-
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="document-box col-xs-12 col-sm-6 col-md-6 col-lg-6"
-                  >
-                    <div className="document-main-box">
-                      <div className="document-main-box-header">Ərizə</div>
-                      <div className="document-main-box-body">
-                        <img
-                          width={250}
-                          height={230}
-                          src={erizeexample}
-                          alt=""
-                        />
-                      </div>
-                      <div className="document-main-box-footer">
-                        <p>Rus bölməsinə keçirilməyə dair ərizə</p>
-
-                        <div className="action-buttons">
-                          <Link to={`erize/1`} className="box-details-btn">
-                            Ətraflı
-                          </Link>
-                          <Link className="download-btn" to="/">
-                            Yüklə
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

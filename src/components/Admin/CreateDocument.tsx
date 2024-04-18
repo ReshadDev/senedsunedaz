@@ -1,6 +1,6 @@
-import * as React from "react";
-import axios from "axios";
-import { useForm, SubmitHandler } from "react-hook-form";
+import * as React from 'react';
+import axios from 'axios';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   TextField,
   Button,
@@ -10,11 +10,11 @@ import {
   MenuItem,
   Select,
   styled,
-} from "@mui/material";
-import { useAuth } from "../../context/auth";
-import { toast } from "react-toastify";
-import { Category } from "../../interfaces";
-import { APIURL } from "../../config";
+} from '@mui/material';
+import { useAuth } from '../../context/auth';
+import { toast } from 'react-toastify';
+import { Category } from '../../interfaces';
+import { APIURL } from '../../config';
 
 interface FormData {
   docFile: FileList;
@@ -26,24 +26,24 @@ interface FormData {
 }
 
 const FormContainer = styled(Container)({
-  marginTop: "50px",
-  padding: "20px",
-  backgroundColor: "#f5f5f5",
-  borderRadius: "8px",
+  marginTop: '50px',
+  padding: '20px',
+  backgroundColor: '#f5f5f5',
+  borderRadius: '8px',
 });
 
 const FormTextField = styled(TextField)({
-  marginBottom: "20px",
+  marginBottom: '20px',
 });
 const CategoryLabel = styled(InputLabel)({
-  marginBottom: "10px",
+  marginBottom: '10px',
 });
 
 const InputRowTextField = styled(TextField)({});
 
 const CreateDocument: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
-  const [categoryId, setCategoryId] = React.useState<string>("");
+  const [categoryId, setCategoryId] = React.useState<string>('');
 
   const [auth] = useAuth();
 
@@ -74,21 +74,21 @@ const CreateDocument: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("docFile", data.docFile[0]);
+      formData.append('docFile', data.docFile[0]);
       for (let i = 0; i < data.imageFile.length; i++) {
-        formData.append("imageFile", data.imageFile[i]);
+        formData.append('imageFile', data.imageFile[i]);
       }
-      formData.append("editDocFile", data.editDocFile[0]);
-      formData.append("docName", data.docName);
-      formData.append("iFrame", data.iFrame);
-      formData.append("inputs", JSON.stringify(inputs));
+      formData.append('editDocFile', data.editDocFile[0]);
+      formData.append('docName', data.docName);
+      formData.append('iFrame', data.iFrame);
+      formData.append('inputs', JSON.stringify(inputs));
 
       const categoryId = data.categoryId;
 
       setInputs([]);
 
       await axios.post(
-        `http://localhost:8080/api/application/upload/${categoryId}`,
+        `http://64.23.134.82/api/application/upload/${categoryId}`,
         formData,
         {
           headers: {
@@ -97,12 +97,12 @@ const CreateDocument: React.FC = () => {
         }
       );
 
-      setCategoryId("new");
+      setCategoryId('new');
 
       reset();
-      toast.success("Yeni sənəd uğurla yaradıldı!");
+      toast.success('Yeni sənəd uğurla yaradıldı!');
     } catch (error) {
-      console.error("Error uploading files:", error);
+      console.error('Error uploading files:', error);
     }
   };
 
@@ -111,7 +111,7 @@ const CreateDocument: React.FC = () => {
   >([]);
 
   const addInputRow = () => {
-    setInputs([...inputs, { labelName: "", label: "" }]);
+    setInputs([...inputs, { labelName: '', label: '' }]);
   };
 
   const removeInputRow = (index: number) => {
@@ -121,24 +121,24 @@ const CreateDocument: React.FC = () => {
   };
 
   return (
-    <FormContainer maxWidth="lg">
-      <h1 className="text-center">Create Document</h1>
+    <FormContainer maxWidth='lg'>
+      <h1 className='text-center'>Create Document</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-parts d-flex">
-          <div className="form-part-1">
+        <div className='form-parts d-flex'>
+          <div className='form-part-1'>
             <FormControl fullWidth>
-              <CategoryLabel id="category-label">
+              <CategoryLabel id='category-label'>
                 Select a Category
               </CategoryLabel>
               <Select
-                {...register("categoryId", {
-                  required: "Category is required",
+                {...register('categoryId', {
+                  required: 'Category is required',
                 })}
-                style={{ marginBottom: "20px" }}
+                style={{ marginBottom: '20px' }}
                 value={categoryId}
                 onChange={(event) => setCategoryId(event.target.value)}
-                label="Category"
+                label='Category'
                 error={Boolean(errors.categoryId)}
                 fullWidth
               >
@@ -149,44 +149,44 @@ const CreateDocument: React.FC = () => {
                 ))}
               </Select>
             </FormControl>
-            <InputLabel shrink id="docFile-label">
+            <InputLabel shrink id='docFile-label'>
               Doc File (docx)
             </InputLabel>
             <FormTextField
-              {...register("docFile", {
-                required: "docFile is required",
+              {...register('docFile', {
+                required: 'docFile is required',
               })}
-              type="file"
-              inputProps={{ accept: ".docx" }}
+              type='file'
+              inputProps={{ accept: '.docx' }}
               error={Boolean(errors.docFile)}
               helperText={errors.docFile?.message}
               fullWidth
             />
 
-            <InputLabel shrink id="docFile-label">
+            <InputLabel shrink id='docFile-label'>
               Edited File (docx)
             </InputLabel>
             <FormTextField
-              {...register("editDocFile", {
-                required: "editDocFile is required",
+              {...register('editDocFile', {
+                required: 'editDocFile is required',
               })}
-              type="file"
-              inputProps={{ accept: ".docx" }}
+              type='file'
+              inputProps={{ accept: '.docx' }}
               error={Boolean(errors.editDocFile)}
               helperText={errors.editDocFile?.message}
               fullWidth
             />
 
-            <InputLabel shrink id="docFile-label">
+            <InputLabel shrink id='docFile-label'>
               Image File (jpeg)
             </InputLabel>
             <FormTextField
-              {...register("imageFile", {
-                required: "imageFile is required",
+              {...register('imageFile', {
+                required: 'imageFile is required',
               })}
-              type="file"
+              type='file'
               inputProps={{
-                accept: "image/jpeg, image/png, image/jpg",
+                accept: 'image/jpeg, image/png, image/jpg',
                 multiple: true,
               }}
               error={Boolean(errors.imageFile)}
@@ -194,52 +194,52 @@ const CreateDocument: React.FC = () => {
               fullWidth
             />
           </div>
-          <div className="form-part-2">
+          <div className='form-part-2'>
             <FormTextField
-              {...register("docName", {
-                required: "docName is required",
+              {...register('docName', {
+                required: 'docName is required',
               })}
-              label="Document Name"
+              label='Document Name'
               error={Boolean(errors.docName)}
               helperText={errors.docName?.message}
               fullWidth
             />
 
             <FormTextField
-              {...register("iFrame", {
-                required: "iFrame is required",
+              {...register('iFrame', {
+                required: 'iFrame is required',
               })}
-              label="Link of Document"
+              label='Link of Document'
               error={Boolean(errors.iFrame)}
               helperText={errors.iFrame?.message}
               fullWidth
             />
 
-            <InputLabel shrink id="inputs-label">
+            <InputLabel shrink id='inputs-label'>
               Inputs
             </InputLabel>
             <div
               style={{
-                maxHeight: "300px",
-                overflowY: "scroll",
-                scrollBehavior: "smooth",
-                msOverflowStyle: "none",
+                maxHeight: '300px',
+                overflowY: 'scroll',
+                scrollBehavior: 'smooth',
+                msOverflowStyle: 'none',
               }}
             >
               {inputs.map((input, index) => (
                 <div
                   key={index}
                   style={{
-                    display: "flex",
-                    marginBottom: "10px",
-                    marginRight: "10px",
-                    alignItems: "center",
-                    justifyContent: "space-between",
+                    display: 'flex',
+                    marginBottom: '10px',
+                    marginRight: '10px',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                   }}
                 >
                   <InputRowTextField
-                    style={{ width: "180px" }}
-                    placeholder="Label Name"
+                    style={{ width: '180px' }}
+                    placeholder='Label Name'
                     value={input.labelName}
                     onChange={(e) => {
                       const newInputs = [...inputs];
@@ -249,8 +249,8 @@ const CreateDocument: React.FC = () => {
                     fullWidth
                   />
                   <InputRowTextField
-                    style={{ width: "180px" }}
-                    placeholder="Label"
+                    style={{ width: '180px' }}
+                    placeholder='Label'
                     value={input.label}
                     onChange={(e) => {
                       const newInputs = [...inputs];
@@ -261,8 +261,8 @@ const CreateDocument: React.FC = () => {
                   />
                   <Button
                     onClick={() => removeInputRow(index)}
-                    color="error"
-                    variant="contained"
+                    color='error'
+                    variant='contained'
                   >
                     Remove
                   </Button>
@@ -271,9 +271,9 @@ const CreateDocument: React.FC = () => {
             </div>
             <Button
               onClick={addInputRow}
-              style={{ marginTop: "20px" }}
-              color="primary"
-              variant="contained"
+              style={{ marginTop: '20px' }}
+              color='primary'
+              variant='contained'
             >
               Yeni Input yarat
             </Button>
@@ -281,11 +281,11 @@ const CreateDocument: React.FC = () => {
         </div>
 
         <Button
-          type="submit"
-          variant="contained"
-          color="primary"
+          type='submit'
+          variant='contained'
+          color='primary'
           fullWidth
-          style={{ marginTop: "20px" }}
+          style={{ marginTop: '20px' }}
         >
           Upload
         </Button>
