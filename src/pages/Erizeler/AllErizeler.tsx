@@ -40,7 +40,7 @@ const AllErizeler: React.FC = () => {
 
   const getAllDocuments = async () => {
     try {
-      const { data } = await axios.get(`${APIURL}/api/application/findAll/`);
+      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
       if (data?.success) {
         setErizeler(data?.documents);
       }
@@ -56,7 +56,7 @@ const AllErizeler: React.FC = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${APIURL}/api/category/getAllCategories/`
+        `${APIURL}/api/category/getAllCategories`
       );
       if (data?.success) {
         setCategories(data?.categories);
