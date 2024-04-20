@@ -1,15 +1,15 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-import { CaretLeft, CaretRight, FilterIcon } from "../../assets/icons";
-import ReactPaginate from "react-paginate";
-import axios from "axios";
-import { APIURL, ITEMS_PER_PAGE } from "../../config";
-import { useNavigate } from "react-router-dom";
-import { Category, ProductProps } from "../../interfaces";
-import Checkbox from "@mui/material/Checkbox";
-import { toast } from "react-toastify";
-import { ErizeFakeProps } from "../../data/fakeData";
-import { CloseOutlined } from "@ant-design/icons";
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import { CaretLeft, CaretRight, FilterIcon } from '../../assets/icons';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import { APIURL, ITEMS_PER_PAGE } from '../../config';
+import { useNavigate } from 'react-router-dom';
+import { Category, ProductProps } from '../../interfaces';
+import Checkbox from '@mui/material/Checkbox';
+import { toast } from 'react-toastify';
+import { ErizeFakeProps } from '../../data/fakeData';
+import { CloseOutlined } from '@ant-design/icons';
 
 interface ErizeExamplePropsNew {
   id: number;
@@ -31,7 +31,7 @@ const AllErizeler: React.FC = () => {
   const [erizeler, setErizeler] = React.useState<ErizeExamplePropsNew[]>([]);
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
   const [isFilterOpen, setIsFilterOpen] = React.useState<boolean>(false);
 
   const toggleFilter = () => {
@@ -40,7 +40,7 @@ const AllErizeler: React.FC = () => {
 
   const getAllDocuments = async () => {
     try {
-      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
+      const { data } = await axios.get(`${APIURL}/api/application/findAll/`);
       if (data?.success) {
         setErizeler(data?.documents);
       }
@@ -56,7 +56,7 @@ const AllErizeler: React.FC = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${APIURL}/api/category/getAllCategories`
+        `${APIURL}/api/category/getAllCategories/`
       );
       if (data?.success) {
         setCategories(data?.categories);
@@ -89,7 +89,7 @@ const AllErizeler: React.FC = () => {
         setSelectedCategory(category);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error('Error fetching products:', error);
     }
   };
 
@@ -110,7 +110,7 @@ const AllErizeler: React.FC = () => {
         setIsFilterOpen(false);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error('Error fetching products:', error);
     }
   };
 
@@ -127,7 +127,7 @@ const AllErizeler: React.FC = () => {
   };
 
   const filteredItems = erizeler.filter((erize) => {
-    const searchTerms = searchTerm.split(" ").filter(Boolean);
+    const searchTerms = searchTerm.split(' ').filter(Boolean);
     return searchTerms.every((term) =>
       erize.docName.toLowerCase().includes(term.toLowerCase())
     );
@@ -143,48 +143,48 @@ const AllErizeler: React.FC = () => {
   const handleDownload = (erize: ProductProps) => {
     const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
 
-    const downloadLink = document.createElement("a");
+    const downloadLink = document.createElement('a');
     downloadLink.href = s3DownloadUrl;
-    downloadLink.download = erize?.docName || "downloadedFile";
+    downloadLink.download = erize?.docName || 'downloadedFile';
 
     document.body.appendChild(downloadLink);
 
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
-    toast.success("Sənəd uğurla yükləndi!");
+    toast.success('Sənəd uğurla yükləndi!');
   };
 
   return (
-    <div className="all-erizeler">
-      <div className="container">
-        <div className="all-erizeler-content">
-          <div className="box__heading">
+    <div className='all-erizeler'>
+      <div className='container'>
+        <div className='all-erizeler-content'>
+          <div className='box__heading'>
             <p>Bütün Ərizələr</p>
           </div>
 
-          <div className="all-erizeler-content-box">
-            <div className="left-content-box">
-              <div className="all-erizeler-search-box">
-                <div className="all-erizeler-input-box">
+          <div className='all-erizeler-content-box'>
+            <div className='left-content-box'>
+              <div className='all-erizeler-search-box'>
+                <div className='all-erizeler-input-box'>
                   <TextField
-                    label="Search"
-                    variant="outlined"
+                    label='Search'
+                    variant='outlined'
                     fullWidth
                     value={searchTerm}
                     onChange={handleSearchChange}
                   />
-                  <div className="filter-icon-mobile" onClick={toggleFilter}>
-                    <img src={FilterIcon} alt="" />
+                  <div className='filter-icon-mobile' onClick={toggleFilter}>
+                    <img src={FilterIcon} alt='' />
                   </div>
 
                   {isFilterOpen && (
-                    <div className="offcanvas-right-sidebar">
-                      <div className="offcanvas-text-box">
+                    <div className='offcanvas-right-sidebar'>
+                      <div className='offcanvas-text-box'>
                         <p>Kateqoriyaya görə filterlə</p>
                         <CloseOutlined onClick={() => setIsFilterOpen(false)} />
                       </div>
-                      <div className="filter-mobile-box">
+                      <div className='filter-mobile-box'>
                         {categories.map((category) => (
                           <div key={category.id}>
                             <Checkbox
@@ -209,7 +209,7 @@ const AllErizeler: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className="all-erizeler-filter-box">
+                <div className='all-erizeler-filter-box'>
                   {categories.map((category) => (
                     <div key={category.id}>
                       <Checkbox
@@ -222,23 +222,23 @@ const AllErizeler: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="right-content-box">
-              <div className="erizeler-list-box col-12">
-                <div className="box__body">
+            <div className='right-content-box'>
+              <div className='erizeler-list-box col-12'>
+                <div className='box__body'>
                   {currentItems.map((erize: ErizeExamplePropsNew) => (
-                    <div key={erize.id} className="erize-box col-12">
-                      <div className="erize-box__text-box">
+                    <div key={erize.id} className='erize-box col-12'>
+                      <div className='erize-box__text-box'>
                         <p>{erize?.docName}</p>
                       </div>
-                      <div className="erize-box__buttons-box">
+                      <div className='erize-box__buttons-box'>
                         <a
                           onClick={() => handleDetailsClick(erize)}
-                          className="box-details-btn btn"
+                          className='box-details-btn btn'
                         >
                           Ətraflı
                         </a>
                         <a
-                          className="download-btn btn"
+                          className='download-btn btn'
                           onClick={() => handleDownload(erize)}
                         >
                           Yüklə
@@ -254,15 +254,15 @@ const AllErizeler: React.FC = () => {
 
         {currentItems.length > 0 && (
           <ReactPaginate
-            previousLabel={<img src={CaretLeft} alt="Previous" />}
-            nextLabel={<img src={CaretRight} alt="Next" />}
-            breakLabel={"..."}
+            previousLabel={<img src={CaretLeft} alt='Previous' />}
+            nextLabel={<img src={CaretRight} alt='Next' />}
+            breakLabel={'...'}
             pageCount={pageCount}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageChange}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
           />
         )}
       </div>
