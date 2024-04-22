@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
             </div>
 
             <div className='footItem__text'>
-              <a href='/https://maps.app.goo.gl/CHdxpnW1LjBBA7UQ8'>
+              <a href='https://maps.app.goo.gl/CHdxpnW1LjBBA7UQ8'>
                 Biz xəritədə
               </a>
             </div>
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           <div className='foot__item col-4'>
-            <div className='footItem__title'>Bizimle Qalın</div>
+            <div className='footItem__title'>Bizimlə Qalın</div>
             <div className='social'>
               <a
                 href='https://www.facebook.com/senedsuned.az?mibextid=LQQJ4d'
