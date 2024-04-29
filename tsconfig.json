@@ -29,6 +29,6 @@
     "src/context/search.jsx",
     "src/components/Admin/AdminPanel.tsx",
     "src/routes/AdminProtectedRoute.tsx"
-  ],
+, "src/context/Down.jsx"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

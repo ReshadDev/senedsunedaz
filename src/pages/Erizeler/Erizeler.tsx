@@ -14,6 +14,7 @@ import axios from 'axios';
 import { Category, ProductProps } from '../../interfaces';
 import { APIURL } from '../../config';
 import { toast } from 'react-toastify';
+import { useDownloadCount } from '../../context/Down';
 
 const Erizeler: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -60,6 +61,9 @@ const Erizeler: React.FC = () => {
     deleteSpeed: 100,
   });
 
+  const { incrementDownloadCount } = useDownloadCount();
+  const { downloadCount } = useDownloadCount();
+
   const handleDownload = async (product: ProductProps) => {
     const fileName = product?.name;
     const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${product.name}`;
@@ -74,6 +78,8 @@ const Erizeler: React.FC = () => {
     document.body.removeChild(downloadLink);
 
     toast.success('Sənəd uğurla yükləndi!');
+
+    incrementDownloadCount();
   };
 
   return (
@@ -106,7 +112,7 @@ const Erizeler: React.FC = () => {
                 <div className='col-4'>
                   <div className='text-box'>
                     <p>140</p>
-                    <p>Ziyarətçi sayı</p>
+                    <p>Ziyarətçi</p>
                   </div>
                 </div>
 
@@ -119,7 +125,7 @@ const Erizeler: React.FC = () => {
 
                 <div className='col-4'>
                   <div className='text-box'>
-                    <p>1867</p>
+                    <p>{downloadCount}</p>
                     <p>Yükləmə</p>
                   </div>
                 </div>
@@ -208,16 +214,126 @@ const Erizeler: React.FC = () => {
                       </div>
                     </div>
                   ))}
+                {/* {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div
+                      key={index}
+                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
+                    >
+                      <div className='document-main-box'>
+                        <div className='document-main-box-header'>Ərizə</div>
+                        <div className='document-main-box-body'>
+                          <img
+                            width={250}
+                            height={230}
+                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                            alt=''
+                          />
+                        </div>
+                        <div className='document-main-box-footer'>
+                          <p>{erize.docName}</p>
+
+                          <div className='action-buttons'>
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className='box-details-btn'
+                            >
+                              Ətraflı
+                            </Link>
+                            <a
+                              onClick={() => handleDownload(erize)}
+                              className='download-btn'
+                            >
+                              Yüklə
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div
+                      key={index}
+                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
+                    >
+                      <div className='document-main-box'>
+                        <div className='document-main-box-header'>Ərizə</div>
+                        <div className='document-main-box-body'>
+                          <img
+                            width={250}
+                            height={230}
+                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                            alt=''
+                          />
+                        </div>
+                        <div className='document-main-box-footer'>
+                          <p>{erize.docName}</p>
+
+                          <div className='action-buttons'>
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className='box-details-btn'
+                            >
+                              Ətraflı
+                            </Link>
+                            <a
+                              onClick={() => handleDownload(erize)}
+                              className='download-btn'
+                            >
+                              Yüklə
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div
+                      key={index}
+                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
+                    >
+                      <div className='document-main-box'>
+                        <div className='document-main-box-header'>Ərizə</div>
+                        <div className='document-main-box-body'>
+                          <img
+                            width={250}
+                            height={230}
+                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                            alt=''
+                          />
+                        </div>
+                        <div className='document-main-box-footer'>
+                          <p>{erize.docName}</p>
+
+                          <div className='action-buttons'>
+                            <Link
+                              to={`erize/${erize.id}`}
+                              className='box-details-btn'
+                            >
+                              Ətraflı
+                            </Link>
+                            <a
+                              onClick={() => handleDownload(erize)}
+                              className='download-btn'
+                            >
+                              Yüklə
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))} */}
               </div>
             </div>
           </div>
         </section>
 
-        <section
-          className='about-us-banner'
-          style={{ paddingBottom: '60px' }}
-          id='about'
-        >
+        <section className='about-us-banner' id='about'>
           <div className='container'>
             <div className='about-us-content'>
               <div className='about-us-content-box'>

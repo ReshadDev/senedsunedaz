@@ -55,6 +55,7 @@ export const CVContent = ({
   experienceCount,
   languageCount,
   certificateCount,
+  hobbyCount,
 }) => {
   return (
     <Document>
@@ -70,7 +71,7 @@ export const CVContent = ({
 
           {/* Personal Information */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Personal Information</Text>
+            <Text style={styles.sectionHeader}>Şəxsi məlumatlar</Text>
             <View>
               <Text style={styles.bodyText}>Email: {watch('email')}</Text>
               <Text style={styles.bodyText}>Phone: {watch('phoneNumber')}</Text>
@@ -87,7 +88,7 @@ export const CVContent = ({
 
           {/* Education */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Education</Text>
+            <Text style={styles.sectionHeader}>Təhsil</Text>
             {Array.from({ length: schoolCount }).map((_, index) => (
               <View key={index} style={{ marginBottom: '10px' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
@@ -108,7 +109,7 @@ export const CVContent = ({
 
           {/* Experience */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Experience</Text>
+            <Text style={styles.sectionHeader}>İş təcrübəsi</Text>
             {Array.from({ length: experienceCount }).map((_, index) => (
               <View key={index} style={{ marginBottom: '10px' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
@@ -133,7 +134,7 @@ export const CVContent = ({
 
           {/* Language */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Language</Text>
+            <Text style={styles.sectionHeader}>Dil bilikləri </Text>
             {Array.from({ length: languageCount }).map((_, index) => (
               <Text key={index} style={styles.bodyText}>
                 {watch(`language-${index}`)} ({watch(`level-${index}`)})
@@ -143,7 +144,7 @@ export const CVContent = ({
 
           {/* Certificate */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Certificate</Text>
+            <Text style={styles.sectionHeader}>Sertifikatlar</Text>
             {Array.from({ length: certificateCount }).map((_, index) => (
               <Link key={index} src={watch(`certificate-${index}`)}>
                 {watch(`certificate-${index}`)}
@@ -153,8 +154,13 @@ export const CVContent = ({
 
           {/* Hobby */}
           <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Hobby</Text>
+            <Text style={styles.sectionHeader}>Hobbilər</Text>
             <Text style={styles.bodyText}>{watch(`hobby`)}</Text>
+            {Array.from({ length: hobbyCount }).map((_, index) => (
+              <Text key={index} style={styles.bodyText}>
+                {watch(`hobby-${index}`)}
+              </Text>
+            ))}
           </View>
         </View>
       </Page>
