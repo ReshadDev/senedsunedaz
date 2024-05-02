@@ -55,7 +55,7 @@ export const CVContent = ({
   experienceCount,
   languageCount,
   certificateCount,
-  hobbyCount,
+  hobbyCount, 
 }) => {
   return (
     <Document>

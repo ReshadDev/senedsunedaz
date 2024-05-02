@@ -61,6 +61,8 @@ const CVForm: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log('Name', name);
+    console.log('Value', value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -93,7 +95,6 @@ const CVForm: React.FC = () => {
   };
 
   const validateEmail = (email: string): boolean => {
-    // Regular expression to validate email format
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
@@ -103,35 +104,35 @@ const CVForm: React.FC = () => {
     switch (step) {
       case 1:
         if (formData.name.trim() === '') {
-          stepErrors.name = 'Name is required';
+          stepErrors.name = 'Adınız';
         }
         if (formData.surname.trim() === '') {
-          stepErrors.surname = 'Surname is required';
+          stepErrors.surname = 'Soyadınız';
         }
         if (formData.email.trim() === '') {
-          stepErrors.email = 'Email is required';
+          stepErrors.email = 'Emailiniz';
         } else if (!validateEmail(formData.email)) {
-          stepErrors.email = 'Invalid email format';
+          stepErrors.email = 'Düzgün mail formatı deyil';
         }
         if (formData.phoneNumber.trim() === '') {
-          stepErrors.phoneNumber = 'Phone Number is required';
+          stepErrors.phoneNumber = 'Nömrəniz';
         }
         break;
       case 2:
         if (formData.professionName.trim() === '') {
-          stepErrors.professionName = 'Profession Name is required';
+          stepErrors.professionName = 'İxtisasınız';
         }
         if (formData.universityName.trim() === '') {
-          stepErrors.universityName = 'University Name is required';
+          stepErrors.universityName = 'Universitetiniz';
         }
         if (formData.schoolStartDate.trim() === '') {
-          stepErrors.schoolStartDate = 'Scrhool start date is required';
+          stepErrors.schoolStartDate = 'Tarix';
         }
         if (formData.schoolEndDate.trim() === '') {
-          stepErrors.schoolEndDate = 'Scrhool end date is required';
+          stepErrors.schoolEndDate = 'Tarix';
         }
         if (formData.studyDegree.trim() === '') {
-          stepErrors.studyDegree = 'Study degree is required';
+          stepErrors.studyDegree = 'Dereceniz ';
         }
 
         break;
@@ -241,7 +242,7 @@ const CVForm: React.FC = () => {
                 {...register(`workStartDate-${i}`, {
                   required: 'startDate is required',
                 })}
-                placeholder='mm.dd.yyyy'
+                placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
@@ -258,7 +259,7 @@ const CVForm: React.FC = () => {
                 {...register(`workEndDate-${i}`, {
                   required: 'endDate is required',
                 })}
-                placeholder='mm.dd.yyyy'
+                placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
@@ -332,9 +333,8 @@ const CVForm: React.FC = () => {
                 İxtisasın adı
               </InputLabel>
               <FormTextField
-                {...register(`profession-${i}`, {
-                  required: 'profession is required',
-                })}
+                {...register(`profession-${i}`)}
+                
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
@@ -349,9 +349,7 @@ const CVForm: React.FC = () => {
                 Universitetin adı
               </InputLabel>
               <FormTextField
-                {...register(`university-${i}`, {
-                  required: 'university is required',
-                })}
+                {...register(`university-${i}`)}
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
@@ -368,10 +366,8 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduStartDate-${i}`, {
-                  required: 'eduStartDate is required',
-                })}
-                placeholder='mm.dd.yyyy'
+                {...register(`eduStartDate-${i}`)}
+                placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
@@ -385,10 +381,8 @@ const CVForm: React.FC = () => {
                 Bitmə tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduEndDate-${i}`, {
-                  required: 'eduEndDate is required',
-                })}
-                placeholder='mm.dd.yyyy'
+                {...register(`eduEndDate-${i}`)}
+                placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
@@ -404,9 +398,7 @@ const CVForm: React.FC = () => {
                 Təhsil dərəcəsi
               </InputLabel>
               <FormTextField
-                {...register(`eduType-${i}`, {
-                  required: 'eduType is required',
-                })}
+                {...register(`eduType-${i}`)}
                 placeholder='Bakalavr'
                 fullWidth
                 type='text'
@@ -421,9 +413,7 @@ const CVForm: React.FC = () => {
                 GPA
               </InputLabel>
               <FormTextField
-                {...register(`eduGpa-${i}`, {
-                  required: 'eduGpa is required',
-                })}
+                {...register(`eduGpa-${i}`)}
                 placeholder='00'
                 fullWidth
                 type='number'
@@ -436,9 +426,7 @@ const CVForm: React.FC = () => {
                 Ölkə
               </InputLabel>
               <FormTextField
-                {...register(`eduCountry-${i}`, {
-                  required: 'eduCountry is required',
-                })}
+                {...register(`eduCountry-${i}`)}
                 placeholder='Azərbaycan'
                 fullWidth
                 type='text'
@@ -449,9 +437,7 @@ const CVForm: React.FC = () => {
                 Şəhər
               </InputLabel>
               <FormTextField
-                {...register(`eduCity-${i}`, {
-                  required: 'eduCity is required',
-                })}
+                {...register(`eduCity-${i}`)}
                 placeholder='Baku'
                 fullWidth
                 type='text'

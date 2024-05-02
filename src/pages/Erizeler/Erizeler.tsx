@@ -175,7 +175,7 @@ const Erizeler: React.FC = () => {
                 <p>Ən çox axtarılan ərizələr</p>
               </div>
 
-              <div className='mostly-used-documents-box'>
+              {/* <div className='mostly-used-documents-box'>
                 {erizeler
                   .slice(0, 8)
                   .map((erize: ProductProps, index: number) => (
@@ -214,40 +214,40 @@ const Erizeler: React.FC = () => {
                       </div>
                     </div>
                   ))}
-                {/* {erizeler
+              </div> */}
+
+              <div className='sened-documents-box'>
+                {erizeler
                   .slice(0, 8)
                   .map((erize: ProductProps, index: number) => (
-                    <div
-                      key={index}
-                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
-                    >
-                      <div className='document-main-box'>
-                        <div className='document-main-box-header'>Ərizə</div>
-                        <div className='document-main-box-body'>
-                          <img
-                            width={250}
-                            height={230}
-                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                            alt=''
-                          />
+                    <div className='sened-box col-lg-3' key={index}>
+                      <div className='sened-image'>
+                        <img
+                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                          className='img-fluid'
+                        />
+                      </div>
+                      <div className='sened-box-body'>
+                        <div className='sened-text'>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
+                            delectus, assumenda sint ad!
+                          </p>
                         </div>
-                        <div className='document-main-box-footer'>
-                          <p>{erize.docName}</p>
-
-                          <div className='action-buttons'>
-                            <Link
-                              to={`erize/${erize.id}`}
-                              className='box-details-btn'
-                            >
-                              Ətraflı
-                            </Link>
-                            <a
-                              onClick={() => handleDownload(erize)}
-                              className='download-btn'
-                            >
-                              Yüklə
-                            </a>
-                          </div>
+                        <div className='sened-buttons'>
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className='box-details-btn'
+                          >
+                            Ətraflı
+                          </Link>
+                          <a
+                            onClick={() => handleDownload(erize)}
+                            className='download-btn'
+                          >
+                            Yüklə
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -255,37 +255,34 @@ const Erizeler: React.FC = () => {
                 {erizeler
                   .slice(0, 8)
                   .map((erize: ProductProps, index: number) => (
-                    <div
-                      key={index}
-                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
-                    >
-                      <div className='document-main-box'>
-                        <div className='document-main-box-header'>Ərizə</div>
-                        <div className='document-main-box-body'>
-                          <img
-                            width={250}
-                            height={230}
-                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                            alt=''
-                          />
+                    <div className='sened-box col-lg-3' key={index}>
+                      <div className='sened-image'>
+                        <img
+                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                          className='img-fluid'
+                        />
+                      </div>
+                      <div className='sened-box-body'>
+                        <div className='sened-text'>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
+                            delectus, assumenda sint ad!
+                          </p>
                         </div>
-                        <div className='document-main-box-footer'>
-                          <p>{erize.docName}</p>
-
-                          <div className='action-buttons'>
-                            <Link
-                              to={`erize/${erize.id}`}
-                              className='box-details-btn'
-                            >
-                              Ətraflı
-                            </Link>
-                            <a
-                              onClick={() => handleDownload(erize)}
-                              className='download-btn'
-                            >
-                              Yüklə
-                            </a>
-                          </div>
+                        <div className='sened-buttons'>
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className='box-details-btn'
+                          >
+                            Ətraflı
+                          </Link>
+                          <a
+                            onClick={() => handleDownload(erize)}
+                            className='download-btn'
+                          >
+                            Yüklə
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -293,41 +290,73 @@ const Erizeler: React.FC = () => {
                 {erizeler
                   .slice(0, 8)
                   .map((erize: ProductProps, index: number) => (
-                    <div
-                      key={index}
-                      className='document-box col-xs-12 col-sm-6 col-md-6 col-lg-6'
-                    >
-                      <div className='document-main-box'>
-                        <div className='document-main-box-header'>Ərizə</div>
-                        <div className='document-main-box-body'>
-                          <img
-                            width={250}
-                            height={230}
-                            src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                            alt=''
-                          />
+                    <div className='sened-box col-lg-3' key={index}>
+                      <div className='sened-image'>
+                        <img
+                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                          className='img-fluid'
+                        />
+                      </div>
+                      <div className='sened-box-body'>
+                        <div className='sened-text'>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
+                            delectus, assumenda sint ad!
+                          </p>
                         </div>
-                        <div className='document-main-box-footer'>
-                          <p>{erize.docName}</p>
-
-                          <div className='action-buttons'>
-                            <Link
-                              to={`erize/${erize.id}`}
-                              className='box-details-btn'
-                            >
-                              Ətraflı
-                            </Link>
-                            <a
-                              onClick={() => handleDownload(erize)}
-                              className='download-btn'
-                            >
-                              Yüklə
-                            </a>
-                          </div>
+                        <div className='sened-buttons'>
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className='box-details-btn'
+                          >
+                            Ətraflı
+                          </Link>
+                          <a
+                            onClick={() => handleDownload(erize)}
+                            className='download-btn'
+                          >
+                            Yüklə
+                          </a>
                         </div>
                       </div>
                     </div>
-                  ))} */}
+                  ))}
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div className='sened-box col-lg-3' key={index}>
+                      <div className='sened-image'>
+                        <img
+                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
+                          className='img-fluid'
+                        />
+                      </div>
+                      <div className='sened-box-body'>
+                        <div className='sened-text'>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
+                            delectus, assumenda sint ad!
+                          </p>
+                        </div>
+                        <div className='sened-buttons'>
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className='box-details-btn'
+                          >
+                            Ətraflı
+                          </Link>
+                          <a
+                            onClick={() => handleDownload(erize)}
+                            className='download-btn'
+                          >
+                            Yüklə
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
