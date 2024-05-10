@@ -49,13 +49,25 @@ const styles = StyleSheet.create({
   },
 });
 
-export const CVContent = ({
-  watch,
-  schoolCount,
+interface CVContentProps {
+  certificateCount: number;
+  experienceCount: number;
+  languageCount: number;
+  schoolCount: number;
+  hobbyCount: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  watch: any;
+  isCheckboxChecked: boolean[]; // Update the prop type
+}
+
+const CVContent: React.FC<CVContentProps> = ({
+  certificateCount,
   experienceCount,
   languageCount,
-  certificateCount,
-  hobbyCount, 
+  schoolCount,
+  hobbyCount,
+  watch,
+  isCheckboxChecked,
 }) => {
   return (
     <Document>
@@ -92,16 +104,16 @@ export const CVContent = ({
             {Array.from({ length: schoolCount }).map((_, index) => (
               <View key={index} style={{ marginBottom: '10px' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                  {watch(`eduType-${index}`)} of {watch(`profession-${index}`)}
+                  {watch(`eduType${index}`)} of {watch(`profession${index}`)}
                 </Text>
                 <Text style={styles.bodyText}>
-                  Institution: {watch(`university-${index}`)}
+                  Institution: {watch(`university${index}`)}
                 </Text>
                 <Text style={styles.bodyText}>
-                  Start: {watch(`eduStartDate-${index}`)}
+                  Start: {watch(`eduStartDate${index}`)}
                 </Text>
                 <Text style={styles.bodyText}>
-                  Graduation: {watch(`eduEndDate-${index}`)}
+                  Graduation: {watch(`eduEndDate${index}`)}
                 </Text>
               </View>
             ))}
@@ -113,12 +125,14 @@ export const CVContent = ({
             {Array.from({ length: experienceCount }).map((_, index) => (
               <View key={index} style={{ marginBottom: '10px' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                  {watch(`dutyname-${index}`)}
+                  {watch(`dutyname${index}`)}
                 </Text>
-                <Text style={styles.bodyText}>{watch(`work-${index}`)}</Text>
+                <Text style={styles.bodyText}>{watch(`work${index}`)}</Text>
                 <Text style={styles.bodyText}>
-                  {watch(`workStartDate-${index}`)} -{' '}
-                  {watch(`workEndDate-${index}`)}
+                  {watch(`workStartDate${index}`)} -{' '}
+                  {isCheckboxChecked[index]
+                    ? 'Davam edir'
+                    : watch(`workEndDate${index}`)}
                 </Text>
                 <View>
                   <Text style={{ fontWeight: 'bold', fontSize: '12px' }}>
@@ -167,3 +181,5 @@ export const CVContent = ({
     </Document>
   );
 };
+
+export default CVContent;

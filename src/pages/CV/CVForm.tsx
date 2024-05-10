@@ -16,7 +16,7 @@ import {
   cvtm1,
   cvtm2,
 } from '../../assets/icons';
-import { CVContent } from './CvContent';
+import CVContent from './CvContent';
 
 const FormTextField = styled(TextField)({
   marginBottom: '15px',
@@ -27,35 +27,39 @@ interface FormData {
   surname: string;
   email: string;
   phoneNumber: string;
-  professionName: string;
-  universityName: string;
-  schoolStartDate: string;
-  schoolEndDate: string;
-  studyDegree: string;
-  positionName: string;
-  workplaceName: string;
-  workStartDate: string;
-  workEndDate: string;
+  profession0: string;
+  university0: string;
+  eduStartDate0: string;
+  eduEndDate0: string;
+  eduType0: string;
+  dutyname0: string;
+  work0: string;
+  workStartDate0: string;
+  workEndDate0: string;
 }
 
 const CVForm: React.FC = () => {
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const [currentStep, setCurrentStep] = React.useState<number>(1);
 
+  const [isCheckboxChecked, setIsCheckboxChecked] = React.useState<boolean[]>(
+    []
+  );
+
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     surname: '',
     email: '',
     phoneNumber: '',
-    professionName: '',
-    universityName: '',
-    schoolStartDate: '',
-    schoolEndDate: '',
-    studyDegree: '',
-    positionName: '',
-    workplaceName: '',
-    workStartDate: '',
-    workEndDate: '',
+    profession0: '',
+    university0: '',
+    eduStartDate0: '',
+    eduEndDate0: '',
+    eduType0: '',
+    dutyname0: '',
+    work0: '',
+    workStartDate0: '',
+    workEndDate0: '',
   });
   const [errors, setErrors] = React.useState<Partial<FormData>>({});
 
@@ -87,10 +91,23 @@ const CVForm: React.FC = () => {
       }));
     }
   };
+
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { checked } = event.target;
+    setIsCheckboxChecked((prev) => {
+      const newState = [...prev]; // Create a copy of the previous state array
+      newState[index] = checked; // Update the state for the specific checkbox
+      return newState; // Return the updated state
+    });
+  };
+
   const handleNextStep = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep((prevStep) => prevStep + 1);
-      setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
+    setCurrentStep((prevStep) => prevStep + 1);
+    setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
     }
   };
 
@@ -119,35 +136,35 @@ const CVForm: React.FC = () => {
         }
         break;
       case 2:
-        if (formData.professionName.trim() === '') {
-          stepErrors.professionName = 'İxtisasınız';
+        if (formData.profession0.trim() === '') {
+          stepErrors.profession0 = 'İxtisasınız';
         }
-        if (formData.universityName.trim() === '') {
-          stepErrors.universityName = 'Universitetiniz';
+        if (formData.university0.trim() === '') {
+          stepErrors.university0 = 'Universitetiniz';
         }
-        if (formData.schoolStartDate.trim() === '') {
-          stepErrors.schoolStartDate = 'Tarix';
+        if (formData.eduStartDate0.trim() === '') {
+          stepErrors.eduStartDate0 = 'Tarix';
         }
-        if (formData.schoolEndDate.trim() === '') {
-          stepErrors.schoolEndDate = 'Tarix';
+        if (formData.eduEndDate0.trim() === '') {
+          stepErrors.eduEndDate0 = 'Tarix';
         }
-        if (formData.studyDegree.trim() === '') {
-          stepErrors.studyDegree = 'Dereceniz ';
+        if (formData.eduType0.trim() === '') {
+          stepErrors.eduType0 = 'Dereceniz ';
         }
 
         break;
       case 3:
-        if (formData.positionName.trim() === '') {
-          stepErrors.positionName = 'Position Name is required';
+        if (formData.dutyname0.trim() === '') {
+          stepErrors.dutyname0 = 'Position Name is required';
         }
-        if (formData.workplaceName.trim() === '') {
-          stepErrors.workplaceName = 'Workplace Name is required';
+        if (formData.work0.trim() === '') {
+          stepErrors.work0 = 'Workplace Name is required';
         }
-        if (formData.workStartDate.trim() === '') {
-          stepErrors.workStartDate = 'Work start date is required';
+        if (formData.workStartDate0.trim() === '') {
+          stepErrors.workStartDate0 = 'Work start date is required';
         }
-        if (formData.workEndDate.trim() === '') {
-          stepErrors.workEndDate = 'Work end date is required';
+        if (formData.workEndDate0.trim() === '') {
+          stepErrors.workEndDate0 = 'Work end date is required';
         }
         break;
       default:
@@ -203,15 +220,15 @@ const CVForm: React.FC = () => {
                 Vəzifənin adı
               </InputLabel>
               <FormTextField
-                {...register(`dutyname-${i}`, {
+                {...register(`dutyname${i}`, {
                   required: 'dutyname is required',
                 })}
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.positionName}
-                helperText={errors.positionName}
+                error={!!errors.dutyname0}
+                helperText={errors.dutyname0}
                 required
               />
             </div>
@@ -220,15 +237,15 @@ const CVForm: React.FC = () => {
                 İş yerinin adı
               </InputLabel>
               <FormTextField
-                {...register(`work-${i}`, {
+                {...register(`work${i}`, {
                   required: 'work is required',
                 })}
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.workplaceName}
-                helperText={errors.workplaceName}
+                error={!!errors.work0}
+                helperText={errors.work0}
                 required
               />
             </div>
@@ -239,33 +256,42 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`workStartDate-${i}`, {
+                {...register(`workStartDate${i}`, {
                   required: 'startDate is required',
                 })}
                 placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.workStartDate}
-                helperText={errors.workStartDate}
+                error={!!errors.workStartDate0}
+                helperText={errors.workStartDate0}
                 required
               />
             </div>
             <div className='form-element'>
-              <InputLabel shrink className='label-text'>
-                Bitmə tarixi
-              </InputLabel>
+              <div style={{ display: 'flex' }}>
+                <InputLabel shrink className='label-text'>
+                  Bitmə tarixi
+                </InputLabel>
+                <input
+                  type='checkbox'
+                  checked={isCheckboxChecked[i]} // Use separate state for each checkbox
+                  onChange={(e) => handleCheckboxChange(e, i)} // Pass index to identify which checkbox is clicked
+                />
+                <label style={{ marginLeft: '5px' }}>Davam edirsə kliklə</label>
+              </div>
               <FormTextField
-                {...register(`workEndDate-${i}`, {
+                {...register(`workEndDate${i}`, {
                   required: 'endDate is required',
                 })}
-                placeholder='dd.mm.yyyy'
+                placeholder={isCheckboxChecked ? 'Davam edir' : 'dd.mm.yyyy'}
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.workEndDate}
-                helperText={errors.workEndDate}
+                error={!!errors.workEndDate0}
+                helperText={errors.workEndDate0}
                 required
+                disabled={isCheckboxChecked[i]}
               />
             </div>
           </div>
@@ -333,14 +359,13 @@ const CVForm: React.FC = () => {
                 İxtisasın adı
               </InputLabel>
               <FormTextField
-                {...register(`profession-${i}`)}
-                
+                {...register(`profession${i}`)}
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.professionName}
-                helperText={errors.professionName}
+                error={!!errors.profession0}
+                helperText={errors.profession0}
                 required
               />
             </div>
@@ -349,13 +374,13 @@ const CVForm: React.FC = () => {
                 Universitetin adı
               </InputLabel>
               <FormTextField
-                {...register(`university-${i}`)}
+                {...register(`university${i}`)}
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.universityName}
-                helperText={errors.universityName}
+                error={!!errors.university0}
+                helperText={errors.university0}
                 required
               />
             </div>
@@ -366,13 +391,13 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduStartDate-${i}`)}
+                {...register(`eduStartDate${i}`)}
                 placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.schoolStartDate}
-                helperText={errors.schoolStartDate}
+                error={!!errors.eduStartDate0}
+                helperText={errors.eduStartDate0}
                 required
               />
             </div>
@@ -381,13 +406,13 @@ const CVForm: React.FC = () => {
                 Bitmə tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduEndDate-${i}`)}
+                {...register(`eduEndDate${i}`)}
                 placeholder='dd.mm.yyyy'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.schoolEndDate}
-                helperText={errors.schoolEndDate}
+                error={!!errors.eduEndDate0}
+                helperText={errors.eduEndDate0}
                 required
               />
             </div>
@@ -398,13 +423,13 @@ const CVForm: React.FC = () => {
                 Təhsil dərəcəsi
               </InputLabel>
               <FormTextField
-                {...register(`eduType-${i}`)}
+                {...register(`eduType${i}`)}
                 placeholder='Bakalavr'
                 fullWidth
                 type='text'
                 onChange={handleInputChange}
-                error={!!errors.studyDegree}
-                helperText={errors.studyDegree}
+                error={!!errors.eduType0}
+                helperText={errors.eduType0}
                 required
               />
             </div>
@@ -997,6 +1022,7 @@ const CVForm: React.FC = () => {
                         schoolCount={schoolCount}
                         hobbyCount={hobbyCount}
                         watch={watch}
+                        isCheckboxChecked={isCheckboxChecked}
                       />
                     }
                     fileName={`${watch('name')}-${watch('surname')}.pdf`}

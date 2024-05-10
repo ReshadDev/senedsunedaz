@@ -5903,6 +5903,7 @@ header .nav .links a {
     padding: 10px 20px !important;
     border-radius: 8px;
     margin-top: 10px;
+    min-height: 42px !important;
     margin-bottom: 10px;
     background: #154e4d;
     border: none;
@@ -6465,6 +6466,7 @@ header .nav .links a {
     border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 42px !important;
     background: #154e4d;
     border: none;
     margin-left: 20px;
@@ -7063,6 +7065,7 @@ header .nav .links a {
     border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 42px !important;
     background: #154e4d;
     border: none;
     margin-left: 20px;
@@ -7725,6 +7728,7 @@ header .nav .links a {
     border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 38px !important;
     background: #154e4d;
     border: none;
     margin-left: 20px;
@@ -8327,6 +8331,7 @@ header .nav .links a {
     border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 38px !important;
     background: #154e4d;
     border: none;
     margin-left: 20px;

@@ -50,6 +50,10 @@ const Footer: React.FC = () => {
               <li>
                 <a href='/cv'>CV</a>
               </li>
+
+              <li>
+                <a href='/erizeler/faq'>FAQ</a>
+              </li>
             </ul>
           </div>
           <div className='foot__item col-4'>

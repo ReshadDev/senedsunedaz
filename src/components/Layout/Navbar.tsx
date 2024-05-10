@@ -51,8 +51,8 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           <div className="sidebar-links">
-            <Link to="/about">Haqqımızda</Link>
-            <Link to="/all">Ərizələr</Link>
+            <Link to="about">Haqqımızda</Link>
+            <Link to="all">Ərizələr</Link>
           </div>
         </div>
       </div>
