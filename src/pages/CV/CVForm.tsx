@@ -1,4 +1,4 @@
-import { InputLabel, OutlinedInput, styled } from '@mui/material';
+import { InputLabel, TextField, styled } from '@mui/material';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,19 +16,146 @@ import {
   cvtm1,
   cvtm2,
 } from '../../assets/icons';
-import { CVContent } from './CvContent';
+import CVContent from './CvContent';
 
-const FormTextField = styled(OutlinedInput)({
+const FormTextField = styled(TextField)({
   marginBottom: '15px',
 });
+
+interface FormData {
+  name: string;
+  surname: string;
+  email: string;
+  phoneNumber: string;
+  profession0: string;
+  university0: string;
+  eduStartDate0: string;
+  eduEndDate0: string;
+  eduType0: string;
+  dutyname0: string;
+  work0: string;
+  workStartDate0: string;
+  workEndDate0: string;
+}
 
 const CVForm: React.FC = () => {
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const [currentStep, setCurrentStep] = React.useState<number>(1);
 
+  const [isCheckboxChecked, setIsCheckboxChecked] = React.useState<boolean[]>(
+    Array(5).fill(false)
+  );
+
+  const [formData, setFormData] = React.useState<FormData>({
+    name: '',
+    surname: '',
+    email: '',
+    phoneNumber: '',
+    profession0: '',
+    university0: '',
+    eduStartDate0: '',
+    eduEndDate0: '',
+    eduType0: '',
+    dutyname0: '',
+    work0: '',
+    workStartDate0: '',
+    workEndDate0: '',
+  });
+  const [errors, setErrors] = React.useState<Partial<FormData>>({});
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    if (name === 'email') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]:
+          value.trim() === ''
+            ? 'Email is required'
+            : !validateEmail(value)
+            ? 'Invalid email format'
+            : '',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]:
+          value.trim() === ''
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required`
+            : '',
+      }));
+    }
+  };
+
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { checked } = event.target;
+    setIsCheckboxChecked((prev) => {
+      const newState = [...prev]; // Create a copy of the previous state array
+      newState[index] = checked; // Update the state for the specific checkbox
+      return newState; // Return the updated state
+    });
+  };
+
   const handleNextStep = () => {
-    setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
-    setCurrentStep((prevStep) => prevStep + 1);
+    if (validateStep(currentStep)) {
+      setCurrentStep((prevStep) => prevStep + 1);
+      setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
+    }
+  };
+
+  const validateEmail = (email: string): boolean => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validateStep = (step: number): boolean => {
+    const stepErrors: Partial<FormData> = {};
+    switch (step) {
+      case 1:
+        if (formData.name.trim() === '') {
+          stepErrors.name = 'Adınız';
+        }
+        if (formData.surname.trim() === '') {
+          stepErrors.surname = 'Soyadınız';
+        }
+        if (formData.email.trim() === '') {
+          stepErrors.email = 'Emailiniz';
+        } else if (!validateEmail(formData.email)) {
+          stepErrors.email = 'Düzgün mail formatı deyil';
+        }
+        if (formData.phoneNumber.trim() === '') {
+          stepErrors.phoneNumber = 'Nömrəniz';
+        }
+        break;
+      case 2:
+        if (formData.profession0.trim() === '') {
+          stepErrors.profession0 = 'İxtisasınız';
+        }
+        if (formData.university0.trim() === '') {
+          stepErrors.university0 = 'Universitetiniz';
+        }
+        if (formData.eduStartDate0.trim() === '') {
+          stepErrors.eduStartDate0 = 'Tarix';
+        }
+        if (formData.eduEndDate0.trim() === '') {
+          stepErrors.eduEndDate0 = 'Tarix';
+        }
+        if (formData.eduType0.trim() === '') {
+          stepErrors.eduType0 = 'Dereceniz ';
+        }
+
+        break;
+      default:
+        break;
+    }
+    setErrors(stepErrors);
+    return Object.keys(stepErrors).length === 0;
   };
 
   const handlePreviousStep = () => {
@@ -61,6 +188,7 @@ const CVForm: React.FC = () => {
   const [schoolCount, setSchoolCount] = React.useState<number>(1);
   const [languageCount, setLanguageCount] = React.useState<number>(1);
   const [certificateCount, setCertificateCount] = React.useState<number>(1);
+  const [hobbyCount, setHobbyCount] = React.useState<number>(1);
 
   const generateExperiences = (): JSX.Element[] => {
     const forms: JSX.Element[] = [];
@@ -76,11 +204,16 @@ const CVForm: React.FC = () => {
                 Vəzifənin adı
               </InputLabel>
               <FormTextField
-                {...register(`dutyname-${i}`, {
+                {...register(`dutyname${i}`, {
                   required: 'dutyname is required',
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.dutyname0}
+                helperText={errors.dutyname0}
+                required
               />
             </div>
             <div className='form-element'>
@@ -88,11 +221,16 @@ const CVForm: React.FC = () => {
                 İş yerinin adı
               </InputLabel>
               <FormTextField
-                {...register(`work-${i}`, {
+                {...register(`work${i}`, {
                   required: 'work is required',
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.work0}
+                helperText={errors.work0}
+                required
               />
             </div>
           </div>
@@ -102,23 +240,42 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`workStartDate-${i}`, {
+                {...register(`workStartDate${i}`, {
                   required: 'startDate is required',
                 })}
-                placeholder='mm/dd/yyyy'
+                placeholder='dd.mm.yyyy'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.workStartDate0}
+                helperText={errors.workStartDate0}
+                required
               />
             </div>
             <div className='form-element'>
-              <InputLabel shrink className='label-text'>
-                Bitmə tarixi
-              </InputLabel>
+              <div style={{ display: 'flex' }}>
+                <InputLabel shrink className='label-text'>
+                  Bitmə tarixi
+                </InputLabel>
+                <input
+                  type='checkbox'
+                  checked={isCheckboxChecked[i]} // Use separate state for each checkbox
+                  onChange={(e) => handleCheckboxChange(e, i)} // Pass index to identify which checkbox is clicked
+                />
+                <label style={{ marginLeft: '5px' }}>Davam edirsə kliklə</label>
+              </div>
               <FormTextField
-                {...register(`workEndDate-${i}`, {
+                {...register(`workEndDate${i}`, {
                   required: 'endDate is required',
                 })}
-                placeholder='mm/dd/yyyy'
+                placeholder={isCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'}
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.workEndDate0}
+                helperText={errors.workEndDate0}
+                required
+                disabled={isCheckboxChecked[i]}
               />
             </div>
           </div>
@@ -133,6 +290,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='Azərbaycan'
                 fullWidth
+                type='text'
               />
             </div>
             <div className='form-element'>
@@ -145,6 +303,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='Baku'
                 fullWidth
+                type='text'
               />
             </div>
           </div>
@@ -160,6 +319,7 @@ const CVForm: React.FC = () => {
                 placeholder='daxil edin'
                 fullWidth
                 multiline
+                type='text'
               />
             </div>
           </div>
@@ -183,11 +343,14 @@ const CVForm: React.FC = () => {
                 İxtisasın adı
               </InputLabel>
               <FormTextField
-                {...register(`profession-${i}`, {
-                  required: 'profession is required',
-                })}
+                {...register(`profession${i}`)}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.profession0}
+                helperText={errors.profession0}
+                required
               />
             </div>
             <div className='form-element'>
@@ -195,11 +358,14 @@ const CVForm: React.FC = () => {
                 Universitetin adı
               </InputLabel>
               <FormTextField
-                {...register(`university-${i}`, {
-                  required: 'university is required',
-                })}
+                {...register(`university${i}`)}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.university0}
+                helperText={errors.university0}
+                required
               />
             </div>
           </div>
@@ -209,11 +375,14 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduStartDate-${i}`, {
-                  required: 'eduStartDate is required',
-                })}
-                placeholder='mm/dd/yyyy'
+                {...register(`eduStartDate${i}`)}
+                placeholder='dd.mm.yyyy'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.eduStartDate0}
+                helperText={errors.eduStartDate0}
+                required
               />
             </div>
             <div className='form-element'>
@@ -221,11 +390,14 @@ const CVForm: React.FC = () => {
                 Bitmə tarixi
               </InputLabel>
               <FormTextField
-                {...register(`eduEndDate-${i}`, {
-                  required: 'eduEndDate is required',
-                })}
-                placeholder='mm/dd/yyyy'
+                {...register(`eduEndDate${i}`)}
+                placeholder='dd.mm.yyyy'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.eduEndDate0}
+                helperText={errors.eduEndDate0}
+                required
               />
             </div>
           </div>
@@ -235,11 +407,14 @@ const CVForm: React.FC = () => {
                 Təhsil dərəcəsi
               </InputLabel>
               <FormTextField
-                {...register(`eduType-${i}`, {
-                  required: 'eduType is required',
-                })}
+                {...register(`eduType${i}`)}
                 placeholder='Bakalavr'
                 fullWidth
+                type='text'
+                onChange={handleInputChange}
+                error={!!errors.eduType0}
+                helperText={errors.eduType0}
+                required
               />
             </div>
             <div className='form-element'>
@@ -247,11 +422,10 @@ const CVForm: React.FC = () => {
                 GPA
               </InputLabel>
               <FormTextField
-                {...register(`eduGpa-${i}`, {
-                  required: 'eduGpa is required',
-                })}
+                {...register(`eduGpa-${i}`)}
                 placeholder='00'
                 fullWidth
+                type='number'
               />
             </div>
           </div>
@@ -261,11 +435,10 @@ const CVForm: React.FC = () => {
                 Ölkə
               </InputLabel>
               <FormTextField
-                {...register(`eduCountry-${i}`, {
-                  required: 'eduCountry is required',
-                })}
+                {...register(`eduCountry-${i}`)}
                 placeholder='Azərbaycan'
                 fullWidth
+                type='text'
               />
             </div>
             <div className='form-element'>
@@ -273,11 +446,10 @@ const CVForm: React.FC = () => {
                 Şəhər
               </InputLabel>
               <FormTextField
-                {...register(`eduCity-${i}`, {
-                  required: 'eduCity is required',
-                })}
+                {...register(`eduCity-${i}`)}
                 placeholder='Baku'
                 fullWidth
+                type='text'
               />
             </div>
           </div>
@@ -303,6 +475,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
               />
             </div>
             <div className='form-element'>
@@ -315,6 +488,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
               />
             </div>
           </div>
@@ -340,6 +514,33 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                type='text'
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return forms;
+  };
+
+  const generateHobbies = (): JSX.Element[] => {
+    const forms: JSX.Element[] = [];
+    for (let i = 0; i < hobbyCount; i++) {
+      forms.push(
+        <div key={i}>
+          <div className='row'>
+            <div className='form-element-l'>
+              <InputLabel shrink className='label-text'>
+                Təsvir et
+              </InputLabel>
+              <FormTextField
+                {...register(`hobby-${i}`, {
+                  required: 'hobby is required',
+                })}
+                placeholder='daxil edin'
+                fullWidth
+                type='text'
               />
             </div>
           </div>
@@ -373,14 +574,19 @@ const CVForm: React.FC = () => {
     setCertificateCount(certificateCount + 1);
   };
 
+  const handleAddNewHobby = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setHobbyCount(hobbyCount + 1);
+  };
+
   return (
     <div id='cv-form'>
       <div className='main-heading-box'>
         <div className='container'>
           <div className='heading-text'>
             {currentStep === 1 && <h1>Şəxsi məlumatlar</h1>}
-            {currentStep === 2 && <h1>İş təcrübəsi</h1>}
-            {currentStep === 3 && <h1>Təhsil</h1>}
+            {currentStep === 2 && <h1>Təhsil</h1>}
+            {currentStep === 3 && <h1>İş təcrübəsi</h1>}
             {currentStep === 4 && <h1>Bilik və bacarıqlar</h1>}
             {currentStep === 5 && (
               <h1 className='extra5'>CV üçün şablon seçin</h1>
@@ -435,9 +641,13 @@ const CVForm: React.FC = () => {
                       {...register('name', {
                         required: 'name is required',
                       })}
-                      onChange={(e) => console.log(e.target.value)}
+                      onChange={handleInputChange}
+                      error={!!errors.name}
+                      helperText={errors.name}
+                      required
                       placeholder='daxil edin'
                       fullWidth
+                      type='text'
                     />
                   </div>
                   <div className='form-element'>
@@ -448,8 +658,13 @@ const CVForm: React.FC = () => {
                       {...register('surname', {
                         required: 'surname is required',
                       })}
+                      onChange={handleInputChange}
                       placeholder='daxil edin'
                       fullWidth
+                      type='text'
+                      required
+                      error={!!errors.surname}
+                      helperText={errors.surname}
                     />
                   </div>
                 </div>
@@ -464,6 +679,7 @@ const CVForm: React.FC = () => {
                       })}
                       placeholder='daxil edin'
                       fullWidth
+                      type='text'
                     />
                   </div>
                   <div className='form-element'>
@@ -476,6 +692,7 @@ const CVForm: React.FC = () => {
                       })}
                       placeholder='daxil edin'
                       fullWidth
+                      type='text'
                     />
                   </div>
                 </div>
@@ -493,6 +710,11 @@ const CVForm: React.FC = () => {
                       })}
                       placeholder='random@gmail.com'
                       fullWidth
+                      required
+                      onChange={handleInputChange}
+                      type='email'
+                      error={!!errors.email}
+                      helperText={errors.email}
                     />
                   </div>
                   <div className='form-element'>
@@ -504,7 +726,12 @@ const CVForm: React.FC = () => {
                         required: 'phoneNumber is required',
                       })}
                       placeholder='+994.......'
+                      onChange={handleInputChange}
                       fullWidth
+                      required
+                      type='number'
+                      error={!!errors.phoneNumber}
+                      helperText={errors.phoneNumber}
                     />
                   </div>
                 </div>
@@ -519,6 +746,7 @@ const CVForm: React.FC = () => {
                       })}
                       placeholder='https://www.linkedin.com/in/yourprofile'
                       fullWidth
+                      type='text'
                     />
                   </div>
                 </div>
@@ -534,6 +762,7 @@ const CVForm: React.FC = () => {
                       placeholder='daxil edin'
                       fullWidth
                       multiline
+                      type='text'
                     />
                   </div>
                 </div>
@@ -541,11 +770,11 @@ const CVForm: React.FC = () => {
             )}
             {currentStep === 2 && (
               <div className=''>
-                {generateExperiences()}
+                {generateSchools()}
                 <div className='add-new-box container-new'>
                   <button
                     className='btn add-new-btn'
-                    onClick={handleAddNewExperience}
+                    onClick={handleAddNewSchool}
                   >
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -566,11 +795,11 @@ const CVForm: React.FC = () => {
             )}
             {currentStep === 3 && (
               <div className=''>
-                {generateSchools()}
+                {generateExperiences()}
                 <div className='add-new-box container-new'>
                   <button
                     className='btn add-new-btn'
-                    onClick={handleAddNewSchool}
+                    onClick={handleAddNewExperience}
                   >
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -642,19 +871,26 @@ const CVForm: React.FC = () => {
                 <div className='heading-box'>
                   <h1>Hobbilər</h1>
                 </div>
-                <div className='row'>
-                  <div className='form-element-l'>
-                    <InputLabel shrink className='label-text'>
-                      Təsvir edin
-                    </InputLabel>
-                    <FormTextField
-                      {...register(`hobby`, {
-                        required: 'hobby is required',
-                      })}
-                      placeholder='daxil edin'
-                      fullWidth
-                    />
-                  </div>
+                {generateHobbies()}
+                <div className='add-new-box '>
+                  <button
+                    className='btn add-new-btn'
+                    onClick={handleAddNewHobby}
+                  >
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='16'
+                      height='16'
+                      viewBox='0 0 16 16'
+                      fill='none'
+                    >
+                      <path
+                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
+                        fill='#127371'
+                      />
+                    </svg>
+                    Əlavə et
+                  </button>
                 </div>
               </div>
             )}
@@ -768,7 +1004,9 @@ const CVForm: React.FC = () => {
                         experienceCount={experienceCount}
                         languageCount={languageCount}
                         schoolCount={schoolCount}
+                        hobbyCount={hobbyCount}
                         watch={watch}
+                        isCheckboxChecked={isCheckboxChecked}
                       />
                     }
                     fileName={`${watch('name')}-${watch('surname')}.pdf`}

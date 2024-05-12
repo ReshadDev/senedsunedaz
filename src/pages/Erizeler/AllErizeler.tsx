@@ -10,6 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { toast } from 'react-toastify';
 import { ErizeFakeProps } from '../../data/fakeData';
 import { CloseOutlined } from '@ant-design/icons';
+import fileDownload from 'js-file-download';
 
 interface ErizeExamplePropsNew {
   id: number;
@@ -140,21 +141,23 @@ const AllErizeler: React.FC = () => {
   const handlePageChange = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
-  const handleDownload = (erize: ProductProps) => {
-    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
+  const handleDownload = async (erize: ProductProps) => {
+    try {
+      const response = await axios.get(
+        `${APIURL}/api/application/download/${erize.id}`,
+        { responseType: 'blob' }
+      );
 
-    const downloadLink = document.createElement('a');
-    downloadLink.href = s3DownloadUrl;
-    downloadLink.download = erize?.docName || 'downloadedFile';
+      fileDownload(response.data, `${erize.docName}.docx`);
 
-    document.body.appendChild(downloadLink);
-
-    downloadLink.click();
-
-    document.body.removeChild(downloadLink);
-    toast.success('Sənəd uğurla yükləndi!');
+      toast.success('Sənəd uğurla yükləndi!');
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      toast.error(
+        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
+      );
+    }
   };
-
   return (
     <div className='all-erizeler'>
       <div className='container'>

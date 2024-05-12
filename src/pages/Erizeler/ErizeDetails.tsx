@@ -19,6 +19,7 @@ import ImageGallery from 'react-image-gallery';
 import { Button as NewButton } from 'antd';
 import { Category, ProductProps } from '../../interfaces';
 import { APIURL } from '../../config';
+import fileDownload from 'js-file-download';
 
 const ErizeDetails: React.FC = () => {
   const [product, setProduct] = React.useState<ProductProps | null>(null);
@@ -77,24 +78,24 @@ const ErizeDetails: React.FC = () => {
   }, [product]);
 
   const images = product?.imagePath.map((imagePath) => ({
-    original: `https://senedsunedstorages.s3.amazonaws.com/${imagePath}`,
-    thumbnail: `https://senedsunedstorages.s3.amazonaws.com/${imagePath}`,
+    original: `${imagePath}`,
+    thumbnail: `${imagePath}`,
   }));
 
-  const handleDownload = async (product: ProductProps) => {
-    const fileName = product?.name;
-    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${product.name}`;
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = s3DownloadUrl;
-    downloadLink.download = fileName || 'downloadedFile';
-
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-
-    document.body.removeChild(downloadLink);
-
-    toast.success('Sənəd uğurla yükləndi!');
+  const handleDownload = async (erize: ProductProps) => {
+    try {
+      const response = await axios.get(
+        `${APIURL}/api/application/download/${erize.id}`,
+        { responseType: 'blob' }
+      );
+      fileDownload(response.data, `${erize.docName}.docx`);
+      toast.success('Sənəd uğurla yükləndi!');
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      toast.error(
+        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
+      );
+    }
   };
   const handleEdit = () => {
     setOpenModal(true);
@@ -129,8 +130,6 @@ const ErizeDetails: React.FC = () => {
     }
   };
 
-  console.log('product', product?.id);
-
   const handleConfirmEdit = async () => {
     if (inputValues.some((input) => input.inputName.trim() === '')) {
       toast.error('Zəhmət olmasa bütün xanaları doldurun');
@@ -148,9 +147,8 @@ const ErizeDetails: React.FC = () => {
         requestBody
       );
       await getProduct();
-      toast.success('Ərizəniz uğurla redaktə olundu'); // Use toast for success message
+      toast.success('Ərizəniz uğurla redaktə olundu');
 
-      // Call handleDownloadEditedFile() after handleConfirmEdit() completes successfully
       await handleDownloadEditedFile();
     } catch (error) {
       console.error(error);

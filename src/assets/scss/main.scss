@@ -1,19 +1,21 @@
-@import "./_erize";
-@import "./search";
-@import "./error";
-@import "./erizedetails";
-@import "./about";
-@import "./allerizeler";
-@import "./adminpanel";
-@import "./categorydetails";
-@import "./cv";
-@import "./alldocumentsadmin";
+@import './_erize';
+@import './search';
+@import './error';
+@import './erizedetails';
+@import './about';
+@import './allerizeler';
+@import './adminpanel';
+@import './categorydetails';
+@import './cv';
+@import './alldocumentsadmin';
+@import './faq';
+@import './test';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html,

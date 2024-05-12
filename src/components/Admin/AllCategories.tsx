@@ -1,11 +1,11 @@
-import React from "react";
-import { Category } from "../../interfaces";
-import { APIURL } from "../../config";
-import axios from "axios";
-import { Modal } from "antd";
-import { toast } from "react-toastify";
-import { useAuth } from "../../context/auth";
-import { InputLabel, TextField } from "@mui/material";
+import React from 'react';
+import { Category } from '../../interfaces';
+import { APIURL } from '../../config';
+import axios from 'axios';
+import { Modal } from 'antd';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../context/auth';
+import { InputLabel, TextField } from '@mui/material';
 
 const AllCategories: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -18,8 +18,8 @@ const AllCategories: React.FC = () => {
 
   const [categoryData, setCategoryData] = React.useState<Category>({
     id: 0,
-    name: "",
-    description: "",
+    name: '',
+    description: '',
   });
 
   const getAllCategories = async () => {
@@ -41,21 +41,18 @@ const AllCategories: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `http://localhost:8080/api/category/deleteCategory/${deleteId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.tokenPair.accessToken}`,
-          },
-        }
-      );
+      await axios.delete(`${APIURL}/api/category/deleteCategory/${deleteId}`, {
+        headers: {
+          Authorization: `Bearer ${auth.tokenPair.accessToken}`,
+        },
+      });
 
       await getAllCategories();
 
-      toast.success("Kateqoriya uğurla silindi");
+      toast.success('Kateqoriya uğurla silindi');
     } catch (error) {
-      console.error("Error deleting document:", error);
-      toast.error("Xəta baş verdi");
+      console.error('Error deleting document:', error);
+      toast.error('Xəta baş verdi');
     }
     setIsOpen(false);
   };
@@ -63,7 +60,7 @@ const AllCategories: React.FC = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:8080/api/category/updateCategory/${updateId}`,
+        `${APIURL}/api/category/updateCategory/${updateId}`,
         categoryData,
         {
           headers: {
@@ -73,30 +70,26 @@ const AllCategories: React.FC = () => {
       );
 
       await getAllCategories();
-      toast.success("Kateqoriya uğurla yeniləndi");
+      toast.success('Kateqoriya uğurla yeniləndi');
     } catch (error) {
-      console.error("Error updating category:", error);
-      toast.error("Xəta baş verdi");
+      console.error('Error updating category:', error);
+      toast.error('Xəta baş verdi');
     }
     setIsOpen2(false);
   };
 
   const fetchCategory = async (id: number) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/api/category/byId/${id}`
-      );
+      const response = await axios.get(`${APIURL}/api/category/byId/${id}`);
       const category = response.data.category;
-
-      console.log(category);
 
       if (category) {
         setCategoryData(category);
       } else {
-        console.error("Category not found");
+        console.error('Category not found');
       }
     } catch (error) {
-      console.error("Error fetching category:", error);
+      console.error('Error fetching category:', error);
     }
   };
 
@@ -116,28 +109,28 @@ const AllCategories: React.FC = () => {
   };
 
   return (
-    <div className="all-documents-admin">
-      <div className="container-new">
-        <div className="heading-box">
+    <div className='all-documents-admin'>
+      <div className='container-new'>
+        <div className='heading-box'>
           <h1>Bütün Kateqoriyalar</h1>
         </div>
 
-        <div className="erizeler-list-box">
-          <div className="box__body">
+        <div className='erizeler-list-box'>
+          <div className='box__body'>
             {categories.map((category: Category) => (
-              <div key={category.id} className="erize-box col-12">
-                <div className="erize-box__text-box">
+              <div key={category.id} className='erize-box col-12'>
+                <div className='erize-box__text-box'>
                   <p>{category.name}</p>
                 </div>
-                <div className="erize-box__buttons-box">
+                <div className='erize-box__buttons-box'>
                   <a
-                    className="update-btn btn"
+                    className='update-btn btn'
                     onClick={() => showModal2(category.id)}
                   >
                     Yenilə
                   </a>
                   <a
-                    className="download-btn btn"
+                    className='download-btn btn'
                     onClick={() => showModal(category.id)}
                   >
                     Sil
@@ -149,12 +142,12 @@ const AllCategories: React.FC = () => {
         </div>
       </div>
       <Modal
-        title="Təsdiq etmək"
+        title='Təsdiq etmək'
         open={isOpen}
         onOk={handleDelete}
         onCancel={handleCancel}
-        okText="Təsdiq et"
-        cancelText="Ləğv et"
+        okText='Təsdiq et'
+        cancelText='Ləğv et'
       >
         <p>
           Kateqoriyanı silmək istədiyinizə əminsinizmi? Bu əməliyyatı geri
@@ -163,14 +156,14 @@ const AllCategories: React.FC = () => {
       </Modal>
 
       <Modal
-        title="Redaktə etmək"
+        title='Redaktə etmək'
         open={isOpen2}
         onOk={handleUpdate}
         onCancel={handleCancel}
-        okText="Təsdiq et"
-        cancelText="Ləğv et"
+        okText='Təsdiq et'
+        cancelText='Ləğv et'
       >
-        <InputLabel shrink id="docFile-label">
+        <InputLabel shrink id='docFile-label'>
           Kateqoriya adı
         </InputLabel>
         <TextField
@@ -179,7 +172,7 @@ const AllCategories: React.FC = () => {
             setCategoryData({ ...categoryData, name: e.target.value })
           }
         />
-        <InputLabel shrink id="docFile-label">
+        <InputLabel shrink id='docFile-label'>
           Haqqında
         </InputLabel>
         <TextField

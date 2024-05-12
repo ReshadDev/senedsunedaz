@@ -1,11 +1,11 @@
-import React from "react";
-import FooterCV from "../../components/LayoutCV/FooterCV";
-import NavbarCV from "../../components/LayoutCV/NavbarCV";
-import { ToastContainer, toast } from "react-toastify";
-import { cvdownload } from "../../assets/icons";
-import { APIURL } from "../../config";
-import axios from "axios";
-import { ITemplatesProps } from "../../interfaces";
+import React from 'react';
+import FooterCV from '../../components/LayoutCV/FooterCV';
+import NavbarCV from '../../components/LayoutCV/NavbarCV';
+import { ToastContainer, toast } from 'react-toastify';
+import { cvdownload } from '../../assets/icons';
+import { APIURL } from '../../config';
+import axios from 'axios';
+import { ITemplatesProps } from '../../interfaces';
 
 const CVTemplates: React.FC = () => {
   const [templates, setAllTemplates] = React.useState<ITemplatesProps[]>([]);
@@ -16,8 +16,6 @@ const CVTemplates: React.FC = () => {
       if (data?.success) {
         setAllTemplates(data?.documents);
       }
-
-      console.log("templates", templates);
     } catch (error) {
       console.log(error);
     }
@@ -27,46 +25,46 @@ const CVTemplates: React.FC = () => {
     getAllTemplates();
   }, []);
 
-  const handleDownload = (erize: ITemplatesProps) => {
-    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
+  const handleDownload = (template: ITemplatesProps) => {
+    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${template.name}`;
 
-    const downloadLink = document.createElement("a");
+    const downloadLink = document.createElement('a');
     downloadLink.href = s3DownloadUrl;
-    downloadLink.download = erize?.docName || "downloadedFile";
+    downloadLink.download = template?.docName || 'downloadedFile';
 
     document.body.appendChild(downloadLink);
 
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
-    toast.success("Sənəd uğurla yükləndi!");
+    toast.success('Sənəd uğurla yükləndi!');
   };
 
   return (
-    <div id="cv-templates">
+    <div id='cv-templates'>
       <NavbarCV />
       <ToastContainer />
-      <div className="cv-template-content">
-        <div className="container">
-          <div className="cv-templates-content">
-            <div className="heading-text">
-              <p className="heading-text__title">Şablonlar</p>
+      <div className='cv-template-content'>
+        <div className='container'>
+          <div className='cv-templates-content'>
+            <div className='heading-text'>
+              <p className='heading-text__title'>Şablonlar</p>
             </div>
-            <div className="template-boxes">
+            <div className='template-boxes'>
               {templates?.map((template, index) => (
-                <div key={index} className="template-box col-3">
+                <div key={index} className='template-box col-3'>
                   <img
                     src={`https://senedsunedstorages.s3.amazonaws.com/${template.cvImagePath}`}
-                    alt=""
+                    alt=''
                   />
 
-                  <div className="button-box">
+                  <div className='button-box'>
                     <a
-                      className="btn download-new-cv-btn"
+                      className='btn download-new-cv-btn'
                       onClick={() => handleDownload(template)}
                     >
                       Download
-                      <img src={cvdownload} alt="" />
+                      <img src={cvdownload} alt='' />
                     </a>
                   </div>
                 </div>
