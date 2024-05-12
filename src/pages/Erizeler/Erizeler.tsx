@@ -46,7 +46,7 @@ const Erizeler: React.FC = () => {
   const getVisitorCount = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:8080/api/visitedcount/incrementcount`
+        `${APIURL}/api/visitedcount/incrementcount`
       );
       setVisitorCount(data.count);
     } catch (error) {
@@ -226,10 +226,7 @@ const Erizeler: React.FC = () => {
                   .map((erize: ProductProps, index: number) => (
                     <div className='sened-box col-lg-3' key={index}>
                       <div className='sened-image'>
-                        <img
-                          src={`${erize.imagePath}`}
-                          className='img-fluid'
-                        />
+                        <img src={`${erize.imagePath}`} className='img-fluid' />
                       </div>
                       <div className='sened-box-body'>
                         <div className='sened-text'>
