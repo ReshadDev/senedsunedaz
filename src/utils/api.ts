@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { APIURL } from '../config';
 
 interface CreateCategoryData {
   categoryName: string;
@@ -14,7 +15,7 @@ export const createCategory = async (
   formData.append('description', data.description);
 
   const response = await axios.post(
-    'http://64.23.134.82/api/category/addCategory',
+    `${APIURL}/api/category/addCategory`,
     formData,
     {
       headers: {
@@ -43,7 +44,7 @@ export const createDocument = async (data: FormData, token: string) => {
 
   const categoryId = data.categoryId;
   const response = await axios.post(
-    `http://64.23.134.82/api/application/upload/${categoryId}`,
+    `${APIURL}/api/application/upload/${categoryId}`,
     formData,
     {
       headers: {
@@ -56,19 +57,21 @@ export const createDocument = async (data: FormData, token: string) => {
   return response.data;
 };
 
-//
+export const refreshAccessToken = async (accessToken: string) => {
+  try {
+    const refreshTokenResponse = await axios.post(
+      `${APIURL}/auth/refresh`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
+    return refreshTokenResponse.data.accessToken;
+  } catch (error) {
+    console.error('Error refreshing access token:', error);
+    throw error;
+  }
+};

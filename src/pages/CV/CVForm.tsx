@@ -43,7 +43,7 @@ const CVForm: React.FC = () => {
   const [currentStep, setCurrentStep] = React.useState<number>(1);
 
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState<boolean[]>(
-    []
+    Array(5).fill(false)
   );
 
   const [formData, setFormData] = React.useState<FormData>({
@@ -65,8 +65,6 @@ const CVForm: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log('Name', name);
-    console.log('Value', value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -106,8 +104,8 @@ const CVForm: React.FC = () => {
 
   const handleNextStep = () => {
     if (validateStep(currentStep)) {
-    setCurrentStep((prevStep) => prevStep + 1);
-    setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
+      setCurrentStep((prevStep) => prevStep + 1);
+      setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
     }
   };
 
@@ -152,20 +150,6 @@ const CVForm: React.FC = () => {
           stepErrors.eduType0 = 'Dereceniz ';
         }
 
-        break;
-      case 3:
-        if (formData.dutyname0.trim() === '') {
-          stepErrors.dutyname0 = 'Position Name is required';
-        }
-        if (formData.work0.trim() === '') {
-          stepErrors.work0 = 'Workplace Name is required';
-        }
-        if (formData.workStartDate0.trim() === '') {
-          stepErrors.workStartDate0 = 'Work start date is required';
-        }
-        if (formData.workEndDate0.trim() === '') {
-          stepErrors.workEndDate0 = 'Work end date is required';
-        }
         break;
       default:
         break;
@@ -284,7 +268,7 @@ const CVForm: React.FC = () => {
                 {...register(`workEndDate${i}`, {
                   required: 'endDate is required',
                 })}
-                placeholder={isCheckboxChecked ? 'Davam edir' : 'dd.mm.yyyy'}
+                placeholder={isCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'}
                 fullWidth
                 type='text'
                 onChange={handleInputChange}

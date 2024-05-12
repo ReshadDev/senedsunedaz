@@ -1,21 +1,22 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-import { CaretLeft, CaretRight } from "../../assets/icons";
-import ReactPaginate from "react-paginate";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { Category, ProductProps } from "../../interfaces";
-import { APIURL } from "../../config";
-import { ErizeFakeProps } from "../../data/fakeData";
-import { toast } from "react-toastify";
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import { CaretLeft, CaretRight } from '../../assets/icons';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Category, ProductProps } from '../../interfaces';
+import { APIURL } from '../../config';
+import { ErizeFakeProps } from '../../data/fakeData';
+import { toast } from 'react-toastify';
+import fileDownload from 'js-file-download';
 
 const ITEMS_PER_PAGE = 6;
 
 const CategoryDetails: React.FC = () => {
   const [erizeler, setErizeler] = React.useState<ProductProps[]>([]);
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
   const [categoryName, setCategoryName] = React.useState<string | null>(null);
   const [categories, setCategories] = React.useState<Category[]>([]);
 
@@ -90,58 +91,61 @@ const CategoryDetails: React.FC = () => {
     setCurrentPage(selectedPage.selected);
   };
 
-  const handleDownload = (erize: ProductProps) => {
-    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${erize.name}`;
+  const handleDownload = async (erize: ProductProps) => {
+    try {
+      const response = await axios.get(
+        `${APIURL}/api/application/download/${erize.id}`,
+        { responseType: 'blob' }
+      );
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = s3DownloadUrl;
-    downloadLink.download = erize?.docName || "downloadedFile";
+      fileDownload(response.data, `${erize.docName}.docx`);
 
-    document.body.appendChild(downloadLink);
-
-    downloadLink.click();
-
-    document.body.removeChild(downloadLink);
-    toast.success("Sənəd uğurla yükləndi!");
+      toast.success('Sənəd uğurla yükləndi!');
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      toast.error(
+        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
+      );
+    }
   };
 
   return (
-    <div className="category-details-page">
-      <div className="container">
-        <div className="category-details-content">
-          <div className="box__heading">
+    <div className='category-details-page'>
+      <div className='container'>
+        <div className='category-details-content'>
+          <div className='box__heading'>
             <p>{categoryName}</p>
           </div>
 
-          <div className="all-erizeler-content-box">
-            <div className="all-erizeler-search-box">
-              <div className="all-erizeler-input-box">
+          <div className='all-erizeler-content-box'>
+            <div className='all-erizeler-search-box'>
+              <div className='all-erizeler-input-box'>
                 <TextField
-                  label="Search"
-                  variant="outlined"
+                  label='Search'
+                  variant='outlined'
                   fullWidth
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
               </div>
             </div>
-            <div className="right-content-box">
-              <div className="erizeler-list-box col-12">
-                <div className="box__body">
+            <div className='right-content-box'>
+              <div className='erizeler-list-box col-12'>
+                <div className='box__body'>
                   {currentItems.map((erize: ProductProps) => (
-                    <div key={erize.id} className="erize-box col-12">
-                      <div className="erize-box__text-box">
+                    <div key={erize.id} className='erize-box col-12'>
+                      <div className='erize-box__text-box'>
                         <p>{erize?.docName}</p>
                       </div>
-                      <div className="erize-box__buttons-box">
+                      <div className='erize-box__buttons-box'>
                         <a
                           onClick={() => handleDetailsClick(erize)}
-                          className="box-details-btn btn"
+                          className='box-details-btn btn'
                         >
                           Ətraflı
                         </a>
                         <a
-                          className="download-btn btn"
+                          className='download-btn btn'
                           onClick={() => handleDownload(erize)}
                         >
                           Yüklə
@@ -157,15 +161,15 @@ const CategoryDetails: React.FC = () => {
       </div>
       {currentItems.length > 0 && (
         <ReactPaginate
-          previousLabel={<img src={CaretLeft} alt="Previous" />}
-          nextLabel={<img src={CaretRight} alt="Next" />}
-          breakLabel={"..."}
+          previousLabel={<img src={CaretLeft} alt='Previous' />}
+          nextLabel={<img src={CaretRight} alt='Next' />}
+          breakLabel={'...'}
           pageCount={pageCount}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={handlePageChange}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
         />
       )}
     </div>

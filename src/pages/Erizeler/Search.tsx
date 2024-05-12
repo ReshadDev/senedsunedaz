@@ -8,6 +8,7 @@ import { IProductProps, ISearchProps, ProductProps } from '../../interfaces';
 import { toast } from 'react-toastify';
 import { APIURL } from '../../config';
 import axios from 'axios';
+import fileDownload from 'js-file-download';
 
 const Search: React.FC = () => {
   const [erizeler, setErizeler] = React.useState<[]>([]);
@@ -18,7 +19,6 @@ const Search: React.FC = () => {
       if (data?.success) {
         setErizeler(data?.documents);
       }
-      console.log(erizeler);
     } catch (error) {
       console.log(error);
     }
@@ -56,20 +56,20 @@ const Search: React.FC = () => {
     navigate(link);
   };
 
-  const handleDownload = async (product: IProductProps | ProductProps) => {
-    const fileName = product?.name;
-    const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/${product.name}`;
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = s3DownloadUrl;
-    downloadLink.download = fileName || 'downloadedFile';
-
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-
-    document.body.removeChild(downloadLink);
-
-    toast.success('Sənəd uğurla yükləndi!');
+  const handleDownload = async (erize: ProductProps | IProductProps) => {
+    try {
+      const response = await axios.get(
+        `${APIURL}/api/application/download/${erize.id}`,
+        { responseType: 'blob' }
+      );
+      fileDownload(response.data, `${erize.docName}.docx`);
+      toast.success('Sənəd uğurla yükləndi!');
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      toast.error(
+        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
+      );
+    }
   };
 
   return (
@@ -90,111 +90,6 @@ const Search: React.FC = () => {
             </div>
             {values?.results.length > 0 ? (
               <div className='search-results-boxes'>
-                {displayedResults.map(
-                  (result: IProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${result.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <a
-                            onClick={() => handleDetailsClick(result)}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </a>
-                          <a
-                            onClick={() => handleDownload(result)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-                {displayedResults.map(
-                  (result: IProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${result.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <a
-                            onClick={() => handleDetailsClick(result)}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </a>
-                          <a
-                            onClick={() => handleDownload(result)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-                {displayedResults.map(
-                  (result: IProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${result.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <a
-                            onClick={() => handleDetailsClick(result)}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </a>
-                          <a
-                            onClick={() => handleDownload(result)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
                 {displayedResults.map(
                   (result: IProductProps, index: number) => (
                     <div className='sened-box col-lg-3' key={index}>
@@ -270,115 +165,7 @@ const Search: React.FC = () => {
                   .map((erize: ProductProps, index: number) => (
                     <div className='sened-box col-lg-3' key={index}>
                       <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </Link>
-                          <a
-                            onClick={() => handleDownload(erize)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                {erizeler
-                  .slice(0, 8)
-                  .map((erize: ProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </Link>
-                          <a
-                            onClick={() => handleDownload(erize)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                {erizeler
-                  .slice(0, 8)
-                  .map((erize: ProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                          className='img-fluid'
-                        />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </Link>
-                          <a
-                            onClick={() => handleDownload(erize)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                {erizeler
-                  .slice(0, 8)
-                  .map((erize: ProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${erize.imagePath}`}
-                          className='img-fluid'
-                        />
+                        <img src={`${erize.imagePath}`} className='img-fluid' />
                       </div>
                       <div className='sened-box-body'>
                         <div className='sened-text'>

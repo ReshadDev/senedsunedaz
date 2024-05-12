@@ -26,8 +26,6 @@ const CV: React.FC = () => {
       if (data?.success) {
         setAllTemplates(data?.documents);
       }
-
-      console.log('templates', templates);
     } catch (error) {
       console.log(error);
     }

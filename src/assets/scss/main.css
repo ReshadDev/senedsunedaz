@@ -8366,6 +8366,22 @@ header .nav .links a {
     height: 16px;
   }
 }
+.admin-btns {
+  padding: 10px 20px !important;
+  border-radius: 8px;
+  margin-top: 10px;
+  min-height: 42px !important;
+  margin-bottom: 10px;
+  background: #2d6fae;
+  border: none;
+  color: #f2f7fb;
+  font-family: Sarabun;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
 .all-documents-admin .heading-box {
   padding-bottom: 30px;
 }

@@ -26,6 +26,7 @@
     "emailjs-com": "^3.2.0",
     "file-saver": "^2.0.5",
     "formik": "^2.4.5",
+    "js-file-download": "^0.4.12",
     "jwt-decode": "^4.0.0",
     "mammoth": "^1.7.0",
     "quill-emoji": "^0.2.0",

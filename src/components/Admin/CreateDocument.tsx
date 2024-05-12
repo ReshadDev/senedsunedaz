@@ -22,7 +22,6 @@ interface FormData {
   imageFile: FileList;
   docName: string;
   categoryId: string;
-  iFrame: string;
 }
 
 const FormContainer = styled(Container)({
@@ -44,8 +43,6 @@ const InputRowTextField = styled(TextField)({});
 const CreateDocument: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [categoryId, setCategoryId] = React.useState<string>('');
-
-  const [auth] = useAuth();
 
   const getAllCategories = async () => {
     try {
@@ -71,6 +68,8 @@ const CreateDocument: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const [auth] = useAuth(); // Access auth state and updateAuth function from context
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       const formData = new FormData();
@@ -80,7 +79,6 @@ const CreateDocument: React.FC = () => {
       }
       formData.append('editDocFile', data.editDocFile[0]);
       formData.append('docName', data.docName);
-      formData.append('iFrame', data.iFrame);
       formData.append('inputs', JSON.stringify(inputs));
 
       const categoryId = data.categoryId;
@@ -88,7 +86,7 @@ const CreateDocument: React.FC = () => {
       setInputs([]);
 
       await axios.post(
-        `http://64.23.134.82/api/application/upload/${categoryId}`,
+        `${APIURL}/api/application/upload/${categoryId}`,
         formData,
         {
           headers: {
@@ -202,16 +200,6 @@ const CreateDocument: React.FC = () => {
               label='Document Name'
               error={Boolean(errors.docName)}
               helperText={errors.docName?.message}
-              fullWidth
-            />
-
-            <FormTextField
-              {...register('iFrame', {
-                required: 'iFrame is required',
-              })}
-              label='Link of Document'
-              error={Boolean(errors.iFrame)}
-              helperText={errors.iFrame?.message}
               fullWidth
             />
 
