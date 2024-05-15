@@ -28,6 +28,7 @@ import CVTemplates from './pages/CV/CVTemplates';
 import AllDocuments from './components/Admin/AllDocuments';
 import AllCategories from './components/Admin/AllCategories';
 import AllCV from './components/Admin/AllTemplates';
+import CVAbout from './pages/CV/CVAbout';
 
 const App: React.FC = () => {
   return (
@@ -46,6 +47,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route path='cv' element={<CV />} />
+        <Route path='/cv/about' element={<CVAbout />} />
         <Route path='cv-form' element={<CVForm />} />
         <Route path='templates' element={<CVTemplates />} />
         <Route path='login' element={<AdminLogin />} />

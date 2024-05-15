@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Category, ProductProps } from '../../interfaces';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import { ErizeFakeProps } from '../../data/fakeData';
 import { toast } from 'react-toastify';
 import fileDownload from 'js-file-download';
@@ -114,7 +114,7 @@ const CategoryDetails: React.FC = () => {
       <div className='container'>
         <div className='category-details-content'>
           <div className='box__heading'>
-            <p>{categoryName}</p>
+            <p>{params?.slug || categoryName}</p>
           </div>
 
           <div className='all-erizeler-content-box'>

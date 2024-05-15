@@ -1,7 +1,7 @@
 import React from 'react';
 import { Category } from '../../interfaces';
 import axios from 'axios';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 
 const Footer: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -32,13 +32,21 @@ const Footer: React.FC = () => {
               <a href='tel:+994559107999'>+994559107999</a>
             </div>
             <div className='footItem__text'>
-              <a href='/magazalar'>senedsuned@gmail.com</a>
+              <a>senedsuned@gmail.com</a>
             </div>
 
             <div className='footItem__text'>
               <a href='https://maps.app.goo.gl/CHdxpnW1LjBBA7UQ8'>
                 Biz xəritədə
               </a>
+            </div>
+
+            <div className='footItem__text'>
+              <a href='/erizeler/about'>Haqqımızda</a>
+            </div>
+
+            <div className='footItem__text'>
+              <a href='/erizeler/faq'>FAQ</a>
             </div>
           </div>
           <div className='foot__item col-4'>
@@ -49,10 +57,6 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a href='/cv'>CV</a>
-              </li>
-
-              <li>
-                <a href='/erizeler/faq'>FAQ</a>
               </li>
             </ul>
           </div>

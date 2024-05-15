@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import ImageGallery from 'react-image-gallery';
 import { Button as NewButton } from 'antd';
 import { Category, ProductProps } from '../../interfaces';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import fileDownload from 'js-file-download';
 
 const ErizeDetails: React.FC = () => {
@@ -112,25 +112,40 @@ const ErizeDetails: React.FC = () => {
     setOpenModal(false);
   };
 
-  const handleDownloadEditedFile = async () => {
+  const handleDownloadEditedFile = async (erize: ProductProps) => {
     try {
-      if (product?.id) {
-        const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/edited_${product.editedName}`;
-        const downloadLink = document.createElement('a');
-        downloadLink.href = s3DownloadUrl;
-        downloadLink.download = `${product.docName}_edited`;
-
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-      }
+      const response = await axios.get(
+        `${APIURL}/api/application/downloadEdited/${erize.editedName}`,
+        { responseType: 'blob' }
+      );
+      fileDownload(response.data, `${erize.docName}.docx`);
       handleCloseModal();
     } catch (error) {
-      console.log(error);
+      console.error('Error downloading file:', error);
+      toast.error(
+        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
+      );
     }
   };
 
-  const handleConfirmEdit = async () => {
+  // const handleDownloadEditedFile = async () => {
+  //   try {
+  //     if (product?.id) {
+  //       const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/edited_${product.editedName}`;
+  //       const downloadLink = document.createElement('a');
+  //       downloadLink.href = s3DownloadUrl;
+  //       downloadLink.download = `${product.docName}_edited`;
+
+  //       document.body.appendChild(downloadLink);
+  //       downloadLink.click();
+  //       document.body.removeChild(downloadLink);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleConfirmEdit = async (erize: ProductProps) => {
     if (inputValues.some((input) => input.inputName.trim() === '')) {
       toast.error('Zəhmət olmasa bütün xanaları doldurun');
       return;
@@ -149,10 +164,10 @@ const ErizeDetails: React.FC = () => {
       await getProduct();
       toast.success('Ərizəniz uğurla redaktə olundu');
 
-      await handleDownloadEditedFile();
+      await handleDownloadEditedFile(erize);
     } catch (error) {
       console.error(error);
-      toast.error('Error editing'); // Use toast for error message
+      toast.error('Ərizəniz uğurla redaktə olunmasında problem çıxdı');
     }
   };
 
@@ -247,7 +262,10 @@ const ErizeDetails: React.FC = () => {
               />
             </div>
           ))}
-          <Button onClick={handleConfirmEdit} color='primary'>
+          <Button
+            onClick={() => product && handleConfirmEdit(product)}
+            color='primary'
+          >
             Redaktə et və yüklə
           </Button>
         </DialogContent>

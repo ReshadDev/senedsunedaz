@@ -6,7 +6,7 @@ import { useSearch } from '../../context/search';
 import { useNavigate } from 'react-router-dom';
 import { IProductProps, ISearchProps, ProductProps } from '../../interfaces';
 import { toast } from 'react-toastify';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
@@ -95,17 +95,13 @@ const Search: React.FC = () => {
                     <div className='sened-box col-lg-3' key={index}>
                       <div className='sened-image'>
                         <img
-                          src={`https://senedsunedstorages.s3.amazonaws.com/${result.imagePath}`}
+                          src={`${result.imagePath}`}
                           className='img-fluid'
                         />
                       </div>
                       <div className='sened-box-body'>
                         <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
+                          <p>{result.docName}</p>
                         </div>
                         <div className='sened-buttons'>
                           <a

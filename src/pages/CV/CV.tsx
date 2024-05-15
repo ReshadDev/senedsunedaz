@@ -14,7 +14,7 @@ import {
 } from '../../assets/icons';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import axios from 'axios';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import { ITemplatesProps } from '../../interfaces';
 
 const CV: React.FC = () => {

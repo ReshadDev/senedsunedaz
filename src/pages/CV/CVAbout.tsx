@@ -1,11 +1,14 @@
 import React from 'react';
-import { AboutUs, Bank, LightBulb, RocketLaunch } from '../../assets/icons';
+import { AboutCvIcon, Bank, LightBulb, RocketLaunch } from '../../assets/icons';
+import NavbarCV from '../../components/LayoutCV/NavbarCV';
+import FooterCV from '../../components/LayoutCV/FooterCV';
 
-const About: React.FC = () => {
+const CVAbout: React.FC = () => {
   return (
-    <div id='about'>
+    <div id='cv-about'>
+      <NavbarCV />
       <main id='maincontent' className='content'>
-        <section className='about-us'>
+        <section className='cv-about-us'>
           <div className='container'>
             <div className='about-us-content'>
               <div className='page-nav-box'>
@@ -46,7 +49,7 @@ const About: React.FC = () => {
                   </p>
                 </div>
                 <div className='img-box'>
-                  <img src={AboutUs} alt='' />
+                  <img src={AboutCvIcon} alt='' />
                 </div>
               </div>
 
@@ -86,8 +89,9 @@ const About: React.FC = () => {
           </div>
         </section>
       </main>
+      <FooterCV />
     </div>
   );
 };
 
-export default About;
+export default CVAbout;

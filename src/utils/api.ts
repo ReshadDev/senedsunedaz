@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { APIURL } from '../config';
+import { APIURL } from '../constants';
 
 interface CreateCategoryData {
   categoryName: string;

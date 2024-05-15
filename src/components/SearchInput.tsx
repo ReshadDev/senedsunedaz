@@ -1,17 +1,17 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { useSearch } from "../context/search";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Input } from "antd";
-import { SearchIcon } from "../assets/icons";
-import { APIURL } from "../config";
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { useSearch } from '../context/search';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Input } from 'antd';
+import { SearchIcon } from '../assets/icons';
+import { APIURL } from '../constants';
 
 const { Search } = Input;
 
 const SearchInput: React.FC = () => {
   const [search, setSearch] = useSearch();
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [, setSearchResults] = useState<any[]>([]);
 
@@ -34,7 +34,7 @@ const SearchInput: React.FC = () => {
   };
 
   const handleEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       handleSubmit();
     }
@@ -47,17 +47,17 @@ const SearchInput: React.FC = () => {
   return (
     <div>
       <Search
-        id="search-input"
-        placeholder="Ərizə adı və ya söz axtar"
+        id='search-input'
+        placeholder='Ərizə adı və ya söz axtar'
         allowClear
-        type="text"
+        type='text'
         enterButton={
-          <button className="search-btn">
-            <img className="search-icon" src={SearchIcon} alt="" />
+          <button className='search-btn'>
+            <img className='search-icon' src={SearchIcon} alt='' />
             Axtar
           </button>
         }
-        size="large"
+        size='large'
         value={keyword}
         onChange={handleChange}
         onSearch={keyword ? handleSearch : undefined}

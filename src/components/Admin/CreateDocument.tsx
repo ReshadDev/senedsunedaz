@@ -14,7 +14,7 @@ import {
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
 import { Category } from '../../interfaces';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 
 interface FormData {
   docFile: FileList;

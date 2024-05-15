@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { CaretLeft, CaretRight, FilterIcon } from '../../assets/icons';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
-import { APIURL, ITEMS_PER_PAGE } from '../../config';
+import { APIURL, ITEMS_PER_PAGE } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { Category, ProductProps } from '../../interfaces';
 import Checkbox from '@mui/material/Checkbox';
