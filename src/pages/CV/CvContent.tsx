@@ -69,6 +69,12 @@ const CVContent: React.FC<CVContentProps> = ({
   watch,
   isCheckboxChecked,
 }) => {
+  const dutyname = watch(`dutyname0`);
+  const profession = watch(`profession0`);
+  const language = watch(`language-0`);
+  const certificate = watch(`certificate-0`);
+  const hobby = watch(`hobby-0`);
+
   return (
     <Document>
       <Page style={styles.page}>
@@ -99,83 +105,93 @@ const CVContent: React.FC<CVContentProps> = ({
           </View>
 
           {/* Education */}
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Təhsil</Text>
-            {Array.from({ length: schoolCount }).map((_, index) => (
-              <View key={index} style={{ marginBottom: '10px' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                  {watch(`eduType${index}`)} of {watch(`profession${index}`)}
-                </Text>
-                <Text style={styles.bodyText}>
-                  Institution: {watch(`university${index}`)}
-                </Text>
-                <Text style={styles.bodyText}>
-                  Start: {watch(`eduStartDate${index}`)}
-                </Text>
-                <Text style={styles.bodyText}>
-                  Graduation: {watch(`eduEndDate${index}`)}
-                </Text>
-              </View>
-            ))}
-          </View>
-
-          {/* Experience */}
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>İş təcrübəsi</Text>
-            {Array.from({ length: experienceCount }).map((_, index) => (
-              <View key={index} style={{ marginBottom: '10px' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                  {watch(`dutyname${index}`)}
-                </Text>
-                <Text style={styles.bodyText}>{watch(`work${index}`)}</Text>
-                <Text style={styles.bodyText}>
-                  {watch(`workStartDate${index}`)} -{' '}
-                  {isCheckboxChecked[index]
-                    ? 'Davam edir'
-                    : watch(`workEndDate${index}`)}
-                </Text>
-                <View>
-                  <Text style={{ fontWeight: 'bold', fontSize: '12px' }}>
-                    Job Description:
+          {profession.trim() && (
+            <View style={styles.section}>
+              <Text style={styles.sectionHeader}>Təhsil</Text>
+              {Array.from({ length: schoolCount }).map((_, index) => (
+                <View key={index} style={{ marginBottom: '10px' }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
+                    {watch(`eduType${index}`)} of {watch(`profession${index}`)}
                   </Text>
                   <Text style={styles.bodyText}>
-                    {watch(`jobDescription-${index}`)}
+                    Institution: {watch(`university${index}`)}
+                  </Text>
+                  <Text style={styles.bodyText}>
+                    Start: {watch(`eduStartDate${index}`)}
+                  </Text>
+                  <Text style={styles.bodyText}>
+                    Graduation: {watch(`eduEndDate${index}`)}
                   </Text>
                 </View>
-              </View>
-            ))}
-          </View>
+              ))}
+            </View>
+          )}
+
+          {/* Experience */}
+          {dutyname.trim() && (
+            <View style={styles.section}>
+              <Text style={styles.sectionHeader}>İş təcrübəsi</Text>
+              {Array.from({ length: experienceCount }).map((_, index) => (
+                <View key={index} style={{ marginBottom: '10px' }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
+                    {watch(`dutyname${index}`)}
+                  </Text>
+                  <Text style={styles.bodyText}>{watch(`work${index}`)}</Text>
+                  <Text style={styles.bodyText}>
+                    {watch(`workStartDate${index}`)} -{' '}
+                    {isCheckboxChecked[index]
+                      ? 'Davam edir'
+                      : watch(`workEndDate${index}`)}
+                  </Text>
+                  <View>
+                    <Text style={{ fontWeight: 'bold', fontSize: '12px' }}>
+                      Job Description:
+                    </Text>
+                    <Text style={styles.bodyText}>
+                      {watch(`jobDescription-${index}`)}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          )}
 
           {/* Language */}
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Dil bilikləri </Text>
-            {Array.from({ length: languageCount }).map((_, index) => (
-              <Text key={index} style={styles.bodyText}>
-                {watch(`language-${index}`)} ({watch(`level-${index}`)})
-              </Text>
-            ))}
-          </View>
+          {language.trim() && (
+            <View style={styles.section}>
+              <Text style={styles.sectionHeader}>Dil bilikləri </Text>
+              {Array.from({ length: languageCount }).map((_, index) => (
+                <Text key={index} style={styles.bodyText}>
+                  {watch(`language-${index}`)} ({watch(`level-${index}`)})
+                </Text>
+              ))}
+            </View>
+          )}
 
           {/* Certificate */}
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Sertifikatlar</Text>
-            {Array.from({ length: certificateCount }).map((_, index) => (
-              <Link key={index} src={watch(`certificate-${index}`)}>
-                {watch(`certificate-${index}`)}
-              </Link>
-            ))}
-          </View>
+          {certificate.trim() && (
+            <View style={styles.section}>
+              <Text style={styles.sectionHeader}>Sertifikatlar</Text>
+              {Array.from({ length: certificateCount }).map((_, index) => (
+                <Link key={index} src={watch(`certificate-${index}`)}>
+                  {watch(`certificate-${index}`)}
+                </Link>
+              ))}
+            </View>
+          )}
 
           {/* Hobby */}
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Hobbilər</Text>
-            <Text style={styles.bodyText}>{watch(`hobby`)}</Text>
-            {Array.from({ length: hobbyCount }).map((_, index) => (
-              <Text key={index} style={styles.bodyText}>
-                {watch(`hobby-${index}`)}
-              </Text>
-            ))}
-          </View>
+          {hobby.trim() && (
+            <View style={styles.section}>
+              <Text style={styles.sectionHeader}>Hobbilər</Text>
+              <Text style={styles.bodyText}>{watch(`hobby`)}</Text>
+              {Array.from({ length: hobbyCount }).map((_, index) => (
+                <Text key={index} style={styles.bodyText}>
+                  {watch(`hobby-${index}`)}
+                </Text>
+              ))}
+            </View>
+          )}
         </View>
       </Page>
     </Document>

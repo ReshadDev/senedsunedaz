@@ -12,7 +12,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 
 interface CvFormData {
   cvFile: FileList;

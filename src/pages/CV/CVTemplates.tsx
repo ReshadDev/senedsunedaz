@@ -3,7 +3,7 @@ import FooterCV from '../../components/LayoutCV/FooterCV';
 import NavbarCV from '../../components/LayoutCV/NavbarCV';
 import { ToastContainer, toast } from 'react-toastify';
 import { cvdownload } from '../../assets/icons';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import axios from 'axios';
 import { ITemplatesProps } from '../../interfaces';
 

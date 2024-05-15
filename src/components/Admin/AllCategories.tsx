@@ -1,6 +1,6 @@
 import React from 'react';
 import { Category } from '../../interfaces';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import axios from 'axios';
 import { Modal } from 'antd';
 import { toast } from 'react-toastify';

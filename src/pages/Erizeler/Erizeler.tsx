@@ -12,7 +12,7 @@ import SearchInput from '../../components/SearchInput';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Category, ProductProps } from '../../interfaces';
-import { APIURL } from '../../config';
+import { APIURL } from '../../constants';
 import { toast } from 'react-toastify';
 import fileDownload from 'js-file-download';
 
@@ -230,11 +230,35 @@ const Erizeler: React.FC = () => {
                       </div>
                       <div className='sened-box-body'>
                         <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
+                          <p>{erize.docName}</p>
+                        </div>
+                        <div className='sened-buttons'>
+                          <Link
+                            to={`erize/${erize.id}`}
+                            className='box-details-btn'
+                          >
+                            Ətraflı
+                          </Link>
+                          <a
+                            onClick={() => handleDownload(erize)}
+                            className='download-btn'
+                          >
+                            Yüklə
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                {erizeler
+                  .slice(0, 8)
+                  .map((erize: ProductProps, index: number) => (
+                    <div className='sened-box col-lg-3' key={index}>
+                      <div className='sened-image'>
+                        <img src={`${erize.imagePath}`} className='img-fluid' />
+                      </div>
+                      <div className='sened-box-body'>
+                        <div className='sened-text'>
+                          <p>{erize.docName}</p>
                         </div>
                         <div className='sened-buttons'>
                           <Link

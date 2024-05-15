@@ -16,6 +16,7 @@ import AboutUs from '../images/AboutUs.svg';
 import Bank from '../images/Bank.svg';
 import RocketLaunch from '../images/RocketLaunch.svg';
 import LightBulb from '../images/Lightbulb.svg';
+import AboutCvIcon from '../images/cvabout.svg';
 
 import CaretLeft from '../images/CaretLeft.svg';
 import CaretRight from '../images/CaretRight.svg';
@@ -92,6 +93,7 @@ export {
   Bumb,
   ArrowRightIcon,
   AileIcon,
+  AboutCvIcon,
   ErizeIcon,
   LeftIcon,
   RightIcon,

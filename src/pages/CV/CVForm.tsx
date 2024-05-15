@@ -17,6 +17,7 @@ import {
   cvtm2,
 } from '../../assets/icons';
 import CVContent from './CvContent';
+import { errorMessages } from '../../constants';
 
 const FormTextField = styled(TextField)({
   marginBottom: '15px',
@@ -65,6 +66,7 @@ const CVForm: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log('NAME', name);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -74,18 +76,15 @@ const CVForm: React.FC = () => {
         ...prevErrors,
         [name]:
           value.trim() === ''
-            ? 'Email is required'
+            ? 'Emailiniz'
             : !validateEmail(value)
-            ? 'Invalid email format'
+            ? 'Düzgün email formatı deyil'
             : '',
       }));
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        [name]:
-          value.trim() === ''
-            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required`
-            : '',
+        [name]: value.trim() === '' ? `${errorMessages[name]}` : '',
       }));
     }
   };
@@ -96,9 +95,9 @@ const CVForm: React.FC = () => {
   ) => {
     const { checked } = event.target;
     setIsCheckboxChecked((prev) => {
-      const newState = [...prev]; // Create a copy of the previous state array
-      newState[index] = checked; // Update the state for the specific checkbox
-      return newState; // Return the updated state
+      const newState = [...prev];
+      newState[index] = checked;
+      return newState;
     });
   };
 
@@ -116,6 +115,7 @@ const CVForm: React.FC = () => {
 
   const validateStep = (step: number): boolean => {
     const stepErrors: Partial<FormData> = {};
+
     switch (step) {
       case 1:
         if (formData.name.trim() === '') {
@@ -214,6 +214,9 @@ const CVForm: React.FC = () => {
                 error={!!errors.dutyname0}
                 helperText={errors.dutyname0}
                 required
+                inputProps={{
+                  maxLength: 50,
+                }}
               />
             </div>
             <div className='form-element'>
@@ -231,6 +234,9 @@ const CVForm: React.FC = () => {
                 error={!!errors.work0}
                 helperText={errors.work0}
                 required
+                inputProps={{
+                  maxLength: 50,
+                }}
               />
             </div>
           </div>
@@ -245,7 +251,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='dd.mm.yyyy'
                 fullWidth
-                type='text'
+                type='number'
                 onChange={handleInputChange}
                 error={!!errors.workStartDate0}
                 helperText={errors.workStartDate0}
@@ -270,7 +276,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder={isCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'}
                 fullWidth
-                type='text'
+                type='number'
                 onChange={handleInputChange}
                 error={!!errors.workEndDate0}
                 helperText={errors.workEndDate0}
@@ -320,6 +326,9 @@ const CVForm: React.FC = () => {
                 fullWidth
                 multiline
                 type='text'
+                inputProps={{
+                  maxLength: 500,
+                }}
               />
             </div>
           </div>
@@ -366,6 +375,9 @@ const CVForm: React.FC = () => {
                 error={!!errors.university0}
                 helperText={errors.university0}
                 required
+                inputProps={{
+                  maxLength: 50,
+                }}
               />
             </div>
           </div>
@@ -378,7 +390,7 @@ const CVForm: React.FC = () => {
                 {...register(`eduStartDate${i}`)}
                 placeholder='dd.mm.yyyy'
                 fullWidth
-                type='text'
+                type='number'
                 onChange={handleInputChange}
                 error={!!errors.eduStartDate0}
                 helperText={errors.eduStartDate0}
@@ -393,7 +405,7 @@ const CVForm: React.FC = () => {
                 {...register(`eduEndDate${i}`)}
                 placeholder='dd.mm.yyyy'
                 fullWidth
-                type='text'
+                type='number'
                 onChange={handleInputChange}
                 error={!!errors.eduEndDate0}
                 helperText={errors.eduEndDate0}
@@ -476,6 +488,10 @@ const CVForm: React.FC = () => {
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
+                onKeyDown={handleKeyDown}
+                inputProps={{
+                  maxLength: 10,
+                }}
               />
             </div>
             <div className='form-element'>
@@ -488,7 +504,11 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                onKeyDown={handleKeyDown}
                 type='text'
+                inputProps={{
+                  maxLength: 10,
+                }}
               />
             </div>
           </div>
@@ -514,6 +534,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='daxil edin'
                 fullWidth
+                onKeyDown={handleKeyDown}
                 type='text'
               />
             </div>
@@ -541,6 +562,10 @@ const CVForm: React.FC = () => {
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
+                onKeyDown={handleKeyDown}
+                inputProps={{
+                  maxLength: 10,
+                }}
               />
             </div>
           </div>
@@ -565,6 +590,12 @@ const CVForm: React.FC = () => {
   const handleAddNewLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setLanguageCount(languageCount + 1);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
   };
 
   const handleAddNewCertificate = (
@@ -648,6 +679,10 @@ const CVForm: React.FC = () => {
                       placeholder='daxil edin'
                       fullWidth
                       type='text'
+                      inputProps={{
+                        maxLength: 25,
+                        style: { textTransform: 'capitalize' },
+                      }}
                     />
                   </div>
                   <div className='form-element'>
@@ -665,6 +700,10 @@ const CVForm: React.FC = () => {
                       required
                       error={!!errors.surname}
                       helperText={errors.surname}
+                      inputProps={{
+                        maxLength: 25,
+                        style: { textTransform: 'capitalize' },
+                      }}
                     />
                   </div>
                 </div>
@@ -680,6 +719,10 @@ const CVForm: React.FC = () => {
                       placeholder='daxil edin'
                       fullWidth
                       type='text'
+                      inputProps={{
+                        maxLength: 20,
+                        style: { textTransform: 'capitalize' },
+                      }}
                     />
                   </div>
                   <div className='form-element'>
@@ -693,6 +736,10 @@ const CVForm: React.FC = () => {
                       placeholder='daxil edin'
                       fullWidth
                       type='text'
+                      inputProps={{
+                        maxLength: 20,
+                        style: { textTransform: 'capitalize' },
+                      }}
                     />
                   </div>
                 </div>
@@ -732,6 +779,9 @@ const CVForm: React.FC = () => {
                       type='number'
                       error={!!errors.phoneNumber}
                       helperText={errors.phoneNumber}
+                      inputProps={{
+                        maxLength: 20,
+                      }}
                     />
                   </div>
                 </div>
@@ -763,6 +813,9 @@ const CVForm: React.FC = () => {
                       fullWidth
                       multiline
                       type='text'
+                      inputProps={{
+                        maxLength: 500,
+                      }}
                     />
                   </div>
                 </div>

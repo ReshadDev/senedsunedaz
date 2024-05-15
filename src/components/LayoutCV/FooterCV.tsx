@@ -11,13 +11,21 @@ const FooterCV: React.FC = () => {
               <a href='tel:+994559107999'>+994559107999</a>
             </div>
             <div className='footItem__text'>
-              <a href=''>senedsuned@gmail.com</a>
+              <a>senedsuned@gmail.com</a>
             </div>
 
             <div className='footItem__text'>
               <a href='https://maps.app.goo.gl/CHdxpnW1LjBBA7UQ8'>
                 Biz xəritədə
               </a>
+            </div>
+
+            <div className='footItem__text'>
+              <a href='/cv/about'>Haqqımızda</a>
+            </div>
+
+            <div className='footItem__text'>
+              <a href='/erizeler/faq'>FAQ</a>
             </div>
           </div>
           <div className='foot__item col-4'>

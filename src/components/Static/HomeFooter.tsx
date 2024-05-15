@@ -11,7 +11,7 @@ const HomeFooter: React.FC = () => {
               <a href='tel:+994559107999'>+994559107999</a>
             </div>
             <div className='footItem__text'>
-              <a href=''>senedsuned@gmail.com</a>
+              <a>senedsuned@gmail.com</a>
             </div>
           </div>
           <div className='foot__item col-4'>
