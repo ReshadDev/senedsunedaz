@@ -210,7 +210,6 @@ const CVForm: React.FC = () => {
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
-                onChange={handleInputChange}
                 error={!!errors.dutyname0}
                 helperText={errors.dutyname0}
                 required
@@ -230,7 +229,6 @@ const CVForm: React.FC = () => {
                 placeholder='daxil edin'
                 fullWidth
                 type='text'
-                onChange={handleInputChange}
                 error={!!errors.work0}
                 helperText={errors.work0}
                 required
@@ -252,7 +250,6 @@ const CVForm: React.FC = () => {
                 placeholder='dd.mm.yyyy'
                 fullWidth
                 type='number'
-                onChange={handleInputChange}
                 error={!!errors.workStartDate0}
                 helperText={errors.workStartDate0}
                 required
@@ -277,7 +274,6 @@ const CVForm: React.FC = () => {
                 placeholder={isCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'}
                 fullWidth
                 type='number'
-                onChange={handleInputChange}
                 error={!!errors.workEndDate0}
                 helperText={errors.workEndDate0}
                 required
