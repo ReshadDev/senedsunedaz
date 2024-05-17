@@ -49,7 +49,7 @@ const App: React.FC = () => {
         <Route path='cv' element={<CV />} />
         <Route path='/cv/about' element={<CVAbout />} />
         <Route path='cv-form' element={<CVForm />} />
-        <Route path='templates' element={<CVTemplates />} />
+        <Route path='/cv/templates' element={<CVTemplates />} />
         <Route path='login' element={<AdminLogin />} />
         <Route element={<RequireAuth />}>
           <Route path='admin' element={<AdminLayout />}>

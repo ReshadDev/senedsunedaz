@@ -1,5 +1,10 @@
 import React from 'react';
-import { AboutCvIcon, Bank, LightBulb, RocketLaunch } from '../../assets/icons';
+import {
+  AboutCvIcon,
+  Cvfaqbox1,
+  Cvfaqbox2,
+  Cvfaqbox3,
+} from '../../assets/icons';
 import NavbarCV from '../../components/LayoutCV/NavbarCV';
 import FooterCV from '../../components/LayoutCV/FooterCV';
 
@@ -59,10 +64,8 @@ const CVAbout: React.FC = () => {
                     <div className='box__heading'></div>
 
                     <div className='box__body'>
-                      <img src={RocketLaunch} alt='' />
-                      <p>
-                        Sürətli şəkildə ərizələri hazırlayıb, yükləmə imkanı
-                      </p>
+                      <img src={Cvfaqbox1} alt='' />
+                      <p>Standartlara uyğun </p>
                     </div>
                   </div>
 
@@ -70,8 +73,8 @@ const CVAbout: React.FC = () => {
                     <div className='box__heading'></div>
 
                     <div className='box__body'>
-                      <img src={LightBulb} alt='' />
-                      <p>Ərizələrin düzgün yazılışı</p>
+                      <img src={Cvfaqbox2} alt='' />
+                      <p>Yüksək işə qəbul şansı</p>
                     </div>
                   </div>
 
@@ -79,8 +82,8 @@ const CVAbout: React.FC = () => {
                     <div className='box__heading'></div>
 
                     <div className='box__body'>
-                      <img src={Bank} alt='' />
-                      <p>Rəsmi ərizə növləri </p>
+                      <img src={Cvfaqbox3} alt='' />
+                      <p>PDF yükləmə</p>
                     </div>
                   </div>
                 </div>

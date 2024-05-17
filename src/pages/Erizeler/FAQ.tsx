@@ -160,7 +160,7 @@ const Faq: React.FC = () => {
           </div>
         </div>
       </section>
-      <Dialog open={openModal} onClose={handleCloseModal}>
+      <Dialog  open={openModal} onClose={handleCloseModal}>
         <DialogContent>
           <form className='email-form' onSubmit={handleSubmit(onSubmit)}>
             <div className='form-element'>
