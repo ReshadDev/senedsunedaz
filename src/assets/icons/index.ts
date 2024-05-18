@@ -81,8 +81,15 @@ import navClose from '../images/navclose.svg';
 import faqIcon from '../images/faqicon.svg';
 import confirmIcon from '../images/confirm.svg';
 
+import Cvfaqbox1 from '../images/cvfaqbox1.svg';
+import Cvfaqbox2 from '../images/cvfaqbox2.svg';
+import Cvfaqbox3 from '../images/cvfaqbox3.svg';
+
 export {
   SearchIcon,
+  Cvfaqbox1,
+  Cvfaqbox2,
+  Cvfaqbox3,
   faqIcon,
   confirmIcon,
   MenuNavbar,

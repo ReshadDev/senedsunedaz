@@ -63,7 +63,7 @@
       }
 
       .information-boxes {
-        padding-bottom: 30px;
+        padding-bottom: 80px;
         display: flex;
         justify-content: space-between;
         .col-4 {
@@ -71,12 +71,15 @@
           width: 31.5% !important;
         }
         .information-box {
-          min-height: 200px;
+          min-height: 150px;
 
           display: flex;
           flex-direction: column;
           align-items: center;
           background: #f2f7fb;
+          border-radius: 8px;
+          box-shadow: 0px 4px 16px 0px rgba(15, 147, 191, 0.24);
+
           .box__heading {
             background: #7189bf;
             height: 8px;
@@ -127,6 +130,7 @@
         margin-bottom: 50px;
         border-radius: 8px;
 
+        background-color: #effaf5;
         display: flex;
         justify-content: space-between;
 
@@ -162,7 +166,7 @@
           width: 31.5% !important;
         }
         .information-box {
-          min-height: 200px;
+          min-height: 150px;
 
           display: flex;
           flex-direction: column;
@@ -251,15 +255,17 @@
       }
 
       .information-boxes {
-        padding-bottom: 30px;
+        padding-bottom: 8cqh;
         display: flex;
         justify-content: space-between;
         .information-box {
-          min-height: 180px;
+          min-height: 150px;
           display: flex;
           flex-direction: column;
           align-items: center;
           background: #f2f7fb;
+          border-radius: 8px;
+          box-shadow: 0px 4px 16px 0px rgba(15, 147, 191, 0.24);
           .box__heading {
             background: #7189bf;
             height: 8px;
@@ -275,6 +281,7 @@
             align-items: center;
             p {
               width: 100%;
+              font-size: 15px;
               text-align: center;
             }
             img {
@@ -315,6 +322,8 @@
         margin-bottom: 50px;
         border-radius: 8px;
         display: flex;
+        background-color: #effaf5;
+
         justify-content: space-between;
 
         .text-box {
@@ -440,7 +449,7 @@
       }
 
       .information-boxes {
-        padding-bottom: 30px;
+        padding-bottom: 80px;
         display: flex;
         justify-content: space-between;
         .col-4 {
@@ -448,11 +457,13 @@
           width: 30% !important;
         }
         .information-box {
-          min-height: 180px;
+          min-height: 160px;
           display: flex;
           flex-direction: column;
           align-items: center;
           background: #f2f7fb;
+          border-radius: 8px;
+          box-shadow: 0px 4px 16px 0px rgba(15, 147, 191, 0.24);
           .box__heading {
             background: #7189bf;
             height: 8px;
@@ -466,6 +477,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            p {
+              font-size: 14px;
+            }
             img {
               padding-bottom: 15px;
             }
@@ -504,6 +518,7 @@
         border-radius: 8px;
         display: flex;
         justify-content: space-between;
+        background-color: #effaf5;
 
         .text-box {
           padding: 25px;
@@ -638,11 +653,14 @@
         }
         .information-box {
           min-height: 150px;
-          margin-bottom: 20px;
+          max-width: 350px;
+          margin-bottom: 36px;
           display: flex;
           flex-direction: column;
           align-items: center;
           background: #f2f7fb;
+          border-radius: 8px;
+          box-shadow: 0px 4px 16px 0px rgba(15, 147, 191, 0.24);
           .box__heading {
             background: #7189bf;
             height: 8px;
@@ -698,6 +716,7 @@
         border-radius: 8px;
         display: flex;
         flex-direction: column-reverse;
+        background-color: #effaf5;
 
         .text-box {
           padding: 25px;
@@ -734,7 +753,9 @@
         }
         .information-box {
           min-height: 150px;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
+          max-width: 350px;
+
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -838,11 +859,13 @@
         }
         .information-box {
           min-height: 150px;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
           display: flex;
           flex-direction: column;
           align-items: center;
           background: #f2f7fb;
+          border-radius: 8px;
+          box-shadow: 0px 4px 16px 0px rgba(15, 147, 191, 0.24);
           .box__heading {
             background: #7189bf;
             height: 8px;
@@ -859,6 +882,7 @@
             p {
               width: 80%;
               text-align: center;
+              font-size: 14px;
             }
             img {
               padding-bottom: 15px;
@@ -899,6 +923,8 @@
         display: flex;
         flex-direction: column-reverse;
 
+        background-color: #effaf5;
+
         .text-box {
           padding: 25px;
           p {
@@ -935,7 +961,8 @@
         }
         .information-box {
           min-height: 150px;
-          margin-bottom: 20px;
+          max-width: 300px;
+          margin-bottom: 30px;
           display: flex;
           flex-direction: column;
           align-items: center;
