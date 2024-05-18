@@ -157,7 +157,7 @@ const Search: React.FC = () => {
 
               <div className='sened-documents-box'>
                 {erizeler
-                  .slice(0, 8)
+                  .slice(2, 6)
                   .map((erize: ProductProps, index: number) => (
                     <div className='sened-box col-lg-3' key={index}>
                       <div className='sened-image'>
@@ -165,11 +165,7 @@ const Search: React.FC = () => {
                       </div>
                       <div className='sened-box-body'>
                         <div className='sened-text'>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ea aperiam ex illo odio. Sequi quaerat magni
-                            delectus, assumenda sint ad!
-                          </p>
+                          <p>{erize.docName}</p>
                         </div>
                         <div className='sened-buttons'>
                           <Link

@@ -9,7 +9,7 @@ import {
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   cvformstep1,
   cvformstep1completed,
@@ -67,6 +67,7 @@ const CVForm: React.FC = () => {
     workEndDate0: '',
   });
   const [errors, setErrors] = React.useState<Partial<FormData>>({});
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -1057,7 +1058,6 @@ const CVForm: React.FC = () => {
                   >
                     <img src={cvtm1} alt='Template 3' />
                   </div>
-                  
                 </div>
               </div>
             )}
@@ -1183,7 +1183,16 @@ const CVForm: React.FC = () => {
                     }
                     fileName={`${watch('name')}-${watch('surname')}.pdf`}
                   >
-                    <button className='btn next-btn'>CV YARAT</button>
+                    <button
+                      className='btn next-btn'
+                      onClick={() =>
+                        setTimeout(() => {
+                          navigate('/cv');
+                        }, 3000)
+                      }
+                    >
+                      CV YARAT
+                    </button>
                   </PDFDownloadLink>
                 </>
               )}
