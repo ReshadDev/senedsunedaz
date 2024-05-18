@@ -249,34 +249,6 @@ const Erizeler: React.FC = () => {
                       </div>
                     </div>
                   ))}
-                {erizeler
-                  .slice(0, 8)
-                  .map((erize: ProductProps, index: number) => (
-                    <div className='sened-box col-lg-3' key={index}>
-                      <div className='sened-image'>
-                        <img src={`${erize.imagePath}`} className='img-fluid' />
-                      </div>
-                      <div className='sened-box-body'>
-                        <div className='sened-text'>
-                          <p>{erize.docName}</p>
-                        </div>
-                        <div className='sened-buttons'>
-                          <Link
-                            to={`erize/${erize.id}`}
-                            className='box-details-btn'
-                          >
-                            Ətraflı
-                          </Link>
-                          <a
-                            onClick={() => handleDownload(erize)}
-                            className='download-btn'
-                          >
-                            Yüklə
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
               </div>
             </div>
           </div>

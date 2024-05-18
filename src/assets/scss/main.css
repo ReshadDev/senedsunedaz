@@ -5864,7 +5864,31 @@ header .nav .links a {
   padding-bottom: 50px !important;
 }
 
+.disabled-btn {
+  padding: 10px 20px !important;
+  border-radius: 8px;
+  margin-top: 10px;
+  min-height: 42px !important;
+  margin-bottom: 10px;
+  background: #154e4d;
+  border: none;
+  margin-left: 20px;
+  color: #f2f7fb;
+  font-family: Sarabun;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+.disabled-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 @media (min-width: 1200px) {
+  #cv #mui-component-select-prefix {
+    padding: 15px 14px !important;
+  }
   #cv .cv-primary-mobile {
     display: none !important;
   }
@@ -6145,6 +6169,9 @@ header .nav .links a {
   #cv .cv-templates .cv-templates-content .button-box .cv-primary span {
     margin-left: 10px;
   }
+  #mui-component-select-prefix {
+    padding: 15px 14px !important;
+  }
   .foot-cv {
     background: #031f20;
     margin-top: 70px;
@@ -6377,6 +6404,26 @@ header .nav .links a {
     width: 20px;
     height: 20px;
   }
+  #cv-form .button-box .button-box-content .disabled-btn {
+    padding: 10px 20px !important;
+    border-radius: 8px;
+    margin-top: 10px;
+    min-height: 42px !important;
+    margin-bottom: 10px;
+    background: #8babab;
+    border: none;
+    margin-left: 20px;
+    color: #f2f7fb;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  #cv-form .button-box .button-box-content .disabled-btn svg {
+    width: 20px;
+    height: 20px;
+  }
   #cv-form .add-new-box {
     padding-bottom: 30px;
   }
@@ -6548,6 +6595,9 @@ header .nav .links a {
     justify-content: center;
     letter-spacing: -0.02em;
     line-height: 16px;
+  }
+  #mui-component-select-prefix {
+    padding: 15px 14px !important;
   }
   #cv .main-banner-cv .main-banner-cv-content .banner-text-box {
     width: 50%;
@@ -6939,6 +6989,26 @@ header .nav .links a {
     width: 20px;
     height: 20px;
   }
+  #cv-form .button-box .button-box-content .disabled-btn {
+    padding: 10px 20px !important;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 42px !important;
+    background: #8babab;
+    border: none;
+    margin-left: 20px;
+    color: #f2f7fb;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  #cv-form .button-box .button-box-content .disabled-btn svg {
+    width: 20px;
+    height: 20px;
+  }
   #cv-form .add-new-box {
     padding-bottom: 30px;
   }
@@ -7127,6 +7197,9 @@ header .nav .links a {
     justify-content: center;
     letter-spacing: -0.02em;
     line-height: 16px;
+  }
+  #mui-component-select-prefix {
+    padding: 12.5px 14px !important;
   }
   #cv .cv-primary-mobile {
     display: none !important;
@@ -7538,6 +7611,26 @@ header .nav .links a {
     width: 20px;
     height: 20px;
   }
+  #cv-form .button-box .button-box-content .disabled-btn {
+    padding: 10px 20px !important;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 42px !important;
+    background: #8babab;
+    border: none;
+    margin-left: 20px;
+    color: #f2f7fb;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  #cv-form .button-box .button-box-content .disabled-btn svg {
+    width: 20px;
+    height: 20px;
+  }
   #cv-form .add-new-box {
     padding-bottom: 30px;
   }
@@ -7712,6 +7805,9 @@ header .nav .links a {
     justify-content: center;
     letter-spacing: -0.02em;
     line-height: 16px;
+  }
+  #mui-component-select-prefix {
+    padding: 12.5px 14px !important;
   }
   #cv .main-banner-cv .main-banner-cv-content .banner-text-box {
     width: 50%;
@@ -8087,7 +8183,7 @@ header .nav .links a {
     justify-content: space-between;
   }
   #cv-form .form-box .templates-cv-form .col-4 {
-    width: 30%;
+    width: 48%;
   }
   #cv-form .form-box .templates-cv-form .tm-box {
     margin-bottom: 10px;
@@ -8201,6 +8297,26 @@ header .nav .links a {
     width: 16px;
     height: 16px;
   }
+  #cv-form .button-box .disabled-btn {
+    padding: 10px 16px !important;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 38px !important;
+    background: #8babab;
+    border: none;
+    margin-left: 20px;
+    color: #f2f7fb;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  #cv-form .button-box .disabled-btn svg {
+    width: 16px;
+    height: 16px;
+  }
   #cv-form .add-new-box {
     padding-bottom: 30px;
   }
@@ -8307,6 +8423,9 @@ header .nav .links a {
     justify-content: center;
     letter-spacing: -0.02em;
     line-height: 16px;
+  }
+  #mui-component-select-prefix {
+    padding: 12.5px 14px !important;
   }
   #cv .main-banner-cv .main-banner-cv-content {
     display: flex;
@@ -8804,6 +8923,26 @@ header .nav .links a {
     width: 16px;
     height: 16px;
   }
+  #cv-form .button-box .disabled-btn {
+    padding: 10px 10px !important;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 38px !important;
+    background: #8babab;
+    border: none;
+    margin-left: 20px;
+    color: #f2f7fb;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  #cv-form .button-box .disabled-btn svg {
+    width: 16px;
+    height: 16px;
+  }
   #cv-form .add-new-box {
     padding-bottom: 30px;
   }
@@ -8838,6 +8977,10 @@ header .nav .links a {
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+}
+
+.selected-cv img {
+  border: 2px solid #154e4d;
 }
 
 .all-documents-admin .heading-box {

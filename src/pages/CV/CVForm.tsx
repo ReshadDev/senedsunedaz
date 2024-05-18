@@ -1,7 +1,14 @@
-import { InputLabel, TextField, styled } from '@mui/material';
+import {
+  InputLabel,
+  TextField,
+  styled,
+  Select,
+  MenuItem,
+  FormControl,
+} from '@mui/material';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import {
   cvformstep1,
@@ -17,7 +24,8 @@ import {
   cvtm2,
 } from '../../assets/icons';
 import CVContent from './CvContent';
-import { errorMessages } from '../../constants';
+import { errorMessages, languageOptions, levelOptions } from '../../constants';
+import CVDynamicContent from './CVDynamicContent';
 
 const FormTextField = styled(TextField)({
   marginBottom: '15px',
@@ -43,10 +51,6 @@ const CVForm: React.FC = () => {
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const [currentStep, setCurrentStep] = React.useState<number>(1);
 
-  const [isCheckboxChecked, setIsCheckboxChecked] = React.useState<boolean[]>(
-    Array(5).fill(false)
-  );
-
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     surname: '',
@@ -66,7 +70,6 @@ const CVForm: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log('NAME', name);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -89,17 +92,17 @@ const CVForm: React.FC = () => {
     }
   };
 
-  const handleCheckboxChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { checked } = event.target;
-    setIsCheckboxChecked((prev) => {
-      const newState = [...prev];
-      newState[index] = checked;
-      return newState;
-    });
-  };
+  // const handleCheckboxChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>,
+  //   index: number
+  // ) => {
+  //   const { checked } = event.target;
+  //   setIsCheckboxChecked((prev) => {
+  //     const newState = [...prev];
+  //     newState[index] = checked;
+  //     return newState;
+  //   });
+  // };
 
   const handleNextStep = () => {
     if (validateStep(currentStep)) {
@@ -141,13 +144,11 @@ const CVForm: React.FC = () => {
           stepErrors.university0 = 'Universitetiniz';
         }
         if (formData.eduStartDate0.trim() === '') {
-          stepErrors.eduStartDate0 = 'Tarix';
+          stepErrors.eduStartDate0 = 'Başlama tarixi';
         }
-        if (formData.eduEndDate0.trim() === '') {
-          stepErrors.eduEndDate0 = 'Tarix';
-        }
+
         if (formData.eduType0.trim() === '') {
-          stepErrors.eduType0 = 'Dereceniz ';
+          stepErrors.eduType0 = 'Dərəcəniz ';
         }
 
         break;
@@ -182,13 +183,31 @@ const CVForm: React.FC = () => {
     return currentStep === step ? activeImage : normalImages[step - 1];
   };
 
-  const { register, watch } = useForm();
+  const { register, watch, control } = useForm();
 
   const [experienceCount, setExperienceCount] = React.useState<number>(1);
   const [schoolCount, setSchoolCount] = React.useState<number>(1);
   const [languageCount, setLanguageCount] = React.useState<number>(1);
   const [certificateCount, setCertificateCount] = React.useState<number>(1);
   const [hobbyCount, setHobbyCount] = React.useState<number>(1);
+
+  const [isExperienceCheckboxChecked, setExperienceCheckboxChecked] =
+    React.useState<boolean[]>(Array(5).fill(false));
+  const [isSchoolCheckboxChecked, setSchoolCheckboxChecked] = React.useState<
+    boolean[]
+  >(Array(5).fill(false));
+
+  const handleExperienceCheckboxChange = (e, index) => {
+    const newChecked = [...isExperienceCheckboxChecked];
+    newChecked[index] = e.target.checked;
+    setExperienceCheckboxChecked(newChecked);
+  };
+
+  const handleSchoolCheckboxChange = (e, index) => {
+    const newChecked = [...isSchoolCheckboxChecked];
+    newChecked[index] = e.target.checked;
+    setSchoolCheckboxChecked(newChecked);
+  };
 
   const generateExperiences = (): JSX.Element[] => {
     const forms: JSX.Element[] = [];
@@ -249,7 +268,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder='dd.mm.yyyy'
                 fullWidth
-                type='number'
+                type='date'
                 error={!!errors.workStartDate0}
                 helperText={errors.workStartDate0}
                 required
@@ -262,8 +281,8 @@ const CVForm: React.FC = () => {
                 </InputLabel>
                 <input
                   type='checkbox'
-                  checked={isCheckboxChecked[i]} // Use separate state for each checkbox
-                  onChange={(e) => handleCheckboxChange(e, i)} // Pass index to identify which checkbox is clicked
+                  checked={isExperienceCheckboxChecked[i]} // Use separate state for each checkbox
+                  onChange={(e) => handleExperienceCheckboxChange(e, i)} // Pass index to identify which checkbox is clicked
                 />
                 <label style={{ marginLeft: '5px' }}>Davam edirsə kliklə</label>
               </div>
@@ -271,13 +290,15 @@ const CVForm: React.FC = () => {
                 {...register(`workEndDate${i}`, {
                   required: 'endDate is required',
                 })}
-                placeholder={isCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'}
+                placeholder={
+                  isExperienceCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'
+                }
                 fullWidth
-                type='number'
+                type='date'
                 error={!!errors.workEndDate0}
                 helperText={errors.workEndDate0}
                 required
-                disabled={isCheckboxChecked[i]}
+                disabled={isExperienceCheckboxChecked[i]}
               />
             </div>
           </div>
@@ -386,7 +407,7 @@ const CVForm: React.FC = () => {
                 {...register(`eduStartDate${i}`)}
                 placeholder='dd.mm.yyyy'
                 fullWidth
-                type='number'
+                type='date'
                 onChange={handleInputChange}
                 error={!!errors.eduStartDate0}
                 helperText={errors.eduStartDate0}
@@ -394,14 +415,25 @@ const CVForm: React.FC = () => {
               />
             </div>
             <div className='form-element'>
-              <InputLabel shrink className='label-text'>
-                Bitmə tarixi
-              </InputLabel>
+              <div style={{ display: 'flex' }}>
+                <InputLabel shrink className='label-text'>
+                  Bitmə tarixi
+                </InputLabel>
+                <input
+                  type='checkbox'
+                  checked={isSchoolCheckboxChecked[i]}
+                  onChange={(e) => handleSchoolCheckboxChange(e, i)}
+                />
+                <label style={{ marginLeft: '5px' }}>Davam edirsə kliklə</label>
+              </div>
               <FormTextField
                 {...register(`eduEndDate${i}`)}
-                placeholder='dd.mm.yyyy'
+                placeholder={
+                  isSchoolCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'
+                }
                 fullWidth
-                type='number'
+                disabled={isSchoolCheckboxChecked[i]}
+                type='date'
                 onChange={handleInputChange}
                 error={!!errors.eduEndDate0}
                 helperText={errors.eduEndDate0}
@@ -477,34 +509,44 @@ const CVForm: React.FC = () => {
               <InputLabel shrink className='label-text'>
                 Dil
               </InputLabel>
-              <FormTextField
-                {...register(`language-${i}`, {
-                  required: 'language is required',
-                })}
-                placeholder='daxil edin'
-                fullWidth
-                type='text'
-                onKeyDown={handleKeyDown}
-                inputProps={{
-                  maxLength: 10,
-                }}
+
+              <Controller
+                name={`language-${i}`}
+                defaultValue={'az'}
+                control={control}
+                render={({ field }) => (
+                  <FormControl style={{ width: '100%', marginRight: '8px ' }}>
+                    <Select {...field}>
+                      {languageOptions.map(({ code, name }) => (
+                        <MenuItem key={code} value={code}>
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
               />
             </div>
             <div className='form-element'>
               <InputLabel shrink className='label-text'>
                 Səviyyə
               </InputLabel>
-              <FormTextField
-                {...register(`level-${i}`, {
-                  required: 'level is required',
-                })}
-                placeholder='daxil edin'
-                fullWidth
-                onKeyDown={handleKeyDown}
-                type='text'
-                inputProps={{
-                  maxLength: 10,
-                }}
+
+              <Controller
+                name={`level-${i}`}
+                defaultValue={'a1'}
+                control={control}
+                render={({ field }) => (
+                  <FormControl style={{ width: '100%', marginRight: '8px ' }}>
+                    <Select {...field}>
+                      {levelOptions.map(({ code, name }) => (
+                        <MenuItem key={code} value={code}>
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
               />
             </div>
           </div>
@@ -604,6 +646,16 @@ const CVForm: React.FC = () => {
   const handleAddNewHobby = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setHobbyCount(hobbyCount + 1);
+  };
+
+  // CV ID
+
+  const [selectedTemplateId, setSelectedTemplateId] = React.useState<
+    number | null
+  >(null);
+
+  const handleTemplateClick = (id: number) => {
+    setSelectedTemplateId(id);
   };
 
   return (
@@ -764,21 +816,50 @@ const CVForm: React.FC = () => {
                     <InputLabel shrink className='label-text'>
                       Telefon nömrəsi
                     </InputLabel>
-                    <FormTextField
-                      {...register('phoneNumber', {
-                        required: 'phoneNumber is required',
-                      })}
-                      placeholder='+994.......'
-                      onChange={handleInputChange}
-                      fullWidth
-                      required
-                      type='number'
-                      error={!!errors.phoneNumber}
-                      helperText={errors.phoneNumber}
-                      inputProps={{
-                        maxLength: 20,
-                      }}
-                    />
+                    <div style={{ display: 'flex' }}>
+                      <TextField
+                        value='+994 '
+                        disabled
+                        style={{ width: '70px', marginRight: '10px' }}
+                      />
+                      <Controller
+                        name='prefix'
+                        control={control}
+                        defaultValue='55'
+                        rules={{ required: 'Prefix is required' }}
+                        render={({ field }) => (
+                          <FormControl
+                            style={{ width: '80px', marginRight: '8px ' }}
+                          >
+                            <Select {...field}>
+                              <MenuItem value='50'>50</MenuItem>
+                              <MenuItem value='51'>51</MenuItem>
+                              <MenuItem value='55'>55</MenuItem>
+                              <MenuItem value='99'>99</MenuItem>
+                              <MenuItem value='77'>77</MenuItem>
+                              <MenuItem value='70'>70</MenuItem>
+                            </Select>
+                          </FormControl>
+                        )}
+                      />
+                      <TextField
+                        {...register('phoneNumber', {
+                          pattern: {
+                            value: /^[0-9]{7}$/,
+                            message: 'Phone number must be 7 digits',
+                          },
+                        })}
+                        placeholder='1234567'
+                        onChange={handleInputChange}
+                        fullWidth
+                        error={!!errors.phoneNumber}
+                        helperText={errors.phoneNumber}
+                        inputProps={{
+                          maxLength: 7,
+                        }}
+                        style={{ flex: 1 }}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className='row'>
@@ -950,22 +1031,52 @@ const CVForm: React.FC = () => {
                 </div>
 
                 <div className='templates-cv-form'>
-                  <div className='tm-box col-4'>
-                    <img src={cvtm1} alt='' />
+                  <div
+                    className={`tm-box col-4 ${
+                      selectedTemplateId === 1 ? 'selected-cv' : ''
+                    }`}
+                    onClick={() => handleTemplateClick(1)}
+                  >
+                    <img src={cvtm1} alt='Template 1' />
                   </div>
 
-                  <div className='tm-box col-4'>
-                    <img src={cvtm2} alt='' />
+                  <div
+                    className={`tm-box col-4 ${
+                      selectedTemplateId === 2 ? 'selected-cv' : ''
+                    }`}
+                    onClick={() => handleTemplateClick(2)}
+                  >
+                    <img src={cvtm2} alt='Template 2' />
                   </div>
 
-                  <div className='tm-box col-4'>
-                    <img src={cvtm1} alt='' />
+                  <div
+                    className={`tm-box col-4 ${
+                      selectedTemplateId === 3 ? 'selected-cv' : ''
+                    }`}
+                    onClick={() => handleTemplateClick(3)}
+                  >
+                    <img src={cvtm1} alt='Template 3' />
                   </div>
-
-                  <div className='tm-box col-4'>
-                    <img src={cvtm2} alt='' />
-                  </div>
+                  
                 </div>
+              </div>
+            )}
+            {currentStep === 6 && (
+              <div className='container-new'>
+                <div className='heading-box'>
+                  <h1>Dinamik</h1>
+                </div>
+                <CVDynamicContent
+                  certificateCount={certificateCount}
+                  experienceCount={experienceCount}
+                  languageCount={languageCount}
+                  schoolCount={schoolCount}
+                  hobbyCount={hobbyCount}
+                  watch={watch}
+                  id={selectedTemplateId}
+                  isExperienceCheckboxChecked={isExperienceCheckboxChecked}
+                  isSchoolCheckboxChecked={isSchoolCheckboxChecked}
+                />
               </div>
             )}
           </form>
@@ -975,7 +1086,7 @@ const CVForm: React.FC = () => {
         <div className='container'>
           <div className='button-box-content'>
             <div className='container-new'>
-              {currentStep < 4 ? (
+              {currentStep < 6 ? (
                 <>
                   {currentStep === 1 ? (
                     <Link to='/cv' className='btn prev-btn'>
@@ -1013,7 +1124,15 @@ const CVForm: React.FC = () => {
                       Geri
                     </button>
                   )}
-                  <button className='btn next-btn' onClick={handleNextStep}>
+                  <button
+                    className={`btn ${
+                      selectedTemplateId === null && currentStep === 5
+                        ? 'disabled-btn'
+                        : 'next-btn'
+                    }`}
+                    disabled={selectedTemplateId === null && currentStep === 5}
+                    onClick={handleNextStep}
+                  >
                     Növbəti
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -1055,7 +1174,11 @@ const CVForm: React.FC = () => {
                         schoolCount={schoolCount}
                         hobbyCount={hobbyCount}
                         watch={watch}
-                        isCheckboxChecked={isCheckboxChecked}
+                        isExperienceCheckboxChecked={
+                          isExperienceCheckboxChecked
+                        }
+                        isSchoolCheckboxChecked={isSchoolCheckboxChecked}
+                        id={selectedTemplateId}
                       />
                     }
                     fileName={`${watch('name')}-${watch('surname')}.pdf`}

@@ -9,10 +9,11 @@ import {
 } from '@react-pdf/renderer';
 
 import myCustomFont from '../../assets/Roboto-Medium.ttf';
+import { getLanguageName, getLevelName } from '../../constants';
 
 Font.register({ family: 'Roboto', src: myCustomFont });
 
-const styles = StyleSheet.create({
+const template1 = StyleSheet.create({
   page: {
     padding: '20px',
     fontFamily: 'Roboto',
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     padding: '10px',
     marginBottom: '20px',
     fontFamily: 'Roboto',
-    fontSize: '20px', // Adjusting font size for header
+    fontSize: '20px',
   },
   section: {
     marginBottom: '20px',
@@ -40,7 +41,81 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     fontFamily: 'Roboto',
-    fontSize: '12px', // Adjusting font size for body text
+    fontSize: '12px',
+  },
+  listItem: {
+    paddingLeft: '10px',
+    fontFamily: 'Roboto',
+    marginBottom: '5px',
+  },
+});
+
+const template2 = StyleSheet.create({
+  page: {
+    padding: '20px',
+    fontFamily: 'Roboto',
+  },
+  header: {
+    backgroundColor: '#154e4d',
+    color: '#ffffff',
+    padding: '10px',
+    marginBottom: '20px',
+    fontFamily: 'Roboto',
+    fontSize: '20px',
+  },
+  section: {
+    marginBottom: '20px',
+    fontFamily: 'Roboto',
+  },
+  sectionHeader: {
+    fontSize: '16px',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: '#154e4d',
+    borderBottom: '1px solid #154e4d',
+    paddingBottom: '5px',
+  },
+  bodyText: {
+    fontFamily: 'Roboto',
+    fontSize: '12px',
+  },
+  listItem: {
+    paddingLeft: '10px',
+    fontFamily: 'Roboto',
+    marginBottom: '5px',
+  },
+});
+
+const template3 = StyleSheet.create({
+  page: {
+    padding: '20px',
+    fontFamily: 'Roboto',
+  },
+  header: {
+    backgroundColor: '#FF2727',
+    color: '#ffffff',
+    padding: '10px',
+    marginBottom: '20px',
+    fontFamily: 'Roboto',
+    fontSize: '20px',
+  },
+  section: {
+    marginBottom: '20px',
+    fontFamily: 'Roboto',
+  },
+  sectionHeader: {
+    fontSize: '16px',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: '#FF2727',
+    borderBottom: '1px solid #FF2727',
+    paddingBottom: '5px',
+  },
+  bodyText: {
+    fontFamily: 'Roboto',
+    fontSize: '12px',
   },
   listItem: {
     paddingLeft: '10px',
@@ -55,9 +130,11 @@ interface CVContentProps {
   languageCount: number;
   schoolCount: number;
   hobbyCount: number;
+  id?: number | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   watch: any;
-  isCheckboxChecked: boolean[]; // Update the prop type
+  isExperienceCheckboxChecked: boolean[];
+  isSchoolCheckboxChecked: boolean[];
 }
 
 const CVContent: React.FC<CVContentProps> = ({
@@ -67,7 +144,9 @@ const CVContent: React.FC<CVContentProps> = ({
   schoolCount,
   hobbyCount,
   watch,
-  isCheckboxChecked,
+  isExperienceCheckboxChecked,
+  isSchoolCheckboxChecked,
+  id,
 }) => {
   const dutyname = watch(`dutyname0`);
   const profession = watch(`profession0`);
@@ -75,6 +154,17 @@ const CVContent: React.FC<CVContentProps> = ({
   const certificate = watch(`certificate-0`);
   const hobby = watch(`hobby-0`);
 
+  const styles =
+    id === 1
+      ? template1
+      : id === 2
+      ? template2
+      : id === 3
+      ? template3
+      : template1;
+
+  const prefix = watch('prefix', '55'); // Default to '55' if not selected
+  const phoneNumber = watch('phoneNumber', '');
   return (
     <Document>
       <Page style={styles.page}>
@@ -92,7 +182,10 @@ const CVContent: React.FC<CVContentProps> = ({
             <Text style={styles.sectionHeader}>Şəxsi məlumatlar</Text>
             <View>
               <Text style={styles.bodyText}>Email: {watch('email')}</Text>
-              <Text style={styles.bodyText}>Phone: {watch('phoneNumber')}</Text>
+              <Text style={styles.bodyText}>
+                Phone: +994{prefix}
+                {phoneNumber}
+              </Text>
               <Text style={styles.bodyText}>
                 Linkedin:{' '}
                 <Link src={watch('linkedinProfile')}>
@@ -116,11 +209,12 @@ const CVContent: React.FC<CVContentProps> = ({
                   <Text style={styles.bodyText}>
                     Institution: {watch(`university${index}`)}
                   </Text>
+
                   <Text style={styles.bodyText}>
-                    Start: {watch(`eduStartDate${index}`)}
-                  </Text>
-                  <Text style={styles.bodyText}>
-                    Graduation: {watch(`eduEndDate${index}`)}
+                    {watch(`eduStartDate${index}`)} -{' '}
+                    {isSchoolCheckboxChecked[index]
+                      ? 'Davam edir'
+                      : watch(`eduEndDate${index}`)}
                   </Text>
                 </View>
               ))}
@@ -139,7 +233,7 @@ const CVContent: React.FC<CVContentProps> = ({
                   <Text style={styles.bodyText}>{watch(`work${index}`)}</Text>
                   <Text style={styles.bodyText}>
                     {watch(`workStartDate${index}`)} -{' '}
-                    {isCheckboxChecked[index]
+                    {isExperienceCheckboxChecked[index]
                       ? 'Davam edir'
                       : watch(`workEndDate${index}`)}
                   </Text>
@@ -162,7 +256,8 @@ const CVContent: React.FC<CVContentProps> = ({
               <Text style={styles.sectionHeader}>Dil bilikləri </Text>
               {Array.from({ length: languageCount }).map((_, index) => (
                 <Text key={index} style={styles.bodyText}>
-                  {watch(`language-${index}`)} ({watch(`level-${index}`)})
+                  {getLanguageName(watch(`language-${index}`))} (
+                  {getLevelName(watch(`level-${index}`))}){' '}
                 </Text>
               ))}
             </View>
