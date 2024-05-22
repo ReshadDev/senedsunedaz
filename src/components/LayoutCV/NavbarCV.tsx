@@ -57,6 +57,12 @@ const NavbarCV: React.FC = () => {
             <Link onClick={toggleSidebar} to='/cv/about'>
               Haqqımızda
             </Link>
+            <Link onClick={toggleSidebar} to='/erizeler/faq'>
+              FAQ
+            </Link>
+            <Link onClick={toggleSidebar} to='/erizeler'>
+              Ərizələr
+            </Link>
           </div>
         </div>
       </div>

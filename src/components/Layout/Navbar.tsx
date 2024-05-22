@@ -57,6 +57,12 @@ const Navbar: React.FC = () => {
             <Link onClick={toggleSidebar} to='all'>
               Ərizələr
             </Link>
+            <Link onClick={toggleSidebar} to='faq'>
+              FAQ
+            </Link>
+            <Link onClick={toggleSidebar} to='/cv'>
+              CV
+            </Link>
           </div>
         </div>
       </div>
