@@ -1,32 +1,6 @@
 import axios from 'axios';
 import { APIURL } from '../constants';
 
-interface CreateCategoryData {
-  categoryName: string;
-  description: string;
-}
-
-export const createCategory = async (
-  data: CreateCategoryData,
-  token: string
-) => {
-  const formData = new FormData();
-  formData.append('name', data.categoryName);
-  formData.append('description', data.description);
-
-  const response = await axios.post(
-    `${APIURL}/api/category/addCategory`,
-    formData,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  return response.data;
-};
-
 interface FormData {
   docFile: FileList;
   imageFile: FileList;

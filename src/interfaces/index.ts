@@ -71,3 +71,8 @@ export interface ITemplatesProps {
     inputName?: string | null;
   }[];
 }
+
+export interface CreateCategoryData {
+  categoryName: string;
+  description: string;
+}

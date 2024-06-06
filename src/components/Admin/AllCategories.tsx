@@ -1,11 +1,15 @@
 import React from 'react';
 import { Category } from '../../interfaces';
-import { APIURL } from '../../constants';
-import axios from 'axios';
 import { Modal } from 'antd';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/auth';
 import { InputLabel, TextField } from '@mui/material';
+import {
+  deleteCategory,
+  fetchCategory,
+  getAllCategories,
+  updateCategory,
+} from '../../services/CategoryService';
 
 const AllCategories: React.FC = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
@@ -22,32 +26,14 @@ const AllCategories: React.FC = () => {
     description: '',
   });
 
-  const getAllCategories = async () => {
-    try {
-      const { data } = await axios.get(
-        `${APIURL}/api/category/getAllCategories`
-      );
-      if (data?.success) {
-        setCategories(data?.categories);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
-    getAllCategories();
+    getAllCategories(setCategories);
   }, []);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${APIURL}/api/category/deleteCategory/${deleteId}`, {
-        headers: {
-          Authorization: `Bearer ${auth.tokenPair.accessToken}`,
-        },
-      });
-
-      await getAllCategories();
+      await deleteCategory(deleteId, auth.tokenPair.accessToken);
+      await getAllCategories(setCategories);
 
       toast.success('Kateqoriya uğurla silindi');
     } catch (error) {
@@ -59,49 +45,26 @@ const AllCategories: React.FC = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `${APIURL}/api/category/updateCategory/${updateId}`,
-        categoryData,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.tokenPair.accessToken}`,
-          },
-        }
-      );
-
-      await getAllCategories();
+      await updateCategory(updateId, categoryData, auth.tokenPair.accessToken);
+      await getAllCategories(setCategories);
       toast.success('Kateqoriya uğurla yeniləndi');
     } catch (error) {
       console.error('Error updating category:', error);
       toast.error('Xəta baş verdi');
-    }
-    setIsOpen2(false);
-  };
-
-  const fetchCategory = async (id: number) => {
-    try {
-      const response = await axios.get(`${APIURL}/api/category/byId/${id}`);
-      const category = response.data.category;
-
-      if (category) {
-        setCategoryData(category);
-      } else {
-        console.error('Category not found');
-      }
-    } catch (error) {
-      console.error('Error fetching category:', error);
+    } finally {
+      setIsOpen2(false);
     }
   };
 
-  const showModal = (id: number) => {
-    setDeleteId(id);
+  const showModal = (categoryId: number) => {
+    setDeleteId(categoryId);
     setIsOpen(true);
   };
 
-  const showModal2 = (id: number) => {
-    setUpdateId(id);
+  const showModal2 = (categoryId: number) => {
+    setUpdateId(categoryId);
     setIsOpen2(true);
-    fetchCategory(id);
+    fetchCategory(categoryId, setCategoryData);
   };
 
   const handleCancel = () => {
@@ -109,28 +72,28 @@ const AllCategories: React.FC = () => {
   };
 
   return (
-    <div className='all-documents-admin'>
-      <div className='container-new'>
-        <div className='heading-box'>
+    <div className="all-documents-admin">
+      <div className="container-new">
+        <div className="heading-box">
           <h1>Bütün Kateqoriyalar</h1>
         </div>
 
-        <div className='erizeler-list-box'>
-          <div className='box__body'>
+        <div className="erizeler-list-box">
+          <div className="box__body">
             {categories.map((category: Category) => (
-              <div key={category.id} className='erize-box col-12'>
-                <div className='erize-box__text-box'>
+              <div key={category.id} className="erize-box col-12">
+                <div className="erize-box__text-box">
                   <p>{category.name}</p>
                 </div>
-                <div className='erize-box__buttons-box'>
+                <div className="erize-box__buttons-box">
                   <a
-                    className='update-btn btn'
+                    className="update-btn btn"
                     onClick={() => showModal2(category.id)}
                   >
                     Yenilə
                   </a>
                   <a
-                    className='download-btn btn'
+                    className="download-btn btn"
                     onClick={() => showModal(category.id)}
                   >
                     Sil
@@ -142,12 +105,12 @@ const AllCategories: React.FC = () => {
         </div>
       </div>
       <Modal
-        title='Təsdiq etmək'
+        title="Təsdiq etmək"
         open={isOpen}
         onOk={handleDelete}
         onCancel={handleCancel}
-        okText='Təsdiq et'
-        cancelText='Ləğv et'
+        okText="Təsdiq et"
+        cancelText="Ləğv et"
       >
         <p>
           Kateqoriyanı silmək istədiyinizə əminsinizmi? Bu əməliyyatı geri
@@ -156,14 +119,14 @@ const AllCategories: React.FC = () => {
       </Modal>
 
       <Modal
-        title='Redaktə etmək'
+        title="Redaktə etmək"
         open={isOpen2}
         onOk={handleUpdate}
         onCancel={handleCancel}
-        okText='Təsdiq et'
-        cancelText='Ləğv et'
+        okText="Təsdiq et"
+        cancelText="Ləğv et"
       >
-        <InputLabel shrink id='docFile-label'>
+        <InputLabel shrink id="docFile-label">
           Kateqoriya adı
         </InputLabel>
         <TextField
@@ -172,7 +135,7 @@ const AllCategories: React.FC = () => {
             setCategoryData({ ...categoryData, name: e.target.value })
           }
         />
-        <InputLabel shrink id='docFile-label'>
+        <InputLabel shrink id="docFile-label">
           Haqqında
         </InputLabel>
         <TextField
