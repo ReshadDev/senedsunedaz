@@ -3317,7 +3317,7 @@
 
       .templates-cv-form {
         .col-4 {
-          width:48%;
+          width: 48%;
         }
         display: flex;
         flex-wrap: wrap;
@@ -3508,6 +3508,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  cursor: pointer;
 }
 
 .selected-cv {

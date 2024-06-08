@@ -5,7 +5,7 @@ export interface Category {
   description: string;
 }
 
-export interface ProductProps {
+export interface DocumentData {
   id: number;
   docName: string;
   docPath: string;
@@ -21,6 +21,7 @@ export interface ProductProps {
     label: string;
     inputName: string | null;
   }[];
+  downloadCount?: number | null;
 }
 export interface IProductProps {
   id: number;
@@ -75,4 +76,22 @@ export interface ITemplatesProps {
 export interface CreateCategoryData {
   categoryName: string;
   description: string;
+}
+
+export interface CreateDocumentData {
+  docFile: FileList;
+  editDocFile: FileList;
+  imageFile: FileList;
+  docName: string;
+  categoryId: string;
+}
+
+export interface DocumentInput {
+  labelName: string;
+  label: string;
+}
+
+export interface DocumentInputV2 {
+  labelName: string;
+  inputName: string;
 }

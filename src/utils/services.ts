@@ -1,35 +1,6 @@
 import axios from 'axios';
 import { APIURL } from '../constants';
-
-interface FormData {
-  docFile: FileList;
-  imageFile: FileList;
-  docName: string;
-  link: string;
-  categoryId: string;
-}
-
-export const createDocument = async (data: FormData, token: string) => {
-  const formData = new FormData();
-  formData.append('docFile', data.docFile[0]);
-  formData.append('imageFile', data.imageFile[0]);
-  formData.append('docName', data.docName);
-  formData.append('link', data.link);
-
-  const categoryId = data.categoryId;
-  const response = await axios.post(
-    `${APIURL}/api/application/upload/${categoryId}`,
-    formData,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  return response.data;
-};
+import { DocumentData } from '../interfaces';
 
 export const refreshAccessToken = async (accessToken: string) => {
   try {
@@ -48,4 +19,43 @@ export const refreshAccessToken = async (accessToken: string) => {
     console.error('Error refreshing access token:', error);
     throw error;
   }
+};
+
+export const getVisitorCount = async (
+  setVisitorCount: (visitorCount: number) => void
+) => {
+  try {
+    const { data } = await axios.post(
+      `${APIURL}/api/visitedcount/incrementcount`
+    );
+    setVisitorCount(data.count);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllDocumentsV2 = async (
+  setErizeler: (erizeler: DocumentData[]) => void,
+  setTotalDownloadCount: (total: number) => void
+) => {
+  try {
+    const { data } = await axios.get(`${APIURL}/api/application/findAll`);
+    if (data?.success) {
+      setErizeler(data?.documents);
+      const total = sumDownloadCounts(data?.documents);
+      setTotalDownloadCount(total);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sumDownloadCounts = (documents: DocumentData[]): number => {
+  let totalDownloadCount: number = 0;
+
+  documents.forEach((document: DocumentData) => {
+    totalDownloadCount += document.downloadCount ?? 0;
+  });
+
+  return totalDownloadCount;
 };

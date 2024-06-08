@@ -22,7 +22,7 @@ const AdminPanel: React.FC = () => {
       <p>Welcome to the admin panel</p>
 
       <div className="logout">
-        <button className="admin-btns " onClick={handleRefreshToken}>
+        <button className="admin-btns" onClick={handleRefreshToken}>
           Refresh
         </button>
       </div>

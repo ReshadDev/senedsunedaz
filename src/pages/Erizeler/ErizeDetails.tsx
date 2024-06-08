@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { PencilIcon } from '../../assets/icons';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
@@ -17,91 +16,52 @@ import { toast } from 'react-toastify';
 
 import ImageGallery from 'react-image-gallery';
 import { Button as NewButton } from 'antd';
-import { Category, ProductProps } from '../../interfaces';
-import { APIURL } from '../../constants';
-import fileDownload from 'js-file-download';
+import { Category, DocumentData, DocumentInputV2 } from '../../interfaces';
+import {
+  getAllCategories,
+  getCategoryName,
+} from '../../services/CategoryService';
+import {
+  downloadDocument,
+  downloadEditedDocument,
+  editDocument,
+  getDocument,
+} from '../../services/DocumentService';
 
 const ErizeDetails: React.FC = () => {
-  const [product, setProduct] = React.useState<ProductProps | null>(null);
+  const [document, setDocument] = React.useState<DocumentData | null>(null);
   const [categoryName, setCategoryName] = React.useState<string>('');
   const [openModal, setOpenModal] = React.useState<boolean>(false);
-  const [inputValues, setInputValues] = React.useState<
-    { labelName: string; inputName: string }[]
-  >([]);
+  const [inputValues, setInputValues] = React.useState<DocumentInputV2[]>([]);
   const [categories, setCategories] = React.useState<Category[]>([]);
 
   const params = useParams<{ slug: string }>();
 
-  const getProduct = async () => {
-    try {
-      const { data } = await axios.get(
-        `${APIURL}/api/application/byId/${params.slug}`
-      );
-      setProduct(data.document);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const { data } = await axios.get(
-        `${APIURL}/api/category/getAllCategories`
-      );
-      setCategories(data?.categories || []);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getCategoryName = (categoryId: number) => {
-    const matchedCategory = categories.find(
-      (category) => category?.id === categoryId
-    );
-    setCategoryName(matchedCategory?.name || '');
-  };
-
   React.useEffect(() => {
     if (params?.slug) {
-      getProduct();
+      getDocument(setDocument, params);
     }
-  }, [params?.slug]);
+  }, [params, params?.slug]);
 
   React.useEffect(() => {
-    fetchCategories();
+    getAllCategories(setCategories);
   }, []);
 
   React.useEffect(() => {
-    if (product) {
-      getCategoryName(product.categoryId);
+    if (document) {
+      getCategoryName(document.categoryId, categories, setCategoryName);
     }
-  }, [product]);
+  }, [categories, document]);
 
-  const images = product?.imagePath.map((imagePath) => ({
+  const images = document?.imagePath.map((imagePath) => ({
     original: `${imagePath}`,
     thumbnail: `${imagePath}`,
   }));
 
-  const handleDownload = async (erize: ProductProps) => {
-    try {
-      const response = await axios.get(
-        `${APIURL}/api/application/download/${erize.id}`,
-        { responseType: 'blob' }
-      );
-      fileDownload(response.data, `${erize.docName}.docx`);
-      toast.success('Sənəd uğurla yükləndi!');
-    } catch (error) {
-      console.error('Error downloading file:', error);
-      toast.error(
-        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
-      );
-    }
-  };
   const handleEdit = () => {
     setOpenModal(true);
-    // Initialize inputValues with the existing input values
     const initialInputValues =
-      product?.extraInput.map((input) => ({
+      document?.extraInput.map((input) => ({
         labelName: input.labelName,
         inputName: input.inputName || '',
       })) || [];
@@ -112,59 +72,18 @@ const ErizeDetails: React.FC = () => {
     setOpenModal(false);
   };
 
-  const handleDownloadEditedFile = async (erize: ProductProps) => {
-    try {
-      const response = await axios.get(
-        `${APIURL}/api/application/downloadEdited/${erize.editedName}`,
-        { responseType: 'blob' }
-      );
-      fileDownload(response.data, `${erize.docName}.docx`);
-      handleCloseModal();
-    } catch (error) {
-      console.error('Error downloading file:', error);
-      toast.error(
-        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
-      );
-    }
-  };
-
-  // const handleDownloadEditedFile = async () => {
-  //   try {
-  //     if (product?.id) {
-  //       const s3DownloadUrl = `https://senedsunedstorages.s3.amazonaws.com/edited_${product.editedName}`;
-  //       const downloadLink = document.createElement('a');
-  //       downloadLink.href = s3DownloadUrl;
-  //       downloadLink.download = `${product.docName}_edited`;
-
-  //       document.body.appendChild(downloadLink);
-  //       downloadLink.click();
-  //       document.body.removeChild(downloadLink);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  const handleConfirmEdit = async (erize: ProductProps) => {
-    if (inputValues.some((input) => input.inputName.trim() === '')) {
+  const handleConfirmEdit = async (erize: DocumentData | null) => {
+    if (!erize || inputValues.some((input) => input.inputName.trim() === '')) {
       toast.error('Zəhmət olmasa bütün xanaları doldurun');
       return;
     }
-
     try {
-      const requestBody = inputValues.map((input) => ({
-        labelName: input.labelName,
-        inputName: input.inputName,
-      }));
+      await editDocument(inputValues, erize);
+      await getDocument(setDocument, params);
 
-      await axios.post(
-        `${APIURL}/api/application/edit/${product?.id}`,
-        requestBody
-      );
-      await getProduct();
       toast.success('Ərizəniz uğurla redaktə olundu');
 
-      await handleDownloadEditedFile(erize);
+      await downloadEditedDocument(erize, handleCloseModal);
     } catch (error) {
       console.error(error);
       toast.error('Ərizəniz uğurla redaktə olunmasında problem çıxdı');
@@ -172,18 +91,18 @@ const ErizeDetails: React.FC = () => {
   };
 
   return (
-    <div className='erize-details-page'>
-      <section className='erize-details-box'>
-        <div className='container'>
-          <div className='erize-details-content'>
-            <div className='page-box'>
-              <div className='text-box'>
-                <p className='mid-text-s'>Ərizələr</p>/<p>Ətraflı</p>
+    <div className="erize-details-page">
+      <section className="erize-details-box">
+        <div className="container">
+          <div className="erize-details-content">
+            <div className="page-box">
+              <div className="text-box">
+                <p className="mid-text-s">Ərizələr</p>/<p>Ətraflı</p>
               </div>
             </div>
 
-            <div className='erize-details-text-box'>
-              <div className='left-side'>
+            <div className="erize-details-text-box">
+              <div className="left-side">
                 <div>
                   {images && images.length > 0 && (
                     <ImageGallery
@@ -195,39 +114,39 @@ const ErizeDetails: React.FC = () => {
                   )}
                 </div>
               </div>
-              <div className='right-side'>
-                <div className='erize-details-action-box'>
-                  <div className='erize-details-erize-box'>
+              <div className="right-side">
+                <div className="erize-details-action-box">
+                  <div className="erize-details-erize-box">
                     <div
-                      className='d-main-box'
+                      className="d-main-box"
                       style={{ paddingBottom: '20px' }}
                     >
-                      <p className='erize-name-label'>Ərizə adı: </p>
-                      <p>{product?.docName}</p>
+                      <p className="erize-name-label">Ərizə adı: </p>
+                      <p>{document?.docName}</p>
                     </div>
                     <div
-                      className='d-main-box'
+                      className="d-main-box"
                       style={{ paddingBottom: '20px' }}
                     >
-                      <p className='erize-name-label'>Kateqoriya adı: </p>
-                      <NewButton type='primary'>
+                      <p className="erize-name-label">Kateqoriya adı: </p>
+                      <NewButton type="primary">
                         {categoryName || 'Ailə'}
                       </NewButton>
                     </div>
                   </div>
 
-                  <div className='action-buttons-box'>
+                  <div className="action-buttons-box">
                     <a
-                      target='_blank'
-                      className='btn edit-btn'
+                      target="_blank"
+                      className="btn edit-btn"
                       onClick={handleEdit}
                     >
-                      <img src={PencilIcon} alt='' />
+                      <img src={PencilIcon} alt="" />
                       Redaktə et və yüklə
                     </a>
                     <a
-                      className='btn download-btn'
-                      onClick={() => product && handleDownload(product)}
+                      className="btn download-btn"
+                      onClick={() => document && downloadDocument(document)}
                     >
                       Yüklə
                     </a>
@@ -241,11 +160,11 @@ const ErizeDetails: React.FC = () => {
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>Ərizəni redaktə et</DialogTitle>
         <DialogContent>
-          {product?.extraInput.map((input, index) => (
+          {document?.extraInput.map((input, index) => (
             <div key={input.id} style={{ marginBottom: '10px' }}>
               <label>{input.label}</label>
               <TextField
-                variant='outlined'
+                variant="outlined"
                 fullWidth
                 defaultValue={input.inputName || ''}
                 onChange={(e) => {
@@ -263,8 +182,8 @@ const ErizeDetails: React.FC = () => {
             </div>
           ))}
           <Button
-            onClick={() => product && handleConfirmEdit(product)}
-            color='primary'
+            onClick={() => document && handleConfirmEdit(document)}
+            color="primary"
           >
             Redaktə et və yüklə
           </Button>

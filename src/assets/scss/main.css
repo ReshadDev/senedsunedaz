@@ -8977,6 +8977,7 @@ header .nav .links a {
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  cursor: pointer;
 }
 
 .selected-cv img {
@@ -9055,6 +9056,7 @@ header .nav .links a {
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+  cursor: pointer;
 }
 .all-documents-admin .erizeler-list-box .box__body .erize-box .erize-box__buttons-box .update-btn {
   border-radius: 8px;
@@ -10349,6 +10351,10 @@ header .nav .links a {
     align-items: center;
   }
 }
+a {
+  cursor: pointer;
+}
+
 * {
   margin: 0;
   padding: 0;

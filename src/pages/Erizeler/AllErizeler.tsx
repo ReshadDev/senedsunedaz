@@ -5,31 +5,17 @@ import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import { APIURL, ITEMS_PER_PAGE } from '../../constants';
 import { useNavigate } from 'react-router-dom';
-import { Category, ProductProps } from '../../interfaces';
+import { Category, DocumentData } from '../../interfaces';
 import Checkbox from '@mui/material/Checkbox';
-import { toast } from 'react-toastify';
-import { ErizeFakeProps } from '../../data/fakeData';
 import { CloseOutlined } from '@ant-design/icons';
-import fileDownload from 'js-file-download';
-
-interface ErizeExamplePropsNew {
-  id: number;
-  docName: string;
-  docPath: string;
-  imagePath: string[];
-  imageName: string;
-  categoryId: number;
-  link: string;
-  extraInput: {
-    id: number;
-    labelName: string;
-    label: string;
-    inputName: string | null;
-  }[];
-}
+import {
+  downloadDocument,
+  getAllDocuments,
+} from '../../services/DocumentService';
+import { getAllCategories } from '../../services/CategoryService';
 
 const AllErizeler: React.FC = () => {
-  const [erizeler, setErizeler] = React.useState<ErizeExamplePropsNew[]>([]);
+  const [erizeler, setErizeler] = React.useState<DocumentData[]>([]);
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
@@ -39,36 +25,12 @@ const AllErizeler: React.FC = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const getAllDocuments = async () => {
-    try {
-      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
-      if (data?.success) {
-        setErizeler(data?.documents);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
-    getAllDocuments();
+    getAllDocuments(setErizeler);
   }, []);
 
-  const getAllCategories = async () => {
-    try {
-      const { data } = await axios.get(
-        `${APIURL}/api/category/getAllCategories`
-      );
-      if (data?.success) {
-        setCategories(data?.categories);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
-    getAllCategories();
+    getAllCategories(setCategories);
   }, []);
 
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
@@ -81,7 +43,7 @@ const AllErizeler: React.FC = () => {
 
       if (category === selectedCategory) {
         setSelectedCategory(null);
-        getAllDocuments();
+        getAllDocuments(setErizeler);
       } else {
         const { data } = await axios.get(apiUrl);
 
@@ -100,7 +62,7 @@ const AllErizeler: React.FC = () => {
 
       if (category === selectedCategory) {
         setSelectedCategory(null);
-        getAllDocuments();
+        getAllDocuments(setErizeler);
       } else {
         const { data } = await axios.get(apiUrl);
 
@@ -117,7 +79,7 @@ const AllErizeler: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleDetailsClick = (erize: ErizeExamplePropsNew | ErizeFakeProps) => {
+  const handleDetailsClick = (erize: DocumentData) => {
     const link = `/erizeler/erize/${erize.id}`;
     navigate(link);
   };
@@ -141,53 +103,37 @@ const AllErizeler: React.FC = () => {
   const handlePageChange = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
-  const handleDownload = async (erize: ProductProps) => {
-    try {
-      const response = await axios.get(
-        `${APIURL}/api/application/download/${erize.id}`,
-        { responseType: 'blob' }
-      );
 
-      fileDownload(response.data, `${erize.docName}.docx`);
-
-      toast.success('Sənəd uğurla yükləndi!');
-    } catch (error) {
-      console.error('Error downloading file:', error);
-      toast.error(
-        'Sənədi yükləmək mümkün olmadı. Zəhmət olmasa daha sonra cəhd edin.'
-      );
-    }
-  };
   return (
-    <div className='all-erizeler'>
-      <div className='container'>
-        <div className='all-erizeler-content'>
-          <div className='box__heading'>
+    <div className="all-erizeler">
+      <div className="container">
+        <div className="all-erizeler-content">
+          <div className="box__heading">
             <p>Bütün Ərizələr</p>
           </div>
 
-          <div className='all-erizeler-content-box'>
-            <div className='left-content-box'>
-              <div className='all-erizeler-search-box'>
-                <div className='all-erizeler-input-box'>
+          <div className="all-erizeler-content-box">
+            <div className="left-content-box">
+              <div className="all-erizeler-search-box">
+                <div className="all-erizeler-input-box">
                   <TextField
-                    label='Search'
-                    variant='outlined'
+                    label="Search"
+                    variant="outlined"
                     fullWidth
                     value={searchTerm}
                     onChange={handleSearchChange}
                   />
-                  <div className='filter-icon-mobile' onClick={toggleFilter}>
-                    <img src={FilterIcon} alt='' />
+                  <div className="filter-icon-mobile" onClick={toggleFilter}>
+                    <img src={FilterIcon} alt="" />
                   </div>
 
                   {isFilterOpen && (
-                    <div className='offcanvas-right-sidebar'>
-                      <div className='offcanvas-text-box'>
+                    <div className="offcanvas-right-sidebar">
+                      <div className="offcanvas-text-box">
                         <p>Kateqoriyaya görə filterlə</p>
                         <CloseOutlined onClick={() => setIsFilterOpen(false)} />
                       </div>
-                      <div className='filter-mobile-box'>
+                      <div className="filter-mobile-box">
                         {categories.map((category) => (
                           <div key={category.id}>
                             <Checkbox
@@ -212,7 +158,7 @@ const AllErizeler: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className='all-erizeler-filter-box'>
+                <div className="all-erizeler-filter-box">
                   {categories.map((category) => (
                     <div key={category.id}>
                       <Checkbox
@@ -225,24 +171,24 @@ const AllErizeler: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className='right-content-box'>
-              <div className='erizeler-list-box col-12'>
-                <div className='box__body'>
-                  {currentItems.map((erize: ErizeExamplePropsNew) => (
-                    <div key={erize.id} className='erize-box col-12'>
-                      <div className='erize-box__text-box'>
+            <div className="right-content-box">
+              <div className="erizeler-list-box col-12">
+                <div className="box__body">
+                  {currentItems.map((erize: DocumentData) => (
+                    <div key={erize.id} className="erize-box col-12">
+                      <div className="erize-box__text-box">
                         <p>{erize?.docName}</p>
                       </div>
-                      <div className='erize-box__buttons-box'>
+                      <div className="erize-box__buttons-box">
                         <a
                           onClick={() => handleDetailsClick(erize)}
-                          className='box-details-btn btn'
+                          className="box-details-btn btn"
                         >
                           Ətraflı
                         </a>
                         <a
-                          className='download-btn btn'
-                          onClick={() => handleDownload(erize)}
+                          className="download-btn btn"
+                          onClick={() => downloadDocument(erize)}
                         >
                           Yüklə
                         </a>
@@ -257,8 +203,8 @@ const AllErizeler: React.FC = () => {
 
         {currentItems.length > 0 && (
           <ReactPaginate
-            previousLabel={<img src={CaretLeft} alt='Previous' />}
-            nextLabel={<img src={CaretRight} alt='Next' />}
+            previousLabel={<img src={CaretLeft} alt="Previous" />}
+            nextLabel={<img src={CaretRight} alt="Next" />}
             breakLabel={'...'}
             pageCount={pageCount}
             marginPagesDisplayed={2}

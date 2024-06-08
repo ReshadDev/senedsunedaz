@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { APIURL } from '../constants';
-import { Category, CreateCategoryData } from '../interfaces';
+import { Category, CreateCategoryData, DocumentData } from '../interfaces';
 
 // Fetch All Categories
 
@@ -82,4 +82,37 @@ export const deleteCategory = async (id: number | null, token: string) => {
       Authorization: `Bearer ${token}`,
     },
   });
+};
+
+// Get Category Name
+
+export const getCategoryName = (
+  categoryId: number,
+  categories: Category[],
+  setCategoryName: (categoryName: string) => void
+) => {
+  const matchedCategory = categories.find(
+    (category) => category?.id === categoryId
+  );
+  setCategoryName(matchedCategory?.name || '');
+};
+
+// Get Category Products
+
+export const getCategoryProducts = async (
+  params: Readonly<
+    Partial<{
+      slug: string;
+    }>
+  >,
+  setErizeler: (erizeler: DocumentData[]) => void
+) => {
+  try {
+    const { data } = await axios.get(
+      `${APIURL}/api/category/applications/${params.slug}`
+    );
+    setErizeler(data);
+  } catch (error) {
+    console.log(error);
+  }
 };
