@@ -26,6 +26,7 @@ import {
 import CVContent from './CvContent';
 import { errorMessages, languageOptions, levelOptions } from '../../constants';
 import CVDynamicContent from './CVDynamicContent';
+import Slider from 'react-slick';
 
 const FormTextField = styled(TextField)({
   marginBottom: '15px',
@@ -106,10 +107,10 @@ const CVForm: React.FC = () => {
   // };
 
   const handleNextStep = () => {
-    if (validateStep(currentStep)) {
-      setCurrentStep((prevStep) => prevStep + 1);
-      setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
-    }
+    // if (validateStep(currentStep)) {
+    setCurrentStep((prevStep) => prevStep + 1);
+    setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
+    // }
   };
 
   const validateEmail = (email: string): boolean => {
@@ -214,22 +215,22 @@ const CVForm: React.FC = () => {
     const forms: JSX.Element[] = [];
     for (let i = 0; i < experienceCount; i++) {
       forms.push(
-        <div key={i} className='container-new'>
-          <div className='heading-box'>
+        <div key={i} className="container-new">
+          <div className="heading-box">
             <h1>İş təcrübəsi</h1>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Vəzifənin adı
               </InputLabel>
               <FormTextField
                 {...register(`dutyname${i}`, {
                   required: 'dutyname is required',
                 })}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
-                type='text'
+                type="text"
                 error={!!errors.dutyname0}
                 helperText={errors.dutyname0}
                 required
@@ -238,17 +239,17 @@ const CVForm: React.FC = () => {
                 }}
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 İş yerinin adı
               </InputLabel>
               <FormTextField
                 {...register(`work${i}`, {
                   required: 'work is required',
                 })}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
-                type='text'
+                type="text"
                 error={!!errors.work0}
                 helperText={errors.work0}
                 required
@@ -258,30 +259,30 @@ const CVForm: React.FC = () => {
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Başlama tarixi
               </InputLabel>
               <FormTextField
                 {...register(`workStartDate${i}`, {
                   required: 'startDate is required',
                 })}
-                placeholder='dd.mm.yyyy'
+                placeholder="dd.mm.yyyy"
                 fullWidth
-                type='date'
+                type="date"
                 error={!!errors.workStartDate0}
                 helperText={errors.workStartDate0}
                 required
               />
             </div>
-            <div className='form-element'>
+            <div className="form-element">
               <div style={{ display: 'flex' }}>
-                <InputLabel shrink className='label-text'>
+                <InputLabel shrink className="label-text">
                   Bitmə tarixi
                 </InputLabel>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isExperienceCheckboxChecked[i]} // Use separate state for each checkbox
                   onChange={(e) => handleExperienceCheckboxChange(e, i)} // Pass index to identify which checkbox is clicked
                 />
@@ -295,7 +296,7 @@ const CVForm: React.FC = () => {
                   isExperienceCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'
                 }
                 fullWidth
-                type='date'
+                type="date"
                 error={!!errors.workEndDate0}
                 helperText={errors.workEndDate0}
                 required
@@ -303,47 +304,47 @@ const CVForm: React.FC = () => {
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Ölkə
               </InputLabel>
               <FormTextField
                 {...register(`workCountry-${i}`, {
                   required: 'workCountry is required',
                 })}
-                placeholder='Azərbaycan'
+                placeholder="Azərbaycan"
                 fullWidth
-                type='text'
+                type="text"
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Şəhər
               </InputLabel>
               <FormTextField
                 {...register(`workCity-${i}`, {
                   required: 'workCity is required',
                 })}
-                placeholder='Baku'
+                placeholder="Baku"
                 fullWidth
-                type='text'
+                type="text"
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element-l'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element-l">
+              <InputLabel shrink className="label-text">
                 İşin təsviri
               </InputLabel>
               <FormTextField
                 {...register(`jobDescription-${i}`, {
                   required: 'jobDescription is required',
                 })}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
                 multiline
-                type='text'
+                type="text"
                 inputProps={{
                   maxLength: 500,
                 }}
@@ -360,35 +361,35 @@ const CVForm: React.FC = () => {
     const forms: JSX.Element[] = [];
     for (let i = 0; i < schoolCount; i++) {
       forms.push(
-        <div key={i} className='container-new'>
-          <div className='heading-box'>
+        <div key={i} className="container-new">
+          <div className="heading-box">
             <h1>Təhsil keçmişi</h1>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 İxtisasın adı
               </InputLabel>
               <FormTextField
                 {...register(`profession${i}`)}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
-                type='text'
+                type="text"
                 onChange={handleInputChange}
                 error={!!errors.profession0}
                 helperText={errors.profession0}
                 required
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Universitetin adı
               </InputLabel>
               <FormTextField
                 {...register(`university${i}`)}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
-                type='text'
+                type="text"
                 onChange={handleInputChange}
                 error={!!errors.university0}
                 helperText={errors.university0}
@@ -399,29 +400,29 @@ const CVForm: React.FC = () => {
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Başlama tarixi
               </InputLabel>
               <FormTextField
                 {...register(`eduStartDate${i}`)}
-                placeholder='dd.mm.yyyy'
+                placeholder="dd.mm.yyyy"
                 fullWidth
-                type='date'
+                type="date"
                 onChange={handleInputChange}
                 error={!!errors.eduStartDate0}
                 helperText={errors.eduStartDate0}
                 required
               />
             </div>
-            <div className='form-element'>
+            <div className="form-element">
               <div style={{ display: 'flex' }}>
-                <InputLabel shrink className='label-text'>
+                <InputLabel shrink className="label-text">
                   Bitmə tarixi
                 </InputLabel>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isSchoolCheckboxChecked[i]}
                   onChange={(e) => handleSchoolCheckboxChange(e, i)}
                 />
@@ -434,7 +435,7 @@ const CVForm: React.FC = () => {
                 }
                 fullWidth
                 disabled={isSchoolCheckboxChecked[i]}
-                type='date'
+                type="date"
                 onChange={handleInputChange}
                 error={!!errors.eduEndDate0}
                 helperText={errors.eduEndDate0}
@@ -442,55 +443,55 @@ const CVForm: React.FC = () => {
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Təhsil dərəcəsi
               </InputLabel>
               <FormTextField
                 {...register(`eduType${i}`)}
-                placeholder='Bakalavr'
+                placeholder="Bakalavr"
                 fullWidth
-                type='text'
+                type="text"
                 onChange={handleInputChange}
                 error={!!errors.eduType0}
                 helperText={errors.eduType0}
                 required
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 GPA
               </InputLabel>
               <FormTextField
                 {...register(`eduGpa-${i}`)}
-                placeholder='00'
+                placeholder="00"
                 fullWidth
-                type='number'
+                type="number"
               />
             </div>
           </div>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Ölkə
               </InputLabel>
               <FormTextField
                 {...register(`eduCountry-${i}`)}
-                placeholder='Azərbaycan'
+                placeholder="Azərbaycan"
                 fullWidth
-                type='text'
+                type="text"
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Şəhər
               </InputLabel>
               <FormTextField
                 {...register(`eduCity-${i}`)}
-                placeholder='Baku'
+                placeholder="Baku"
                 fullWidth
-                type='text'
+                type="text"
               />
             </div>
           </div>
@@ -505,9 +506,9 @@ const CVForm: React.FC = () => {
     for (let i = 0; i < languageCount; i++) {
       forms.push(
         <div key={i}>
-          <div className='row'>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Dil
               </InputLabel>
 
@@ -528,8 +529,8 @@ const CVForm: React.FC = () => {
                 )}
               />
             </div>
-            <div className='form-element'>
-              <InputLabel shrink className='label-text'>
+            <div className="form-element">
+              <InputLabel shrink className="label-text">
                 Səviyyə
               </InputLabel>
 
@@ -562,19 +563,19 @@ const CVForm: React.FC = () => {
     for (let i = 0; i < certificateCount; i++) {
       forms.push(
         <div key={i}>
-          <div className='row'>
-            <div className='form-element-l'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element-l">
+              <InputLabel shrink className="label-text">
                 Sertifikat linki
               </InputLabel>
               <FormTextField
                 {...register(`certificate-${i}`, {
                   required: 'certificate is required',
                 })}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
                 onKeyDown={handleKeyDown}
-                type='text'
+                type="text"
               />
             </div>
           </div>
@@ -589,18 +590,18 @@ const CVForm: React.FC = () => {
     for (let i = 0; i < hobbyCount; i++) {
       forms.push(
         <div key={i}>
-          <div className='row'>
-            <div className='form-element-l'>
-              <InputLabel shrink className='label-text'>
+          <div className="row">
+            <div className="form-element-l">
+              <InputLabel shrink className="label-text">
                 Təsvir et
               </InputLabel>
               <FormTextField
                 {...register(`hobby-${i}`, {
                   required: 'hobby is required',
                 })}
-                placeholder='daxil edin'
+                placeholder="daxil edin"
                 fullWidth
-                type='text'
+                type="text"
                 onKeyDown={handleKeyDown}
                 inputProps={{
                   maxLength: 10,
@@ -659,23 +660,58 @@ const CVForm: React.FC = () => {
     setSelectedTemplateId(id);
   };
 
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div id='cv-form'>
-      <div className='main-heading-box'>
-        <div className='container'>
-          <div className='heading-text'>
+    <div id="cv-form">
+      <div className="main-heading-box">
+        <div className="container">
+          <div className="heading-text">
             {currentStep === 1 && <h1>Şəxsi məlumatlar</h1>}
             {currentStep === 2 && <h1>Təhsil</h1>}
             {currentStep === 3 && <h1>İş təcrübəsi</h1>}
             {currentStep === 4 && <h1>Bilik və bacarıqlar</h1>}
             {currentStep === 5 && (
-              <h1 className='extra5'>CV üçün şablon seçin</h1>
+              <h1 className="extra5">CV üçün şablon seçin</h1>
             )}
           </div>
           {currentStep < 5 && (
-            <div className='steps-box'>
+            <div className="steps-box">
               {Array.from({ length: 4 }).map((_, index) => (
-                <div key={index + 1} className='step-box'>
+                <div key={index + 1} className="step-box">
                   {index > 0 && (
                     <div
                       className={`line ${
@@ -704,17 +740,17 @@ const CVForm: React.FC = () => {
         </div>
       </div>
 
-      <div className='form-box'>
-        <div className='container'>
-          <form className='form-box-content'>
+      <div className="form-box">
+        <div className="container">
+          <form className="form-box-content">
             {currentStep === 1 && (
-              <div className='container-new'>
-                <div className='heading-box'>
+              <div className="container-new">
+                <div className="heading-box">
                   <h1>Şəxsi məlumatlar</h1>
                 </div>
-                <div className='row'>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                <div className="row">
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Ad
                     </InputLabel>
                     <FormTextField
@@ -725,17 +761,17 @@ const CVForm: React.FC = () => {
                       error={!!errors.name}
                       helperText={errors.name}
                       required
-                      placeholder='daxil edin'
+                      placeholder="daxil edin"
                       fullWidth
-                      type='text'
+                      type="text"
                       inputProps={{
                         maxLength: 25,
                         style: { textTransform: 'capitalize' },
                       }}
                     />
                   </div>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Soyad
                     </InputLabel>
                     <FormTextField
@@ -743,9 +779,9 @@ const CVForm: React.FC = () => {
                         required: 'surname is required',
                       })}
                       onChange={handleInputChange}
-                      placeholder='daxil edin'
+                      placeholder="daxil edin"
                       fullWidth
-                      type='text'
+                      type="text"
                       required
                       error={!!errors.surname}
                       helperText={errors.surname}
@@ -756,35 +792,35 @@ const CVForm: React.FC = () => {
                     />
                   </div>
                 </div>
-                <div className='row'>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                <div className="row">
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Ölkə
                     </InputLabel>
                     <FormTextField
                       {...register('country', {
                         required: 'country is required',
                       })}
-                      placeholder='daxil edin'
+                      placeholder="daxil edin"
                       fullWidth
-                      type='text'
+                      type="text"
                       inputProps={{
                         maxLength: 20,
                         style: { textTransform: 'capitalize' },
                       }}
                     />
                   </div>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Şəhər
                     </InputLabel>
                     <FormTextField
                       {...register('city', {
                         required: 'city is required',
                       })}
-                      placeholder='daxil edin'
+                      placeholder="daxil edin"
                       fullWidth
-                      type='text'
+                      type="text"
                       inputProps={{
                         maxLength: 20,
                         style: { textTransform: 'capitalize' },
@@ -792,53 +828,53 @@ const CVForm: React.FC = () => {
                     />
                   </div>
                 </div>
-                <div className='heading-box'>
+                <div className="heading-box">
                   <h1>Əlaqə vasitələri</h1>
                 </div>
-                <div className='row'>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                <div className="row">
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Email
                     </InputLabel>
                     <FormTextField
                       {...register('email', {
                         required: 'email is required',
                       })}
-                      placeholder='random@gmail.com'
+                      placeholder="random@gmail.com"
                       fullWidth
                       required
                       onChange={handleInputChange}
-                      type='email'
+                      type="email"
                       error={!!errors.email}
                       helperText={errors.email}
                     />
                   </div>
-                  <div className='form-element'>
-                    <InputLabel shrink className='label-text'>
+                  <div className="form-element">
+                    <InputLabel shrink className="label-text">
                       Telefon nömrəsi
                     </InputLabel>
                     <div style={{ display: 'flex' }}>
                       <TextField
-                        value='+994 '
+                        value="+994 "
                         disabled
                         style={{ width: '70px', marginRight: '10px' }}
                       />
                       <Controller
-                        name='prefix'
+                        name="prefix"
                         control={control}
-                        defaultValue='55'
+                        defaultValue="55"
                         rules={{ required: 'Prefix is required' }}
                         render={({ field }) => (
                           <FormControl
                             style={{ width: '80px', marginRight: '8px ' }}
                           >
                             <Select {...field}>
-                              <MenuItem value='50'>50</MenuItem>
-                              <MenuItem value='51'>51</MenuItem>
-                              <MenuItem value='55'>55</MenuItem>
-                              <MenuItem value='99'>99</MenuItem>
-                              <MenuItem value='77'>77</MenuItem>
-                              <MenuItem value='70'>70</MenuItem>
+                              <MenuItem value="50">50</MenuItem>
+                              <MenuItem value="51">51</MenuItem>
+                              <MenuItem value="55">55</MenuItem>
+                              <MenuItem value="99">99</MenuItem>
+                              <MenuItem value="77">77</MenuItem>
+                              <MenuItem value="70">70</MenuItem>
                             </Select>
                           </FormControl>
                         )}
@@ -850,7 +886,7 @@ const CVForm: React.FC = () => {
                             message: 'Phone number must be 7 digits',
                           },
                         })}
-                        placeholder='1234567'
+                        placeholder="1234567"
                         onChange={handleInputChange}
                         fullWidth
                         error={!!errors.phoneNumber}
@@ -863,34 +899,34 @@ const CVForm: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className='row'>
-                  <div className='form-element-l'>
-                    <InputLabel shrink className='label-text'>
+                <div className="row">
+                  <div className="form-element-l">
+                    <InputLabel shrink className="label-text">
                       LinkedIn profil linki
                     </InputLabel>
                     <FormTextField
                       {...register('linkedinProfile', {
                         required: 'linkedinProfile is required',
                       })}
-                      placeholder='https://www.linkedin.com/in/yourprofile'
+                      placeholder="https://www.linkedin.com/in/yourprofile"
                       fullWidth
-                      type='text'
+                      type="text"
                     />
                   </div>
                 </div>
-                <div className='row'>
-                  <div className='form-element-l'>
-                    <InputLabel shrink className='label-text'>
+                <div className="row">
+                  <div className="form-element-l">
+                    <InputLabel shrink className="label-text">
                       Haqqımda qısa icmal
                     </InputLabel>
                     <FormTextField
                       {...register('aboutMe', {
                         required: 'aboutMe is required',
                       })}
-                      placeholder='daxil edin'
+                      placeholder="daxil edin"
                       fullWidth
                       multiline
-                      type='text'
+                      type="text"
                       inputProps={{
                         maxLength: 500,
                       }}
@@ -900,23 +936,23 @@ const CVForm: React.FC = () => {
               </div>
             )}
             {currentStep === 2 && (
-              <div className=''>
+              <div className="">
                 {generateSchools()}
-                <div className='add-new-box container-new'>
+                <div className="add-new-box container-new">
                   <button
-                    className='btn add-new-btn'
+                    className="btn add-new-btn"
                     onClick={handleAddNewSchool}
                   >
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
                     >
                       <path
-                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
-                        fill='#127371'
+                        d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                        fill="#127371"
                       />
                     </svg>
                     Əlavə et
@@ -925,23 +961,23 @@ const CVForm: React.FC = () => {
               </div>
             )}
             {currentStep === 3 && (
-              <div className=''>
+              <div className="">
                 {generateExperiences()}
-                <div className='add-new-box container-new'>
+                <div className="add-new-box container-new">
                   <button
-                    className='btn add-new-btn'
+                    className="btn add-new-btn"
                     onClick={handleAddNewExperience}
                   >
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
                     >
                       <path
-                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
-                        fill='#127371'
+                        d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                        fill="#127371"
                       />
                     </svg>
                     Əlavə et
@@ -950,74 +986,74 @@ const CVForm: React.FC = () => {
               </div>
             )}
             {currentStep === 4 && (
-              <div className='container-new'>
-                <div className='heading-box'>
+              <div className="container-new">
+                <div className="heading-box">
                   <h1>Dil bilikləri</h1>
                 </div>
                 {generateLanguages()}
-                <div className='add-new-box '>
+                <div className="add-new-box ">
                   <button
-                    className='btn add-new-btn'
+                    className="btn add-new-btn"
                     onClick={handleAddNewLanguage}
                   >
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
                     >
                       <path
-                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
-                        fill='#127371'
+                        d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                        fill="#127371"
                       />
                     </svg>
                     Əlavə et
                   </button>
                 </div>
-                <div className='heading-box'>
+                <div className="heading-box">
                   <h1>Sertifikatlar</h1>
                 </div>
                 {generateCertificates()}
-                <div className='add-new-box '>
+                <div className="add-new-box ">
                   <button
-                    className='btn add-new-btn'
+                    className="btn add-new-btn"
                     onClick={handleAddNewCertificate}
                   >
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
                     >
                       <path
-                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
-                        fill='#127371'
+                        d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                        fill="#127371"
                       />
                     </svg>
                     Əlavə et
                   </button>
                 </div>
-                <div className='heading-box'>
+                <div className="heading-box">
                   <h1>Hobbilər</h1>
                 </div>
                 {generateHobbies()}
-                <div className='add-new-box '>
+                <div className="add-new-box ">
                   <button
-                    className='btn add-new-btn'
+                    className="btn add-new-btn"
                     onClick={handleAddNewHobby}
                   >
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
                     >
                       <path
-                        d='M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z'
-                        fill='#127371'
+                        d="M13.875 8C13.875 8.09946 13.8355 8.19484 13.7652 8.26517C13.6948 8.33549 13.5995 8.375 13.5 8.375H8.375V13.5C8.375 13.5995 8.33549 13.6948 8.26517 13.7652C8.19484 13.8355 8.09946 13.875 8 13.875C7.90054 13.875 7.80516 13.8355 7.73484 13.7652C7.66451 13.6948 7.625 13.5995 7.625 13.5V8.375H2.5C2.40054 8.375 2.30516 8.33549 2.23483 8.26517C2.16451 8.19484 2.125 8.09946 2.125 8C2.125 7.90054 2.16451 7.80516 2.23483 7.73484C2.30516 7.66451 2.40054 7.625 2.5 7.625H7.625V2.5C7.625 2.40054 7.66451 2.30516 7.73484 2.23483C7.80516 2.16451 7.90054 2.125 8 2.125C8.09946 2.125 8.19484 2.16451 8.26517 2.23483C8.33549 2.30516 8.375 2.40054 8.375 2.5V7.625H13.5C13.5995 7.625 13.6948 7.66451 13.7652 7.73484C13.8355 7.80516 13.875 7.90054 13.875 8Z"
+                        fill="#127371"
                       />
                     </svg>
                     Əlavə et
@@ -1026,99 +1062,150 @@ const CVForm: React.FC = () => {
               </div>
             )}
             {currentStep === 5 && (
-              <div className='container-new'>
-                <div className='heading-box'>
+              <div className="container-new">
+                <div className="heading-box">
                   <h1>Şablonlar</h1>
                 </div>
+                <div className="dynamic-cv">
+                  <CVDynamicContent
+                    certificateCount={certificateCount}
+                    experienceCount={experienceCount}
+                    languageCount={languageCount}
+                    schoolCount={schoolCount}
+                    hobbyCount={hobbyCount}
+                    watch={watch}
+                    id={selectedTemplateId}
+                    isExperienceCheckboxChecked={isExperienceCheckboxChecked}
+                    isSchoolCheckboxChecked={isSchoolCheckboxChecked}
+                  />
+                </div>
 
-                <div className='templates-cv-form'>
+                {/* <div className="templates-cv-form">
                   <div
-                    className={`tm-box col-4 ${
+                    className={`tm-box col-2 ${
                       selectedTemplateId === 1 ? 'selected-cv' : ''
                     }`}
                     onClick={() => handleTemplateClick(1)}
                   >
-                    <img src={cvtm1} alt='Template 1' />
+                    <img src={cvtm1} className="img-fluid" alt="Template 1" />
                   </div>
 
                   <div
-                    className={`tm-box col-4 ${
+                    className={`tm-box col-2 ${
                       selectedTemplateId === 2 ? 'selected-cv' : ''
                     }`}
                     onClick={() => handleTemplateClick(2)}
                   >
-                    <img src={cvtm2} alt='Template 2' />
+                    <img src={cvtm2} className="img-fluid" alt="Template 2" />
                   </div>
 
                   <div
-                    className={`tm-box col-4 ${
+                    className={`tm-box col-2 ${
                       selectedTemplateId === 3 ? 'selected-cv' : ''
                     }`}
                     onClick={() => handleTemplateClick(3)}
                   >
-                    <img src={cvtm1} alt='Template 3' />
+                    <img src={cvtm1} className="img-fluid" alt="Template 3" />
                   </div>
+                </div> */}
+
+                <div className="slider-container">
+                  <Slider {...settings}>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 1 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(1)}
+                    >
+                      <img src={cvtm1} className="img-fluid" alt="Template 1" />
+                    </div>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 2 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(2)}
+                    >
+                      <img src={cvtm2} className="img-fluid" alt="Template 2" />
+                    </div>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 3 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(3)}
+                    >
+                      <img src={cvtm1} className="img-fluid" alt="Template 3" />
+                    </div>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 4 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(3)}
+                    >
+                      <img src={cvtm1} className="img-fluid" alt="Template 3" />
+                    </div>
+                    <div>
+                      <h3>5</h3>
+                    </div>
+                    <div>
+                      <h3>6</h3>
+                    </div>
+                    <div>
+                      <h3>7</h3>
+                    </div>
+                    <div>
+                      <h3>8</h3>
+                    </div>
+                  </Slider>
                 </div>
               </div>
             )}
-            {currentStep === 6 && (
-              <div className='container-new'>
-                <div className='heading-box'>
+            {/* {currentStep === 6 && (
+              <div className="container-new">
+                <div className="heading-box">
                   <h1>Dinamik</h1>
                 </div>
-                <CVDynamicContent
-                  certificateCount={certificateCount}
-                  experienceCount={experienceCount}
-                  languageCount={languageCount}
-                  schoolCount={schoolCount}
-                  hobbyCount={hobbyCount}
-                  watch={watch}
-                  id={selectedTemplateId}
-                  isExperienceCheckboxChecked={isExperienceCheckboxChecked}
-                  isSchoolCheckboxChecked={isSchoolCheckboxChecked}
-                />
               </div>
-            )}
+            )} */}
           </form>
         </div>
       </div>
       <div className={`button-box`}>
-        <div className='container'>
-          <div className='button-box-content'>
-            <div className='container-new'>
+        <div className="container">
+          <div className="button-box-content">
+            <div className="container-new">
               {currentStep < 6 ? (
                 <>
                   {currentStep === 1 ? (
-                    <Link to='/cv' className='btn prev-btn'>
+                    <Link to="/cv" className="btn prev-btn">
                       <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        width='32'
-                        height='32'
-                        viewBox='0 0 32 32'
-                        fill='none'
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
                       >
                         <path
-                          d='M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z'
-                          fill='black'
+                          d="M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z"
+                          fill="black"
                         />
                       </svg>
                       Əsas Səhifəyə Qayıt
                     </Link>
                   ) : (
                     <button
-                      className='btn prev-btn'
+                      className="btn prev-btn"
                       onClick={handlePreviousStep}
                     >
                       <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        width='32'
-                        height='32'
-                        viewBox='0 0 32 32'
-                        fill='none'
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
                       >
                         <path
-                          d='M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z'
-                          fill='black'
+                          d="M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z"
+                          fill="black"
                         />
                       </svg>
                       Geri
@@ -1135,32 +1222,32 @@ const CVForm: React.FC = () => {
                   >
                     Növbəti
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='32'
-                      height='32'
-                      viewBox='0 0 32 32'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
                     >
                       <path
-                        d='M22.5298 16.5301L12.5298 26.5301C12.3877 26.6626 12.1996 26.7347 12.0053 26.7313C11.811 26.7278 11.6256 26.6491 11.4882 26.5117C11.3508 26.3743 11.2721 26.1889 11.2687 25.9946C11.2652 25.8003 11.3374 25.6123 11.4698 25.4701L20.9386 16.0001L11.4698 6.53009C11.3374 6.38792 11.2652 6.19987 11.2687 6.00557C11.2721 5.81127 11.3508 5.62588 11.4882 5.48847C11.6256 5.35106 11.811 5.27234 12.0053 5.26892C12.1996 5.26549 12.3877 5.33761 12.5298 5.47009L22.5298 15.4701C22.6703 15.6107 22.7492 15.8013 22.7492 16.0001C22.7492 16.1988 22.6703 16.3895 22.5298 16.5301Z'
-                        fill='white'
+                        d="M22.5298 16.5301L12.5298 26.5301C12.3877 26.6626 12.1996 26.7347 12.0053 26.7313C11.811 26.7278 11.6256 26.6491 11.4882 26.5117C11.3508 26.3743 11.2721 26.1889 11.2687 25.9946C11.2652 25.8003 11.3374 25.6123 11.4698 25.4701L20.9386 16.0001L11.4698 6.53009C11.3374 6.38792 11.2652 6.19987 11.2687 6.00557C11.2721 5.81127 11.3508 5.62588 11.4882 5.48847C11.6256 5.35106 11.811 5.27234 12.0053 5.26892C12.1996 5.26549 12.3877 5.33761 12.5298 5.47009L22.5298 15.4701C22.6703 15.6107 22.7492 15.8013 22.7492 16.0001C22.7492 16.1988 22.6703 16.3895 22.5298 16.5301Z"
+                        fill="white"
                       />
                     </svg>
                   </button>
                 </>
               ) : (
                 <>
-                  <button className='btn prev-btn' onClick={handlePreviousStep}>
+                  <button className="btn prev-btn" onClick={handlePreviousStep}>
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='32'
-                      height='32'
-                      viewBox='0 0 32 32'
-                      fill='none'
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
                     >
                       <path
-                        d='M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z'
-                        fill='black'
+                        d="M20.5298 25.4701C20.6035 25.5388 20.6626 25.6216 20.7036 25.7136C20.7446 25.8056 20.7666 25.9049 20.7684 26.0056C20.7702 26.1063 20.7517 26.2063 20.714 26.2997C20.6762 26.3931 20.6201 26.4779 20.5489 26.5491C20.4776 26.6203 20.3928 26.6765 20.2994 26.7142C20.206 26.7519 20.106 26.7705 20.0053 26.7687C19.9046 26.7669 19.8053 26.7449 19.7133 26.7039C19.6213 26.6629 19.5385 26.6038 19.4698 26.5301L9.46983 16.5301C9.32938 16.3895 9.25049 16.1988 9.25049 16.0001C9.25049 15.8013 9.32938 15.6107 9.46983 15.4701L19.4698 5.47009C19.612 5.33761 19.8 5.26549 19.9944 5.26892C20.1887 5.27234 20.374 5.35106 20.5114 5.48847C20.6489 5.62588 20.7276 5.81127 20.731 6.00557C20.7344 6.19987 20.6623 6.38792 20.5298 6.53009L11.0611 16.0001L20.5298 25.4701Z"
+                        fill="black"
                       />
                     </svg>
                     Geri
@@ -1184,7 +1271,7 @@ const CVForm: React.FC = () => {
                     fileName={`${watch('name')}-${watch('surname')}.pdf`}
                   >
                     <button
-                      className='btn next-btn'
+                      className="btn next-btn"
                       onClick={() =>
                         setTimeout(() => {
                           navigate('/cv');

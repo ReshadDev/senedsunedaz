@@ -5886,6 +5886,9 @@ header .nav .links a {
 }
 
 @media (min-width: 1200px) {
+  .slider-container {
+    padding-bottom: 20px;
+  }
   #cv #mui-component-select-prefix {
     padding: 15px 14px !important;
   }
@@ -6292,12 +6295,23 @@ header .nav .links a {
   #cv-form .form-box {
     flex-grow: 1;
   }
+  #cv-form .form-box .dynamic-cv {
+    min-height: 450px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
   #cv-form .form-box .templates-cv-form {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
   }
+  #cv-form .form-box .templates-cv-form .col-2 {
+    width: 16.6%;
+  }
   #cv-form .form-box .templates-cv-form .tm-box {
-    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     justify-content: center;
   }
