@@ -6295,25 +6295,56 @@ header .nav .links a {
   #cv-form .form-box {
     flex-grow: 1;
   }
-  #cv-form .form-box .dynamic-cv {
-    min-height: 450px;
-    margin-left: 80px;
-    margin-right: 80px;
-  }
-  #cv-form .form-box .templates-cv-form {
+  #cv-form .form-box .dynamic-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
-  #cv-form .form-box .templates-cv-form .col-2 {
-    width: 16.6%;
+  #cv-form .form-box .dynamic-container .slick-slide {
+    padding: 6px;
   }
-  #cv-form .form-box .templates-cv-form .tm-box {
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    justify-content: center;
+  #cv-form .form-box .dynamic-container .tm-box {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  #cv-form .form-box .dynamic-container .tm-box img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  #cv-form .form-box .dynamic-container .tm-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  #cv-form .form-box .dynamic-container .selected-cv::after {
+    content: "Selected";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #154e4d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  #cv-form .form-box .dynamic-container .dynamic-cv {
+    width: 50%;
+    max-height: 780px;
+    overflow-y: auto;
+  }
+  #cv-form .form-box .dynamic-container .dynamic-cv::-webkit-scrollbar {
+    width: 5px;
+  }
+  #cv-form .form-box .dynamic-container .dynamic-cv::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+  #cv-form .form-box .dynamic-container .dynamic-cv::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+  }
+  #cv-form .form-box .dynamic-container .slider-container {
+    width: 46%;
   }
   #cv-form .form-box .form-box-content {
     background: #fdfdfd;

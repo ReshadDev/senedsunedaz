@@ -94,6 +94,8 @@ const CVForm: React.FC = () => {
     }
   };
 
+
+
   // const handleCheckboxChange = (
   //   event: React.ChangeEvent<HTMLInputElement>,
   //   index: number
@@ -107,10 +109,10 @@ const CVForm: React.FC = () => {
   // };
 
   const handleNextStep = () => {
-    // if (validateStep(currentStep)) {
+    if (validateStep(currentStep)) {
     setCurrentStep((prevStep) => prevStep + 1);
     setCompletedSteps((prevSteps) => [...prevSteps, currentStep]);
-    // }
+    }
   };
 
   const validateEmail = (email: string): boolean => {
@@ -185,7 +187,13 @@ const CVForm: React.FC = () => {
     return currentStep === step ? activeImage : normalImages[step - 1];
   };
 
-  const { register, watch, control } = useForm();
+  const { register, watch, control,setValue } = useForm();
+
+  React.useEffect(() => {
+    Object.keys(formData).forEach((key) => {
+      setValue(key, formData[key]);
+    });
+  }, [currentStep, formData, setValue]);
 
   const [experienceCount, setExperienceCount] = React.useState<number>(1);
   const [schoolCount, setSchoolCount] = React.useState<number>(1);
@@ -228,6 +236,7 @@ const CVForm: React.FC = () => {
                 {...register(`dutyname${i}`, {
                   required: 'dutyname is required',
                 })}
+                onChange={handleInputChange}
                 placeholder="daxil edin"
                 fullWidth
                 type="text"
@@ -249,6 +258,7 @@ const CVForm: React.FC = () => {
                 })}
                 placeholder="daxil edin"
                 fullWidth
+                onChange={handleInputChange}
                 type="text"
                 error={!!errors.work0}
                 helperText={errors.work0}
@@ -654,18 +664,17 @@ const CVForm: React.FC = () => {
 
   const [selectedTemplateId, setSelectedTemplateId] = React.useState<
     number | null
-  >(null);
+  >(1);
 
   const handleTemplateClick = (id: number) => {
     setSelectedTemplateId(id);
   };
 
   const settings = {
-    dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: 3,
+    slidesToScroll: 0,
     initialSlide: 0,
     responsive: [
       {
@@ -779,6 +788,7 @@ const CVForm: React.FC = () => {
                         required: 'surname is required',
                       })}
                       onChange={handleInputChange}
+
                       placeholder="daxil edin"
                       fullWidth
                       type="text"
@@ -1063,10 +1073,8 @@ const CVForm: React.FC = () => {
             )}
             {currentStep === 5 && (
               <div className="container-new">
-                <div className="heading-box">
-                  <h1>Şablonlar</h1>
-                </div>
-                <div className="dynamic-cv">
+               <div className="dynamic-container">
+               <div className="dynamic-cv">
                   <CVDynamicContent
                     certificateCount={certificateCount}
                     experienceCount={experienceCount}
@@ -1079,37 +1087,10 @@ const CVForm: React.FC = () => {
                     isSchoolCheckboxChecked={isSchoolCheckboxChecked}
                   />
                 </div>
-
-                {/* <div className="templates-cv-form">
-                  <div
-                    className={`tm-box col-2 ${
-                      selectedTemplateId === 1 ? 'selected-cv' : ''
-                    }`}
-                    onClick={() => handleTemplateClick(1)}
-                  >
-                    <img src={cvtm1} className="img-fluid" alt="Template 1" />
-                  </div>
-
-                  <div
-                    className={`tm-box col-2 ${
-                      selectedTemplateId === 2 ? 'selected-cv' : ''
-                    }`}
-                    onClick={() => handleTemplateClick(2)}
-                  >
-                    <img src={cvtm2} className="img-fluid" alt="Template 2" />
-                  </div>
-
-                  <div
-                    className={`tm-box col-2 ${
-                      selectedTemplateId === 3 ? 'selected-cv' : ''
-                    }`}
-                    onClick={() => handleTemplateClick(3)}
-                  >
-                    <img src={cvtm1} className="img-fluid" alt="Template 3" />
-                  </div>
-                </div> */}
-
                 <div className="slider-container">
+                <div className="heading-box">
+                  <h1>Şablonlar</h1>
+                </div>
                   <Slider {...settings}>
                     <div
                       className={`tm-box ${
@@ -1134,38 +1115,38 @@ const CVForm: React.FC = () => {
                       onClick={() => handleTemplateClick(3)}
                     >
                       <img src={cvtm1} className="img-fluid" alt="Template 3" />
-                    </div>
+                    </div>     
+                  </Slider>
+                  <Slider {...settings}>
                     <div
                       className={`tm-box ${
                         selectedTemplateId === 4 ? 'selected-cv' : ''
                       }`}
-                      onClick={() => handleTemplateClick(3)}
+                      onClick={() => handleTemplateClick(4)}
                     >
-                      <img src={cvtm1} className="img-fluid" alt="Template 3" />
+                      <img src={cvtm1} className="img-fluid" alt="Template 4" />
                     </div>
-                    <div>
-                      <h3>5</h3>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 5 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(5)}
+                    >
+                      <img src={cvtm2} className="img-fluid" alt="Template 5" />
                     </div>
-                    <div>
-                      <h3>6</h3>
-                    </div>
-                    <div>
-                      <h3>7</h3>
-                    </div>
-                    <div>
-                      <h3>8</h3>
+                    <div
+                      className={`tm-box ${
+                        selectedTemplateId === 6 ? 'selected-cv' : ''
+                      }`}
+                      onClick={() => handleTemplateClick(6)}
+                    >
+                      <img src={cvtm1} className="img-fluid" alt="Template 6" />
                     </div>
                   </Slider>
                 </div>
+               </div>
               </div>
             )}
-            {/* {currentStep === 6 && (
-              <div className="container-new">
-                <div className="heading-box">
-                  <h1>Dinamik</h1>
-                </div>
-              </div>
-            )} */}
           </form>
         </div>
       </div>
@@ -1173,7 +1154,7 @@ const CVForm: React.FC = () => {
         <div className="container">
           <div className="button-box-content">
             <div className="container-new">
-              {currentStep < 6 ? (
+              {currentStep < 5 ? (
                 <>
                   {currentStep === 1 ? (
                     <Link to="/cv" className="btn prev-btn">
