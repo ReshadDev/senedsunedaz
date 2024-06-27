@@ -124,7 +124,7 @@ export const downloadEditedDocument = async (
 ) => {
   try {
     const response = await axios.get(
-      `${APIURL}/api/application/downloadEdited/${erize.editedName}`,
+      `${APIURL}/api/application/downloadEdited/${'edited_'+erize.editedName}`,
       { responseType: 'blob' }
     );
     fileDownload(response.data, `${erize.docName}.docx`);
