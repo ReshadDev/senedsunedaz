@@ -35,6 +35,9 @@
 }
 
 @media (min-width: 1200px) {
+  .slider-container {
+    padding-bottom: 20px;
+  }
   #cv {
     #mui-component-select-prefix {
       padding: 15px 14px !important;
@@ -493,13 +496,63 @@
     .form-box {
       flex-grow: 1;
 
-      .templates-cv-form {
+      .dynamic-container{
         display: flex;
-        flex-wrap: wrap;
+        .slick-slide{
+          padding: 6px;
+        }
+
         .tm-box {
-          margin-bottom: 10px;
-          display: flex;
-          justify-content: center;
+          position: relative;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tm-box img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .tm-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .selected-cv::after {
+          content: 'Selected';
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background-color: #154e4d;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        justify-content: space-between;
+        .dynamic-cv {
+       width: 50%;
+       max-height: 780px ;
+       overflow-y: auto;
+        }
+
+        .dynamic-cv::-webkit-scrollbar {
+          width: 5px; 
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+          border-radius: 8px;
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 8px; 
+        }
+
+        .slider-container{
+          width: 46%;
         }
       }
       .form-box-content {
@@ -507,13 +560,13 @@
         min-height: 700px;
         border-radius: 8px;
       }
-      // border: 1px solid #904848;
       .container-new {
         padding-top: 20px;
         width: 90% !important;
         .heading-box {
           border-bottom: 1px solid #dadada;
           margin-bottom: 20px;
+
           h1 {
             color: #3e3e3e;
             font-family: Sarabun;
@@ -1153,21 +1206,70 @@
 
     .form-box {
       flex-grow: 1;
-      .templates-cv-form {
-        display: flex;
-        flex-wrap: wrap;
-        .tm-box {
-          margin-bottom: 10px;
-          display: flex;
-          justify-content: center;
-        }
-      }
+     
       .form-box-content {
         background: #fdfdfd;
         min-height: 700px;
         border-radius: 8px;
       }
       // border: 1px solid #904848;
+
+      .dynamic-container{
+        display: flex;
+        flex-direction: column;
+        .slick-slide{
+          padding: 30px;
+        }
+
+        .tm-box {
+          position: relative;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tm-box img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .tm-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .selected-cv::after {
+          content: 'Selected';
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background-color: #154e4d;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .dynamic-cv {
+       max-height: 780px ;
+       overflow-y: auto;
+        }
+
+        .dynamic-cv::-webkit-scrollbar {
+          width: 5px; 
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+          border-radius: 8px;
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 8px; 
+        }
+
+     
+      }
 
       .container-new {
         padding-top: 20px;
@@ -1848,20 +1950,61 @@
 
     .form-box {
       flex-grow: 1;
-
-      .templates-cv-form {
-        .col-4 {
-          width: 30%;
-        }
+      .dynamic-container{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        .tm-box {
-          margin-bottom: 10px;
-          img {
-            width: 100%;
-          }
+        flex-direction: column;
+        .slick-slide{
+          padding: 20px;
         }
+
+        .tm-box {
+          position: relative;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tm-box img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .tm-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .selected-cv::after {
+          content: 'Selected';
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background-color: #154e4d;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .dynamic-cv {
+       max-height: 780px ;
+       overflow-y: auto;
+        }
+
+        .dynamic-cv::-webkit-scrollbar {
+          width: 5px; 
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+          border-radius: 8px;
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 8px; 
+        }
+
+       
       }
       .form-box-content {
         background: #fdfdfd;
@@ -2614,20 +2757,64 @@
     .form-box {
       flex-grow: 1;
 
-      .templates-cv-form {
-        .col-4 {
-          width: 48%;
-        }
+      .dynamic-container{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        .tm-box {
-          margin-bottom: 10px;
-          img {
-            width: 100%;
-          }
+        flex-direction: column;
+        .slick-slide{
+          padding: 20px;
         }
+
+        .tm-box {
+          position: relative;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tm-box img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .tm-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .selected-cv::after {
+          content: 'Selected';
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background-color: #154e4d;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .dynamic-cv {
+       max-height: 780px ;
+       overflow-y: auto;
+        }
+
+        .dynamic-cv::-webkit-scrollbar {
+          width: 5px; 
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+          border-radius: 8px;
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 8px; 
+        }
+
+    
       }
+
+      
       .form-box-content {
         background: #fdfdfd;
         min-height: 400px;
@@ -3315,19 +3502,64 @@
     .form-box {
       flex-grow: 1;
 
-      .templates-cv-form {
-        .col-4 {
-          width:48%;
-        }
+      .dynamic-container{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        .tm-box {
-          margin-bottom: 10px;
-          img {
-            width: 100%;
-          }
+        flex-direction: column;
+        .slick-slide{
+          padding: 20px;
+   text-align: center;
         }
+
+        .tm-box {
+          position: relative;
+          cursor: pointer;
+      width: 80% !important;
+
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tm-box img {
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .tm-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .selected-cv::after {
+          content: 'Selected';
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background-color: #154e4d;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .dynamic-cv {
+       max-height: 780px ;
+       overflow-y: auto;
+        }
+
+        .dynamic-cv::-webkit-scrollbar {
+          width: 5px; 
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+          border-radius: 8px;
+        }
+        
+        .dynamic-cv::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 8px; 
+        }
+
+      
       }
       .form-box-content {
         background: #fdfdfd;
@@ -3508,6 +3740,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  cursor: pointer;
 }
 
 .selected-cv {

@@ -1,26 +1,15 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { TextField, Button, Container, styled } from '@mui/material';
+import { Button } from '@mui/material';
 import { useAuth } from '../../context/auth';
-import { createCategory } from '../../utils/api';
+import { createCategory } from '../../services/CategoryService';
+import { CreateCategoryData } from '../../interfaces';
+import {
+  CreateCategoryFormContainer,
+  CreateCategoryFormTextField,
+} from '../../utils/styled';
 
 import { toast } from 'react-toastify';
-
-const FormContainer = styled(Container)({
-  marginTop: '50px',
-  padding: '20px',
-  backgroundColor: '#f5f5f5',
-  borderRadius: '8px',
-});
-
-const FormTextField = styled(TextField)({
-  marginBottom: '20px',
-});
-
-interface CategoryForm {
-  categoryName: string;
-  description: string;
-}
 
 const CreateCategory: React.FC = () => {
   const [auth] = useAuth();
@@ -29,12 +18,11 @@ const CreateCategory: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<CategoryForm>();
+  } = useForm<CreateCategoryData>();
 
-  const onSubmit: SubmitHandler<CategoryForm> = async (data) => {
+  const onSubmit: SubmitHandler<CreateCategoryData> = async (data) => {
     try {
       await createCategory(data, auth.tokenPair.accessToken);
-
       reset();
       toast.success('Kateqoriya uğurla yaradıldı');
     } catch (error) {
@@ -45,34 +33,34 @@ const CreateCategory: React.FC = () => {
 
   return (
     <div>
-      <FormContainer maxWidth='sm'>
-        <h1 className='text-center mb-20'>Create Document</h1>
+      <CreateCategoryFormContainer maxWidth="sm">
+        <h1 className="text-center mb-20">Kateqoriya Yarat</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormTextField
+          <CreateCategoryFormTextField
             {...register('categoryName', {
               required: 'categoryName is required',
             })}
-            label='Enter Category Name'
+            label="Enter Category Name"
             error={Boolean(errors.categoryName)}
             helperText={errors.categoryName?.message}
             fullWidth
           />
-          <FormTextField
+          <CreateCategoryFormTextField
             {...register('description', {
               required: 'description is required',
             })}
-            label='Enter Description'
+            label="Enter Description"
             error={Boolean(errors.description)}
             helperText={errors.description?.message}
             fullWidth
           />
 
-          <Button type='submit' variant='contained' color='primary' fullWidth>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Create
           </Button>
         </form>
-      </FormContainer>
+      </CreateCategoryFormContainer>
     </div>
   );
 };

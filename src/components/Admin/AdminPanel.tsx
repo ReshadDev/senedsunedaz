@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useAuth } from '../../context/auth';
-import { refreshAccessToken } from '../../utils/api';
+import { refreshAccessToken } from '../../utils/services';
 
 const AdminPanel: React.FC = () => {
   const [auth, updateAuth] = useAuth();
@@ -21,8 +21,8 @@ const AdminPanel: React.FC = () => {
       <h1>Admin Panel</h1>
       <p>Welcome to the admin panel</p>
 
-      <div className='logout'>
-        <button className='admin-btns ' onClick={handleRefreshToken}>
+      <div className="logout">
+        <button className="admin-btns" onClick={handleRefreshToken}>
           Refresh
         </button>
       </div>

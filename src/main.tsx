@@ -4,6 +4,8 @@ import App from './App.tsx';
 import { SearchProvider } from './context/search.jsx';
 import { AuthProvider } from './context/auth.tsx';
 import './assets/scss/main.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <AuthProvider>

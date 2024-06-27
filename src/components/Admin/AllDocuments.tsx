@@ -1,16 +1,19 @@
 import React from 'react';
-import { ProductProps } from '../../interfaces';
-import { APIURL, ITEMS_PER_PAGE } from '../../constants';
-import axios from 'axios';
+import { DocumentData } from '../../interfaces';
+import { ITEMS_PER_PAGE } from '../../constants';
 import ReactPaginate from 'react-paginate';
 import { CaretLeft, CaretRight } from '../../assets/icons';
 import { TextField } from '@mui/material';
 import { Modal } from 'antd';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/auth';
+import {
+  deleteDocument,
+  getAllDocuments,
+} from '../../services/DocumentService';
 
 const AllDocuments: React.FC = () => {
-  const [erizeler, setErizeler] = React.useState<ProductProps[]>([]);
+  const [erizeler, setErizeler] = React.useState<DocumentData[]>([]);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -18,19 +21,8 @@ const AllDocuments: React.FC = () => {
 
   const [auth] = useAuth();
 
-  const getAllDocuments = async () => {
-    try {
-      const { data } = await axios.get(`${APIURL}/api/application/findAll`);
-      if (data?.success) {
-        setErizeler(data?.documents);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
-    getAllDocuments();
+    getAllDocuments(setErizeler);
   }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,14 +47,8 @@ const AllDocuments: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${APIURL}/api/application/deleteById/${deleteId}`, {
-        headers: {
-          Authorization: `Bearer ${auth.tokenPair.accessToken}`,
-        },
-      });
-
-      await getAllDocuments();
-
+      await deleteDocument(deleteId, auth.tokenPair.accessToken);
+      await getAllDocuments(setErizeler);
       toast.success('Ərizə uğurla silindi');
     } catch (error) {
       console.error('Error deleting document:', error);
@@ -81,30 +67,30 @@ const AllDocuments: React.FC = () => {
   };
 
   return (
-    <div className='all-documents-admin'>
-      <div className='container-new'>
-        <div className='heading-box'>
+    <div className="all-documents-admin">
+      <div className="container-new">
+        <div className="heading-box">
           <h1>Bütün Ərizələr</h1>
         </div>
-        <div className='all-erizeler-input-box'>
+        <div className="all-erizeler-input-box">
           <TextField
-            label='Search'
-            variant='outlined'
+            label="Search"
+            variant="outlined"
             fullWidth
             value={searchTerm}
             onChange={handleSearchChange}
           />
         </div>
-        <div className='erizeler-list-box'>
-          <div className='box__body'>
-            {currentItems.map((erize: ProductProps) => (
-              <div key={erize.id} className='erize-box col-12'>
-                <div className='erize-box__text-box'>
+        <div className="erizeler-list-box">
+          <div className="box__body">
+            {currentItems.map((erize: DocumentData) => (
+              <div key={erize.id} className="erize-box col-12">
+                <div className="erize-box__text-box">
                   <p>{erize?.docName}</p>
                 </div>
-                <div className='erize-box__buttons-box'>
+                <div className="erize-box__buttons-box">
                   <a
-                    className='download-btn btn'
+                    className="download-btn btn"
                     onClick={() => showModal(erize.id)}
                   >
                     Sil
@@ -117,8 +103,8 @@ const AllDocuments: React.FC = () => {
 
         {currentItems.length > 0 && (
           <ReactPaginate
-            previousLabel={<img src={CaretLeft} alt='Previous' />}
-            nextLabel={<img src={CaretRight} alt='Next' />}
+            previousLabel={<img src={CaretLeft} alt="Previous" />}
+            nextLabel={<img src={CaretRight} alt="Next" />}
             breakLabel={'...'}
             pageCount={pageCount}
             marginPagesDisplayed={2}
@@ -130,12 +116,12 @@ const AllDocuments: React.FC = () => {
         )}
       </div>
       <Modal
-        title='Təsdiq etmək'
+        title="Təsdiq etmək"
         open={isOpen}
         onOk={handleDelete}
         onCancel={handleCancel}
-        okText='Təsdiq et'
-        cancelText='Ləğv et'
+        okText="Təsdiq et"
+        cancelText="Ləğv et"
       >
         <p>
           Ərizəni silmək istədiyinizə əminsinizmi? Bu əməliyyatı geri qaytarmaq
