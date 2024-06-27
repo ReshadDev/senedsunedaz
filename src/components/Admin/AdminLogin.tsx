@@ -19,6 +19,7 @@ const AdminLogin: React.FC = () => {
 
     try {
       const response: AxiosResponse<{
+        userId:1,
         tokenPair: { accessToken: string; refreshToken: string };
       }> = await axios.post(`${APIURL}/auth/authenticate`, {
         email,
@@ -39,7 +40,7 @@ const AdminLogin: React.FC = () => {
       navigate('/admin');
       toast.success('Giriş uğurlu oldu!');
     } catch (error) {
-      // Handle login error
+
       console.error('Login error:', error);
     }
   };
