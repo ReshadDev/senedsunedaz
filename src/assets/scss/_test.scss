@@ -106,13 +106,19 @@
 
       .sened-box-body {
         padding: 0px 10px 0px 10px;
-        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
         .sened-text {
+      
           p {
             color: #242424;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
             font-size: 15px;
             font-weight: 400;
             line-height: 20px;
+
           }
           margin-bottom: 20px;
         }
@@ -185,6 +191,7 @@
       .sened-box-body {
         padding: 0px 10px 0px 10px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           p {
@@ -192,6 +199,9 @@
             font-size: 15px;
             font-weight: 400;
             line-height: 20px;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
           }
           margin-bottom: 20px;
         }
@@ -265,12 +275,16 @@
       .sened-box-body {
         padding: 0px 20px 0px 20px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           p {
             color: #242424;
             font-size: 13px;
             font-weight: 400;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
             line-height: 20px;
           }
           margin-bottom: 20px;
@@ -346,6 +360,7 @@
       .sened-box-body {
         padding: 0px 20px 0px 20px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           p {
@@ -353,6 +368,9 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 20px;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
           }
           margin-bottom: 20px;
         }
@@ -423,6 +441,7 @@
       .sened-box-body {
         padding: 0px 20px 0px 20px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           p {
@@ -430,6 +449,9 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 20px;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
           }
           margin-bottom: 20px;
         }
@@ -500,6 +522,7 @@
       .sened-box-body {
         padding: 0px 20px 0px 20px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           p {
@@ -507,6 +530,9 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 20px;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
           }
           margin-bottom: 20px;
         }
@@ -579,6 +605,7 @@
       .sened-box-body {
         padding: 0px 20px 0px 20px;
         min-width: 100%;
+        width: 100%;
 
         .sened-text {
           text-align: left;
@@ -587,6 +614,9 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 20px;
+            white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
           }
           margin-bottom: 20px;
         }

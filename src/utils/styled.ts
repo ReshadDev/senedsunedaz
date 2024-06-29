@@ -26,3 +26,10 @@ export const CategoryLabel = styled(InputLabel)({
 });
 
 export const InputRowTextField = styled(TextField)({});
+
+export const textMinifier = (str: string, maxLength: number): string => {
+  if (str.length <= maxLength) {
+    return str;
+  }
+  return str.substring(0, maxLength - 3) + '...';
+};

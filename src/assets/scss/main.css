@@ -2581,6 +2581,7 @@ header .nav .links a {
   }
   .search-results-boxes .sened-box .sened-box-body {
     min-width: 100%;
+    width: 100%;
     padding: 0px 10px 0px 10px;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
@@ -2591,6 +2592,9 @@ header .nav .links a {
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -2655,6 +2659,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 10px 0px 10px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -2664,6 +2669,9 @@ header .nav .links a {
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -2729,6 +2737,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -2738,6 +2747,9 @@ header .nav .links a {
     font-size: 13px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -2803,6 +2815,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -2812,6 +2825,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -2874,6 +2890,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -2883,6 +2900,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -2945,6 +2965,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -2954,6 +2975,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -3018,6 +3042,7 @@ header .nav .links a {
   .search-results-boxes .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .search-results-boxes .sened-box .sened-box-body .sened-text {
     text-align: left;
@@ -3028,6 +3053,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-results-boxes .sened-box .sened-buttons {
     display: flex;
@@ -10060,13 +10088,17 @@ header .nav .links a {
   }
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 10px 0px 10px;
-    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text p {
     color: #242424;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
@@ -10133,6 +10165,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 10px 0px 10px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -10142,6 +10175,9 @@ header .nav .links a {
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .sened-documents-box .sened-box .sened-buttons {
     display: flex;
@@ -10206,6 +10242,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -10214,6 +10251,9 @@ header .nav .links a {
     color: #242424;
     font-size: 13px;
     font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 20px;
   }
   .sened-documents-box .sened-box .sened-buttons {
@@ -10279,6 +10319,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -10288,6 +10329,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .sened-documents-box .sened-box .sened-buttons {
     display: flex;
@@ -10349,6 +10393,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -10358,6 +10403,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .sened-documents-box .sened-box .sened-buttons {
     display: flex;
@@ -10419,6 +10467,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     margin-bottom: 20px;
@@ -10428,6 +10477,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .sened-documents-box .sened-box .sened-buttons {
     display: flex;
@@ -10491,6 +10543,7 @@ header .nav .links a {
   .sened-documents-box .sened-box .sened-box-body {
     padding: 0px 20px 0px 20px;
     min-width: 100%;
+    width: 100%;
   }
   .sened-documents-box .sened-box .sened-box-body .sened-text {
     text-align: left;
@@ -10501,6 +10554,9 @@ header .nav .links a {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .sened-documents-box .sened-box .sened-buttons {
     display: flex;
