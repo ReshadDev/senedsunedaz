@@ -42,7 +42,6 @@ interface FormData {
   university0: string;
   eduStartDate0: string;
   eduEndDate0: string;
-  eduType0: string;
   dutyname0: string;
   work0: string;
   workStartDate0: string;
@@ -62,7 +61,6 @@ const CVForm: React.FC = () => {
     university0: '',
     eduStartDate0: '',
     eduEndDate0: '',
-    eduType0: 'om',
     dutyname0: '',
     work0: '',
     workStartDate0: '',
@@ -150,10 +148,6 @@ const CVForm: React.FC = () => {
         }
         if (formData.eduStartDate0.trim() === '') {
           stepErrors.eduStartDate0 = 'Başlama tarixi';
-        }
-
-        if (formData.eduType0.trim() === '') {
-          stepErrors.eduType0 = 'Dərəcəniz ';
         }
 
         break;
@@ -463,27 +457,27 @@ const CVForm: React.FC = () => {
             </div>
           </div>
           <div className="row">
-            <div className="form-element">
-              <InputLabel shrink className="label-text">
-                Təhsil dərəcəsi
-              </InputLabel>
-                <Controller
-                name={`eduType${i}`}
-                defaultValue="55"
-                control={control}
-                render={({ field }) => (
-                  <FormControl style={{ width: '100%' }}>
-                    <Select {...field}>
-                      {degreeOptions.map(({ code, name }) => (
-                        <MenuItem key={code} value={code}>
-                          {name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                )}
-              />  
-            </div>
+          <div className="form-element">
+  <InputLabel shrink className="label-text">
+    Təhsil dərəcəsi
+  </InputLabel>
+  <Controller
+    name={`eduType${i}`}
+    control={control}
+    render={({ field }) => (
+      <FormControl style={{ width: '100%' }}>
+        <Select {...field}>
+          {degreeOptions.map(({ code, name }) => (
+            <MenuItem key={code} value={code}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    )}
+  />
+</div>
+
             <div className="form-element">
               <InputLabel shrink className="label-text">
                 GPA
@@ -1251,11 +1245,11 @@ const CVForm: React.FC = () => {
                   >
                     <button
                       className="btn next-btn"
-                      // onClick={() =>
-                      //   setTimeout(() => {
-                      //     navigate('/cv');
-                      //   }, 3000)
-                      // }
+                      onClick={() =>
+                        setTimeout(() => {
+                          navigate('/cv');
+                        }, 3000)
+                      }
                     >
                       CV YARAT
                     </button>
