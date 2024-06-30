@@ -9,7 +9,7 @@ import {
 } from '@react-pdf/renderer';
 
 import myCustomFont from '../../assets/Roboto-Medium.ttf';
-import { getLanguageName, getLevelName } from '../../constants';
+import { getDegreeName, getLanguageName, getLevelName } from '../../constants';
 
 Font.register({ family: 'Roboto', src: myCustomFont });
 
@@ -204,7 +204,7 @@ const CVContent: React.FC<CVContentProps> = ({
               {Array.from({ length: schoolCount }).map((_, index) => (
                 <View key={index} style={{ marginBottom: '10px' }}>
                   <Text style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                    {watch(`eduType${index}`)} of {watch(`profession${index}`)}
+                  {getDegreeName(watch(`eduType${index}`))} of {watch(`profession${index}`)}
                   </Text>
                   <Text style={styles.bodyText}>
                     Institution: {watch(`university${index}`)}

@@ -64,7 +64,7 @@ const Faq: React.FC = () => {
               <img src={faqIcon} alt='' />
             </div>
             <div className='faq-heading-text'>
-              <h1>Tez-tez verilən suallar</h1>
+              <h1>Senedsuned.az üçün Tez-tez Verilən Suallar (FAQ) və Cavabları</h1>
             </div>
 
             <div className='faq-accordion'>
@@ -78,9 +78,7 @@ const Faq: React.FC = () => {
                     Senedsuned.az saytında hansı ərizə kateqoriyaları mövcuddur?
                   </AccordionSummary>
                   <AccordionDetails>
-                    Senedsuned.az da Ailə, İş, Hüquqi və Mülki kateqoriyaları
-                    mövcuddur. Senedsuned.az da Ailə, İş, Hüquqi və Mülki
-                    kateqoriyaları mövcuddur.
+                  Saytımızda [təhsil, iş, hüquqi və s. kimi] daxil olmaqla altı fərqli ərizə kateqoriyası mövcuddur. Hər bir kateqoriya müxtəlif ərizələr üçün xüsusi hazırlanmışdır.
                   </AccordionDetails>
                 </Accordion>
                 <Accordion>
@@ -89,12 +87,10 @@ const Faq: React.FC = () => {
                     aria-controls='panel2-content'
                     id='panel2-header'
                   >
-                    Senedsuned.az saytında hansı ərizə kateqoriyaları mövcuddur?
+                   Senedsuned.az saytından necə ərizə forması yükləyə bilərəm?
                   </AccordionSummary>
                   <AccordionDetails>
-                    Senedsuned.az da Ailə, İş, Hüquqi və Mülki kateqoriyaları
-                    mövcuddur. Senedsuned.az da Ailə, İş, Hüquqi və Mülki
-                    kateqoriyaları mövcuddur.
+                  Lazım olan formanı seçdikdən sonra 'Yüklə' düyməsini basaraq ərizə formasını cihazınıza yükləyə bilərsiniz. Formanı lazım olduğu kimi redaktə edərək ya da onlayn təqdim edə bilərsiniz.
                   </AccordionDetails>
                 </Accordion>
                 <Accordion>
@@ -103,12 +99,10 @@ const Faq: React.FC = () => {
                     aria-controls='panel3-content'
                     id='panel3-header'
                   >
-                    Senedsuned.az saytında hansı ərizə kateqoriyaları mövcuddur?{' '}
+                    Saytda ərizə formlarını birbaşa redaktə edə bilərəmmi?
                   </AccordionSummary>
                   <AccordionDetails>
-                    Senedsuned.az da Ailə, İş, Hüquqi və Mülki kateqoriyaları
-                    mövcuddur. Senedsuned.az da Ailə, İş, Hüquqi və Mülki
-                    kateqoriyaları mövcuddur.
+                  Bəli, saytda formları birbaşa redaktə edə bilərsiniz. Redaktə etmək istədiyiniz formanı seçin, 'Redaktə Et' düyməsini basın və lazımi dəyişiklikləri edin. Daha sonra redaktə edilmiş formanı yükləyə və ya onlayn təqdim edə bilərsiniz.
                   </AccordionDetails>
                 </Accordion>
                 <Accordion>
@@ -117,12 +111,10 @@ const Faq: React.FC = () => {
                     aria-controls='panel4-content'
                     id='panel4-header'
                   >
-                    Senedsuned.az saytında hansı ərizə kateqoriyaları mövcuddur?{' '}
+                   Forma yükləyərkən və ya redaktə edərkən problem yaşasam, nə etməliyəm?
                   </AccordionSummary>
                   <AccordionDetails>
-                    Senedsuned.az da Ailə, İş, Hüquqi və Mülki kateqoriyaları
-                    mövcuddur. Senedsuned.az da Ailə, İş, Hüquqi və Mülki
-                    kateqoriyaları mövcuddur.
+                  İnternet bağlantınızı yoxlayın və yenidən cəhd edin. Problem davam edərsə, 'Bizimlə Əlaqə' səhifəsi vasitəsilə dəstək komandamızla əlaqə saxlayın. Biz sizə dərhal kömək edəcəyik.
                   </AccordionDetails>
                 </Accordion>
                 <Accordion>
@@ -131,12 +123,10 @@ const Faq: React.FC = () => {
                     aria-controls='panel5-content'
                     id='panel5-header'
                   >
-                    Senedsuned.az saytında hansı ərizə kateqoriyaları mövcuddur?{' '}
+                    Senedsuned.az saytında təqdim edilən CV şablonlarını necə istifadə edə bilərəm?
                   </AccordionSummary>
                   <AccordionDetails>
-                    Senedsuned.az da Ailə, İş, Hüquqi və Mülki kateqoriyaları
-                    mövcuddur. Senedsuned.az da Ailə, İş, Hüquqi və Mülki
-                    kateqoriyaları mövcuddur.
+                  'CV Şablonları' bölməsindən bir şablon seçərək öz məlumatlarınızı daxil edərək CV hazırlaya bilərsiniz. Hazırladığınız CV-ni cihazınıza yükləyə və ya birbaşa onlayn redaktə edə bilərsiniz.
                   </AccordionDetails>
                 </Accordion>
               </div>

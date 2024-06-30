@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MenuNavbar, navClose } from '../../assets/icons';
+import { MenuNavbar, logo1, navClose } from '../../assets/icons';
 
 const NavbarCV: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState<boolean>(false);
@@ -26,8 +26,8 @@ const NavbarCV: React.FC = () => {
       <div className='container'>
         <div className='nav'>
           <div className='logo'>
-            <a className='logo-text' href='/'>
-              SenedSuned
+          <a className='logo-text' href='/'>
+            <img className='nav-logo' src={logo1} alt="" />
             </a>
           </div>
 
@@ -43,8 +43,8 @@ const NavbarCV: React.FC = () => {
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className='sidebar-content'>
           <div className='sidebar-content-header'>
-            <a className='logo-text' href='/'>
-              SenedSuned
+          <a className='logo-text' href='/'>
+            <img className='nav-logo' src={logo1} alt="" />
             </a>
             <div onClick={toggleSidebar}>
               <img src={navClose} alt='' />

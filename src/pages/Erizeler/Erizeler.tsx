@@ -95,7 +95,7 @@ const Erizeler: React.FC = () => {
             <div className="spesific-categories-content">
               <div className="container">
                 <div className="spesific-categories-heading-box">
-                  <p>Spesifik kataqoriyalar üzrə axtar.</p>
+                  <p>Spesifik kateqoriyalar üzrə axtar</p>
                 </div>
                 <div className="spesific-categories-category-box">
                   {categories.map((category: Category) => (

@@ -2445,12 +2445,6 @@ header .nav {
   display: flex;
   justify-content: space-between;
 }
-header .nav .logo-text {
-  color: #272f3f;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 28px;
-}
 header .nav .links a {
   color: #242424;
   text-align: center;
@@ -3754,11 +3748,13 @@ header .nav .links a {
     background: #7189bf;
     color: #f2f7fb;
     font-size: 14px;
+    padding: 10px 12px !important;
     font-weight: 500;
     line-height: 16px;
   }
   .erize-details-page .erize-details-text-box .right-side .erize-details-action-box .action-buttons-box .edit-btn {
     border: 1px solid #ed8022;
+    padding: 10px 12px !important;
     color: #ed8022;
     font-size: 14px;
     font-weight: 400;
@@ -10612,6 +10608,14 @@ body,
   flex-direction: column;
 }
 
+.logo-text {
+  max-width: 220px;
+}
+.logo-text img {
+  width: 220px;
+  height: 50px;
+}
+
 .d-flex {
   display: flex;
 }
@@ -10640,7 +10644,7 @@ body,
 
 .container {
   width: 70%; /* Set the width to match the HomeNavbar */
-  margin: 0 auto; /* Center the container horizontally */
+  margin: 0 auto;
 }
 
 .container-new {
@@ -11076,6 +11080,11 @@ a {
     flex: 0 0 auto;
     width: 50%;
   }
+  .mobile-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .links {
     display: none;
   }
@@ -11281,13 +11290,6 @@ a {
     align-items: center;
     padding-bottom: 20px;
   }
-  header .sidebar-content .sidebar-content-header .logo-text {
-    color: #272f3f;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
-  }
   header .sidebar-content .sidebar-links {
     display: flex;
     flex-direction: column;
@@ -11319,6 +11321,11 @@ a {
   .col-sm-12 {
     flex: 0 0 auto;
     width: 100%;
+  }
+  .mobile-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .col-sm-6 {
     flex: 0 0 auto;
@@ -11543,13 +11550,6 @@ a {
     align-items: center;
     padding-bottom: 20px;
   }
-  header .sidebar-content .sidebar-content-header .logo-text {
-    color: #272f3f;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
-  }
   header .sidebar-content .sidebar-links {
     display: flex;
     flex-direction: column;
@@ -11582,6 +11582,19 @@ a {
 }
 
 @media (max-width: 575px) {
+  .mobile-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-text {
+    max-width: 190px;
+    height: 40px;
+  }
+  .logo-text img {
+    width: 190px;
+    height: 40px;
+  }
   .col-xs-12 {
     flex: 0 0 auto;
     width: 100% !important;
@@ -11799,13 +11812,6 @@ a {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 20px;
-  }
-  header .sidebar-content .sidebar-content-header .logo-text {
-    color: #272f3f;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
   }
   header .sidebar-content .sidebar-links {
     display: flex;

@@ -22,6 +22,20 @@ export const languageOptions: LanguageOption[] = [
   { code: 'ge', name: 'German' },
 ];
 
+interface DegreeOption {
+  code: string;
+  name: string;
+}
+
+
+export const degreeOptions: DegreeOption[] = [
+  { code: 'om', name: 'Orta Məktəb' },
+  { code: 'ly', name: 'Lisey' },
+  { code: 'br', name: 'Bakalavr' },
+  { code: 'ma', name: 'Magistratura' },
+  { code: 'da', name: 'Doktorantura ' },
+]
+
 interface LevelOption {
   code: string;
   name: string;
@@ -50,3 +64,8 @@ export const getLanguageName = (code: string) => {
   const language = languageOptions.find((lang) => lang.code === code);
   return language ? language.name : '';
 };
+
+export const getDegreeName =(code:string): string =>{
+  const degree  = degreeOptions.find((deg)=> deg.code === code);
+  return degree ? degree.name : '';
+}

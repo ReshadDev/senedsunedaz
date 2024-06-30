@@ -24,7 +24,7 @@ import {
   cvtm2,
 } from '../../assets/icons';
 import CVContent from './CvContent';
-import { errorMessages, languageOptions, levelOptions } from '../../constants';
+import { degreeOptions, errorMessages, languageOptions, levelOptions } from '../../constants';
 import CVDynamicContent from './CVDynamicContent';
 import Slider from 'react-slick';
 
@@ -61,7 +61,7 @@ const CVForm: React.FC = () => {
     university0: '',
     eduStartDate0: '',
     eduEndDate0: '',
-    eduType0: '',
+    eduType0: 'om',
     dutyname0: '',
     work0: '',
     workStartDate0: '',
@@ -244,7 +244,7 @@ const CVForm: React.FC = () => {
                 helperText={errors.dutyname0}
                 required
                 inputProps={{
-                  maxLength: 50,
+                  maxLength: 60,
                 }}
               />
             </div>
@@ -275,12 +275,11 @@ const CVForm: React.FC = () => {
                 Başlama tarixi
               </InputLabel>
               <FormTextField
-                {...register(`workStartDate${i}`, {
-                  required: 'startDate is required',
-                })}
+                {...register(`workStartDate${i}`)}
                 placeholder="dd.mm.yyyy"
                 fullWidth
                 type="date"
+                onChange={handleInputChange}
                 error={!!errors.workStartDate0}
                 helperText={errors.workStartDate0}
                 required
@@ -299,13 +298,12 @@ const CVForm: React.FC = () => {
                 <label style={{ marginLeft: '5px' }}>Davam edirsə kliklə</label>
               </div>
               <FormTextField
-                {...register(`workEndDate${i}`, {
-                  required: 'endDate is required',
-                })}
+                {...register(`workEndDate${i}`)}
                 placeholder={
                   isExperienceCheckboxChecked[i] ? 'Davam edir' : 'dd.mm.yyyy'
                 }
                 fullWidth
+                onChange={handleInputChange}
                 type="date"
                 error={!!errors.workEndDate0}
                 helperText={errors.workEndDate0}
@@ -326,6 +324,9 @@ const CVForm: React.FC = () => {
                 placeholder="Azərbaycan"
                 fullWidth
                 type="text"
+                inputProps={{
+                  maxLength: 25,
+                }}
               />
             </div>
             <div className="form-element">
@@ -339,6 +340,9 @@ const CVForm: React.FC = () => {
                 placeholder="Baku"
                 fullWidth
                 type="text"
+                inputProps={{
+                  maxLength: 25,
+                }}
               />
             </div>
           </div>
@@ -389,6 +393,10 @@ const CVForm: React.FC = () => {
                 error={!!errors.profession0}
                 helperText={errors.profession0}
                 required
+                inputProps={{
+                  maxLength: 60,
+                  style: { textTransform: 'capitalize' },
+                }}
               />
             </div>
             <div className="form-element">
@@ -405,7 +413,7 @@ const CVForm: React.FC = () => {
                 helperText={errors.university0}
                 required
                 inputProps={{
-                  maxLength: 50,
+                  maxLength: 80,
                 }}
               />
             </div>
@@ -458,16 +466,22 @@ const CVForm: React.FC = () => {
               <InputLabel shrink className="label-text">
                 Təhsil dərəcəsi
               </InputLabel>
-              <FormTextField
-                {...register(`eduType${i}`)}
-                placeholder="Bakalavr"
-                fullWidth
-                type="text"
-                onChange={handleInputChange}
-                error={!!errors.eduType0}
-                helperText={errors.eduType0}
-                required
-              />
+                <Controller
+                name={`eduType${i}`}
+                defaultValue="55"
+                control={control}
+                render={({ field }) => (
+                  <FormControl style={{ width: '100%' }}>
+                    <Select {...field}>
+                      {degreeOptions.map(({ code, name }) => (
+                        <MenuItem key={code} value={code}>
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+              />  
             </div>
             <div className="form-element">
               <InputLabel shrink className="label-text">
@@ -491,6 +505,9 @@ const CVForm: React.FC = () => {
                 placeholder="Azərbaycan"
                 fullWidth
                 type="text"
+                inputProps={{
+                  maxLength: 25,
+                }}
               />
             </div>
             <div className="form-element">
@@ -502,6 +519,9 @@ const CVForm: React.FC = () => {
                 placeholder="Baku"
                 fullWidth
                 type="text"
+                inputProps={{
+                  maxLength: 25,
+                }}
               />
             </div>
           </div>
@@ -899,6 +919,7 @@ const CVForm: React.FC = () => {
                         placeholder="1234567"
                         onChange={handleInputChange}
                         fullWidth
+                        type='number'
                         error={!!errors.phoneNumber}
                         helperText={errors.phoneNumber}
                         inputProps={{

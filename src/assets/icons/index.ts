@@ -48,6 +48,8 @@ import step2 from '../images/step2.svg';
 import step3 from '../images/step3.svg';
 
 import cv1 from '../images/cv1.svg';
+import navLogo from '../images/ss-png (1).png';
+import logo1 from "../images/logo1.png";
 
 // CV FORM ASSETS
 import cvformbackground from '../images/cvformbackground.svg';
@@ -75,6 +77,7 @@ import cvtm3 from '../images/cvtm3.png';
 import cvtm4 from '../images/cvtm4.jpg';
 import cvtm5 from '../images/cvtm5.png';
 import cvdownload from '../images/downloadcv.svg';
+import navLogoMain from "../images/logo.png";
 
 import MenuNavbar from '../images/navmenu.svg';
 import navClose from '../images/navclose.svg';
@@ -87,8 +90,10 @@ import Cvfaqbox3 from '../images/cvfaqbox3.svg';
 
 export {
   SearchIcon,
+  logo1,
   Cvfaqbox1,
   Cvfaqbox2,
+  navLogoMain,
   Cvfaqbox3,
   faqIcon,
   confirmIcon,
@@ -97,6 +102,7 @@ export {
   AboutUs,
   Question,
   Minus,
+  navLogo,
   Bumb,
   ArrowRightIcon,
   AileIcon,

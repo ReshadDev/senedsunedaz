@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuNavbar, navClose } from '../../assets/icons';
+import { MenuNavbar, logo1, navClose, navLogo, navLogoMain } from '../../assets/icons';
 
 const Navbar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
         <div className='nav'>
           <div className='logo'>
             <a className='logo-text' href='/'>
-              SenedSuned
+            <img className='nav-logo' src={logo1} alt="" />
             </a>
           </div>
           <div className='links'>
@@ -43,8 +43,8 @@ const Navbar: React.FC = () => {
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className='sidebar-content'>
           <div className='sidebar-content-header'>
-            <a className='logo-text' href='/'>
-              SenedSuned
+          <a className='logo-text' href='/'>
+            <img className='nav-logo' src={logo1} alt="" />
             </a>
             <div onClick={toggleSidebar}>
               <img src={navClose} alt='' />

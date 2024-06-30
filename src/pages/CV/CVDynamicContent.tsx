@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLanguageName, getLevelName } from '../../constants';
+import { getDegreeName, getLanguageName, getLevelName } from '../../constants';
 
 const template1 = {
   page: {
@@ -188,7 +188,7 @@ const CVDynamicContent: React.FC<CVContentProps> = ({
           {Array.from({ length: schoolCount }).map((_, index) => (
             <div key={index} style={{ marginBottom: '10px' }}>
               <strong style={{ fontSize: '14px' }}>
-                {watch(`eduType${index}`)} of {watch(`profession${index}`)}
+                {getDegreeName(watch(`eduType${index}`))} of {watch(`profession${index}`)}
               </strong>
               <div style={styles.bodyText}>
                 Institution: {watch(`university${index}`)}

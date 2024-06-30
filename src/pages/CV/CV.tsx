@@ -180,10 +180,7 @@ const CV: React.FC = () => {
             <div className='cv-templates-content pb-150'>
               <div className='heading-text'>
                 <p className='heading-text__title'>Şablonlar</p>
-                <p>
-                  Məlumat xanalarını doldurduqdan sonra istədiyin şablonu seç və
-                  CV’in həmin şablon üzərində hazırlansın.
-                </p>
+              
               </div>
               <div className='template-boxes'>
                 {templates?.map((template, index) => (
