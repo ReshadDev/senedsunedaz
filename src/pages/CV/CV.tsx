@@ -194,8 +194,8 @@ const CV: React.FC = () => {
               </div>
 
               <div className='button-box'>
-                <Link className='btn cv-primary' to='/cv-form'>
-                  CV yarat
+                <Link className='btn cv-primary' to='/cv/templates'>
+                  Şablonlara keç
                   <ArrowRightOutlined />
                 </Link>
               </div>
