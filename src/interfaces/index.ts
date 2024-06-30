@@ -56,9 +56,10 @@ export interface FormData {
 }
 
 export interface ITemplatesProps {
-  id?: number;
+  id: number;
   name?: string;
   cvEditedName?: string;
+  cvName?:string;
   docName?: string;
   imageName?: string;
   imagePath?: string;

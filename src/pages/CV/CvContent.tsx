@@ -207,8 +207,8 @@ const CVContent = ({
                   },
                 ]}
               >
-                <Text style={{ fontSize: 20 }}>Rashad</Text>
-                <Text style={{ fontSize: 30 }}>Garayev</Text>
+                <Text style={{ fontSize: 20 }}> {watch("name")}</Text>
+                <Text style={{ fontSize: 30 }}> {watch("surname")}</Text>
               </View>
               <View
                 style={[
@@ -372,8 +372,9 @@ const CVContent = ({
 {id === 2 && (
          <View>
            <View style={styles3.header}>
-            <Text style={{ fontSize: 20 }}>Rashad</Text>
-            <Text style={{ fontSize: 30 }}>Garayev</Text>
+            <Text style={{ fontSize: 20 }}>                {watch("name")}
+            </Text>
+            <Text style={{ fontSize: 30 }}> {watch("surname")}</Text>
           </View>
           <View style={styles3.borderBottom} />
           <View style={styles3.mainBoard}>

@@ -3,6 +3,7 @@ import {
   DocumentData,
   DocumentInput,
   DocumentInputV2,
+  ITemplatesProps,
 } from '../interfaces';
 import axios from 'axios';
 import { APIURL } from '../constants';
@@ -23,6 +24,20 @@ export const getAllDocuments = async (
     console.log(error);
   }
 };
+
+export const getAllTemplates = async (
+  setAllTemplates: (templates: ITemplatesProps[]) => void
+) => {
+  try {
+    const { data } = await axios.get(`${APIURL}/api/cv/findAll`);
+    if (data?.success) {
+      setAllTemplates(data?.documents);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 // Get one Document
 
@@ -78,6 +93,16 @@ export const deleteDocument = async (id: number | null, token: string) => {
     },
   });
 };
+
+
+export const deleteTemplate = async (id: number | null, token: string) => {
+  axios.delete(`${APIURL}/api/cv/deleteById/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 
 // Download Document
 
