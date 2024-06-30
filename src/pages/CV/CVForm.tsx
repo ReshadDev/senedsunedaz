@@ -22,6 +22,7 @@ import {
   cvformstepactive,
   cvtm1,
   cvtm2,
+  cvtm3,
 } from '../../assets/icons';
 import CVContent from './CvContent';
 import { degreeOptions, errorMessages, languageOptions, levelOptions } from '../../constants';
@@ -688,6 +689,7 @@ const CVForm: React.FC = () => {
 
   const handleTemplateClick = (id: number) => {
     setSelectedTemplateId(id);
+    console.log(id);
   };
 
   const settings = {
@@ -1135,35 +1137,10 @@ const CVForm: React.FC = () => {
                       }`}
                       onClick={() => handleTemplateClick(3)}
                     >
-                      <img src={cvtm1} className="img-fluid" alt="Template 3" />
+                      <img src={cvtm3} className="img-fluid" alt="Template 3" />
                     </div>     
                   </Slider>
-                  <Slider {...settings}>
-                    <div
-                      className={`tm-box ${
-                        selectedTemplateId === 4 ? 'selected-cv' : ''
-                      }`}
-                      onClick={() => handleTemplateClick(4)}
-                    >
-                      <img src={cvtm1} className="img-fluid" alt="Template 4" />
-                    </div>
-                    <div
-                      className={`tm-box ${
-                        selectedTemplateId === 5 ? 'selected-cv' : ''
-                      }`}
-                      onClick={() => handleTemplateClick(5)}
-                    >
-                      <img src={cvtm2} className="img-fluid" alt="Template 5" />
-                    </div>
-                    <div
-                      className={`tm-box ${
-                        selectedTemplateId === 6 ? 'selected-cv' : ''
-                      }`}
-                      onClick={() => handleTemplateClick(6)}
-                    >
-                      <img src={cvtm1} className="img-fluid" alt="Template 6" />
-                    </div>
-                  </Slider>
+              
                 </div>
                </div>
               </div>
@@ -1274,11 +1251,11 @@ const CVForm: React.FC = () => {
                   >
                     <button
                       className="btn next-btn"
-                      onClick={() =>
-                        setTimeout(() => {
-                          navigate('/cv');
-                        }, 3000)
-                      }
+                      // onClick={() =>
+                      //   setTimeout(() => {
+                      //     navigate('/cv');
+                      //   }, 3000)
+                      // }
                     >
                       CV YARAT
                     </button>
